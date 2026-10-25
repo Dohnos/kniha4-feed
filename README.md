@@ -9,6 +9,6 @@ cd "Kniha4u - App"
 npm run feed
 ```
 
-Pak se nový `zbozi.xml` nahraje sem do repozitáře (GitHub → Add file → Upload files).
+Celé to (vytvoření feedu i nahrání sem) dělá dvojklik na `Kniha4UAktualizovat feed.cmd`.
 
 - `.nojekyll` – GitHub Pages soubory jen servíruje, nic nepřekládá
