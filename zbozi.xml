@@ -60889,4 +60889,12 @@ Sledujeme vzestup Fridricha Barbarossy v nejmocnějšího panovníka středověk
     <PRICE_VAT>150</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
+  <SHOPITEM>
+    <PRODUCTNAME>Klíč vědění</PRODUCTNAME>
+    <DESCRIPTION>V životě jsou chvíle, kdy je i realista za určitých okolností ochoten uvěřit v nadpřirozené síly. Tři mladé ženy, Malory, Dany a Zoe, mají postupně najít tři magické klíče. Dana přebírá štafetu od Malory. S pomocí bratra Flynna a jeho kamarádů z dětství, Brada a Jordana, hledají ženy vodítko k tajem</DESCRIPTION>
+    <URL>https://kniha4u.cz/kniha/klic-vedeni</URL>
+    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1792932330/media_library/IMAGE_25102026_1345_1_OK58.jpg</IMGURL>
+    <PRICE_VAT>50</PRICE_VAT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
 </SHOP>
