@@ -9,6 +9,6 @@ cd "Kniha4u - App"
 npm run feed
 ```
 
-Celé to (vytvoření feedu i nahrání sem) dělá dvojklik na `Kniha4UAktualizovat feed.cmd`.
+Celé to (vytvoření feedu i nahrání sem) dělá dvojklik na `Kniha4U\Aktualizovat feed.cmd`.
 
 - `.nojekyll` – GitHub Pages soubory jen servíruje, nic nepřekládá
