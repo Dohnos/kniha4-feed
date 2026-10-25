@@ -1,0 +1,14 @@
+{
+  "name": "kniha4u-web",
+  "private": true,
+  "type": "module",
+  "description": "Kniha4U – statický web knih z feedu (Astro) + XML feed pro Zboží.cz",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.4.2"
+  }
+}

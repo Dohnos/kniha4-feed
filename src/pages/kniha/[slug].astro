@@ -1,0 +1,128 @@
+---
+import type { GetStaticPaths } from "astro";
+import Zaklad from "../../layouts/Zaklad.astro";
+import Obalka from "../../components/Obalka.astro";
+import KnihaKarta from "../../components/KnihaKarta.astro";
+import { autor, knihy, podobne, type Kniha } from "../../lib/knihy";
+import { NAZEV_WEBU, absolutni, formatCena, odkaz, zkratit } from "../../lib/web";
+
+export const getStaticPaths = (() =>
+  knihy.map((kniha) => ({ params: { slug: kniha.slug }, props: { kniha } }))) satisfies GetStaticPaths;
+
+interface Props {
+  kniha: Kniha;
+}
+
+const { kniha } = Astro.props;
+const jmeno = autor(kniha);
+const url = absolutni(odkaz(`kniha/${kniha.slug}`), Astro.site);
+
+const udaje: [string, string][] = (
+  [
+    ["Autor", jmeno],
+    ["Nakladatel", kniha.nakladatel],
+    ["Rok vydání", kniha.rok],
+    ["Vazba", kniha.vazba],
+    ["Počet stran", kniha.stran ? String(kniha.stran) : ""],
+    ["Jazyk", kniha.jazyk],
+    ["ISBN", kniha.isbn],
+    ["Kód", String(kniha.id)],
+  ] as [string, string][]
+).filter(([, hodnota]) => hodnota !== "");
+
+const kratce = [jmeno, kniha.nakladatel, kniha.rok].filter(Boolean).join(", ");
+const popis = zkratit(
+  kniha.popis ||
+    `${kniha.nazev}${kratce ? ` (${kratce})` : ""} – kniha skladem v antikvariátu ${NAZEV_WEBU} za ${formatCena(kniha.cena)}.`
+);
+
+// schema.org Book + Offer – Google z toho umí ukázat cenu a dostupnost přímo ve výsledcích.
+const knihaLd: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  name: kniha.nazev,
+  url,
+  offers: {
+    "@type": "Offer",
+    price: kniha.cena,
+    priceCurrency: "CZK",
+    availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/UsedCondition",
+    url,
+  },
+};
+if (kniha.autori.length > 0) knihaLd.author = kniha.autori.map((name) => ({ "@type": "Person", name }));
+if (kniha.nakladatel) knihaLd.publisher = { "@type": "Organization", name: kniha.nakladatel };
+if (kniha.rok) knihaLd.datePublished = kniha.rok;
+if (kniha.isbn) knihaLd.isbn = kniha.isbn;
+if (kniha.stran) knihaLd.numberOfPages = kniha.stran;
+if (kniha.popis) knihaLd.description = zkratit(kniha.popis, 500);
+if (kniha.obrazek) knihaLd.image = kniha.obrazek;
+
+const jsonLd = [
+  knihaLd,
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: NAZEV_WEBU, item: absolutni(odkaz(), Astro.site) },
+      { "@type": "ListItem", position: 2, name: "Katalog", item: absolutni(odkaz("katalog"), Astro.site) },
+      { "@type": "ListItem", position: 3, name: kniha.nazev, item: url },
+    ],
+  },
+];
+---
+
+<Zaklad titulek={jmeno ? `${kniha.nazev} – ${jmeno}` : kniha.nazev} popis={popis} jsonLd={jsonLd} ogTyp="book">
+  <ol class="drobecky">
+    <li><a href={odkaz()}>Úvod</a></li>
+    <li><a href={odkaz("katalog")}>Katalog</a></li>
+    <li aria-current="page">{kniha.nazev}</li>
+  </ol>
+
+  <article class="detail">
+    <div class="detail-obalka">
+      <Obalka kniha={kniha} priorita />
+    </div>
+
+    <div>
+      <h1>{kniha.nazev}</h1>
+      {jmeno && <p class="detail-autor">{jmeno}</p>}
+
+      <div class="detail-nakup">
+        <span class="detail-cena">{formatCena(kniha.cena)}</span>
+        <span class="stitek stitek-tecka">Skladem</span>
+      </div>
+
+      <dl class="udaje">
+        {
+          udaje.map(([nazev, hodnota]) => (
+            <div class="udaj">
+              <dt>{nazev}</dt>
+              <dd>{hodnota}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      {
+        kniha.popis && (
+          <section class="popis">
+            <h2>O knize</h2>
+            <p>{kniha.popis}</p>
+          </section>
+        )
+      }
+    </div>
+  </article>
+
+  <section class="sekce">
+    <div class="sekce-hlava">
+      <h2>Další knihy z nabídky</h2>
+      <a class="tlacitko tlacitko-obrys" href={odkaz("katalog")}>Celý katalog →</a>
+    </div>
+    <div class="mrizka">
+      {podobne(kniha).map((k) => <KnihaKarta kniha={k} />)}
+    </div>
+  </section>
+</Zaklad>

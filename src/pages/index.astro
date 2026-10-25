@@ -1,0 +1,65 @@
+---
+import Zaklad from "../layouts/Zaklad.astro";
+import KnihaKarta from "../components/KnihaKarta.astro";
+import { knihy, nejnizsiCena } from "../lib/knihy";
+import { NAZEV_WEBU, POPIS_WEBU, absolutni, formatCena, formatPocet, odkaz } from "../lib/web";
+
+const vyber = knihy.slice(0, 24);
+const autoru = new Set(knihy.flatMap((k) => k.autori)).size;
+const url = absolutni(odkaz(), Astro.site);
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebSite", name: NAZEV_WEBU, url, inLanguage: "cs" },
+  {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    name: NAZEV_WEBU,
+    description: POPIS_WEBU,
+    url,
+    currenciesAccepted: "CZK",
+  },
+];
+---
+
+<Zaklad popis={POPIS_WEBU} jsonLd={jsonLd} sekce="uvod">
+  <section class="uvod">
+    <p class="nadpis-mensi">Antikvariát {NAZEV_WEBU}</p>
+    <h1>Knihy, které čekají na nového čtenáře.</h1>
+    <p class="uvod-text">
+      {formatPocet(knihy.length)} knih skladem – romány, historie, odborná literatura i sběratelské kousky.
+      Každý výtisk je jen jeden, tak neváhejte.
+    </p>
+    <div class="uvod-akce">
+      <a class="tlacitko" href={odkaz("katalog")}>Prohlédnout katalog</a>
+      <a class="tlacitko tlacitko-obrys" href="#vyber">Výběr z nabídky</a>
+    </div>
+  </section>
+
+  <ul class="vyhody">
+    <li class="vyhoda">
+      <span class="vyhoda-cislo">{formatPocet(knihy.length)}</span>
+      <span class="vyhoda-text">knih skladem</span>
+    </li>
+    <li class="vyhoda">
+      <span class="vyhoda-cislo">{formatPocet(autoru)}</span>
+      <span class="vyhoda-text">autorů</span>
+    </li>
+    <li class="vyhoda">
+      <span class="vyhoda-cislo">od {formatCena(nejnizsiCena())}</span>
+      <span class="vyhoda-text">za knihu</span>
+    </li>
+  </ul>
+
+  <section class="sekce" id="vyber">
+    <div class="sekce-hlava">
+      <div>
+        <h2>Výběr z nabídky</h2>
+        <p class="sekce-popis">Prvních {vyber.length} knih z katalogu.</p>
+      </div>
+      <a class="tlacitko tlacitko-obrys" href={odkaz("katalog")}>Celý katalog →</a>
+    </div>
+    <div class="mrizka">
+      {vyber.map((k, i) => <KnihaKarta kniha={k} priorita={i < 6} />)}
+    </div>
+  </section>
+</Zaklad>

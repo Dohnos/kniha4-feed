@@ -1,0 +1,13 @@
+---
+import Zaklad from "../layouts/Zaklad.astro";
+import { odkaz } from "../lib/web";
+---
+
+<Zaklad titulek="Stránka nenalezena" popis="Tahle stránka neexistuje. Knihu možná už někdo koupil.">
+  <section class="chyba">
+    <p class="nadpis-mensi">Chyba 404</p>
+    <h1>Tahle stránka tu není.</h1>
+    <p>Knihu možná už někdo koupil, nebo se změnila adresa. Zkuste ji najít v katalogu.</p>
+    <a class="tlacitko" href={odkaz("katalog")}>Otevřít katalog</a>
+  </section>
+</Zaklad>

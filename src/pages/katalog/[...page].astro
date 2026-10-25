@@ -1,0 +1,65 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import Zaklad from "../../layouts/Zaklad.astro";
+import KnihaKarta from "../../components/KnihaKarta.astro";
+import Strankovani from "../../components/Strankovani.astro";
+import { NA_STRANKU, knihy, type Kniha } from "../../lib/knihy";
+import { NAZEV_WEBU, absolutni, formatPocet, odkaz } from "../../lib/web";
+
+// /katalog/ = strana 1, /katalog/2/ … /katalog/N/
+export const getStaticPaths = (({ paginate }) => paginate(knihy, { pageSize: NA_STRANKU })) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<Kniha>;
+}
+
+const { page } = Astro.props;
+const strana = page.currentPage;
+const titulek = strana === 1 ? "Katalog knih" : `Katalog knih – strana ${strana}`;
+const popis =
+  `Katalog antikvariátu ${NAZEV_WEBU}: ${formatPocet(page.total)} knih skladem.` +
+  (strana > 1 ? ` Strana ${strana} z ${page.lastPage}.` : " Romány, historie, odborná literatura i sběratelské kousky.");
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: titulek,
+    numberOfItems: page.data.length,
+    itemListElement: page.data.map((k, i) => ({
+      "@type": "ListItem",
+      position: page.start + i + 1,
+      url: absolutni(odkaz(`kniha/${k.slug}`), Astro.site),
+      name: k.nazev,
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: NAZEV_WEBU, item: absolutni(odkaz(), Astro.site) },
+      { "@type": "ListItem", position: 2, name: "Katalog", item: absolutni(odkaz("katalog"), Astro.site) },
+    ],
+  },
+];
+---
+
+<Zaklad titulek={titulek} popis={popis} jsonLd={jsonLd} sekce="katalog">
+  <section class="sekce">
+    <div class="sekce-hlava">
+      <div>
+        <h1>{titulek}</h1>
+        <p class="sekce-popis">
+          {formatPocet(page.total)} knih skladem · knihy {formatPocet(page.start + 1)}–{formatPocet(page.end + 1)}
+        </p>
+      </div>
+      <span class="stitek stitek-tecka">Strana {strana} z {page.lastPage}</span>
+    </div>
+
+    <div class="mrizka">
+      {page.data.map((k, i) => <KnihaKarta kniha={k} priorita={i < 6} />)}
+    </div>
+
+    <Strankovani aktualni={strana} posledni={page.lastPage} />
+  </section>
+</Zaklad>

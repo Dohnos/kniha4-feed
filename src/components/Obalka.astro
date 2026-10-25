@@ -1,0 +1,40 @@
+---
+/**
+ * Obálka knihy. Dokud knihy nemají vlastní fotky, kreslí se typograficky z názvu a autora
+ * v jedné ze šesti černobílých variant (podle ID, ať jsou sousední knihy různé).
+ * Až bude v datech `obrazek`, zobrazí se fotka.
+ */
+import { autor, type Kniha } from "../lib/knihy";
+
+interface Props {
+  kniha: Kniha;
+  /** U první obálky na stránce načíst fotku hned, ne líně. */
+  priorita?: boolean;
+}
+
+const { kniha, priorita = false } = Astro.props;
+const varianta = `obalka-v${kniha.id % 6}`;
+const jmeno = autor(kniha);
+---
+
+<div class:list={["obalka", varianta]}>
+  {
+    kniha.obrazek ? (
+      <img
+        src={kniha.obrazek}
+        alt={`Obálka knihy ${kniha.nazev}`}
+        loading={priorita ? "eager" : "lazy"}
+        decoding="async"
+        width="400"
+        height="600"
+      />
+    ) : (
+      <>
+        <span class="obalka-znacka" aria-hidden="true">Kniha4U</span>
+        <span class="obalka-linka" aria-hidden="true" />
+        <p class="obalka-nazev" aria-hidden="true">{kniha.nazev}</p>
+        {jmeno && <span class="obalka-autor" aria-hidden="true">{jmeno}</span>}
+      </>
+    )
+  }
+</div>
