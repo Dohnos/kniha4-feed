@@ -2,6 +2,8 @@
 
 Adresa feedu: **https://dohnos.github.io/kniha4-feed/zbozi.xml**
 
+Testovací feed (prvních 20 knih): **https://dohnos.github.io/kniha4-feed/zbozitest.xml**
+
 Soubor `zbozi.xml` se negeneruje ručně. Vytváří ho skript v aplikaci:
 
 ```
