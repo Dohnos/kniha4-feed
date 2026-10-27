@@ -23,10 +23,11 @@ Nic tady se needituje ručně. Knihy se spravují v lokální aplikaci Kniha4U
 | Adresa | Obsah |
 | --- | --- |
 | `/` | úvod: vějíř obálek, novinky, ceny, období, autoři |
-| `/katalog/`, `/katalog/2/` … | celý katalog po 48 knihách |
+| `/katalog/`, `/katalog/2/` … | celý katalog po 48 knihách + filtr a hledání |
 | `/kniha/<slug>/` | detail knihy (schema.org Book + Offer) |
 | `/cena/<rozsah>/`, `/vydani/<období>/` | kolekce podle ceny a doby vydání (stránkované) |
-| `/autori/`, `/autor/<slug>/` | rejstřík a stránky autorů s ≥ 2 knihami |
+| `/autori/`, `/autor/<slug>/` | rejstřík (s hledáním) a stránky autorů s ≥ 2 knihami |
+| `/nakladatelstvi/`, `/nakladatelstvi/<slug>/` | rejstřík (s hledáním) a stránky nakladatelství s ≥ 2 knihami |
 | `/hledat/?q=…` | rozšířené hledání s filtry (v prohlížeči, noindex) |
 | `/sken/` | Kniha4U Sken – sběr knih telefonem → ZIP pro aplikaci na PC (noindex, offline) |
 | `/sitemap.xml`, `/robots.txt`, `/hledani.json` | SEO a rejstřík pro hledání |
