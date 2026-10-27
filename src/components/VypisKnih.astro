@@ -1,0 +1,19 @@
+---
+/** Stránkovaná mřížka knih (katalog, ceny, období). */
+import type { Page } from "astro";
+import KnihaKarta from "./KnihaKarta.astro";
+import Strankovani from "./Strankovani.astro";
+import type { Kniha } from "../lib/knihy";
+
+interface Props {
+  page: Page<Kniha>;
+  zaklad: string;
+}
+
+const { page, zaklad } = Astro.props;
+---
+
+<div class="mrizka">
+  {page.data.map((k, i) => <KnihaKarta kniha={k} priorita={i < 6} />)}
+</div>
+<Strankovani aktualni={page.currentPage} posledni={page.lastPage} zaklad={zaklad} />

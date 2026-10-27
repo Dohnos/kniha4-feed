@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import StrankaVypisu from "../../../components/StrankaVypisu.astro";
+import { NA_STRANKU, kolekceCen, type Kniha, type Kolekce } from "../../../lib/knihy";
+
+export const getStaticPaths = (({ paginate }) =>
+  kolekceCen.flatMap((kolekce) =>
+    paginate(kolekce.knihy, { params: { cena: kolekce.slug }, props: { kolekce }, pageSize: NA_STRANKU })
+  )) satisfies GetStaticPaths;
+
+const { page, kolekce } = Astro.props as { page: Page<Kniha>; kolekce: Kolekce };
+const zaklad = `cena/${kolekce.slug}`;
+---
+
+<StrankaVypisu
+  nazev={kolekce.nazev}
+  popis={kolekce.popis}
+  page={page}
+  zaklad={zaklad}
+  drobecky={[{ nazev: "Katalog", cesta: "katalog" }, { nazev: kolekce.nazev, cesta: zaklad }]}
+/>

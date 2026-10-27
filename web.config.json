@@ -1,4 +1,8 @@
 {
   "site": "https://dohnos.github.io",
-  "base": "/kniha4-feed"
+  "base": "/kniha4-feed",
+  "kontakt": {
+    "email": "",
+    "telefon": ""
+  }
 }

@@ -1,22 +1,23 @@
 ---
 import Obalka from "./Obalka.astro";
-import { autor, type Kniha } from "../lib/knihy";
+import type { Kniha } from "../lib/knihy";
 import { formatCena, odkaz } from "../lib/web";
 
 interface Props {
   kniha: Kniha;
   priorita?: boolean;
+  /** Plynulý přechod obálky do detailu – jen tam, kde je kniha na stránce jednou. */
+  prechod?: boolean;
 }
 
-const { kniha, priorita } = Astro.props;
-const jmeno = autor(kniha);
+const { kniha, priorita, prechod = true } = Astro.props;
 ---
 
-<a class="karta" href={odkaz(`kniha/${kniha.slug}`)}>
-  <Obalka kniha={kniha} priorita={priorita} />
+<a class="karta objev" href={odkaz(`kniha/${kniha.slug}`)}>
+  <Obalka kniha={kniha} priorita={priorita} prechod={prechod} />
   <span class="karta-text">
     <span class="karta-nazev">{kniha.nazev}</span>
-    <span class="karta-autor">{jmeno || " "}</span>
+    <span class="karta-autor">{kniha.autor || " "}</span>
     <span class="karta-spodek">
       <span class="karta-rok">{kniha.rok}</span>
       <span class="cena">{formatCena(kniha.cena)}</span>

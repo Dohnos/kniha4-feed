@@ -1,0 +1,57 @@
+---
+import type { GetStaticPaths } from "astro";
+import Zaklad from "../../layouts/Zaklad.astro";
+import KnihaKarta from "../../components/KnihaKarta.astro";
+import { autoriSeStrankou, type Autor } from "../../lib/knihy";
+import { NAZEV_WEBU, absolutni, formatCena, odkaz, pocetKnih } from "../../lib/web";
+
+export const getStaticPaths = (() => autoriSeStrankou.map((autor) => ({ params: { slug: autor.slug }, props: { autor } }))) satisfies GetStaticPaths;
+
+const { autor } = Astro.props as { autor: Autor };
+const url = absolutni(odkaz(`autor/${autor.slug}`), Astro.site);
+const odCeny = Math.min(...autor.knihy.map((k) => k.cena));
+const popis = `${autor.jmeno} – ${pocetKnih(autor.knihy.length)} skladem v antikvariátu ${NAZEV_WEBU}, ceny od ${formatCena(odCeny)}.`;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${autor.jmeno} – knihy`,
+    description: popis,
+    url,
+    about: { "@type": "Person", name: autor.jmeno },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: autor.knihy.length,
+      itemListElement: autor.knihy.map((k, i) => ({ "@type": "ListItem", position: i + 1, url: absolutni(odkaz(`kniha/${k.slug}`), Astro.site), name: k.nazev })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: NAZEV_WEBU, item: absolutni(odkaz(), Astro.site) },
+      { "@type": "ListItem", position: 2, name: "Autoři", item: absolutni(odkaz("autori"), Astro.site) },
+      { "@type": "ListItem", position: 3, name: autor.jmeno, item: url },
+    ],
+  },
+];
+---
+
+<Zaklad titulek={`${autor.jmeno} – knihy`} popis={popis} jsonLd={jsonLd} sekce="autori">
+  <div class="obal">
+    <header class="vypis-hlava">
+      <ol class="drobecky">
+        <li><a href={odkaz()}>Úvod</a></li>
+        <li><a href={odkaz("autori")}>Autoři</a></li>
+        <li aria-current="page">{autor.jmeno}</li>
+      </ol>
+      <p class="stitek-nad" style="margin-top: 22px">Autor</p>
+      <h1 class="nadpis-l">{autor.jmeno}</h1>
+      <p>{pocetKnih(autor.knihy.length)} skladem · ceny od {formatCena(odCeny)}</p>
+    </header>
+    <div class="mrizka">
+      {autor.knihy.map((k, i) => <KnihaKarta kniha={k} priorita={i < 6} />)}
+    </div>
+  </div>
+</Zaklad>

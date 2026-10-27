@@ -1,87 +1,134 @@
 ---
 import "../styles/global.css";
 import Hledani from "../components/Hledani.astro";
+import Ikona from "../components/Ikona.astro";
+import { kolekceCen, vygenerovano } from "../lib/knihy";
 import { NAZEV_WEBU, POPIS_WEBU, absolutni, odkaz, soubor } from "../lib/web";
-import { vygenerovano } from "../lib/knihy";
 
 interface Props {
   titulek?: string;
   popis?: string;
-  /** Strukturovaná data schema.org – objekt nebo pole objektů. */
+  /** Absolutní adresa obrázku pro sdílení; jinak společný og.png. */
+  obrazek?: string;
   jsonLd?: object | object[];
-  /** Typ stránky pro Open Graph. */
   ogTyp?: "website" | "book";
-  /** Aktivní položka navigace. */
-  sekce?: "uvod" | "katalog";
+  sekce?: "uvod" | "katalog" | "autori" | "hledat";
+  noindex?: boolean;
 }
 
-const { titulek, popis = POPIS_WEBU, jsonLd, ogTyp = "website", sekce } = Astro.props;
+const { titulek, popis = POPIS_WEBU, obrazek, jsonLd, ogTyp = "website", sekce, noindex = false } = Astro.props;
 const celyTitulek = titulek ? `${titulek} | ${NAZEV_WEBU}` : `${NAZEV_WEBU} – antikvariát, knihy skladem`;
 const kanonicka = absolutni(Astro.url.pathname, Astro.site);
+const ogObrazek = obrazek ?? absolutni(soubor("og.png"), Astro.site);
 const datum = vygenerovano.toLocaleDateString("cs-CZ", { day: "numeric", month: "long", year: "numeric" });
+const NAVIGACE = [
+  { sekce: "katalog", href: odkaz("katalog"), text: "Katalog" },
+  { sekce: "autori", href: odkaz("autori"), text: "Autoři" },
+  { sekce: "hledat", href: odkaz("hledat"), text: "Hledání" },
+] as const;
 ---
 
 <!doctype html>
 <html lang="cs">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{celyTitulek}</title>
     <meta name="description" content={popis} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
     <link rel="canonical" href={kanonicka} />
-    <link rel="sitemap" href={soubor("sitemap.xml")} />
+    <link rel="sitemap" type="application/xml" href={soubor("sitemap.xml")} />
     <link rel="icon" href={soubor("favicon.svg")} type="image/svg+xml" />
-    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="apple-touch-icon" href={soubor("apple-touch-icon.png")} />
+    <link rel="manifest" href={soubor("manifest.webmanifest")} />
+    <meta name="theme-color" content="#f5f4f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0c0c" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content={ogTyp} />
     <meta property="og:site_name" content={NAZEV_WEBU} />
+    <meta property="og:locale" content="cs_CZ" />
     <meta property="og:title" content={celyTitulek} />
     <meta property="og:description" content={popis} />
     <meta property="og:url" content={kanonicka} />
-    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:image" content={ogObrazek} />
+    <meta property="og:image:alt" content={titulek ?? NAZEV_WEBU} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={celyTitulek} />
+    <meta name="twitter:description" content={popis} />
+    <meta name="twitter:image" content={ogObrazek} />
+    <slot name="hlava" />
 
     {
       jsonLd && (
-        // "<" escapovat, aby text knihy obsahující "</script>" nemohl ukončit tenhle blok.
+        // "<" escapovat, aby text knihy s "</script>" nemohl ukončit tenhle blok.
         <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, "\\u003c")} />
       )
     }
   </head>
   <body>
     <header class="lista">
-      <div class="obal lista-obsah">
-        <a class="logo" href={odkaz()} aria-label={`${NAZEV_WEBU} – úvod`}>
-          <span class="logo-znak" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-              <path d="M3 5.5h6a3 3 0 0 1 3 3V20a2.5 2.5 0 0 0-2.5-2.5H3z"></path>
-              <path d="M21 5.5h-6a3 3 0 0 0-3 3V20a2.5 2.5 0 0 1 2.5-2.5H21z"></path>
-            </svg>
-          </span>
-          {NAZEV_WEBU}
-        </a>
-        <Hledani />
-        <nav class="navigace" aria-label="Hlavní navigace">
-          <a class="nav-odkaz" href={odkaz()} aria-current={sekce === "uvod" ? "page" : undefined}>Úvod</a>
-          <a class="nav-odkaz" href={odkaz("katalog")} aria-current={sekce === "katalog" ? "page" : undefined}>
-            Katalog
+      <div class="obal">
+        <div class="lista-obsah">
+          <a class="logo" href={odkaz()} aria-label={`${NAZEV_WEBU} – úvod`}>
+            <span class="logo-znak"><Ikona nazev="kniha" velikost={19} /></span>
+            {NAZEV_WEBU}
           </a>
-        </nav>
+          <nav class="navigace" aria-label="Hlavní navigace">
+            {NAVIGACE.filter((n) => n.sekce !== "hledat").map((n) => (
+              <a class="nav-odkaz" href={n.href} aria-current={sekce === n.sekce ? "page" : undefined}>{n.text}</a>
+            ))}
+          </nav>
+          <button class="hledat-tl" type="button" data-hledat aria-label="Hledat (Ctrl+K)">
+            <Ikona nazev="hledat" velikost={18} /><span>Hledat knihu…</span><kbd>Ctrl K</kbd>
+          </button>
+          <button class="tl tl-obrys tl-kulate menu-tl" type="button" popovertarget="menu" aria-label="Menu">
+            <Ikona nazev="filtr" />
+          </button>
+        </div>
       </div>
     </header>
 
-    <main class="obal">
+    <div class="menu-panel" id="menu" popover>
+      <a href={odkaz()}><Ikona nazev="kniha" /> Úvod</a>
+      {NAVIGACE.map((n) => <a href={n.href}><Ikona nazev={n.sekce === "katalog" ? "mrizka" : n.sekce === "autori" ? "autor" : "hledat"} /> {n.text}</a>)}
+    </div>
+
+    <main>
       <slot />
     </main>
 
     <footer class="paticka">
-      <div class="obal paticka-obsah">
-        <span>© {new Date().getFullYear()} {NAZEV_WEBU} · nabídka aktualizována {datum}</span>
-        <span class="paticka-odkazy">
-          <a href={odkaz("katalog")}>Katalog</a>
-          <a href={soubor("zbozi.xml")}>XML feed</a>
-          <a href={soubor("sitemap.xml")}>Mapa webu</a>
-        </span>
+      <div class="obal">
+        <div class="paticka-mrizka">
+          <div>
+            <p class="paticka-velky">{NAZEV_WEBU}</p>
+            <p>Antikvariát s tisíci knih skladem. Romány, historie, odborná literatura i sběratelské kousky.</p>
+          </div>
+          <nav aria-label="Procházet">
+            <h2>Procházet</h2>
+            <ul>
+              <li><a href={odkaz("katalog")}>Celý katalog</a></li>
+              <li><a href={odkaz("autori")}>Autoři</a></li>
+              <li><a href={odkaz("hledat")}>Rozšířené hledání</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Podle ceny">
+            <h2>Podle ceny</h2>
+            <ul>{kolekceCen.map((k) => <li><a href={odkaz(`cena/${k.slug}`)}>{k.nazev}</a></li>)}</ul>
+          </nav>
+        </div>
+        <div class="paticka-spodek">
+          <span>© {new Date().getFullYear()} {NAZEV_WEBU} · nabídka aktualizována {datum}</span>
+          <span><a href={soubor("zbozi.xml")}>XML feed</a> · <a href={soubor("sitemap.xml")}>Mapa webu</a></span>
+        </div>
       </div>
     </footer>
+
+    <a class="nahoru" href="#" aria-label="Nahoru"><Ikona nazev="nahoru" /></a>
+    <Hledani />
+
+    <script>
+      import "../scripts/web.ts";
+    </script>
   </body>
 </html>

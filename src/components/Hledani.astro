@@ -1,164 +1,23 @@
 ---
 /**
- * Našeptávač nad celou nabídkou. Rejstřík (`hledani.json`) se stáhne až ve chvíli,
- * kdy člověk klikne do pole – úvodní načtení stránky tím nezdržuje.
- * Hledá bez ohledu na diakritiku a velká písmena, všechna slova musí sedět.
+ * Vyhledávací paleta (Ctrl+K, „/“ nebo tlačítko s `data-hledat`). Rejstřík `hledani.json`
+ * se stáhne až při prvním otevření. Logika je v `scripts/web.ts`.
  */
+import Ikona from "./Ikona.astro";
 import { odkaz, soubor } from "../lib/web";
 ---
 
-<div class="hledani" data-hledani data-zdroj={soubor("hledani.json")} data-knihy={odkaz("kniha")}>
-  <form class="hledani-pole" role="search" action={odkaz("katalog")}>
-    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-      <circle cx="11" cy="11" r="7"></circle>
-      <path d="m20 20-3.5-3.5"></path>
-    </svg>
-    <input
-      type="search"
-      name="q"
-      placeholder="Hledat knihu, autora, ISBN…"
-      autocomplete="off"
-      aria-label="Hledat v nabídce"
-      role="combobox"
-      aria-expanded="false"
-      aria-controls="hledani-vysledky"
-      aria-autocomplete="list"
-    />
-    <kbd class="klavesa" aria-hidden="true">/</kbd>
+<dialog class="paleta" id="paleta" aria-label="Hledat v nabídce" data-zdroj={soubor("hledani.json")} data-knihy={odkaz("kniha")} data-hledat-stranka={odkaz("hledat")}>
+  <form class="paleta-pole" role="search" method="dialog">
+    <Ikona nazev="hledat" velikost={22} />
+    <input type="search" name="q" placeholder="Název, autor, nakladatel, ISBN…" autocomplete="off" aria-label="Hledat" aria-controls="paleta-vysledky" />
+    <button class="paleta-zavrit" type="button" data-zavrit aria-label="Zavřít"><Ikona nazev="zavrit" velikost={18} /></button>
   </form>
-  <ul class="hledani-vysledky" id="hledani-vysledky" role="listbox" hidden></ul>
-</div>
-
-<script>
-  type Polozka = { slug: string; nazev: string; autor: string; cena: number; rok: string; text: string };
-
-  const MAX = 8;
-  const koren = document.querySelector<HTMLElement>("[data-hledani]");
-  const input = koren?.querySelector<HTMLInputElement>("input");
-  const seznam = koren?.querySelector<HTMLUListElement>("ul");
-
-  const bezDiakritiky = (s: string) =>
-    s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-  const kc = new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 });
-
-  if (koren && input && seznam) {
-    let rejstrik: Polozka[] | null = null;
-    let nacitani: Promise<void> | null = null;
-    let vybrany = -1;
-    let vysledky: Polozka[] = [];
-
-    const nacti = () =>
-      (nacitani ??= fetch(koren.dataset.zdroj!)
-        .then((r) => r.json())
-        .then((data: [string, string, string, number, string, string][]) => {
-          rejstrik = data.map(([slug, nazev, autor, cena, rok, navic]) => ({
-            slug,
-            nazev,
-            autor,
-            cena,
-            rok,
-            text: bezDiakritiky(`${nazev} ${autor} ${rok} ${navic}`),
-          }));
-        })
-        .catch(() => {
-          nacitani = null;
-        }));
-
-    const prvek = <K extends keyof HTMLElementTagNameMap>(tag: K, trida: string, text?: string) => {
-      const el = document.createElement(tag);
-      el.className = trida;
-      if (text !== undefined) el.textContent = text;
-      return el;
-    };
-
-    const zavri = () => {
-      seznam.hidden = true;
-      input.setAttribute("aria-expanded", "false");
-      vybrany = -1;
-    };
-
-    const vykresli = (pocet: number) => {
-      seznam.replaceChildren();
-      if (vysledky.length === 0) {
-        seznam.append(prvek("li", "hledani-info", "Nic jsme nenašli. Zkuste jiné slovo."));
-      }
-      vysledky.forEach((p, i) => {
-        const li = prvek("li", "hledani-polozka");
-        li.setAttribute("role", "option");
-        li.id = `hledani-${i}`;
-        li.setAttribute("aria-selected", String(i === vybrany));
-        const a = prvek("a", "");
-        a.href = `${koren.dataset.knihy}${p.slug}/`;
-        const text = prvek("span", "hledani-text");
-        text.append(prvek("span", "hledani-nazev", p.nazev));
-        const podtitul = [p.autor, p.rok].filter(Boolean).join(" · ");
-        if (podtitul) text.append(prvek("span", "hledani-autor", podtitul));
-        a.append(text, prvek("span", "hledani-cena", kc.format(p.cena)));
-        li.append(a);
-        seznam.append(li);
-      });
-      if (pocet > vysledky.length) {
-        seznam.append(prvek("li", "hledani-info", `…a dalších ${pocet - vysledky.length}. Upřesněte hledání.`));
-      }
-      seznam.hidden = false;
-      input.setAttribute("aria-expanded", "true");
-      input.setAttribute("aria-activedescendant", vybrany >= 0 ? `hledani-${vybrany}` : "");
-    };
-
-    const hledej = async () => {
-      const dotaz = bezDiakritiky(input.value.trim());
-      if (dotaz.length < 2) return zavri();
-      await nacti();
-      if (!rejstrik) return;
-      const slova = dotaz.split(/\s+/);
-      const shody = rejstrik.filter((p) => slova.every((s) => p.text.includes(s)));
-      // Nejdřív knihy, jejichž název začíná dotazem, pak ty, kde je dotaz v názvu, pak ostatní.
-      const skore = (p: Polozka) => {
-        const n = bezDiakritiky(p.nazev);
-        return n.startsWith(dotaz) ? 0 : n.includes(dotaz) ? 1 : 2;
-      };
-      shody.sort((a, b) => skore(a) - skore(b));
-      vysledky = shody.slice(0, MAX);
-      vybrany = -1;
-      vykresli(shody.length);
-    };
-
-    input.addEventListener("focus", () => {
-      nacti();
-      if (input.value.trim().length >= 2) hledej();
-    });
-    input.addEventListener("input", hledej);
-
-    input.addEventListener("keydown", (e) => {
-      if (seznam.hidden || vysledky.length === 0) return;
-      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-        e.preventDefault();
-        const smer = e.key === "ArrowDown" ? 1 : -1;
-        vybrany = (vybrany + smer + vysledky.length) % vysledky.length;
-        vykresli(vysledky.length);
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        const cil = vysledky[Math.max(0, vybrany)];
-        location.href = `${koren.dataset.knihy}${cil.slug}/`;
-      } else if (e.key === "Escape") {
-        zavri();
-      }
-    });
-
-    // Enter bez výsledků nikam neodesílá – katalog hledání v adrese nepodporuje.
-    koren.querySelector("form")?.addEventListener("submit", (e) => e.preventDefault());
-
-    document.addEventListener("click", (e) => {
-      if (!koren.contains(e.target as Node)) zavri();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      const cil = e.target as HTMLElement;
-      const piseNekde = cil.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(cil.tagName);
-      if (e.key === "/" && !piseNekde) {
-        e.preventDefault();
-        input.focus();
-      }
-    });
-  }
-</script>
+  <ul class="paleta-vysledky" id="paleta-vysledky" role="listbox">
+    <li class="paleta-info">Začněte psát – hledáme v celé nabídce, na diakritice nezáleží.</li>
+  </ul>
+  <div class="paleta-pata">
+    <span><kbd>↑</kbd> <kbd>↓</kbd> výběr · <kbd>Enter</kbd> otevřít · <kbd>Esc</kbd> zavřít</span>
+    <a href={odkaz("hledat")} data-vse>Rozšířené hledání →</a>
+  </div>
+</dialog>

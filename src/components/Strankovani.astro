@@ -1,52 +1,41 @@
 ---
-/**
- * Stránkování katalogu. Obyčejné odkazy <a>, takže Google projde celý katalog i bez JavaScriptu.
- */
+/** Stránkování: obyčejné odkazy, takže Google projde všechny strany i bez JavaScriptu. */
+import Ikona from "./Ikona.astro";
 import { odkaz } from "../lib/web";
 
 interface Props {
   aktualni: number;
   posledni: number;
+  /** Cesta první strany, např. "katalog" nebo "cena/do-50-kc". */
+  zaklad: string;
 }
 
-const { aktualni, posledni } = Astro.props;
-const adresa = (n: number) => odkaz(n === 1 ? "katalog" : `katalog/${n}`);
+const { aktualni, posledni, zaklad } = Astro.props;
+const adresa = (n: number) => odkaz(n === 1 ? zaklad : `${zaklad}/${n}`);
 
 // 1 … 4 5 [6] 7 8 … 158
 const cisla: (number | "…")[] = [];
 for (let n = 1; n <= posledni; n++) {
   if (n === 1 || n === posledni || Math.abs(n - aktualni) <= 2) cisla.push(n);
-  else if (cisla[cisla.length - 1] !== "…") cisla.push("…");
+  else if (cisla.at(-1) !== "…") cisla.push("…");
 }
 ---
 
 {
   posledni > 1 && (
-    <nav class="strankovani" aria-label="Stránkování katalogu">
-      <a
-        class:list={["strana", { "strana-zakazana": aktualni === 1 }]}
-        href={aktualni > 1 ? adresa(aktualni - 1) : undefined}
-        rel="prev"
-        aria-label="Předchozí strana"
-      >
-        ←
+    <nav class="strankovani" aria-label="Stránkování">
+      <a class:list={["strana", { "strana-zakazana": aktualni === 1 }]} href={aktualni > 1 ? adresa(aktualni - 1) : undefined} rel="prev" aria-label="Předchozí strana">
+        <Ikona nazev="vlevo" velikost={18} />
       </a>
       {cisla.map((n) =>
         n === "…" ? (
           <span class="strana-mezera">…</span>
         ) : (
-          <a class="strana" href={adresa(n)} aria-current={n === aktualni ? "page" : undefined}>
-            {n}
-          </a>
+          <a class="strana" href={adresa(n)} aria-current={n === aktualni ? "page" : undefined}>{n}</a>
         )
       )}
-      <a
-        class:list={["strana", { "strana-zakazana": aktualni === posledni }]}
-        href={aktualni < posledni ? adresa(aktualni + 1) : undefined}
-        rel="next"
-        aria-label="Další strana"
-      >
-        →
+      <a class:list={["strana", { "strana-zakazana": aktualni === posledni }]} href={aktualni < posledni ? adresa(aktualni + 1) : undefined} rel="next" aria-label="Další strana">
+        <Ikona nazev="vpravo" velikost={18} />
       </a>
     </nav>
   )

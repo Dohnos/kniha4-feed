@@ -2,46 +2,48 @@
 import type { GetStaticPaths } from "astro";
 import Zaklad from "../../layouts/Zaklad.astro";
 import Obalka from "../../components/Obalka.astro";
-import KnihaKarta from "../../components/KnihaKarta.astro";
-import { autor, knihy, podobne, type Kniha } from "../../lib/knihy";
-import { NAZEV_WEBU, absolutni, formatCena, odkaz, zkratit } from "../../lib/web";
+import Ikona, { type NazevIkony } from "../../components/Ikona.astro";
+import Karusel from "../../components/Karusel.astro";
+import { autori, knihy, kolekceObdobi, podobne, stranaAutora, type Kniha } from "../../lib/knihy";
+import { KONTAKT, NAZEV_WEBU, absolutni, formatCena, odkaz, zkratit } from "../../lib/web";
 
-export const getStaticPaths = (() =>
-  knihy.map((kniha) => ({ params: { slug: kniha.slug }, props: { kniha } }))) satisfies GetStaticPaths;
+export const getStaticPaths = (() => knihy.map((kniha) => ({ params: { slug: kniha.slug }, props: { kniha } }))) satisfies GetStaticPaths;
 
-interface Props {
-  kniha: Kniha;
-}
-
-const { kniha } = Astro.props;
-const jmeno = autor(kniha);
+const { kniha } = Astro.props as { kniha: Kniha };
 const url = absolutni(odkaz(`kniha/${kniha.slug}`), Astro.site);
+const autoriKnihy = autori(kniha).map((jmeno) => ({ jmeno, stranka: stranaAutora(jmeno) }));
+const obdobi = kolekceObdobi.find((k) => k.knihy.includes(kniha));
+const { odAutora, dalsi } = podobne(kniha);
 
-const udaje: [string, string][] = (
-  [
-    ["Autor", jmeno],
-    ["Nakladatel", kniha.nakladatel],
-    ["Rok vydání", kniha.rok],
-    ["Vazba", kniha.vazba],
-    ["Počet stran", kniha.stran ? String(kniha.stran) : ""],
-    ["Jazyk", kniha.jazyk],
-    ["ISBN", kniha.isbn],
-    ["Kód", String(kniha.id)],
-  ] as [string, string][]
-).filter(([, hodnota]) => hodnota !== "");
+const udaje: { ikona: NazevIkony; nazev: string; hodnota: string; href?: string }[] = [
+  { ikona: "nakladatel", nazev: "Nakladatel", hodnota: kniha.nakladatel },
+  { ikona: "kalendar", nazev: "Rok vydání", hodnota: kniha.rok, href: obdobi && odkaz(`vydani/${obdobi.slug}`) },
+  { ikona: "vazba", nazev: "Vazba", hodnota: kniha.vazba },
+  { ikona: "stranky", nazev: "Počet stran", hodnota: kniha.stran ? String(kniha.stran) : "" },
+  { ikona: "jazyk", nazev: "Jazyk", hodnota: kniha.jazyk },
+  { ikona: "carovyKod", nazev: "ISBN", hodnota: kniha.isbn },
+  { ikona: "kod", nazev: "Kód knihy", hodnota: String(kniha.id) },
+].filter((u) => u.hodnota);
 
-const kratce = [jmeno, kniha.nakladatel, kniha.rok].filter(Boolean).join(", ");
-const popis = zkratit(
-  kniha.popis ||
-    `${kniha.nazev}${kratce ? ` (${kratce})` : ""} – kniha skladem v antikvariátu ${NAZEV_WEBU} za ${formatCena(kniha.cena)}.`
-);
+// Dlouhý popis se zkrátí a zbytek se rozbalí („Číst dál“).
+const ZLOM = 700;
+const zlom = kniha.popis.length > ZLOM + 200 ? kniha.popis.lastIndexOf(" ", ZLOM) : -1;
+const [popisZacatek, popisZbytek] = zlom > 0 ? [kniha.popis.slice(0, zlom), kniha.popis.slice(zlom)] : [kniha.popis, ""];
+
+const kratce = [kniha.autor, kniha.nakladatel, kniha.rok].filter(Boolean).join(", ");
+const popis = zkratit(kniha.popis || `${kniha.nazev}${kratce ? ` (${kratce})` : ""} – kniha skladem v antikvariátu ${NAZEV_WEBU} za ${formatCena(kniha.cena)}.`);
+const zajem = KONTAKT.email
+  ? `mailto:${KONTAKT.email}?subject=${encodeURIComponent(`Zájem o knihu: ${kniha.nazev} (kód ${kniha.id})`)}`
+  : KONTAKT.telefon ? `tel:${KONTAKT.telefon.replace(/\s/g, "")}` : null;
 
 // schema.org Book + Offer – Google z toho umí ukázat cenu a dostupnost přímo ve výsledcích.
 const knihaLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "Book",
+  "@id": `${url}#kniha`,
   name: kniha.nazev,
   url,
+  inLanguage: "cs",
   offers: {
     "@type": "Offer",
     price: kniha.cena,
@@ -49,13 +51,15 @@ const knihaLd: Record<string, unknown> = {
     availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/UsedCondition",
     url,
+    seller: { "@type": "Organization", name: NAZEV_WEBU },
   },
 };
-if (kniha.autori.length > 0) knihaLd.author = kniha.autori.map((name) => ({ "@type": "Person", name }));
+if (kniha.autor) knihaLd.author = autori(kniha).map((name) => ({ "@type": "Person", name }));
 if (kniha.nakladatel) knihaLd.publisher = { "@type": "Organization", name: kniha.nakladatel };
 if (kniha.rok) knihaLd.datePublished = kniha.rok;
 if (kniha.isbn) knihaLd.isbn = kniha.isbn;
 if (kniha.stran) knihaLd.numberOfPages = kniha.stran;
+if (kniha.vazba) knihaLd.bookFormat = /měkk|brož/i.test(kniha.vazba) ? "https://schema.org/Paperback" : "https://schema.org/Hardcover";
 if (kniha.popis) knihaLd.description = zkratit(kniha.popis, 500);
 if (kniha.obrazek) knihaLd.image = kniha.obrazek;
 
@@ -73,56 +77,79 @@ const jsonLd = [
 ];
 ---
 
-<Zaklad titulek={jmeno ? `${kniha.nazev} – ${jmeno}` : kniha.nazev} popis={popis} jsonLd={jsonLd} ogTyp="book">
-  <ol class="drobecky">
-    <li><a href={odkaz()}>Úvod</a></li>
-    <li><a href={odkaz("katalog")}>Katalog</a></li>
-    <li aria-current="page">{kniha.nazev}</li>
-  </ol>
+<Zaklad titulek={kniha.autor ? `${kniha.nazev} – ${kniha.autor}` : kniha.nazev} popis={popis} jsonLd={jsonLd} ogTyp="book" obrazek={kniha.obrazek || undefined}>
+  <Fragment slot="hlava">
+    {kniha.isbn && <meta property="book:isbn" content={kniha.isbn} />}
+    {kniha.rok && <meta property="book:release_date" content={kniha.rok} />}
+    <meta property="product:price:amount" content={String(kniha.cena)} />
+    <meta property="product:price:currency" content="CZK" />
+  </Fragment>
 
-  <article class="detail">
-    <div class="detail-obalka">
-      <Obalka kniha={kniha} priorita />
-    </div>
+  <div class="obal">
+    <ol class="drobecky" style="margin-top: 20px">
+      <li><a href={odkaz()}>Úvod</a></li>
+      <li><a href={odkaz("katalog")}>Katalog</a></li>
+      <li aria-current="page">{kniha.nazev}</li>
+    </ol>
 
-    <div>
-      <h1>{kniha.nazev}</h1>
-      {jmeno && <p class="detail-autor">{jmeno}</p>}
-
-      <div class="detail-nakup">
-        <span class="detail-cena">{formatCena(kniha.cena)}</span>
-        <span class="stitek stitek-tecka">Skladem</span>
+    <article class="detail">
+      <div class="detail-obalka">
+        <Obalka kniha={kniha} priorita prechod />
       </div>
 
-      <dl class="udaje">
+      <div>
+        <h1 class="nadpis-l">{kniha.nazev}</h1>
         {
-          udaje.map(([nazev, hodnota]) => (
-            <div class="udaj">
-              <dt>{nazev}</dt>
-              <dd>{hodnota}</dd>
-            </div>
-          ))
+          autoriKnihy.length > 0 && (
+            <p class="detail-autor">
+              {autoriKnihy.map((a, i) => <>{i > 0 && ", "}{a.stranka ? <a href={odkaz(`autor/${a.stranka.slug}`)}>{a.jmeno}</a> : a.jmeno}</>)}
+            </p>
+          )
         }
-      </dl>
 
-      {
-        kniha.popis && (
-          <section class="popis">
-            <h2>O knize</h2>
-            <p>{kniha.popis}</p>
-          </section>
-        )
-      }
-    </div>
-  </article>
+        <div class="nakup">
+          <div class="nakup-cena">
+            <strong>{formatCena(kniha.cena)}</strong>
+            <span class="tecka">Skladem{kniha.kusu > 1 ? ` · ${kniha.kusu} ks` : ""}</span>
+          </div>
+          <div class="nakup-akce">
+            {zajem && <a class="tl" href={zajem}><Ikona nazev={KONTAKT.email ? "mail" : "telefon"} velikost={18} /> Mám zájem</a>}
+            <button class="tl tl-obrys" type="button" data-sdilet><Ikona nazev="sdilet" velikost={18} /><span>Sdílet</span></button>
+          </div>
+        </div>
 
-  <section class="sekce">
-    <div class="sekce-hlava">
-      <h2>Další knihy z nabídky</h2>
-      <a class="tlacitko tlacitko-obrys" href={odkaz("katalog")}>Celý katalog →</a>
-    </div>
-    <div class="mrizka">
-      {podobne(kniha).map((k) => <KnihaKarta kniha={k} />)}
-    </div>
-  </section>
+        <dl class="udaje">
+          {udaje.map((u) => (
+            <div class="udaj">
+              <Ikona nazev={u.ikona} velikost={18} />
+              <div>
+                <dt>{u.nazev}</dt>
+                <dd>{u.href ? <a href={u.href}>{u.hodnota}</a> : u.hodnota}</dd>
+              </div>
+            </div>
+          ))}
+        </dl>
+
+        {
+          kniha.popis && (
+            <section class="popis">
+              <h2>O knize</h2>
+              <div class="popis-text">
+                {popisZacatek}
+                {popisZbytek && (
+                  <details>
+                    <summary>Číst dál</summary>
+                    {popisZbytek}
+                  </details>
+                )}
+              </div>
+            </section>
+          )
+        }
+      </div>
+    </article>
+
+    {odAutora.length > 0 && <Karusel id="od-autora" nadpis={`Další knihy: ${autoriKnihy[0]?.jmeno}`} knihy={odAutora} odkaz={autoriKnihy[0]?.stranka && { href: odkaz(`autor/${autoriKnihy[0].stranka.slug}`), text: "Všechny" }} />}
+    <Karusel id="dalsi" nadpis="Mohlo by vás zajímat" knihy={dalsi} odkaz={{ href: odkaz("katalog"), text: "Katalog" }} />
+  </div>
 </Zaklad>

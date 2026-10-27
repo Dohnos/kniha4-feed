@@ -1,65 +1,149 @@
 ---
 import Zaklad from "../layouts/Zaklad.astro";
-import KnihaKarta from "../components/KnihaKarta.astro";
-import { knihy, nejnizsiCena } from "../lib/knihy";
-import { NAZEV_WEBU, POPIS_WEBU, absolutni, formatCena, formatPocet, odkaz } from "../lib/web";
+import Ikona from "../components/Ikona.astro";
+import Obalka from "../components/Obalka.astro";
+import Karusel from "../components/Karusel.astro";
+import { autoriSeStrankou, knihy, kolekceCen, kolekceObdobi, nejnizsiCena, nejnovejsi } from "../lib/knihy";
+import { NAZEV_WEBU, POPIS_WEBU, absolutni, formatCena, formatPocet, odkaz, soubor } from "../lib/web";
 
-const vyber = knihy.slice(0, 24);
-const autoru = new Set(knihy.flatMap((k) => k.autori)).size;
 const url = absolutni(odkaz(), Astro.site);
+const pocetAutoru = new Set(knihy.flatMap((k) => k.autor.split(", ").filter(Boolean))).size;
+const pocetNakladatelu = new Set(knihy.map((k) => k.nakladatel).filter(Boolean)).size;
+
+// Do vějíře a pásu bereme knihy s vlastním popisem – jsou to ty „zajímavější“.
+const sPopisem = knihy.filter((k) => k.popis && k.nazev.length < 40);
+const vejir = [0, 1, 2, 3, 4].map((i) => sPopisem[Math.floor((i * sPopisem.length) / 5)]);
+const pas = sPopisem.filter((_, i) => i % 37 === 0).slice(0, 36);
+const topAutori = autoriSeStrankou.filter((a) => !/kolektiv/i.test(a.jmeno)).sort((a, b) => b.knihy.length - a.knihy.length).slice(0, 18);
 
 const jsonLd = [
-  { "@context": "https://schema.org", "@type": "WebSite", name: NAZEV_WEBU, url, inLanguage: "cs" },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: NAZEV_WEBU,
+    url,
+    inLanguage: "cs",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: { "@type": "EntryPoint", urlTemplate: `${absolutni(odkaz("hledat"), Astro.site)}?q={search_term_string}` },
+      "query-input": "required name=search_term_string",
+    },
+  },
   {
     "@context": "https://schema.org",
     "@type": "BookStore",
     name: NAZEV_WEBU,
     description: POPIS_WEBU,
     url,
+    logo: absolutni(soubor("apple-touch-icon.png"), Astro.site),
+    image: absolutni(soubor("og.png"), Astro.site),
     currenciesAccepted: "CZK",
   },
 ];
 ---
 
 <Zaklad popis={POPIS_WEBU} jsonLd={jsonLd} sekce="uvod">
-  <section class="uvod">
-    <p class="nadpis-mensi">Antikvariát {NAZEV_WEBU}</p>
-    <h1>Knihy, které čekají na nového čtenáře.</h1>
-    <p class="uvod-text">
-      {formatPocet(knihy.length)} knih skladem – romány, historie, odborná literatura i sběratelské kousky.
-      Každý výtisk je jen jeden, tak neváhejte.
-    </p>
-    <div class="uvod-akce">
-      <a class="tlacitko" href={odkaz("katalog")}>Prohlédnout katalog</a>
-      <a class="tlacitko tlacitko-obrys" href="#vyber">Výběr z nabídky</a>
-    </div>
-  </section>
-
-  <ul class="vyhody">
-    <li class="vyhoda">
-      <span class="vyhoda-cislo">{formatPocet(knihy.length)}</span>
-      <span class="vyhoda-text">knih skladem</span>
-    </li>
-    <li class="vyhoda">
-      <span class="vyhoda-cislo">{formatPocet(autoru)}</span>
-      <span class="vyhoda-text">autorů</span>
-    </li>
-    <li class="vyhoda">
-      <span class="vyhoda-cislo">od {formatCena(nejnizsiCena())}</span>
-      <span class="vyhoda-text">za knihu</span>
-    </li>
-  </ul>
-
-  <section class="sekce" id="vyber">
-    <div class="sekce-hlava">
-      <div>
-        <h2>Výběr z nabídky</h2>
-        <p class="sekce-popis">Prvních {vyber.length} knih z katalogu.</p>
+  <div class="obal">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="stitek-nad"><span class="tecka">{formatPocet(knihy.length)} knih skladem</span></p>
+        <h1 class="nadpis-xl">Knihy, které čekají na <em>nového čtenáře.</em></h1>
+        <p>Antikvariát {NAZEV_WEBU}: romány, historie, odborná literatura i sběratelské kousky – {formatPocet(knihy.length)} titulů od {formatPocet(pocetAutoru)} autorů, všechny skladem.</p>
+        <button class="hero-hledat" type="button" data-hledat>
+          <Ikona nazev="hledat" />
+          <span>Název, autor nebo ISBN…</span>
+          <span class="tl tl-male">Hledat</span>
+        </button>
+        <div class="hero-akce">
+          <a class="tl" href={odkaz("katalog")}>Prohlédnout katalog <Ikona nazev="vpravo" velikost={18} class="ikona-posun" /></a>
+          <a class="tl tl-obrys" href={odkaz("autori")}>Podle autorů</a>
+        </div>
+        <ul class="hero-duvery">
+          <li><Ikona nazev="autor" velikost={18} /> {formatPocet(pocetAutoru)} autorů</li>
+          <li><Ikona nazev="cena" velikost={18} /> Ceny už od {formatCena(nejnizsiCena())}</li>
+          <li><Ikona nazev="skladem" velikost={18} /> Vše skladem</li>
+        </ul>
       </div>
-      <a class="tlacitko tlacitko-obrys" href={odkaz("katalog")}>Celý katalog →</a>
-    </div>
-    <div class="mrizka">
-      {vyber.map((k, i) => <KnihaKarta kniha={k} priorita={i < 6} />)}
-    </div>
-  </section>
+      <div class="vejir" aria-hidden="true">
+        {vejir.map((k, i) => <Obalka kniha={k} priorita={i === 2} />)}
+      </div>
+    </section>
+  </div>
+
+  <div class="pas" aria-label="Z nabídky">
+    {[pas.slice(0, 18), pas.slice(18)].map((radek) => (
+      <div class="pas-radek">
+        {[...radek, ...radek].map((k, i) => <a href={odkaz(`kniha/${k.slug}`)} tabindex={i >= radek.length ? -1 : undefined} aria-hidden={i >= radek.length ? "true" : undefined}>{k.nazev}</a>)}
+      </div>
+    ))}
+  </div>
+
+  <div class="obal">
+    <ul class="cisla">
+      <li class="objev"><strong data-pocitadlo={knihy.length}>{formatPocet(knihy.length)}</strong><span>knih skladem</span></li>
+      <li class="objev"><strong data-pocitadlo={pocetAutoru}>{formatPocet(pocetAutoru)}</strong><span>autorů</span></li>
+      <li class="objev"><strong data-pocitadlo={pocetNakladatelu}>{formatPocet(pocetNakladatelu)}</strong><span>nakladatelství</span></li>
+      <li class="objev"><strong>{formatCena(nejnizsiCena())}</strong><span>nejnižší cena</span></li>
+    </ul>
+
+    <Karusel id="nove" nadpis="Nově v nabídce" popis="Knihy, které přibyly naposledy." knihy={nejnovejsi(16)} odkaz={{ href: odkaz("katalog"), text: "Celý katalog" }} prechod />
+
+    <section class="sekce">
+      <div class="sekce-hlava">
+        <div>
+          <h2 class="nadpis-m">Vyberte podle ceny</h2>
+          <p>Od drobností za pár korun po sběratelské tituly.</p>
+        </div>
+      </div>
+      <div class="ceny">
+        {kolekceCen.map((k) => (
+          <a class="cena-dlazdice objev" href={odkaz(`cena/${k.slug}`)}>
+            <strong>{k.nazev.replace("Knihy ", "")}</strong>
+            <span>{formatPocet(k.knihy.length)} knih <Ikona nazev="vpravo" velikost={18} /></span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="sekce">
+      <div class="sekce-hlava">
+        <div>
+          <h2 class="nadpis-m">Cestujte časem</h2>
+          <p>Knihy podle doby, kdy vyšly – od předválečných vydání po současnost.</p>
+        </div>
+      </div>
+      <div class="cipy">
+        {kolekceObdobi.map((k) => (
+          <a class="cip objev" href={odkaz(`vydani/${k.slug}`)}>
+            <Ikona nazev="kalendar" velikost={16} />
+            {k.slug === "pred-1950" ? "Před rokem 1950" : `${k.slug.slice(0, 4)}. léta`}
+            <small>{formatPocet(k.knihy.length)}</small>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="sekce">
+      <div class="sekce-hlava">
+        <div>
+          <h2 class="nadpis-m">Autoři s největším výběrem</h2>
+          <p>Od klasiků po oblíbené současné autory.</p>
+        </div>
+        <a class="tl tl-obrys tl-male" href={odkaz("autori")}>Všichni autoři <Ikona nazev="vpravo" velikost={16} class="ikona-posun" /></a>
+      </div>
+      <div class="cipy">
+        {topAutori.map((a) => (
+          <a class="cip objev" href={odkaz(`autor/${a.slug}`)}><Ikona nazev="autor" velikost={16} /> {a.jmeno} <small>{a.knihy.length}</small></a>
+        ))}
+      </div>
+    </section>
+
+    <section class="vyzva objev">
+      <div>
+        <h2 class="nadpis-l">Celý katalog na jednom místě</h2>
+        <p>{formatPocet(knihy.length)} knih, přehledně po stránkách. Nebo použijte hledání – stačí stisknout Ctrl + K.</p>
+      </div>
+      <a class="tl" href={odkaz("katalog")}>Otevřít katalog <Ikona nazev="vpravo" velikost={18} class="ikona-posun" /></a>
+    </section>
+  </div>
 </Zaklad>

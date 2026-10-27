@@ -1,0 +1,49 @@
+---
+/**
+ * Sekce s vodorovným pásem knih (scroll-snap). Šipky obsluhuje `scripts/web.ts`
+ * přes `data-karusel-sipka`; bez JavaScriptu jde pás posouvat prstem i kolečkem.
+ */
+import KnihaKarta from "./KnihaKarta.astro";
+import Ikona from "./Ikona.astro";
+import type { Kniha } from "../lib/knihy";
+
+interface Props {
+  id: string;
+  nadpis: string;
+  popis?: string;
+  knihy: Kniha[];
+  odkaz?: { href: string; text: string };
+  prechod?: boolean;
+}
+
+const { id, nadpis, popis, knihy, odkaz, prechod = false } = Astro.props;
+---
+
+{
+  knihy.length > 0 && (
+    <section class="sekce" aria-labelledby={`${id}-nadpis`}>
+      <div class="sekce-hlava">
+        <div>
+          <h2 class="nadpis-m" id={`${id}-nadpis`}>{nadpis}</h2>
+          {popis && <p>{popis}</p>}
+        </div>
+        <div class="sekce-akce">
+          {odkaz && (
+            <a class="tl tl-obrys tl-male" href={odkaz.href}>
+              {odkaz.text} <Ikona nazev="vpravo" velikost={16} class="ikona-posun" />
+            </a>
+          )}
+          <button class="tl tl-obrys tl-kulate" type="button" data-karusel-sipka={id} data-smer="-1" aria-label="Předchozí knihy">
+            <Ikona nazev="sipkaVlevo" />
+          </button>
+          <button class="tl tl-obrys tl-kulate" type="button" data-karusel-sipka={id} data-smer="1" aria-label="Další knihy">
+            <Ikona nazev="sipkaVpravo" />
+          </button>
+        </div>
+      </div>
+      <div class="karusel" id={id} tabindex="0" aria-label={`${nadpis} – posouvejte do stran`}>
+        {knihy.map((k) => <KnihaKarta kniha={k} prechod={prechod} />)}
+      </div>
+    </section>
+  )
+}

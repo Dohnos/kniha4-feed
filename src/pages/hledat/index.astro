@@ -1,0 +1,162 @@
+---
+/**
+ * Rozšířené hledání v prohlížeči: dotaz, cena, doba vydání, řazení. Stav je v adrese
+ * (?q=…&cena=…&obdobi=…&razeni=…), takže jde sdílet. Výsledky se dočítají při scrollování.
+ * Stránka je noindex – obsah vzniká až v prohlížeči; pro Google jsou tu katalog a kolekce.
+ */
+import Zaklad from "../../layouts/Zaklad.astro";
+import Ikona from "../../components/Ikona.astro";
+import { kolekceCen, kolekceObdobi } from "../../lib/knihy";
+import { odkaz, soubor } from "../../lib/web";
+
+const ceny = kolekceCen.map((k) => ({ slug: k.slug, nazev: k.nazev.replace("Knihy ", ""), od: Math.min(...k.knihy.map((x) => x.cena)), do: Math.max(...k.knihy.map((x) => x.cena)) }));
+const obdobi = kolekceObdobi.map((k) => ({ slug: k.slug, nazev: k.slug === "pred-1950" ? "před 1950" : `${k.slug.slice(0, 4)}. léta` }));
+---
+
+<Zaklad titulek="Hledání knih" popis="Prohledejte celou nabídku podle názvu, autora, nakladatele nebo ISBN a filtrujte podle ceny a doby vydání." sekce="hledat" noindex>
+  <div class="obal" id="hledani" data-zdroj={soubor("hledani.json")} data-knihy={odkaz("kniha")} data-ceny={JSON.stringify(ceny)}>
+    <header class="vypis-hlava">
+      <ol class="drobecky"><li><a href={odkaz()}>Úvod</a></li><li aria-current="page">Hledání</li></ol>
+      <h1 class="nadpis-l" style="margin-top: 18px">Hledání knih</h1>
+    </header>
+
+    <form class="hledani-panel" role="search" onsubmit="return false">
+      <label class="pole">
+        <Ikona nazev="hledat" />
+        <input type="search" name="q" placeholder="Název, autor, nakladatel, ISBN…" autocomplete="off" aria-label="Hledat" />
+      </label>
+      <label class="pole">
+        <Ikona nazev="cena" velikost={18} />
+        <select name="cena" aria-label="Cena">
+          <option value="">Jakákoli cena</option>
+          {ceny.map((c) => <option value={c.slug}>{c.nazev}</option>)}
+        </select>
+      </label>
+      <label class="pole">
+        <Ikona nazev="kalendar" velikost={18} />
+        <select name="obdobi" aria-label="Doba vydání">
+          <option value="">Kdykoli vydáno</option>
+          {obdobi.map((o) => <option value={o.slug}>{o.nazev}</option>)}
+        </select>
+      </label>
+      <label class="pole" style="grid-column: 1 / -1; max-width: 320px">
+        <Ikona nazev="filtr" velikost={18} />
+        <select name="razeni" aria-label="Řazení">
+          <option value="">Nejlepší shoda</option>
+          <option value="cena-">Nejlevnější</option>
+          <option value="cena+">Nejdražší</option>
+          <option value="rok+">Nejnovější vydání</option>
+          <option value="rok-">Nejstarší vydání</option>
+          <option value="nazev">Název A–Z</option>
+        </select>
+      </label>
+    </form>
+
+    <p class="hledani-souhrn" id="souhrn" aria-live="polite">Načítám nabídku…</p>
+    <div class="mrizka" id="vysledky"></div>
+    <div id="dalsi" style="height: 1px"></div>
+    <div class="prazdno" id="prazdno" hidden>
+      <strong>Nic jsme nenašli</strong>
+      Zkuste jiné slovo nebo zrušte filtry – na diakritice ani velkých písmenech nezáleží.
+    </div>
+  </div>
+</Zaklad>
+
+<script>
+  import { hledej, kc, nactiRejstrik, prvek, type Polozka } from "../../scripts/rejstrik";
+
+  const NA_DAVKU = 48;
+  const koren = document.querySelector<HTMLElement>("#hledani")!;
+  const formular = koren.querySelector("form")!;
+  const pole = (nazev: string) => formular.elements.namedItem(nazev) as HTMLInputElement | HTMLSelectElement;
+  const vysledky = koren.querySelector<HTMLElement>("#vysledky")!;
+  const souhrn = koren.querySelector<HTMLElement>("#souhrn")!;
+  const prazdno = koren.querySelector<HTMLElement>("#prazdno")!;
+  const ceny: { slug: string; od: number; do: number }[] = JSON.parse(koren.dataset.ceny!);
+  const pocet = new Intl.NumberFormat("cs-CZ");
+
+  let rejstrik: Polozka[] = [];
+  let nalezene: Polozka[] = [];
+  let zobrazeno = 0;
+
+  const RAZENI: Record<string, (a: Polozka, b: Polozka) => number> = {
+    "cena-": (a, b) => a.cena - b.cena,
+    "cena+": (a, b) => b.cena - a.cena,
+    "rok+": (a, b) => b.rok - a.rok,
+    "rok-": (a, b) => (a.rok || 9999) - (b.rok || 9999),
+    nazev: (a, b) => a.nazev.localeCompare(b.nazev, "cs"),
+  };
+
+  function vObdobi(p: Polozka, slug: string) {
+    if (!slug) return true;
+    if (!p.rok) return false;
+    if (slug === "pred-1950") return p.rok < 1950;
+    const od = Number(slug.slice(0, 4));
+    return p.rok >= od && p.rok <= od + 9;
+  }
+
+  /** Karta knihy – stejné značky jako KnihaKarta.astro, aby vypadala stejně. */
+  function karta(p: Polozka) {
+    const a = prvek("a", "karta");
+    a.href = `${koren.dataset.knihy}${p.slug}/`;
+    const obalka = prvek("div", `obalka v${p.id % 6}`);
+    if (p.obrazek) {
+      const img = prvek("img");
+      Object.assign(img, { src: p.obrazek, alt: `Obálka knihy ${p.nazev}`, loading: "lazy", width: 400, height: 600 });
+      obalka.append(img);
+    } else {
+      obalka.append(prvek("span", "obalka-znacka", "Kniha4U"), prvek("span", "obalka-linka"), prvek("p", "obalka-nazev", p.nazev));
+      if (p.autor) obalka.append(prvek("span", "obalka-autor", p.autor));
+    }
+    const text = prvek("span", "karta-text");
+    const spodek = prvek("span", "karta-spodek");
+    spodek.append(prvek("span", "karta-rok", p.rok ? String(p.rok) : ""), prvek("span", "cena", kc.format(p.cena)));
+    text.append(prvek("span", "karta-nazev", p.nazev), prvek("span", "karta-autor", p.autor || " "), spodek);
+    a.append(obalka, text);
+    return a;
+  }
+
+  function dalsiDavka() {
+    vysledky.append(...nalezene.slice(zobrazeno, zobrazeno + NA_DAVKU).map(karta));
+    zobrazeno = Math.min(nalezene.length, zobrazeno + NA_DAVKU);
+  }
+
+  function aktualizuj() {
+    const q = pole("q").value;
+    const cena = ceny.find((c) => c.slug === pole("cena").value);
+    const obdobi = pole("obdobi").value;
+    const razeni = pole("razeni").value;
+
+    nalezene = hledej(rejstrik, q).filter((p) => (!cena || (p.cena >= cena.od && p.cena <= cena.do)) && vObdobi(p, obdobi));
+    if (RAZENI[razeni]) nalezene.sort(RAZENI[razeni]);
+
+    vysledky.replaceChildren();
+    zobrazeno = 0;
+    dalsiDavka();
+    prazdno.hidden = nalezene.length > 0;
+    souhrn.textContent = `${pocet.format(nalezene.length)} ${nalezene.length === 1 ? "kniha" : nalezene.length >= 2 && nalezene.length <= 4 ? "knihy" : "knih"}`;
+
+    const parametry = new URLSearchParams(Object.entries({ q: q.trim(), cena: cena?.slug ?? "", obdobi, razeni }).filter(([, v]) => v));
+    history.replaceState(null, "", parametry.size ? `?${parametry}` : location.pathname);
+  }
+
+  // Stav z adresy → do formuláře.
+  const zAdresy = new URLSearchParams(location.search);
+  for (const nazev of ["q", "cena", "obdobi", "razeni"]) pole(nazev).value = zAdresy.get(nazev) ?? "";
+
+  let casovac: number | undefined;
+  formular.addEventListener("input", () => {
+    clearTimeout(casovac);
+    casovac = window.setTimeout(aktualizuj, 150);
+  });
+
+  new IntersectionObserver(([z]) => z.isIntersecting && zobrazeno < nalezene.length && dalsiDavka(), { rootMargin: "800px" }).observe(koren.querySelector("#dalsi")!);
+
+  nactiRejstrik(koren.dataset.zdroj!)
+    .then((data) => {
+      rejstrik = data;
+      aktualizuj();
+      if (!pole("q").value) (pole("q") as HTMLInputElement).focus();
+    })
+    .catch(() => (souhrn.textContent = "Nabídku se nepodařilo načíst. Zkuste stránku obnovit."));
+</script>

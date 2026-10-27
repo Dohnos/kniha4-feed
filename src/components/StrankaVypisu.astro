@@ -1,0 +1,87 @@
+---
+/**
+ * Společná stránka výpisu knih: katalog, kolekce podle ceny a podle doby vydání.
+ * Přidá drobečkovou navigaci, filtrační čipy a strukturovaná data (CollectionPage + ItemList).
+ */
+import type { Page } from "astro";
+import Zaklad from "../layouts/Zaklad.astro";
+import VypisKnih from "./VypisKnih.astro";
+import { kolekceCen, kolekceObdobi, type Kniha } from "../lib/knihy";
+import { NAZEV_WEBU, absolutni, formatPocet, odkaz, pocetKnih, zkratit } from "../lib/web";
+
+interface Props {
+  nazev: string;
+  popis: string;
+  page: Page<Kniha>;
+  /** Cesta první strany, např. "katalog" nebo "cena/do-50-kc". */
+  zaklad: string;
+  drobecky: { nazev: string; cesta: string }[];
+}
+
+const { nazev, popis, page, zaklad, drobecky } = Astro.props;
+const strana = page.currentPage;
+const titulek = strana > 1 ? `${nazev} – strana ${strana}` : nazev;
+const url = absolutni(Astro.url.pathname, Astro.site);
+const aktualni = (cesta: string) => (cesta === zaklad ? "page" : undefined);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: titulek,
+    description: popis,
+    url,
+    isPartOf: { "@type": "WebSite", name: NAZEV_WEBU, url: absolutni(odkaz(), Astro.site) },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: page.total,
+      itemListElement: page.data.map((k, i) => ({
+        "@type": "ListItem",
+        position: page.start + i + 1,
+        url: absolutni(odkaz(`kniha/${k.slug}`), Astro.site),
+        name: k.nazev,
+      })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [{ nazev: NAZEV_WEBU, cesta: "" }, ...drobecky].map((d, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: d.nazev,
+      item: absolutni(odkaz(d.cesta), Astro.site),
+    })),
+  },
+];
+---
+
+<Zaklad titulek={titulek} popis={zkratit(strana > 1 ? `${popis} Strana ${strana} z ${page.lastPage}.` : popis)} jsonLd={jsonLd} sekce="katalog">
+  <div class="obal">
+    <header class="vypis-hlava">
+      <ol class="drobecky">
+        <li><a href={odkaz()}>Úvod</a></li>
+        {drobecky.map((d, i) => (i === drobecky.length - 1 ? <li aria-current="page">{d.nazev}</li> : <li><a href={odkaz(d.cesta)}>{d.nazev}</a></li>))}
+      </ol>
+      <h1 class="nadpis-l" style="margin-top: 18px">{nazev}</h1>
+      <p>
+        {popis} {pocetKnih(page.total)} skladem
+        {page.lastPage > 1 && <> · zobrazeno {formatPocet(page.start + 1)}–{formatPocet(page.end + 1)}</>}
+      </p>
+
+      <div class="vypis-filtry">
+        <div>
+          <span>Cena</span>
+          <a class="cip" href={odkaz("katalog")} aria-current={aktualni("katalog")}>Vše</a>
+          {kolekceCen.map((k) => <a class="cip" href={odkaz(`cena/${k.slug}`)} aria-current={aktualni(`cena/${k.slug}`)}>{k.nazev.replace("Knihy ", "")} <small>{formatPocet(k.knihy.length)}</small></a>)}
+        </div>
+        <div>
+          <span>Vydáno</span>
+          {kolekceObdobi.map((k) => <a class="cip" href={odkaz(`vydani/${k.slug}`)} aria-current={aktualni(`vydani/${k.slug}`)}>{k.slug === "pred-1950" ? "před 1950" : `${k.slug.slice(0, 4)}. léta`} <small>{formatPocet(k.knihy.length)}</small></a>)}
+        </div>
+      </div>
+    </header>
+
+    <VypisKnih page={page} zaklad={zaklad} />
+  </div>
+</Zaklad>

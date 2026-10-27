@@ -1,13 +1,17 @@
 ---
 import Zaklad from "../layouts/Zaklad.astro";
+import Ikona from "../components/Ikona.astro";
 import { odkaz } from "../lib/web";
 ---
 
-<Zaklad titulek="Stránka nenalezena" popis="Tahle stránka neexistuje. Knihu možná už někdo koupil.">
-  <section class="chyba">
-    <p class="nadpis-mensi">Chyba 404</p>
-    <h1>Tahle stránka tu není.</h1>
-    <p>Knihu možná už někdo koupil, nebo se změnila adresa. Zkuste ji najít v katalogu.</p>
-    <a class="tlacitko" href={odkaz("katalog")}>Otevřít katalog</a>
+<Zaklad titulek="Stránka nenalezena" popis="Tahle stránka neexistuje. Knihu možná už někdo koupil." noindex>
+  <section class="obal chyba">
+    <p class="stitek-nad">Chyba 404</p>
+    <h1 class="nadpis-xl">Tahle kniha už <em>odešla.</em></h1>
+    <p>Stránka neexistuje – knihu možná už někdo koupil, nebo se změnila adresa. Zkuste ji najít.</p>
+    <div class="hero-akce" style="justify-content: center">
+      <button class="tl" type="button" data-hledat><Ikona nazev="hledat" velikost={18} /> Hledat knihu</button>
+      <a class="tl tl-obrys" href={odkaz("katalog")}>Otevřít katalog</a>
+    </div>
   </section>
 </Zaklad>

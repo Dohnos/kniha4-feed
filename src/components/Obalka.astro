@@ -1,39 +1,29 @@
 ---
 /**
- * Obálka knihy. Dokud knihy nemají vlastní fotky, kreslí se typograficky z názvu a autora
- * v jedné ze šesti černobílých variant (podle ID, ať jsou sousední knihy různé).
- * Až bude v datech `obrazek`, zobrazí se fotka.
+ * Obálka knihy: fotka, když ji kniha má, jinak typografická obálka v jedné ze šesti
+ * černobílých variant (podle ID). `prechod` zapne plynulý přechod obálky z výpisu do detailu.
  */
-import { autor, type Kniha } from "../lib/knihy";
+import type { Kniha } from "../lib/knihy";
 
 interface Props {
   kniha: Kniha;
-  /** U první obálky na stránce načíst fotku hned, ne líně. */
   priorita?: boolean;
+  prechod?: boolean;
 }
 
-const { kniha, priorita = false } = Astro.props;
-const varianta = `obalka-v${kniha.id % 6}`;
-const jmeno = autor(kniha);
+const { kniha, priorita = false, prechod = false } = Astro.props;
 ---
 
-<div class:list={["obalka", varianta]}>
+<div class:list={["obalka", `v${kniha.id % 6}`]} style={prechod ? `view-transition-name: obalka-${kniha.id}` : undefined}>
   {
     kniha.obrazek ? (
-      <img
-        src={kniha.obrazek}
-        alt={`Obálka knihy ${kniha.nazev}`}
-        loading={priorita ? "eager" : "lazy"}
-        decoding="async"
-        width="400"
-        height="600"
-      />
+      <img src={kniha.obrazek} alt={`Obálka knihy ${kniha.nazev}`} loading={priorita ? "eager" : "lazy"} decoding="async" width="400" height="600" />
     ) : (
       <>
         <span class="obalka-znacka" aria-hidden="true">Kniha4U</span>
         <span class="obalka-linka" aria-hidden="true" />
         <p class="obalka-nazev" aria-hidden="true">{kniha.nazev}</p>
-        {jmeno && <span class="obalka-autor" aria-hidden="true">{jmeno}</span>}
+        {kniha.autor && <span class="obalka-autor" aria-hidden="true">{kniha.autor}</span>}
       </>
     )
   }

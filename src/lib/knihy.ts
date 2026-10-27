@@ -1,8 +1,6 @@
 /**
- * Data knih pro web. `src/data/knihy.json` generuje `npm run feed` v aplikaci Kniha4u –
- * jsou to přesně ty knihy, které jsou v XML feedu, ve stejném pořadí.
- *
- * JSON se čte jen při sestavení webu, do prohlížeče se nic z toho neposílá.
+ * Data katalogu. `src/data/knihy.json` vytváří lokální aplikace Kniha4U při publikaci –
+ * jsou to přesně knihy z XML feedu. Čte se jen při sestavení, do prohlížeče nejde.
  */
 
 import data from "../data/knihy.json";
@@ -11,7 +9,8 @@ export type Kniha = {
   id: number;
   slug: string;
   nazev: string;
-  autori: string[];
+  /** Autoři oddělení čárkou. */
+  autor: string;
   nakladatel: string;
   rok: string;
   vazba: string;
@@ -20,27 +19,90 @@ export type Kniha = {
   /** Jen platné ISBN, číslice bez pomlček. */
   isbn: string;
   cena: number;
-  /** Vlastní popis knihy, nebo prázdný řetězec. */
+  kusu: number;
   popis: string;
-  /** Vlastní fotka obálky, nebo prázdný řetězec – pak se kreslí typografická obálka. */
+  /** Vlastní fotka obálky, nebo "" – pak se kreslí typografická obálka. */
   obrazek: string;
+  pridano: string;
+  upraveno: string;
 };
 
-export const knihy: Kniha[] = data.knihy as Kniha[];
+export const knihy = data.knihy as Kniha[];
 export const vygenerovano = new Date(data.vygenerovano);
-
 export const NA_STRANKU = 48;
 
-export function autor(k: Kniha): string {
-  return k.autori.join(", ");
-}
+export const autori = (k: Kniha) => k.autor.split(", ").filter(Boolean);
 
-/** Sousedé v katalogu – tipy na další knihy v detailu. */
-export function podobne(k: Kniha, pocet = 4): Kniha[] {
+/** Adresa z textu: „Jaroslav Foglar“ → „jaroslav-foglar“. */
+export const slug = (text: string) =>
+  text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+/** Nejnověji přidané (podle data přidání, pak podle ID). */
+export const nejnovejsi = (pocet: number) =>
+  [...knihy].sort((a, b) => b.pridano.localeCompare(a.pridano) || b.id - a.id).slice(0, pocet);
+
+export const nejnizsiCena = () => Math.min(...knihy.map((k) => k.cena));
+
+/* ---------- autoři (vlastní stránka, když mají aspoň 2 knihy) ---------- */
+
+export type Autor = { jmeno: string; slug: string; knihy: Kniha[] };
+
+export const autoriSeStrankou: Autor[] = (() => {
+  const mapa = new Map<string, Autor>();
+  for (const k of knihy) {
+    for (const jmeno of autori(k)) {
+      const s = slug(jmeno);
+      if (!s) continue;
+      (mapa.get(s) ?? mapa.set(s, { jmeno, slug: s, knihy: [] }).get(s)!).knihy.push(k);
+    }
+  }
+  return [...mapa.values()].filter((a) => a.knihy.length >= 2).sort((a, b) => a.jmeno.localeCompare(b.jmeno, "cs"));
+})();
+
+const autorPodleSlugu = new Map(autoriSeStrankou.map((a) => [a.slug, a]));
+export const stranaAutora = (jmeno: string) => autorPodleSlugu.get(slug(jmeno));
+
+/* ---------- kolekce podle ceny a doby vydání ---------- */
+
+export type Kolekce = { slug: string; nazev: string; popis: string; knihy: Kniha[] };
+
+const CENY: [string, string, number, number][] = [
+  ["do-50-kc", "Knihy do 50 Kč", 0, 50],
+  ["50-az-100-kc", "Knihy za 51–100 Kč", 51, 100],
+  ["100-az-300-kc", "Knihy za 101–300 Kč", 101, 300],
+  ["nad-300-kc", "Knihy nad 300 Kč", 301, Number.POSITIVE_INFINITY],
+];
+
+export const kolekceCen: Kolekce[] = CENY.map(([s, nazev, od, po]) => ({
+  slug: s,
+  nazev,
+  popis: `${nazev} z nabídky antikvariátu Kniha4U.`,
+  knihy: knihy.filter((k) => k.cena >= od && k.cena <= po),
+})).filter((k) => k.knihy.length);
+
+const rokVydani = (k: Kniha) => Number(k.rok.match(/\b(1[5-9]\d\d|20\d\d)\b/)?.[1] ?? 0);
+
+export const kolekceObdobi: Kolekce[] = (() => {
+  const skupiny = new Map<string, Kolekce>();
+  for (const k of knihy) {
+    const rok = rokVydani(k);
+    if (!rok) continue;
+    const dekada = Math.floor(rok / 10) * 10;
+    const [s, nazev] = dekada < 1950 ? ["pred-1950", "Vydáno před rokem 1950"] : [`${dekada}-${dekada + 9}`, `Vydáno v letech ${dekada}–${dekada + 9}`];
+    (skupiny.get(s) ?? skupiny.set(s, { slug: s, nazev, popis: `${nazev} – knihy z nabídky antikvariátu Kniha4U.`, knihy: [] }).get(s)!).knihy.push(k);
+  }
+  return [...skupiny.values()].sort((a, b) => (a.slug === "pred-1950" ? -1 : b.slug === "pred-1950" ? 1 : a.slug.localeCompare(b.slug)));
+})();
+
+/* ---------- tipy na další knihy ---------- */
+
+/** Nejdřív další knihy stejného autora, pak sousedé v katalogu. */
+export function podobne(k: Kniha, pocet = 8): { odAutora: Kniha[]; dalsi: Kniha[] } {
+  const odAutora = autori(k)
+    .flatMap((a) => stranaAutora(a)?.knihy ?? [])
+    .filter((x, i, vse) => x.id !== k.id && vse.indexOf(x) === i)
+    .slice(0, pocet);
   const i = knihy.indexOf(k);
-  return [...knihy.slice(i + 1, i + 1 + pocet), ...knihy.slice(Math.max(0, i - pocet), i)].slice(0, pocet);
-}
-
-export function nejnizsiCena(): number {
-  return knihy.reduce((min, k) => Math.min(min, k.cena), Number.POSITIVE_INFINITY);
+  const dalsi = [...knihy.slice(i + 1), ...knihy.slice(0, i)].filter((x) => !odAutora.includes(x)).slice(0, pocet);
+  return { odAutora, dalsi };
 }
