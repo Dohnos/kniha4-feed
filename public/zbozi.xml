@@ -72094,4 +72094,14 @@ Sledujeme vzestup Fridricha Barbarossy v nejmocnějšího panovníka středověk
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8086862224</ISBN>
   </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>900009</ITEM_ID>
+    <PRODUCTNAME>Olomoucko z nebe</PRODUCTNAME>
+    <DESCRIPTION>V půvabné krajině osídlené bodrými a rozvážnými Hanáky najdete místa věhlasná i nenápadná. Na východě ji obklopují Oderské vrchy a Nízký Jeseník, ze severu hory Hrubého Jeseníku a z jihozápadu svahy Zábřežské a Drahanské vrchoviny s výrazným vrcholem Velkého Kosíře, kterému se říká „Hanácký Mont Bla</DESCRIPTION>
+    <URL>https://dohnos.github.io/kniha4-feed/kniha/olomoucko-z-nebe/</URL>
+    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/f_webp,q_auto,c_limit,w_1000/v1793124755/kniha4u/900009.webp</IMGURL>
+    <PRICE_VAT>999</PRICE_VAT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+    <ISBN>9788088259510</ISBN>
+  </SHOPITEM>
 </SHOP>
