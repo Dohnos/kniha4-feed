@@ -43,24 +43,32 @@ export const nejnovejsi = (pocet: number) =>
 
 export const nejnizsiCena = () => Math.min(...knihy.map((k) => k.cena));
 
-/* ---------- autoři (vlastní stránka, když mají aspoň 2 knihy) ---------- */
+/* ---------- autoři a nakladatelství (vlastní stránka, když mají aspoň 2 knihy) ---------- */
 
-export type Autor = { jmeno: string; slug: string; knihy: Kniha[] };
+export type Skupina = { jmeno: string; slug: string; knihy: Kniha[] };
+export type Autor = Skupina;
 
-export const autoriSeStrankou: Autor[] = (() => {
-  const mapa = new Map<string, Autor>();
+function seskup(jmenaKnihy: (k: Kniha) => string[]): Skupina[] {
+  const mapa = new Map<string, Skupina>();
   for (const k of knihy) {
-    for (const jmeno of autori(k)) {
+    for (const jmeno of jmenaKnihy(k)) {
       const s = slug(jmeno);
-      if (!s) continue;
-      (mapa.get(s) ?? mapa.set(s, { jmeno, slug: s, knihy: [] }).get(s)!).knihy.push(k);
+      if (s) (mapa.get(s) ?? mapa.set(s, { jmeno, slug: s, knihy: [] }).get(s)!).knihy.push(k);
     }
   }
   return [...mapa.values()].filter((a) => a.knihy.length >= 2).sort((a, b) => a.jmeno.localeCompare(b.jmeno, "cs"));
-})();
+}
+
+export const autoriSeStrankou = seskup(autori);
+export const nakladateleSeStrankou = seskup((k) => (k.nakladatel ? [k.nakladatel] : []));
 
 const autorPodleSlugu = new Map(autoriSeStrankou.map((a) => [a.slug, a]));
+const nakladatelPodleSlugu = new Map(nakladateleSeStrankou.map((a) => [a.slug, a]));
 export const stranaAutora = (jmeno: string) => autorPodleSlugu.get(slug(jmeno));
+export const stranaNakladatele = (jmeno: string) => nakladatelPodleSlugu.get(slug(jmeno));
+
+/** Seznam všech nakladatelství (i s jednou knihou) – pro našeptávač ve filtru. */
+export const vsichniNakladatele = [...new Set(knihy.map((k) => k.nakladatel).filter(Boolean))].sort((a, b) => a.localeCompare(b, "cs"));
 
 /* ---------- kolekce podle ceny a doby vydání ---------- */
 

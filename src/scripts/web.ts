@@ -132,3 +132,21 @@ document.querySelectorAll<HTMLButtonElement>("[data-sdilet]").forEach((tl) => {
     }
   });
 });
+
+/* ---------- světlý / tmavý režim ---------- */
+
+const jeTmavy = () =>
+  document.documentElement.dataset.tema ? document.documentElement.dataset.tema === "tmavy" : matchMedia("(prefers-color-scheme: dark)").matches;
+
+document.querySelectorAll("[data-tema-prepinac]").forEach((tl) =>
+  tl.addEventListener("click", () => {
+    const novy = jeTmavy() ? "svetly" : "tmavy";
+    try {
+      localStorage.setItem("tema", novy);
+    } catch {
+      // bez úložiště jen pro tuhle stránku
+    }
+    const prepni = () => (document.documentElement.dataset.tema = novy);
+    document.startViewTransition ? document.startViewTransition(prepni) : prepni();
+  })
+);

@@ -1,25 +1,11 @@
 ---
 import Zaklad from "../../layouts/Zaklad.astro";
+import Rejstrik from "../../components/Rejstrik.astro";
 import { autoriSeStrankou } from "../../lib/knihy";
 import { NAZEV_WEBU, absolutni, formatPocet, odkaz } from "../../lib/web";
 
-// Seskupení podle prvního písmene (bez diakritiky, „Č“ patří k „C“ – jednodušší rejstřík).
-const pismeno = (jmeno: string) => {
-  const p = jmeno.normalize("NFD").replace(/[̀-ͯ]/g, "").charAt(0).toUpperCase();
-  return /[A-Z]/.test(p) ? p : "#";
-};
-const skupiny = new Map<string, typeof autoriSeStrankou>();
-for (const a of autoriSeStrankou) (skupiny.get(pismeno(a.jmeno)) ?? skupiny.set(pismeno(a.jmeno), []).get(pismeno(a.jmeno))!).push(a);
-const pismena = [...skupiny.keys()].sort((a, b) => (a === "#" ? 1 : b === "#" ? -1 : a.localeCompare(b)));
-
 const popis = `Rejstřík ${formatPocet(autoriSeStrankou.length)} autorů, od kterých má antikvariát ${NAZEV_WEBU} skladem aspoň dvě knihy.`;
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Autoři",
-  description: popis,
-  url: absolutni(odkaz("autori"), Astro.site),
-};
+const jsonLd = { "@context": "https://schema.org", "@type": "CollectionPage", name: "Autoři", description: popis, url: absolutni(odkaz("autori"), Astro.site) };
 ---
 
 <Zaklad titulek="Autoři od A do Z" popis={popis} jsonLd={jsonLd} sekce="autori">
@@ -29,18 +15,6 @@ const jsonLd = {
       <h1 class="nadpis-l" style="margin-top: 18px">Autoři od A do Z</h1>
       <p>{popis} Ostatní najdete přes hledání.</p>
     </header>
-
-    <nav class="abeceda" aria-label="Písmena">
-      {pismena.map((p) => <a href={`#pismeno-${p === "#" ? "ostatni" : p}`}>{p}</a>)}
-    </nav>
-
-    {pismena.map((p) => (
-      <section class="pismeno" id={`pismeno-${p === "#" ? "ostatni" : p}`}>
-        <h2>{p}</h2>
-        <div class="cipy">
-          {skupiny.get(p)!.map((a) => <a class="cip" href={odkaz(`autor/${a.slug}`)}>{a.jmeno} <small>{a.knihy.length}</small></a>)}
-        </div>
-      </section>
-    ))}
+    <Rejstrik polozky={autoriSeStrankou} cesta="autor" placeholder="Hledat autora…" />
   </div>
 </Zaklad>

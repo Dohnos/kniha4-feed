@@ -1,0 +1,76 @@
+---
+/**
+ * Rejstřík A–Z (autoři, nakladatelství) s hledáním. Hledání jen skrývá položky,
+ * které nesedí – všechny odkazy jsou v HTML, takže je Google projde.
+ */
+import Ikona from "./Ikona.astro";
+import type { Skupina } from "../lib/knihy";
+import { odkaz } from "../lib/web";
+
+interface Props {
+  polozky: Skupina[];
+  /** Cesta detailu, např. "autor" → /autor/<slug>/. */
+  cesta: string;
+  placeholder: string;
+}
+
+const { polozky, cesta, placeholder } = Astro.props;
+
+// Podle prvního písmene bez diakritiky („Č“ patří k „C“ – jednodušší rejstřík).
+const pismeno = (jmeno: string) => {
+  const p = jmeno.normalize("NFD").replace(/[̀-ͯ]/g, "").charAt(0).toUpperCase();
+  return /[A-Z]/.test(p) ? p : "#";
+};
+const skupiny = new Map<string, Skupina[]>();
+for (const a of polozky) (skupiny.get(pismeno(a.jmeno)) ?? skupiny.set(pismeno(a.jmeno), []).get(pismeno(a.jmeno))!).push(a);
+const pismena = [...skupiny.keys()].sort((a, b) => (a === "#" ? 1 : b === "#" ? -1 : a.localeCompare(b)));
+const kotva = (p: string) => `pismeno-${p === "#" ? "ostatni" : p}`;
+---
+
+<div class="rejstrik" data-rejstrik>
+  <div class="rejstrik-nastroje">
+    <label class="filtr-hledat">
+      <Ikona nazev="hledat" velikost={22} />
+      <input type="search" placeholder={placeholder} autocomplete="off" aria-label={placeholder} />
+    </label>
+    <nav class="abeceda" aria-label="Písmena">
+      {pismena.map((p) => <a href={`#${kotva(p)}`}>{p}</a>)}
+    </nav>
+  </div>
+
+  {pismena.map((p) => (
+    <section class="pismeno" id={kotva(p)}>
+      <h2>{p}</h2>
+      <div class="cipy">
+        {skupiny.get(p)!.map((a) => (
+          <a class="cip" href={odkaz(`${cesta}/${a.slug}`)} data-hledat-text={a.jmeno.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()}>
+            {a.jmeno} <small>{a.knihy.length}</small>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+  <p class="prazdno" data-nic hidden><strong>Nic jsme nenašli</strong>Zkuste jiné jméno – na diakritice nezáleží.</p>
+</div>
+
+<script>
+  for (const koren of document.querySelectorAll<HTMLElement>("[data-rejstrik]")) {
+    const vstup = koren.querySelector("input")!;
+    const sekce = [...koren.querySelectorAll<HTMLElement>(".pismeno")];
+    vstup.addEventListener("input", () => {
+      const q = vstup.value.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+      let nalezeno = 0;
+      for (const s of sekce) {
+        let vSekci = 0;
+        for (const a of s.querySelectorAll<HTMLElement>("[data-hledat-text]")) {
+          const sedi = !q || a.dataset.hledatText!.includes(q);
+          a.hidden = !sedi;
+          vSekci += Number(sedi);
+        }
+        s.hidden = !vSekci;
+        nalezeno += vSekci;
+      }
+      koren.querySelector<HTMLElement>("[data-nic]")!.hidden = nalezeno > 0;
+    });
+  }
+</script>

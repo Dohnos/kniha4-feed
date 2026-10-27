@@ -1,0 +1,20 @@
+---
+import Zaklad from "../../layouts/Zaklad.astro";
+import Rejstrik from "../../components/Rejstrik.astro";
+import { nakladateleSeStrankou } from "../../lib/knihy";
+import { NAZEV_WEBU, absolutni, formatPocet, odkaz } from "../../lib/web";
+
+const popis = `Rejstřík ${formatPocet(nakladateleSeStrankou.length)} nakladatelství, od kterých má antikvariát ${NAZEV_WEBU} skladem aspoň dvě knihy – Odeon, Mladá fronta, Albatros, Československý spisovatel a další.`;
+const jsonLd = { "@context": "https://schema.org", "@type": "CollectionPage", name: "Nakladatelství", description: popis, url: absolutni(odkaz("nakladatelstvi"), Astro.site) };
+---
+
+<Zaklad titulek="Nakladatelství od A do Z" popis={popis} jsonLd={jsonLd} sekce="nakladatele">
+  <div class="obal">
+    <header class="vypis-hlava">
+      <ol class="drobecky"><li><a href={odkaz()}>Úvod</a></li><li aria-current="page">Nakladatelství</li></ol>
+      <h1 class="nadpis-l" style="margin-top: 18px">Nakladatelství od A do Z</h1>
+      <p>{popis}</p>
+    </header>
+    <Rejstrik polozky={nakladateleSeStrankou} cesta="nakladatelstvi" placeholder="Hledat nakladatelství…" />
+  </div>
+</Zaklad>

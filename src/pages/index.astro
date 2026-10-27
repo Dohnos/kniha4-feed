@@ -3,7 +3,7 @@ import Zaklad from "../layouts/Zaklad.astro";
 import Ikona from "../components/Ikona.astro";
 import Obalka from "../components/Obalka.astro";
 import Karusel from "../components/Karusel.astro";
-import { autoriSeStrankou, knihy, kolekceCen, kolekceObdobi, nejnizsiCena, nejnovejsi } from "../lib/knihy";
+import { autoriSeStrankou, knihy, kolekceCen, kolekceObdobi, nakladateleSeStrankou, nejnizsiCena, nejnovejsi } from "../lib/knihy";
 import { NAZEV_WEBU, POPIS_WEBU, absolutni, formatCena, formatPocet, odkaz, soubor } from "../lib/web";
 
 const url = absolutni(odkaz(), Astro.site);
@@ -14,6 +14,7 @@ const pocetNakladatelu = new Set(knihy.map((k) => k.nakladatel).filter(Boolean))
 const sPopisem = knihy.filter((k) => k.popis && k.nazev.length < 40);
 const vejir = [0, 1, 2, 3, 4].map((i) => sPopisem[Math.floor((i * sPopisem.length) / 5)]);
 const pas = sPopisem.filter((_, i) => i % 37 === 0).slice(0, 36);
+const topNakladatele = [...nakladateleSeStrankou].sort((a, b) => b.knihy.length - a.knihy.length).slice(0, 14);
 const topAutori = autoriSeStrankou.filter((a) => !/kolektiv/i.test(a.jmeno)).sort((a, b) => b.knihy.length - a.knihy.length).slice(0, 18);
 
 const jsonLd = [
@@ -134,6 +135,21 @@ const jsonLd = [
       <div class="cipy">
         {topAutori.map((a) => (
           <a class="cip objev" href={odkaz(`autor/${a.slug}`)}><Ikona nazev="autor" velikost={16} /> {a.jmeno} <small>{a.knihy.length}</small></a>
+        ))}
+      </div>
+    </section>
+
+    <section class="sekce">
+      <div class="sekce-hlava">
+        <div>
+          <h2 class="nadpis-m">Nakladatelství</h2>
+          <p>Od Odeonu a Mladé fronty po Albatros – knihy podle toho, kdo je vydal.</p>
+        </div>
+        <a class="tl tl-obrys tl-male" href={odkaz("nakladatelstvi")}>Všechna nakladatelství <Ikona nazev="vpravo" velikost={16} class="ikona-posun" /></a>
+      </div>
+      <div class="cipy">
+        {topNakladatele.map((n) => (
+          <a class="cip objev" href={odkaz(`nakladatelstvi/${n.slug}`)}><Ikona nazev="nakladatel" velikost={16} /> {n.jmeno} <small>{n.knihy.length}</small></a>
         ))}
       </div>
     </section>

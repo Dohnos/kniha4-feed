@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Hledani from "../components/Hledani.astro";
-import Ikona from "../components/Ikona.astro";
+import Ikona, { type NazevIkony } from "../components/Ikona.astro";
 import { kolekceCen, vygenerovano } from "../lib/knihy";
 import { NAZEV_WEBU, POPIS_WEBU, absolutni, odkaz, soubor } from "../lib/web";
 
@@ -12,7 +12,7 @@ interface Props {
   obrazek?: string;
   jsonLd?: object | object[];
   ogTyp?: "website" | "book";
-  sekce?: "uvod" | "katalog" | "autori" | "hledat";
+  sekce?: "uvod" | "katalog" | "autori" | "nakladatele" | "hledat";
   noindex?: boolean;
 }
 
@@ -21,11 +21,11 @@ const celyTitulek = titulek ? `${titulek} | ${NAZEV_WEBU}` : `${NAZEV_WEBU} – 
 const kanonicka = absolutni(Astro.url.pathname, Astro.site);
 const ogObrazek = obrazek ?? absolutni(soubor("og.png"), Astro.site);
 const datum = vygenerovano.toLocaleDateString("cs-CZ", { day: "numeric", month: "long", year: "numeric" });
-const NAVIGACE = [
-  { sekce: "katalog", href: odkaz("katalog"), text: "Katalog" },
-  { sekce: "autori", href: odkaz("autori"), text: "Autoři" },
-  { sekce: "hledat", href: odkaz("hledat"), text: "Hledání" },
-] as const;
+const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: NazevIkony }[] = [
+  { sekce: "katalog", href: odkaz("katalog"), text: "Katalog", ikona: "mrizka" },
+  { sekce: "autori", href: odkaz("autori"), text: "Autoři", ikona: "autor" },
+  { sekce: "nakladatele", href: odkaz("nakladatelstvi"), text: "Nakladatelství", ikona: "nakladatel" },
+];
 ---
 
 <!doctype html>
@@ -33,6 +33,13 @@ const NAVIGACE = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline>
+      // Režim nastavit ještě před vykreslením (bez probliknutí). Bez volby se řídí systémem.
+      try {
+        const t = localStorage.getItem("tema");
+        if (t) document.documentElement.dataset.tema = t;
+      } catch {}
+    </script>
     <title>{celyTitulek}</title>
     <meta name="description" content={popis} />
     <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
@@ -74,15 +81,16 @@ const NAVIGACE = [
             {NAZEV_WEBU}
           </a>
           <nav class="navigace" aria-label="Hlavní navigace">
-            {NAVIGACE.filter((n) => n.sekce !== "hledat").map((n) => (
-              <a class="nav-odkaz" href={n.href} aria-current={sekce === n.sekce ? "page" : undefined}>{n.text}</a>
-            ))}
+            {NAVIGACE.map((n) => <a class="nav-odkaz" href={n.href} aria-current={sekce === n.sekce ? "page" : undefined}>{n.text}</a>)}
           </nav>
           <button class="hledat-tl" type="button" data-hledat aria-label="Hledat (Ctrl+K)">
             <Ikona nazev="hledat" velikost={18} /><span>Hledat knihu…</span><kbd>Ctrl K</kbd>
           </button>
-          <button class="tl tl-obrys tl-kulate menu-tl" type="button" popovertarget="menu" aria-label="Menu">
-            <Ikona nazev="filtr" />
+          <button class="lista-tl" type="button" data-tema-prepinac aria-label="Přepnout světlý / tmavý režim" title="Světlý / tmavý režim">
+            <Ikona nazev="mesic" velikost={19} class="ikona-mesic" /><Ikona nazev="slunce" velikost={19} class="ikona-slunce" />
+          </button>
+          <button class="lista-tl menu-tl" type="button" popovertarget="menu" aria-label="Menu">
+            <Ikona nazev="menu" velikost={19} />
           </button>
         </div>
       </div>
@@ -90,7 +98,8 @@ const NAVIGACE = [
 
     <div class="menu-panel" id="menu" popover>
       <a href={odkaz()}><Ikona nazev="kniha" /> Úvod</a>
-      {NAVIGACE.map((n) => <a href={n.href}><Ikona nazev={n.sekce === "katalog" ? "mrizka" : n.sekce === "autori" ? "autor" : "hledat"} /> {n.text}</a>)}
+      {NAVIGACE.map((n) => <a href={n.href}><Ikona nazev={n.ikona} /> {n.text}</a>)}
+      <a href={odkaz("hledat")}><Ikona nazev="filtr" /> Hledání s filtry</a>
     </div>
 
     <main>
@@ -109,7 +118,8 @@ const NAVIGACE = [
             <ul>
               <li><a href={odkaz("katalog")}>Celý katalog</a></li>
               <li><a href={odkaz("autori")}>Autoři</a></li>
-              <li><a href={odkaz("hledat")}>Rozšířené hledání</a></li>
+              <li><a href={odkaz("nakladatelstvi")}>Nakladatelství</a></li>
+              <li><a href={odkaz("hledat")}>Hledání s filtry</a></li>
             </ul>
           </nav>
           <nav aria-label="Podle ceny">

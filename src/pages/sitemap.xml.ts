@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { NA_STRANKU, autoriSeStrankou, knihy, kolekceCen, kolekceObdobi, vygenerovano } from "../lib/knihy";
+import { NA_STRANKU, autoriSeStrankou, knihy, kolekceCen, kolekceObdobi, nakladateleSeStrankou, vygenerovano } from "../lib/knihy";
 import { absolutni, odkaz } from "../lib/web";
 
 /** Mapa webu: úvod, katalog, kolekce (všechny strany), autoři a stránka každé knihy s datem poslední změny. */
@@ -9,10 +9,11 @@ export const GET: APIRoute = ({ site }) => {
     Array.from({ length: Math.ceil(pocet / NA_STRANKU) }, (_, i) => odkaz(i === 0 ? zaklad : `${zaklad}/${i + 1}`));
 
   const adresy: [string, string][] = [
-    ...[odkaz(), odkaz("autori")].map((a) => [a, dnes] as [string, string]),
+    ...[odkaz(), odkaz("autori"), odkaz("nakladatelstvi")].map((a) => [a, dnes] as [string, string]),
     ...strany("katalog", knihy.length).map((a) => [a, dnes] as [string, string]),
     ...kolekceCen.flatMap((k) => strany(`cena/${k.slug}`, k.knihy.length)).map((a) => [a, dnes] as [string, string]),
     ...kolekceObdobi.flatMap((k) => strany(`vydani/${k.slug}`, k.knihy.length)).map((a) => [a, dnes] as [string, string]),
+    ...nakladateleSeStrankou.flatMap((n) => strany(`nakladatelstvi/${n.slug}`, n.knihy.length)).map((a) => [a, dnes] as [string, string]),
     ...autoriSeStrankou.map((a) => [odkaz(`autor/${a.slug}`), dnes] as [string, string]),
     ...knihy.map((k) => [odkaz(`kniha/${k.slug}`), k.upraveno.slice(0, 10)] as [string, string]),
   ];

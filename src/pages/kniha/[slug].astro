@@ -4,7 +4,7 @@ import Zaklad from "../../layouts/Zaklad.astro";
 import Obalka from "../../components/Obalka.astro";
 import Ikona, { type NazevIkony } from "../../components/Ikona.astro";
 import Karusel from "../../components/Karusel.astro";
-import { autori, knihy, kolekceObdobi, podobne, stranaAutora, type Kniha } from "../../lib/knihy";
+import { autori, knihy, kolekceObdobi, podobne, stranaAutora, stranaNakladatele, type Kniha } from "../../lib/knihy";
 import { KONTAKT, NAZEV_WEBU, absolutni, formatCena, fotka, odkaz, zkratit } from "../../lib/web";
 
 export const getStaticPaths = (() => knihy.map((kniha) => ({ params: { slug: kniha.slug }, props: { kniha } }))) satisfies GetStaticPaths;
@@ -13,10 +13,11 @@ const { kniha } = Astro.props as { kniha: Kniha };
 const url = absolutni(odkaz(`kniha/${kniha.slug}`), Astro.site);
 const autoriKnihy = autori(kniha).map((jmeno) => ({ jmeno, stranka: stranaAutora(jmeno) }));
 const obdobi = kolekceObdobi.find((k) => k.knihy.includes(kniha));
+const nakladatel = kniha.nakladatel ? stranaNakladatele(kniha.nakladatel) : undefined;
 const { odAutora, dalsi } = podobne(kniha);
 
 const udaje: { ikona: NazevIkony; nazev: string; hodnota: string; href?: string }[] = [
-  { ikona: "nakladatel", nazev: "Nakladatel", hodnota: kniha.nakladatel },
+  { ikona: "nakladatel", nazev: "Nakladatel", hodnota: kniha.nakladatel, href: nakladatel && odkaz(`nakladatelstvi/${nakladatel.slug}`) },
   { ikona: "kalendar", nazev: "Rok vydání", hodnota: kniha.rok, href: obdobi && odkaz(`vydani/${obdobi.slug}`) },
   { ikona: "vazba", nazev: "Vazba", hodnota: kniha.vazba },
   { ikona: "stranky", nazev: "Počet stran", hodnota: kniha.stran ? String(kniha.stran) : "" },

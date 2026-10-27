@@ -1,0 +1,94 @@
+---
+/**
+ * Filtr a hledání v nabídce (v prohlížeči nad `hledani.json`). Logika je v `scripts/filtr.ts`.
+ *
+ * rezim="katalog" – stránkovaný výpis (`staticky`) zůstává pro Google; výsledky filtru ho nahradí,
+ *                   až když uživatel začne filtrovat. Rejstřík se stáhne až při první interakci.
+ * rezim="hledat"  – výsledky se ukazují vždy (bez filtru celá nabídka).
+ */
+import Ikona from "./Ikona.astro";
+import { kolekceCen, kolekceObdobi } from "../lib/knihy";
+import { odkaz, soubor } from "../lib/web";
+
+interface Props {
+  rezim: "katalog" | "hledat";
+  /** CSS selektor statického výpisu, který se při filtrování skryje. */
+  staticky?: string;
+}
+
+const { rezim, staticky } = Astro.props;
+const ceny = kolekceCen.map((k) => ({
+  slug: k.slug,
+  nazev: k.nazev.replace("Knihy ", ""),
+  od: Math.min(...k.knihy.map((x) => x.cena)),
+  do: Math.max(...k.knihy.map((x) => x.cena)),
+}));
+const obdobi = kolekceObdobi.map((k) => ({ slug: k.slug, nazev: k.slug === "pred-1950" ? "před 1950" : `${k.slug.slice(0, 4)}. léta` }));
+---
+
+<section
+  class="filtr"
+  data-filtr={rezim}
+  data-zdroj={soubor("hledani.json")}
+  data-knihy={odkaz("kniha")}
+  data-ceny={JSON.stringify(ceny)}
+  data-staticky={staticky}
+  aria-label="Filtr knih"
+>
+  <form class="filtr-panel" role="search" onsubmit="return false">
+    <label class="filtr-hledat">
+      <Ikona nazev="hledat" velikost={22} />
+      <input type="search" name="q" placeholder="Hledat v nabídce – název, autor, nakladatel, ISBN…" autocomplete="off" aria-label="Hledat v nabídce" />
+      <button class="filtr-vymazat" type="button" data-vymazat aria-label="Vymazat hledání" hidden><Ikona nazev="zavrit" velikost={16} /></button>
+    </label>
+
+    <div class="filtr-radek">
+      <span class="filtr-popisek"><Ikona nazev="cena" velikost={16} /> Cena</span>
+      <div class="filtr-cipy" data-skupina="cena">
+        <button type="button" value="" aria-pressed="true">Vše</button>
+        {ceny.map((c) => <button type="button" value={c.slug} aria-pressed="false">{c.nazev}</button>)}
+      </div>
+    </div>
+
+    <div class="filtr-radek">
+      <span class="filtr-popisek"><Ikona nazev="kalendar" velikost={16} /> Vydáno</span>
+      <div class="filtr-cipy" data-skupina="obdobi">
+        <button type="button" value="" aria-pressed="true">Kdykoli</button>
+        {obdobi.map((o) => <button type="button" value={o.slug} aria-pressed="false">{o.nazev}</button>)}
+      </div>
+    </div>
+
+    <div class="filtr-spodek">
+      <label class="filtr-pole">
+        <Ikona nazev="nakladatel" velikost={18} />
+        <input name="nakladatel" list={`nakladatele-${rezim}`} placeholder="Nakladatelství" autocomplete="off" aria-label="Nakladatelství" />
+        <datalist id={`nakladatele-${rezim}`}></datalist>
+      </label>
+      <label class="filtr-pole">
+        <Ikona nazev="filtr" velikost={18} />
+        <select name="razeni" aria-label="Řazení">
+          <option value="">Řadit: nejlepší shoda</option>
+          <option value="cena-">Nejlevnější</option>
+          <option value="cena+">Nejdražší</option>
+          <option value="rok+">Nejnovější vydání</option>
+          <option value="rok-">Nejstarší vydání</option>
+          <option value="nazev">Název A–Z</option>
+        </select>
+        <Ikona nazev="sipkaVpravo" velikost={16} class="filtr-sipka" />
+      </label>
+    </div>
+  </form>
+
+  <div class="filtr-souhrn" data-souhrn hidden aria-live="polite"></div>
+  <div class="mrizka" data-vysledky></div>
+  <div data-dalsi style="height: 1px"></div>
+  <div class="prazdno" data-prazdno hidden>
+    <Ikona nazev="hledat" velikost={40} />
+    <strong>Nic jsme nenašli</strong>
+    Zkuste jiné slovo nebo zrušte některý filtr – na diakritice ani velkých písmenech nezáleží.
+  </div>
+</section>
+
+<script>
+  import "../scripts/filtr.ts";
+</script>

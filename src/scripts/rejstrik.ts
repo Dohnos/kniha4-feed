@@ -1,4 +1,4 @@
-/** Rejstřík knih pro hledání v prohlížeči (paleta i stránka /hledat/). Stahuje se jednou. */
+/** Rejstřík knih pro hledání v prohlížeči (paleta, filtr v katalogu, /hledat/). Stahuje se jednou. */
 
 export type Polozka = {
   id: number;
@@ -7,6 +7,7 @@ export type Polozka = {
   autor: string;
   cena: number;
   rok: number;
+  nakladatel: string;
   obrazek: string;
   text: string;
 };
@@ -18,11 +19,12 @@ let nacitani: Promise<Polozka[]> | null = null;
 export function nactiRejstrik(zdroj: string): Promise<Polozka[]> {
   nacitani ??= fetch(zdroj)
     .then((r) => r.json())
-    .then((data: [number, string, string, string, number, string, string, string][]) =>
-      data.map(([id, slug, nazev, autor, cena, rok, navic, obrazek]) => ({
-        id, slug, nazev, autor, cena, obrazek,
+    // [id, slug, název, autor, cena, rok, nakladatel, isbn, fotka] – viz pages/hledani.json.ts
+    .then((data: [number, string, string, string, number, string, string, string, string][]) =>
+      data.map(([id, slug, nazev, autor, cena, rok, nakladatel, isbn, obrazek]) => ({
+        id, slug, nazev, autor, cena, nakladatel, obrazek,
         rok: Number(rok.match(/\d{4}/)?.[0] ?? 0),
-        text: bezDiakritiky(`${nazev} ${autor} ${rok} ${navic}`),
+        text: bezDiakritiky(`${nazev} ${autor} ${rok} ${nakladatel} ${isbn}`),
       }))
     )
     .catch((chyba) => {
@@ -45,6 +47,10 @@ export function hledej(rejstrik: Polozka[], dotaz: string): Polozka[] {
 }
 
 export const kc = new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 });
+
+/** Varianta fotky z Cloudinary (WebP, zmenšená); jiné adresy beze změny. */
+export const fotka = (url: string, transformace: string) =>
+  url.replace(/^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)/, `$1${transformace}/`);
 
 /** Bezpečné vytvoření prvku s textem. */
 export function prvek<K extends keyof HTMLElementTagNameMap>(tag: K, trida = "", text?: string): HTMLElementTagNameMap[K] {

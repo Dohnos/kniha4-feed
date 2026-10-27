@@ -6,6 +6,7 @@
 import type { Page } from "astro";
 import Zaklad from "../layouts/Zaklad.astro";
 import VypisKnih from "./VypisKnih.astro";
+import FiltrKnih from "./FiltrKnih.astro";
 import { kolekceCen, kolekceObdobi, type Kniha } from "../lib/knihy";
 import { NAZEV_WEBU, absolutni, formatPocet, odkaz, pocetKnih, zkratit } from "../lib/web";
 
@@ -16,9 +17,12 @@ interface Props {
   /** Cesta první strany, např. "katalog" nebo "cena/do-50-kc". */
   zaklad: string;
   drobecky: { nazev: string; cesta: string }[];
+  /** Místo odkazů na kolekce ukázat interaktivní filtr (katalog). */
+  filtr?: boolean;
+  sekce?: "katalog" | "nakladatele";
 }
 
-const { nazev, popis, page, zaklad, drobecky } = Astro.props;
+const { nazev, popis, page, zaklad, drobecky, filtr = false, sekce = "katalog" } = Astro.props;
 const strana = page.currentPage;
 const titulek = strana > 1 ? `${nazev} – strana ${strana}` : nazev;
 const url = absolutni(Astro.url.pathname, Astro.site);
@@ -56,7 +60,7 @@ const jsonLd = [
 ];
 ---
 
-<Zaklad titulek={titulek} popis={zkratit(strana > 1 ? `${popis} Strana ${strana} z ${page.lastPage}.` : popis)} jsonLd={jsonLd} sekce="katalog">
+<Zaklad titulek={titulek} popis={zkratit(strana > 1 ? `${popis} Strana ${strana} z ${page.lastPage}.` : popis)} jsonLd={jsonLd} sekce={sekce}>
   <div class="obal">
     <header class="vypis-hlava">
       <ol class="drobecky">
@@ -69,19 +73,26 @@ const jsonLd = [
         {page.lastPage > 1 && <> · zobrazeno {formatPocet(page.start + 1)}–{formatPocet(page.end + 1)}</>}
       </p>
 
-      <div class="vypis-filtry">
-        <div>
-          <span>Cena</span>
-          <a class="cip" href={odkaz("katalog")} aria-current={aktualni("katalog")}>Vše</a>
-          {kolekceCen.map((k) => <a class="cip" href={odkaz(`cena/${k.slug}`)} aria-current={aktualni(`cena/${k.slug}`)}>{k.nazev.replace("Knihy ", "")} <small>{formatPocet(k.knihy.length)}</small></a>)}
-        </div>
-        <div>
-          <span>Vydáno</span>
-          {kolekceObdobi.map((k) => <a class="cip" href={odkaz(`vydani/${k.slug}`)} aria-current={aktualni(`vydani/${k.slug}`)}>{k.slug === "pred-1950" ? "před 1950" : `${k.slug.slice(0, 4)}. léta`} <small>{formatPocet(k.knihy.length)}</small></a>)}
-        </div>
-      </div>
+      {
+        !filtr && (
+          <div class="vypis-filtry">
+            <div>
+              <span>Cena</span>
+              <a class="cip" href={odkaz("katalog")} aria-current={aktualni("katalog")}>Vše</a>
+              {kolekceCen.map((k) => <a class="cip" href={odkaz(`cena/${k.slug}`)} aria-current={aktualni(`cena/${k.slug}`)}>{k.nazev.replace("Knihy ", "")} <small>{formatPocet(k.knihy.length)}</small></a>)}
+            </div>
+            <div>
+              <span>Vydáno</span>
+              {kolekceObdobi.map((k) => <a class="cip" href={odkaz(`vydani/${k.slug}`)} aria-current={aktualni(`vydani/${k.slug}`)}>{k.slug === "pred-1950" ? "před 1950" : `${k.slug.slice(0, 4)}. léta`} <small>{formatPocet(k.knihy.length)}</small></a>)}
+            </div>
+          </div>
+        )
+      }
     </header>
 
-    <VypisKnih page={page} zaklad={zaklad} />
+    {filtr && <FiltrKnih rezim="katalog" staticky="#staticky-vypis" />}
+    <div id="staticky-vypis">
+      <VypisKnih page={page} zaklad={zaklad} />
+    </div>
   </div>
 </Zaklad>

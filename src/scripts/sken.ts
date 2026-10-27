@@ -54,7 +54,8 @@ let katalog: { nazev: string; text: string; kody: string }[] = [];
 fetch(document.body.dataset.rejstrik!)
   .then((r) => r.json())
   .then((data: (string | number)[][]) => {
-    katalog = data.map((z) => ({ nazev: String(z[2]), text: bezDiakritiky(String(z[2])), kody: cislice(String(z[6])) }));
+    // Formát hledani.json: [id, slug, název, autor, cena, rok, nakladatel, isbn, fotka]
+    katalog = data.map((z) => ({ nazev: String(z[2]), text: bezDiakritiky(String(z[2])), kody: cislice(String(z[7])) }));
   })
   .catch(() => {});
 
