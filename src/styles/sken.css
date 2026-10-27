@@ -11,6 +11,8 @@
   --na-akcentu: #fafaf7;
   --pozor: #b45309;
   --dole: env(safe-area-inset-bottom, 0px);
+  --sirka: 640px;
+  --pruzne: cubic-bezier(0.2, 0.8, 0.2, 1);
   color-scheme: light;
   -webkit-tap-highlight-color: transparent;
 }
@@ -24,6 +26,7 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
+html, body { overscroll-behavior-y: contain; }
 body {
   margin: 0;
   min-height: 100dvh;
@@ -33,6 +36,7 @@ body {
   -webkit-font-smoothing: antialiased;
   padding-bottom: calc(108px + var(--dole));
 }
+body:has(dialog[open]), body:has(.kamera:not([hidden])) { overflow: hidden; }
 button, input { font: inherit; color: inherit; }
 svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
@@ -41,7 +45,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   min-height: 48px; padding: 0 20px;
   border: 1px solid var(--akcent); border-radius: 999px;
   background: var(--akcent); color: var(--na-akcentu);
-  font-weight: 650; cursor: pointer;
+  font-weight: 650; cursor: pointer; white-space: nowrap;
   transition: transform 0.12s, opacity 0.15s;
 }
 .tl:active { transform: scale(0.96); }
@@ -53,23 +57,24 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 /* ---------- hlavička ---------- */
 .hlava {
   position: sticky; top: 0; z-index: 5;
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: calc(14px + env(safe-area-inset-top, 0px)) 18px 14px;
   background: var(--akcent); color: var(--na-akcentu);
   border-radius: 0 0 26px 26px;
 }
+.hlava-obsah { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: var(--sirka); margin: 0 auto; }
 .hlava strong { display: block; font-size: 1.15rem; letter-spacing: -0.02em; }
 .hlava span { font-size: 0.86rem; opacity: 0.65; }
 
 /* ---------- seznam ---------- */
-.seznam { display: grid; gap: 10px; padding: 16px; }
+.seznam { display: grid; gap: 10px; padding: 16px; max-width: var(--sirka); margin: 0 auto; }
 .polozka {
   display: flex; align-items: center; gap: 14px;
   padding: 10px 14px 10px 10px;
   border-radius: 20px; background: var(--plocha); border: 1px solid var(--linka);
   text-align: left; width: 100%; cursor: pointer;
-  animation: prijezd 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: prijezd 0.3s var(--pruzne);
 }
+.polozka:active { transform: scale(0.99); }
 @keyframes prijezd { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
 .nahled {
   width: 52px; height: 72px; border-radius: 6px 12px 12px 6px; flex-shrink: 0;
@@ -80,12 +85,12 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .nahled b { font: 500 1.6rem/1 Georgia, serif; color: var(--text); }
 .polozka-text { flex: 1; min-width: 0; display: grid; gap: 2px; }
 .polozka-text strong { font-weight: 640; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.polozka-text small { color: var(--slaby); }
+.polozka-text small { color: var(--slaby); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .stitky { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .stitek { padding: 2px 10px; border-radius: 999px; background: var(--plocha-2); font-size: 0.78rem; font-weight: 650; }
 .stitek-pozor { background: color-mix(in srgb, var(--pozor) 18%, transparent); color: var(--pozor); }
 
-.prazdno { display: grid; justify-items: center; gap: 8px; padding: 18vh 32px 0; text-align: center; color: var(--slaby); }
+.prazdno { display: grid; justify-items: center; gap: 8px; padding: 18vh 32px 0; text-align: center; color: var(--slaby); max-width: var(--sirka); margin: 0 auto; }
 .prazdno svg { width: 56px; height: 56px; stroke-width: 1.4; color: var(--text); margin-bottom: 8px; }
 .prazdno strong { font-size: 1.25rem; color: var(--text); }
 .prazdno p { margin: 0; font-size: 0.95rem; }
@@ -94,7 +99,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .akce {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
   display: flex; gap: 10px;
-  padding: 14px 16px calc(14px + var(--dole));
+  padding: 14px max(16px, calc((100vw - var(--sirka)) / 2)) calc(14px + var(--dole));
   background: linear-gradient(to top, var(--pozadi) 70%, transparent);
 }
 
@@ -137,22 +142,35 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   margin: auto auto 0; padding: 0;
   border: 0; border-radius: 28px 28px 0 0;
   background: var(--plocha); color: var(--text);
+  overflow: hidden;
+  touch-action: pan-y;
 }
-.list[open] { animation: list 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
-.list::backdrop { background: rgb(0 0 0 / 0.45); }
+.list[open] { animation: list 0.32s var(--pruzne); }
+.list.tazeni { transition: none; }
+.list.navrat { transition: transform 0.3s var(--pruzne); }
+.list.odjezd { transition: transform 0.25s ease-in; transform: translateY(100%) !important; }
+.list::backdrop { background: rgb(0 0 0 / 0.45); animation: zavoj 0.3s; }
 @keyframes list { from { transform: translateY(100%); } }
-.list form { display: grid; gap: 12px; padding: 10px 18px calc(18px + var(--dole)); }
-.list-uchyt { width: 44px; height: 5px; border-radius: 9px; background: var(--linka); margin: 0 auto 4px; }
+@keyframes zavoj { from { opacity: 0; } }
+@media (min-width: 600px) { .list { margin-bottom: auto; border-radius: 28px; } }
+
+.list form { display: flex; flex-direction: column; max-height: 92dvh; }
+.list-hlava { padding: 10px 18px 4px; cursor: grab; touch-action: none; user-select: none; }
+.list-uchyt { width: 44px; height: 5px; border-radius: 9px; background: var(--linka); margin: 0 auto 8px; }
+.list-titulek { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .list h2 { margin: 0; font-size: 1.25rem; letter-spacing: -0.02em; }
+.list-zavrit { width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--plocha-2); display: grid; place-items: center; cursor: pointer; }
+.list-zavrit svg { width: 18px; height: 18px; }
+.list-telo { display: grid; gap: 12px; padding: 8px 18px 14px; overflow-y: auto; overscroll-behavior: contain; }
 .list label { display: grid; gap: 5px; min-width: 0; }
-.list label > span { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; color: var(--slaby); }
+.list label > span, .kusy > span { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; color: var(--slaby); }
 .list input {
   width: 100%; min-height: 50px; padding: 0 14px;
   border: 1px solid var(--linka); border-radius: 14px;
   background: var(--pozadi); outline: none; font-size: 1.05rem;
 }
 .list input:focus { border-color: var(--text); }
-.radek { display: grid; grid-template-columns: 1fr 104px; gap: 10px; }
+.radek { display: grid; grid-template-columns: 1fr 132px; gap: 10px; align-items: end; }
 .pole-kod, .pole-nazev { display: grid; gap: 12px; }
 .upozorneni { margin: 0; padding: 10px 14px; border-radius: 14px; background: color-mix(in srgb, var(--pozor) 15%, transparent); color: var(--pozor); font-weight: 600; font-size: 0.92rem; }
 
@@ -166,18 +184,49 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .foto svg { width: 30px; height: 30px; }
 .foto img { width: 100%; height: 100%; object-fit: contain; background: #000; }
 
+/* OCR – přečtení názvu z fotky */
+.ocr-tl {
+  display: flex; align-items: center; gap: 14px; width: 100%;
+  padding: 12px 16px; border-radius: 16px; border: 1px solid var(--akcent);
+  background: var(--akcent); color: var(--na-akcentu); text-align: left; cursor: pointer;
+}
+.ocr-tl:disabled { opacity: 0.7; }
+.ocr-tl span { display: grid; gap: 1px; }
+.ocr-tl small { opacity: 0.7; font-size: 0.82rem; }
+.ocr-radky { display: grid; gap: 6px; }
+.ocr-radek { display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; border-radius: 12px; background: var(--pozadi); border: 1px solid var(--linka); }
+.ocr-radek span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.ocr-radek button { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--linka); background: var(--plocha); font-size: 0.8rem; font-weight: 650; cursor: pointer; }
+
+/* Počet kusů − 1 + */
+.kusy { display: grid; gap: 5px; }
+.krokovac { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; height: 50px; border: 1px solid var(--linka); border-radius: 14px; background: var(--pozadi); overflow: hidden; }
+.krokovac button { height: 100%; border: 0; background: none; font-size: 1.3rem; font-weight: 600; cursor: pointer; }
+.krokovac button:active { background: var(--plocha-2); }
+.list .krokovac input { min-height: 0; height: 100%; padding: 0; border: 0; border-radius: 0; text-align: center; background: none; font-weight: 700; }
+
 .cipy { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin-top: -4px; }
+.cipy:empty { display: none; }
 .cipy button { flex-shrink: 0; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--linka); background: var(--pozadi); font-weight: 650; font-size: 0.88rem; }
 
-.list-tlacitka { display: flex; gap: 8px; margin-top: 4px; }
-.list-tlacitka .tl { flex: 1; padding: 0 14px; white-space: nowrap; }
-.list-tlacitka #formular-smazat { flex: 0 0 auto; }
+.list-tlacitka {
+  display: flex; gap: 8px;
+  padding: 12px 18px calc(14px + var(--dole));
+  border-top: 1px solid var(--linka);
+  background: var(--plocha);
+}
+.list-tlacitka .tl { flex: 1; padding: 0 14px; }
+.list-tlacitka #formular-smazat { flex: 0 0 48px; padding: 0; }
 .list-tlacitka #formular-dalsi { flex: 1.4; }
 
+/* ---------- oznámení ---------- */
 .toast {
   position: fixed; left: 50%; bottom: calc(100px + var(--dole)); translate: -50% 0; z-index: 30;
-  padding: 12px 20px; border-radius: 999px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 10px 10px 20px; border-radius: 999px;
   background: var(--akcent); color: var(--na-akcentu); font-weight: 600; white-space: nowrap;
   box-shadow: 0 12px 30px -10px rgb(0 0 0 / 0.5);
   animation: prijezd 0.25s;
 }
+.toast:not(:has(button)) { padding-right: 20px; }
+.toast button { padding: 6px 14px; border: 0; border-radius: 999px; background: color-mix(in srgb, var(--na-akcentu) 20%, transparent); color: inherit; font-weight: 700; }

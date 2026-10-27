@@ -1,7 +1,7 @@
 ---
 /**
  * Kniha4U Sken – telefonní sběr knih. Běží celé v telefonu (i bez internetu):
- * sken EAN kamerou nebo kniha bez kódu, jedna fotka (WebP), box, cena.
+ * sken EAN kamerou, kniha bez kódu (název i z fotky přes OCR), jedna fotka (WebP), box, cena, kusy.
  * „Odeslat“ zabalí vše do ZIP (skeny.json + fotky/) – ten se na PC nahraje do aplikace Kniha4U.
  */
 import { odkaz, soubor } from "../../lib/web";
@@ -17,21 +17,24 @@ import "../../styles/sken.css";
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#0c0c0c" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="K4U Sken" />
     <link rel="manifest" href={soubor("sken.webmanifest")} />
     <link rel="icon" href={soubor("favicon.svg")} type="image/svg+xml" />
     <link rel="apple-touch-icon" href={soubor("apple-touch-icon.png")} />
   </head>
-  <body data-rejstrik={soubor("hledani.json")} data-sw={soubor("sken-sw.js")} data-scope={odkaz("sken")}>
+  <body data-rejstrik={soubor("hledani.json")} data-sw={soubor("sken-sw.js")} data-scope={odkaz("sken")} data-ocr={soubor("ocr")}>
     <header class="hlava">
-      <div>
-        <strong>Kniha4U Sken</strong>
-        <span id="pocet">Zatím nic</span>
+      <div class="hlava-obsah">
+        <div>
+          <strong>Kniha4U Sken</strong>
+          <span id="pocet">Zatím nic</span>
+        </div>
+        <button class="tl tl-svetle" id="odeslat" disabled>
+          <svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5" /><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" /></svg>
+          Odeslat
+        </button>
       </div>
-      <button class="tl tl-svetle" id="odeslat" disabled>
-        <svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5" /><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" /></svg>
-        Odeslat
-      </button>
     </header>
 
     <main id="seznam" class="seznam"></main>
@@ -39,7 +42,7 @@ import "../../styles/sken.css";
     <div class="prazdno" id="prazdno">
       <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" /><path d="M7 8v8M10.5 8v8M14 8v8M17 8v8" /></svg>
       <strong>Naskenujte první knihu</strong>
-      <p>Kamerou načtěte čárový kód. Starší knihy bez kódu přidejte názvem.<br />Vše se ukládá v telefonu, dokud to neodešlete.</p>
+      <p>Kamerou načtěte čárový kód. Starší knihy bez kódu přidejte názvem – nebo ho vyfoťte.<br />Vše se ukládá v telefonu, dokud to neodešlete.</p>
     </div>
 
     <nav class="akce">
@@ -65,40 +68,66 @@ import "../../styles/sken.css";
       </div>
     </div>
 
-    <!-- Formulář knihy -->
-    <dialog class="list" id="formular">
+    <!-- Formulář knihy (spodní list: stáhnout dolů, klepnout vedle, × nebo Zpět = zavřít bez uložení) -->
+    <dialog class="list" id="formular" aria-labelledby="formular-nadpis">
       <form method="dialog" id="formular-obsah">
-        <div class="list-uchyt"></div>
-        <h2 id="formular-nadpis">Kniha</h2>
-        <p class="upozorneni" id="upozorneni" hidden></p>
-
-        <label class="foto" id="foto-pole">
-          <input type="file" accept="image/*" capture="environment" id="foto-vstup" hidden />
-          <img id="foto-nahled" alt="" hidden />
-          <span id="foto-text"><svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h2l2-2h4l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><circle cx="12" cy="13" r="3.5" /></svg>Vyfotit obálku</span>
-        </label>
-
-        <div class="pole-kod" id="pole-kod">
-          <label><span>EAN / ISBN</span><input name="ean" inputmode="numeric" autocomplete="off" /></label>
-        </div>
-        <div class="pole-nazev" id="pole-nazev">
-          <label><span>Název *</span><input name="nazev" autocomplete="off" enterkeyhint="next" /></label>
-          <div class="radek">
-            <label><span>Autor</span><input name="autor" autocomplete="off" /></label>
-            <label class="uzke"><span>Rok</span><input name="rok" inputmode="numeric" maxlength="4" /></label>
+        <div class="list-hlava" id="list-hlava">
+          <div class="list-uchyt"></div>
+          <div class="list-titulek">
+            <h2 id="formular-nadpis">Kniha</h2>
+            <button type="button" class="list-zavrit" id="formular-zavrit" aria-label="Zavřít bez uložení"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
           </div>
         </div>
-        <div class="radek">
+
+        <div class="list-telo" id="list-telo">
+          <p class="upozorneni" id="upozorneni" hidden></p>
+
+          <label class="foto" id="foto-pole">
+            <input type="file" accept="image/*" capture="environment" id="foto-vstup" hidden />
+            <img id="foto-nahled" alt="" hidden />
+            <span id="foto-text"><svg viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h2l2-2h4l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><circle cx="12" cy="13" r="3.5" /></svg>Vyfotit obálku</span>
+          </label>
+
+          <div class="pole-kod" id="pole-kod">
+            <label><span>EAN / ISBN</span><input name="ean" inputmode="numeric" autocomplete="off" /></label>
+          </div>
+
+          <div class="pole-nazev" id="pole-nazev">
+            <button type="button" class="ocr-tl" id="ocr-tl">
+              <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" /><path d="M8 9h8M8 12h8M8 15h5" /></svg>
+              <span><strong>Přečíst název z fotky</strong><small id="ocr-stav">Vyfoťte obálku nebo titulní stranu</small></span>
+            </button>
+            <input type="file" accept="image/*" capture="environment" id="ocr-vstup" hidden />
+            <div class="ocr-radky" id="ocr-radky" hidden></div>
+            <label><span>Název *</span><input name="nazev" autocomplete="off" enterkeyhint="next" /></label>
+            <div class="radek">
+              <label><span>Autor</span><input name="autor" autocomplete="off" /></label>
+              <label class="uzke"><span>Rok</span><input name="rok" inputmode="numeric" maxlength="4" /></label>
+            </div>
+          </div>
+
           <label><span>Box</span><input name="box" autocomplete="off" autocapitalize="characters" /></label>
-          <label class="uzke"><span>Cena Kč</span><input name="cena" inputmode="numeric" placeholder="doplní PC" /></label>
+          <div class="cipy" id="posledni-boxy"></div>
+          <div class="radek">
+            <label><span>Cena Kč</span><input name="cena" inputmode="numeric" placeholder="doplní PC" /></label>
+            <div class="kusy">
+              <span>Kusů</span>
+              <div class="krokovac">
+                <button type="button" id="kusu-minus" aria-label="Méně kusů">−</button>
+                <input name="kusu" inputmode="numeric" value="1" aria-label="Počet kusů" />
+                <button type="button" id="kusu-plus" aria-label="Více kusů">+</button>
+              </div>
+            </div>
+          </div>
+          <label><span>Poznámka</span><input name="poznamka" autocomplete="off" placeholder="např. poškozený přebal" /></label>
         </div>
-        <div class="cipy" id="posledni-boxy"></div>
-        <label><span>Poznámka</span><input name="poznamka" autocomplete="off" placeholder="např. poškozený přebal" /></label>
 
         <div class="list-tlacitka">
-          <button class="tl tl-obrys" value="smazat" id="formular-smazat" type="submit" formnovalidate>Smazat</button>
+          <button class="tl tl-obrys" value="smazat" id="formular-smazat" type="submit" formnovalidate aria-label="Smazat">
+            <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" /></svg>
+          </button>
           <button class="tl tl-obrys" value="ulozit" type="submit">Uložit</button>
-          <button class="tl" value="dalsi" type="submit" id="formular-dalsi">Uložit a další</button>
+          <button class="tl" value="dalsi" type="submit" id="formular-dalsi">Uložit + další</button>
         </div>
       </form>
     </dialog>

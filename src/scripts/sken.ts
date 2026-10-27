@@ -1,7 +1,7 @@
 /**
  * Kniha4U Sken – logika telefonní aplikace.
  * Data drží IndexedDB (přežijí zavření prohlížeče), fotky jako WebP Bloby.
- * Export = ZIP { skeny.json, fotky/<id>.webp }, který načte aplikace Kniha4U na PC.
+ * Export = ZIP { skeny.json, fotky/<n>.webp }, který načte aplikace Kniha4U na PC.
  */
 
 import { strToU8, zipSync } from "fflate";
@@ -16,16 +16,21 @@ type Sken = {
   rok: string;
   box: string;
   cena: string;
+  kusu: number;
   poznamka: string;
   foto: Blob | null;
   kdy: string;
 };
 
+const TEXTOVA_POLE = ["ean", "nazev", "autor", "rok", "box", "cena", "poznamka"] as const;
+
 const $ = <T extends HTMLElement>(vyber: string) => document.querySelector<T>(vyber)!;
 const formular = $<HTMLDialogElement>("#formular");
+const kamera = $("#kamera");
 const pole = (nazev: string) => $<HTMLFormElement>("#formular-obsah").elements.namedItem(nazev) as HTMLInputElement;
 const bezDiakritiky = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 const cislice = (s: string) => s.replace(/[^0-9Xx]/g, "").toUpperCase();
+const knih = (n: number) => `${n} ${n === 1 ? "kniha" : n >= 2 && n <= 4 ? "knihy" : "knih"}`;
 
 /* ---------- úložiště (IndexedDB) ---------- */
 
@@ -44,7 +49,9 @@ async function uloziste<T>(rezim: IDBTransactionMode, akce: (s: IDBObjectStore) 
     p.onerror = () => chyba(p.error);
   });
 }
-const vsechny = async () => (await uloziste<Sken[]>("readonly", (s) => s.getAll())).sort((a, b) => b.kdy.localeCompare(a.kdy));
+// Starší záznamy (před přidáním kusů) dostanou 1 kus.
+const vsechny = async () =>
+  (await uloziste<Sken[]>("readonly", (s) => s.getAll())).map((s) => ({ ...s, kusu: s.kusu || 1 })).sort((a, b) => b.kdy.localeCompare(a.kdy));
 const uloz = (sken: Sken) => uloziste("readwrite", (s) => s.put(sken));
 const smaz = (id: string) => uloziste("readwrite", (s) => s.delete(id));
 
@@ -70,12 +77,13 @@ function uzMate(s: Pick<Sken, "typ" | "ean" | "nazev">): string | null {
 
 /* ---------- drobnosti ---------- */
 
-function toast(text: string) {
+function toast(text: string, akce?: { text: string; fn: () => void }) {
   const el = $("#toast");
-  el.textContent = text;
+  el.replaceChildren(text);
+  if (akce) el.append(Object.assign(document.createElement("button"), { textContent: akce.text, onclick: () => ((el.hidden = true), akce.fn()) }));
   el.hidden = false;
   clearTimeout(Number(el.dataset.casovac));
-  el.dataset.casovac = String(setTimeout(() => (el.hidden = true), 2200));
+  el.dataset.casovac = String(setTimeout(() => (el.hidden = true), akce ? 5000 : 2200));
 }
 
 let zvuk: AudioContext | null = null;
@@ -103,14 +111,34 @@ function zapamatujBox(box: string) {
 
 /** Fotka z fotoaparátu → max. 1200 px, WebP (kde ho prohlížeč neumí, JPEG). */
 async function zmensi(soubor: File): Promise<Blob> {
-  const obraz = await createImageBitmap(soubor, { imageOrientation: "from-image" });
-  const pomer = Math.min(1, 1200 / Math.max(obraz.width, obraz.height));
-  const platno = Object.assign(document.createElement("canvas"), { width: Math.round(obraz.width * pomer), height: Math.round(obraz.height * pomer) });
-  platno.getContext("2d")!.drawImage(obraz, 0, 0, platno.width, platno.height);
+  const platno = await naPlatno(soubor, 1200);
   const naBlob = (typ: string, kvalita: number) => new Promise<Blob | null>((r) => platno.toBlob(r, typ, kvalita));
   const webp = await naBlob("image/webp", 0.8);
   return webp?.type === "image/webp" ? webp : (await naBlob("image/jpeg", 0.82))!;
 }
+
+async function naPlatno(soubor: File, max: number) {
+  const obraz = await createImageBitmap(soubor, { imageOrientation: "from-image" });
+  const pomer = Math.min(1, max / Math.max(obraz.width, obraz.height));
+  const platno = Object.assign(document.createElement("canvas"), { width: Math.round(obraz.width * pomer), height: Math.round(obraz.height * pomer) });
+  platno.getContext("2d")!.drawImage(obraz, 0, 0, platno.width, platno.height);
+  return platno;
+}
+
+/* ---------- tlačítko Zpět (Android) / gesto zpět (iPhone) zavře okno nebo kameru ---------- */
+
+const otevrenaVrstva = () => formular.open || !kamera.hidden;
+function vrstvaOtevrena() {
+  if (!history.state?.k4u) history.pushState({ k4u: 1 }, "");
+}
+function vrstvaZavrena() {
+  // Když se hned otevře další vrstva (sken → formulář), záznam v historii zůstane.
+  setTimeout(() => !otevrenaVrstva() && history.state?.k4u && history.back(), 60);
+}
+addEventListener("popstate", () => {
+  if (formular.open) zavritFormular();
+  if (!kamera.hidden) zastavKameru();
+});
 
 /* ---------- seznam ---------- */
 
@@ -118,7 +146,9 @@ const urlFotek = new Map<string, string>();
 
 async function vykresli() {
   const skeny = await vsechny();
-  $("#pocet").textContent = skeny.length ? `${skeny.length} ${skeny.length === 1 ? "kniha" : skeny.length < 5 ? "knihy" : "knih"} připraveno` : "Zatím nic";
+  const kusu = skeny.reduce((s, k) => s + k.kusu, 0);
+  const cena = skeny.reduce((s, k) => s + (Number(k.cena) || 0) * k.kusu, 0);
+  $("#pocet").textContent = skeny.length ? `${knih(skeny.length)}${kusu > skeny.length ? ` · ${kusu} ks` : ""}${cena ? ` · ${cena.toLocaleString("cs-CZ")} Kč` : ""}` : "Zatím nic";
   $<HTMLButtonElement>("#odeslat").disabled = !skeny.length;
   $("#prazdno").hidden = skeny.length > 0;
 
@@ -136,7 +166,7 @@ async function vykresli() {
     const nazev = s.typ === "kod" ? `EAN ${s.ean}` : s.nazev;
     const detail = s.typ === "kod" ? "údaje doplní PC" : [s.autor, s.rok].filter(Boolean).join(" · ") || "bez autora a roku";
     const stitky = Object.assign(document.createElement("span"), { className: "stitky" });
-    for (const [t, pozor] of [[s.box || "bez boxu", !s.box], [s.cena ? `${s.cena} Kč` : "", false], [uzMate(s) ? "už máte" : "", true]] as const) {
+    for (const [t, pozor] of [[s.box || "bez boxu", !s.box], [s.kusu > 1 ? `${s.kusu} ks` : "", false], [s.cena ? `${s.cena} Kč` : "", false], [uzMate(s) ? "už máte" : "", true]] as const) {
       if (t) stitky.append(Object.assign(document.createElement("span"), { className: `stitek${pozor ? " stitek-pozor" : ""}`, textContent: t }));
     }
     text.append(Object.assign(document.createElement("strong"), { textContent: nazev }), Object.assign(document.createElement("small"), { textContent: detail }), stitky);
@@ -145,13 +175,13 @@ async function vykresli() {
   }));
 }
 
-/* ---------- formulář ---------- */
+/* ---------- formulář (spodní list) ---------- */
 
 let upravovany: Sken | null = null;
 let novaFoto: Blob | null | undefined;
 
-function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">) {
-  upravovany = { id: crypto.randomUUID(), ean: "", nazev: "", autor: "", rok: "", box: posledniBoxy()[0] ?? "", cena: "", poznamka: "", foto: null, kdy: new Date().toISOString(), ...sken };
+function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">, zprava?: string) {
+  upravovany = { id: crypto.randomUUID(), ean: "", nazev: "", autor: "", rok: "", box: posledniBoxy()[0] ?? "", cena: "", kusu: 1, poznamka: "", foto: null, kdy: new Date().toISOString(), ...sken };
   novaFoto = undefined;
   const novy = !sken.id;
   $("#formular-nadpis").textContent = novy ? (sken.typ === "kod" ? "Naskenovaná kniha" : "Kniha bez kódu") : "Upravit";
@@ -160,14 +190,29 @@ function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">) {
   pole("nazev").required = sken.typ === "nazev";
   $("#formular-smazat").hidden = novy;
   $("#formular-dalsi").textContent = sken.typ === "kod" ? "Uložit + skenovat" : "Uložit + další";
-  for (const k of ["ean", "nazev", "autor", "rok", "box", "cena", "poznamka"] as const) pole(k).value = upravovany[k];
+  for (const k of TEXTOVA_POLE) pole(k).value = upravovany[k];
+  pole("kusu").value = String(upravovany.kusu);
+  $("#ocr-radky").hidden = true;
+  $("#ocr-stav").textContent = "Vyfoťte obálku nebo titulní stranu";
   ukazFoto(upravovany.foto);
-  aktualizujUpozorneni();
+  aktualizujUpozorneni(zprava);
 
   $("#posledni-boxy").replaceChildren(...posledniBoxy().map((b) =>
     Object.assign(document.createElement("button"), { type: "button", textContent: b, onclick: () => (pole("box").value = b) })));
+  formular.returnValue = "";
+  formular.classList.remove("odjezd", "navrat");
+  formular.style.transform = "";
   formular.showModal();
+  $("#list-telo").scrollTop = 0;
+  vrstvaOtevrena();
   if (sken.typ === "nazev" && novy) pole("nazev").focus();
+}
+
+/** Zavře bez uložení – s animací sjetí dolů. */
+function zavritFormular() {
+  if (!formular.open) return;
+  formular.classList.add("odjezd");
+  setTimeout(() => formular.close(""), 230);
 }
 
 function ukazFoto(foto: Blob | null) {
@@ -177,14 +222,20 @@ function ukazFoto(foto: Blob | null) {
   if (foto) img.src = URL.createObjectURL(foto);
 }
 
-function aktualizujUpozorneni() {
+function aktualizujUpozorneni(zprava?: string) {
   const shoda = upravovany && uzMate({ typ: upravovany.typ, ean: pole("ean").value, nazev: pole("nazev").value });
+  const text = zprava ?? (shoda ? `Tuhle už máte v nabídce: „${shoda}“. PC nabídne přidat kus.` : "");
   const el = $("#upozorneni");
-  el.hidden = !shoda;
-  el.textContent = shoda ? `Tuhle už máte v nabídce: „${shoda}“. PC nabídne přidat kus.` : "";
+  el.hidden = !text;
+  el.textContent = text;
 }
-pole("nazev").addEventListener("input", aktualizujUpozorneni);
-pole("ean").addEventListener("input", aktualizujUpozorneni);
+pole("nazev").addEventListener("input", () => aktualizujUpozorneni());
+pole("ean").addEventListener("input", () => aktualizujUpozorneni());
+
+const nastavKusy = (n: number) => (pole("kusu").value = String(Math.max(1, Math.min(99, n || 1))));
+$("#kusu-minus").addEventListener("click", () => nastavKusy(Number(pole("kusu").value) - 1));
+$("#kusu-plus").addEventListener("click", () => nastavKusy(Number(pole("kusu").value) + 1));
+pole("kusu").addEventListener("change", () => nastavKusy(Number(pole("kusu").value)));
 
 $<HTMLInputElement>("#foto-vstup").addEventListener("change", async (e) => {
   const soubor = (e.target as HTMLInputElement).files?.[0];
@@ -195,27 +246,172 @@ $<HTMLInputElement>("#foto-vstup").addEventListener("change", async (e) => {
   (e.target as HTMLInputElement).value = "";
 });
 
+// Zavření: ×, klepnutí na ztmavené pozadí, Esc (nativně) – vše bez uložení.
+$("#formular-zavrit").addEventListener("click", zavritFormular);
+formular.addEventListener("click", (e) => e.target === formular && zavritFormular());
+
+// Stažení listu prstem dolů za horní část (úchyt + nadpis).
+(() => {
+  const hlava = $("#list-hlava");
+  let start = 0;
+  let posun = 0;
+  let cas = 0;
+  hlava.addEventListener("pointerdown", (e) => {
+    if ((e.target as HTMLElement).closest("button")) return;
+    start = e.clientY;
+    posun = 0;
+    cas = performance.now();
+    hlava.setPointerCapture(e.pointerId);
+    formular.classList.remove("navrat");
+    formular.classList.add("tazeni");
+  });
+  hlava.addEventListener("pointermove", (e) => {
+    if (!formular.classList.contains("tazeni")) return;
+    posun = Math.max(0, e.clientY - start);
+    formular.style.transform = `translateY(${posun}px)`;
+  });
+  const konec = () => {
+    if (!formular.classList.contains("tazeni")) return;
+    formular.classList.remove("tazeni");
+    const rychlost = posun / Math.max(1, performance.now() - cas);
+    if (posun > 110 || (posun > 40 && rychlost > 0.6)) return zavritFormular();
+    formular.classList.add("navrat");
+    formular.style.transform = "";
+  };
+  hlava.addEventListener("pointerup", konec);
+  hlava.addEventListener("pointercancel", konec);
+})();
+
 formular.addEventListener("close", async () => {
   const akce = formular.returnValue;
   formular.returnValue = "";
+  formular.classList.remove("odjezd", "tazeni");
+  formular.style.transform = "";
+  vrstvaZavrena();
   if (!upravovany || !akce) return;
+
   if (akce === "smazat") {
-    await smaz(upravovany.id);
-    toast("Smazáno");
-    return vykresli();
+    const smazany = { ...upravovany };
+    await smaz(smazany.id);
+    await vykresli();
+    return toast("Smazáno", { text: "Vrátit", fn: async () => (await uloz(smazany), vykresli()) });
   }
   const sken: Sken = { ...upravovany, foto: novaFoto === undefined ? upravovany.foto : novaFoto };
-  for (const k of ["ean", "nazev", "autor", "rok", "box", "cena", "poznamka"] as const) sken[k] = pole(k).value.trim();
+  for (const k of TEXTOVA_POLE) sken[k] = pole(k).value.trim();
   sken.box = sken.box.toUpperCase();
   sken.cena = sken.cena.replace(/\D/g, "");
+  sken.kusu = Math.max(1, Number(pole("kusu").value) || 1);
   if (sken.typ === "kod" && !cislice(sken.ean)) return toast("Chybí kód");
   if (sken.typ === "nazev" && !sken.nazev) return toast("Chybí název");
   urlFotek.delete(sken.id);
   await uloz(sken);
   zapamatujBox(sken.box);
+  navigator.vibrate?.(25);
   toast("Uloženo");
   await vykresli();
   if (akce === "dalsi") sken.typ === "kod" ? spustKameru() : otevriFormular({ typ: "nazev" });
+});
+
+/* ---------- OCR: název z fotky (Tesseract.js, čeština, vše z našeho webu) ---------- */
+
+type OcrWorker = { recognize(obraz: HTMLCanvasElement, moznosti?: object, vystup?: object): Promise<{ data: { blocks: OcrBlok[] | null } }> };
+type OcrRadek = { text: string; confidence: number; bbox: { y0: number; y1: number } };
+type OcrBlok = { paragraphs: { lines: OcrRadek[] }[] };
+
+let ocr: Promise<OcrWorker> | null = null;
+let ocrPrubeh = (_: string) => {};
+
+function nactiOcr(): Promise<OcrWorker> {
+  const cesta = document.body.dataset.ocr!;
+  ocr ??= import("tesseract.js")
+    .then(({ createWorker }) =>
+      createWorker("ces", 1, {
+        workerPath: `${cesta}/worker.min.js`,
+        corePath: cesta,
+        langPath: cesta,
+        logger: (m: { status: string; progress: number }) => {
+          const procent = Math.round((m.progress || 0) * 100);
+          if (m.status.includes("loading") || m.status.includes("initializ")) ocrPrubeh(`Připravuji čtení textu… ${procent} %`);
+          else if (m.status.includes("recogniz")) ocrPrubeh(`Čtu text… ${procent} %`);
+        },
+      }) as unknown as Promise<OcrWorker>)
+    .catch((chyba) => {
+      ocr = null;
+      throw chyba;
+    });
+  return ocr;
+}
+
+/** „BYLO NÁS PĚT“ → „Bylo nás pět“; odstraní šum na krajích. */
+function vycisti(text: string) {
+  let t = text.replace(/[|_~^*<>{}[\]\\]/g, " ").replace(/\s+/g, " ").trim().replace(/^[^\p{L}\p{N}„"(]+|[^\p{L}\p{N}.!?)"“]+$/gu, "");
+  const pismena = t.replace(/[^\p{L}]/gu, "");
+  if (pismena && pismena === pismena.toLocaleUpperCase("cs") && pismena.length > 3) t = t.charAt(0) + t.slice(1).toLocaleLowerCase("cs");
+  return t;
+}
+
+/** Řádky textu seřazené podle velikosti písma – název bývá na obálce největší. */
+async function prectiText(soubor: File) {
+  const worker = await nactiOcr();
+  const { data } = await worker.recognize(await naPlatno(soubor, 1600), {}, { blocks: true });
+  const radky = (data.blocks ?? []).flatMap((b) => b.paragraphs.flatMap((p) => p.lines));
+  return radky
+    .map((r, poradi) => ({ text: vycisti(r.text), surovy: r.text, vyska: r.bbox.y1 - r.bbox.y0, jistota: r.confidence, poradi }))
+    .filter((r) => r.text.length >= 2 && r.jistota > 35 && (r.text.match(/\p{L}/gu)?.length ?? 0) >= r.text.length * 0.5)
+    .sort((a, b) => b.vyska - a.vyska);
+}
+
+function ukazRadky(radky: { text: string }[]) {
+  const kontejner = $("#ocr-radky");
+  kontejner.replaceChildren(...radky.slice(0, 6).map((r) => {
+    const radek = Object.assign(document.createElement("div"), { className: "ocr-radek" });
+    const tlacitko = (popis: string, klic: "nazev" | "autor") =>
+      Object.assign(document.createElement("button"), { type: "button", textContent: popis, onclick: () => ((pole(klic).value = r.text), aktualizujUpozorneni(), navigator.vibrate?.(15)) });
+    radek.append(Object.assign(document.createElement("span"), { textContent: r.text }), tlacitko("Název", "nazev"), tlacitko("Autor", "autor"));
+    return radek;
+  }));
+  kontejner.hidden = !radky.length;
+}
+
+// Model (~6 MB, jen poprvé) se začne stahovat už při klepnutí – než se vyfotí, bývá připravený.
+$("#ocr-tl").addEventListener("click", () => {
+  nactiOcr().catch(() => {});
+  $<HTMLInputElement>("#ocr-vstup").click();
+});
+
+$<HTMLInputElement>("#ocr-vstup").addEventListener("change", async (e) => {
+  const vstup = e.target as HTMLInputElement;
+  const soubor = vstup.files?.[0];
+  vstup.value = "";
+  if (!soubor) return;
+  const tl = $<HTMLButtonElement>("#ocr-tl");
+  const stav = $("#ocr-stav");
+  tl.disabled = true;
+  ocrPrubeh = (t) => (stav.textContent = t);
+  ocrPrubeh("Připravuji čtení textu…");
+  // Stejná fotka poslouží i jako obálka, když ještě žádnou nemá.
+  if (!novaFoto && !upravovany?.foto) zmensi(soubor).then((f) => ((novaFoto = f), ukazFoto(f)));
+  try {
+    const radky = await prectiText(soubor);
+    if (!radky.length) {
+      stav.textContent = "Text se nepodařilo přečíst – zkuste ostřejší fotku zblízka";
+      return;
+    }
+    // Název = největší text; když je na dvou řádcích stejně velkým písmem, spojí se v pořadí čtení.
+    // Velká písmena se převádí až na celém názvu („BYLO NÁS“ + „PĚT“ → „Bylo nás pět“).
+    const nejvetsi = radky[0].vyska;
+    const nazev = vycisti(radky.filter((r) => r.vyska >= nejvetsi * 0.8).sort((a, b) => a.poradi - b.poradi).slice(0, 3).map((r) => r.surovy).join(" "));
+    // OCR občas ztratí háčky – když stejný název (bez diakritiky) je v katalogu, vezme se odtud přesně.
+    pole("nazev").value = katalog.find((k) => k.text === bezDiakritiky(nazev))?.nazev ?? nazev;
+    aktualizujUpozorneni();
+    ukazRadky(radky);
+    stav.textContent = "Hotovo – zkontrolujte název, případně vyberte jiný řádek";
+    navigator.vibrate?.([30, 40, 30]);
+  } catch {
+    stav.textContent = "Čtení textu se nepovedlo – zkontrolujte připojení a zkuste znovu";
+  } finally {
+    tl.disabled = false;
+  }
 });
 
 /* ---------- kamera a čtení čárových kódů ---------- */
@@ -240,7 +436,8 @@ function nactiDetektor(): Promise<Detektor> {
 }
 
 async function spustKameru() {
-  $("#kamera").hidden = false;
+  kamera.hidden = false;
+  vrstvaOtevrena();
   $("#kamera-napoveda").textContent = "Namiřte na čárový kód";
   const video = $<HTMLVideoElement>("#video");
   try {
@@ -269,7 +466,11 @@ async function spustKameru() {
       pipni();
       await new Promise((r) => setTimeout(r, 180));
       zastavKameru();
-      return otevriFormular({ typ: "kod", ean: kod });
+      // Stejná kniha znovu → v seznamu jen přibude kus.
+      const stejna = (await vsechny()).find((s) => s.typ === "kod" && cislice(s.ean) === cislice(kod));
+      return stejna
+        ? otevriFormular({ ...stejna, kusu: stejna.kusu + 1 }, `Tuhle už v seznamu máte – přidán kus (teď ${stejna.kusu + 1} ks).`)
+        : otevriFormular({ typ: "kod", ean: kod });
     }
     posledni = kod;
     await new Promise((r) => setTimeout(r, 120));
@@ -281,7 +482,9 @@ function zastavKameru() {
   proud?.getTracks().forEach((t) => t.stop());
   proud = null;
   $(".ramecek").classList.remove("nalezeno");
-  $("#kamera").hidden = true;
+  if (kamera.hidden) return;
+  kamera.hidden = true;
+  vrstvaZavrena();
 }
 
 $("#skenovat").addEventListener("click", spustKameru);
@@ -315,20 +518,16 @@ $("#odeslat").addEventListener("click", async () => {
   const nazev = `skeny-${new Date().toISOString().slice(0, 16).replace(/[T:]/g, "-")}.zip`;
   const zip = new File([zipSync(soubory)], nazev, { type: "application/zip" });
 
-  let odeslano = false;
   if (navigator.canShare?.({ files: [zip] })) {
     try {
       await navigator.share({ files: [zip], title: nazev });
-      odeslano = true;
     } catch {
       return; // uživatel sdílení zrušil
     }
   } else {
-    const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(zip), download: nazev });
-    a.click();
-    odeslano = true;
+    Object.assign(document.createElement("a"), { href: URL.createObjectURL(zip), download: nazev }).click();
   }
-  if (odeslano && confirm(`Odesláno ${skeny.length} knih.\n\nVymazat je z telefonu? (Zrušit = nechat, kdyby se přenos nepovedl.)`)) {
+  if (confirm(`Odesláno: ${knih(skeny.length)}.\n\nVymazat je z telefonu? (Zrušit = nechat, kdyby se přenos nepovedl.)`)) {
     await Promise.all(skeny.map((s) => smaz(s.id)));
     vykresli();
   }
@@ -337,5 +536,5 @@ $("#odeslat").addEventListener("click", async () => {
 /* ---------- start ---------- */
 
 vykresli();
-// Offline režim: service worker ukládá stránku a soubory pro práci bez signálu.
+// Offline režim: service worker ukládá stránku a soubory pro práci bez signálu (včetně OCR po prvním použití).
 navigator.serviceWorker?.register(document.body.dataset.sw!, { scope: document.body.dataset.scope }).catch(() => {});
