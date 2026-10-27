@@ -28,6 +28,7 @@ Nic tady se needituje ručně. Knihy se spravují v lokální aplikaci Kniha4U
 | `/cena/<rozsah>/`, `/vydani/<období>/` | kolekce podle ceny a doby vydání (stránkované) |
 | `/autori/`, `/autor/<slug>/` | rejstřík a stránky autorů s ≥ 2 knihami |
 | `/hledat/?q=…` | rozšířené hledání s filtry (v prohlížeči, noindex) |
+| `/sken/` | Kniha4U Sken – sběr knih telefonem → ZIP pro aplikaci na PC (noindex, offline) |
 | `/sitemap.xml`, `/robots.txt`, `/hledani.json` | SEO a rejstřík pro hledání |
 
 ## Vlastní doména

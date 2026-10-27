@@ -102,7 +102,7 @@ const obdobi = kolekceObdobi.map((k) => ({ slug: k.slug, nazev: k.slug === "pred
     const obalka = prvek("div", `obalka v${p.id % 6}`);
     if (p.obrazek) {
       const img = prvek("img");
-      Object.assign(img, { src: p.obrazek, alt: `Obálka knihy ${p.nazev}`, loading: "lazy", width: 400, height: 600 });
+      Object.assign(img, { src: p.obrazek.replace(/^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)/, "$1f_webp,q_auto,w_400/"), alt: `Obálka knihy ${p.nazev}`, loading: "lazy", width: 400, height: 600 });
       obalka.append(img);
     } else {
       obalka.append(prvek("span", "obalka-znacka", "Kniha4U"), prvek("span", "obalka-linka"), prvek("p", "obalka-nazev", p.nazev));

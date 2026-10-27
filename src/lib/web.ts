@@ -20,6 +20,13 @@ export function odkaz(cesta = ""): string {
 /** Odkaz na soubor (bez lomítka na konci), např. `zbozi.xml`. */
 export const soubor = (cesta: string) => `${base()}/${cesta.replace(/^\/+/, "")}`;
 
+/**
+ * Varianta fotky z Cloudinary – Cloudinary ji vyrobí sám (zmenšení, WebP).
+ * Jiné adresy vrací beze změny.
+ */
+export const fotka = (url: string, transformace: string) =>
+  url.replace(/^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)/, `$1${transformace}/`);
+
 export const absolutni = (cesta: string, site: URL | undefined) => new URL(cesta, site).toString();
 
 const kc = new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 });

@@ -1,0 +1,16 @@
+{
+  "name": "Kniha4U Sken",
+  "short_name": "K4U Sken",
+  "description": "Skenování knih do evidence Kniha4U",
+  "lang": "cs",
+  "start_url": "sken/",
+  "scope": "sken/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0c0c0c",
+  "theme_color": "#0c0c0c",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

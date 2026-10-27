@@ -4,20 +4,32 @@
  * černobílých variant (podle ID). `prechod` zapne plynulý přechod obálky z výpisu do detailu.
  */
 import type { Kniha } from "../lib/knihy";
+import { fotka } from "../lib/web";
 
 interface Props {
   kniha: Kniha;
   priorita?: boolean;
   prechod?: boolean;
+  /** Šířka obrázku na stránce (pro výběr velikosti fotky). */
+  sizes?: string;
 }
 
-const { kniha, priorita = false, prechod = false } = Astro.props;
+const { kniha, priorita = false, prechod = false, sizes = "(max-width: 560px) 45vw, (max-width: 800px) 280px, 220px" } = Astro.props;
 ---
 
 <div class:list={["obalka", `v${kniha.id % 6}`]} style={prechod ? `view-transition-name: obalka-${kniha.id}` : undefined}>
   {
     kniha.obrazek ? (
-      <img src={kniha.obrazek} alt={`Obálka knihy ${kniha.nazev}`} loading={priorita ? "eager" : "lazy"} decoding="async" width="400" height="600" />
+      <img
+        src={fotka(kniha.obrazek, "f_webp,q_auto,w_400")}
+        srcset={[300, 400, 600, 900].map((w) => `${fotka(kniha.obrazek, `f_webp,q_auto,w_${w}`)} ${w}w`).join(", ")}
+        sizes={sizes}
+        alt={`Obálka knihy ${kniha.nazev}`}
+        loading={priorita ? "eager" : "lazy"}
+        decoding="async"
+        width="400"
+        height="600"
+      />
     ) : (
       <>
         <span class="obalka-znacka" aria-hidden="true">Kniha4U</span>
