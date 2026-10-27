@@ -72084,4 +72084,14 @@ Sledujeme vzestup Fridricha Barbarossy v nejmocnějšího panovníka středověk
     <PRICE_VAT>2500</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>900008</ITEM_ID>
+    <PRODUCTNAME>Karel aneb Pohádka o našem deštníku</PRODUCTNAME>
+    <DESCRIPTION>Snad každý člověk zažil alespoň jedenkrát v životě situaci, že začalo pršet a jeho deštník se ne a ne roztáhnout. A právě tenhle pocit je výchozím momentem pohádky, kterou vypráví dítě o jejich deštníku Karlovi, který se rozhodl odepřít poslušnost. Jenže deštník je na světě od toho, aby chránil hlav</DESCRIPTION>
+    <URL>https://dohnos.github.io/kniha4-feed/kniha/karel-aneb-pohadka-o-nasem-destniku/</URL>
+    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1792932330/media_library/IMAGE_25102026_1345_1_OK58.jpg</IMGURL>
+    <PRICE_VAT>59</PRICE_VAT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+    <ISBN>8086862224</ISBN>
+  </SHOPITEM>
 </SHOP>
