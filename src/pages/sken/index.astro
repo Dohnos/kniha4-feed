@@ -82,6 +82,12 @@ import "../../styles/sken.css";
         <div class="list-telo" id="list-telo">
           <p class="upozorneni" id="upozorneni" hidden></p>
 
+          <!-- Box nahoře – při skenování celé krabice se nemění, poslední boxy jsou jedním klepnutím -->
+          <div class="box-blok">
+            <label><span>Box</span><input name="box" autocomplete="off" autocapitalize="characters" enterkeyhint="done" placeholder="např. A12" /></label>
+            <div class="cipy" id="posledni-boxy" role="group" aria-label="Poslední boxy"></div>
+          </div>
+
           <label class="foto" id="foto-pole">
             <input type="file" accept="image/*" capture="environment" id="foto-vstup" hidden />
             <img id="foto-nahled" alt="" hidden />
@@ -106,8 +112,6 @@ import "../../styles/sken.css";
             </div>
           </div>
 
-          <label><span>Box</span><input name="box" autocomplete="off" autocapitalize="characters" /></label>
-          <div class="cipy" id="posledni-boxy"></div>
           <div class="radek">
             <label><span>Cena Kč</span><input name="cena" inputmode="numeric" placeholder="doplní PC" /></label>
             <div class="kusy">

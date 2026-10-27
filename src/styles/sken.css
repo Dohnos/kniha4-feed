@@ -205,9 +205,19 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .krokovac button:active { background: var(--plocha-2); }
 .list .krokovac input { min-height: 0; height: 100%; padding: 0; border: 0; border-radius: 0; text-align: center; background: none; font-weight: 700; }
 
-.cipy { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin-top: -4px; }
+/* Box + poslední boxy (nahoře v okně, velké a dobře čitelné) */
+.box-blok { display: grid; gap: 10px; padding: 12px; border-radius: 18px; background: var(--plocha-2); border: 1px solid var(--linka); }
+.list .box-blok input { background: var(--plocha); font-size: 1.3rem; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; }
+.list .box-blok input::placeholder { font-size: 1rem; font-weight: 500; letter-spacing: 0; text-transform: none; }
+.cipy { display: flex; flex-wrap: wrap; gap: 8px; }
 .cipy:empty { display: none; }
-.cipy button { flex-shrink: 0; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--linka); background: var(--pozadi); font-weight: 650; font-size: 0.88rem; }
+.cipy button {
+  min-width: 56px; min-height: 42px; padding: 0 16px;
+  border: 1px solid var(--linka); border-radius: 12px;
+  background: var(--plocha); color: var(--text);
+  font-size: 1.02rem; font-weight: 750; letter-spacing: 0.03em; cursor: pointer;
+}
+.cipy button[aria-pressed="true"] { background: var(--akcent); border-color: var(--akcent); color: var(--na-akcentu); }
 
 .list-tlacitka {
   display: flex; gap: 8px;

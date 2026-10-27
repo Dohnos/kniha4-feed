@@ -15,4 +15,6 @@ export default defineConfig({
   trailingSlash: "always",
   build: { format: "directory" },
   compressHTML: true,
+  // OCR vlákno (scripts/ocr-vlakno.ts) načítá ONNX Runtime jako ES modul.
+  vite: { worker: { format: "es" } },
 });

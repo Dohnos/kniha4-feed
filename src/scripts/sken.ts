@@ -57,12 +57,12 @@ const smaz = (id: string) => uloziste("readwrite", (s) => s.delete(id));
 
 /* ---------- veřejný katalog (upozornění „tuhle už máte“) ---------- */
 
-let katalog: { nazev: string; text: string; kody: string }[] = [];
+let katalog: { nazev: string; autor: string; text: string; kody: string }[] = [];
 fetch(document.body.dataset.rejstrik!)
   .then((r) => r.json())
   .then((data: (string | number)[][]) => {
     // Formát hledani.json: [id, slug, název, autor, cena, rok, nakladatel, isbn, fotka]
-    katalog = data.map((z) => ({ nazev: String(z[2]), text: bezDiakritiky(String(z[2])), kody: cislice(String(z[7])) }));
+    katalog = data.map((z) => ({ nazev: String(z[2]), autor: String(z[3]), text: bezDiakritiky(String(z[2])), kody: cislice(String(z[7])) }));
   })
   .catch(() => {});
 
@@ -117,9 +117,11 @@ async function zmensi(soubor: File): Promise<Blob> {
   return webp?.type === "image/webp" ? webp : (await naBlob("image/jpeg", 0.82))!;
 }
 
-async function naPlatno(soubor: File, max: number) {
+/** Obrázek na plátno: delší strana nejvýš `max`, malé obrázky se zvětší aspoň na `min`. */
+async function naPlatno(soubor: File, max: number, min = 0) {
   const obraz = await createImageBitmap(soubor, { imageOrientation: "from-image" });
-  const pomer = Math.min(1, max / Math.max(obraz.width, obraz.height));
+  const delsi = Math.max(obraz.width, obraz.height);
+  const pomer = Math.min(max / delsi, Math.max(1, min / delsi));
   const platno = Object.assign(document.createElement("canvas"), { width: Math.round(obraz.width * pomer), height: Math.round(obraz.height * pomer) });
   platno.getContext("2d")!.drawImage(obraz, 0, 0, platno.width, platno.height);
   return platno;
@@ -198,7 +200,8 @@ function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">, zprava?: string
   aktualizujUpozorneni(zprava);
 
   $("#posledni-boxy").replaceChildren(...posledniBoxy().map((b) =>
-    Object.assign(document.createElement("button"), { type: "button", textContent: b, onclick: () => (pole("box").value = b) })));
+    Object.assign(document.createElement("button"), { type: "button", textContent: b, onclick: () => ((pole("box").value = b), oznacBox(), navigator.vibrate?.(15)) })));
+  oznacBox();
   formular.returnValue = "";
   formular.classList.remove("odjezd", "navrat");
   formular.style.transform = "";
@@ -207,6 +210,19 @@ function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">, zprava?: string
   vrstvaOtevrena();
   if (sken.typ === "nazev" && novy) pole("nazev").focus();
 }
+
+/** Zvýrazní čip boxu, který je zrovna vyplněný. */
+function oznacBox() {
+  const box = pole("box").value.trim().toUpperCase();
+  for (const c of $("#posledni-boxy").children) c.setAttribute("aria-pressed", String(c.textContent === box));
+}
+pole("box").addEventListener("input", oznacBox);
+
+// Pole, do kterého se píše, se posune doprostřed – nezakryje ho klávesnice ani tlačítka dole.
+$("#list-telo").addEventListener("focusin", (e) => {
+  const prvek = e.target as HTMLElement;
+  if (prvek.matches("input")) setTimeout(() => prvek.scrollIntoView({ block: "center", behavior: "smooth" }), 300);
+});
 
 /** Zavře bez uložení – s animací sjetí dolů. */
 function zavritFormular() {
@@ -312,52 +328,89 @@ formular.addEventListener("close", async () => {
   if (akce === "dalsi") sken.typ === "kod" ? spustKameru() : otevriFormular({ typ: "nazev" });
 });
 
-/* ---------- OCR: název z fotky (Tesseract.js, čeština, vše z našeho webu) ---------- */
+/* ---------- OCR: název z fotky (PaddleOCR ve vlastním vlákně, čeština, vše z našeho webu) ---------- */
 
-type OcrWorker = { recognize(obraz: HTMLCanvasElement, moznosti?: object, vystup?: object): Promise<{ data: { blocks: OcrBlok[] | null } }> };
-type OcrRadek = { text: string; confidence: number; bbox: { y0: number; y1: number } };
-type OcrBlok = { paragraphs: { lines: OcrRadek[] }[] };
+type OcrRadek = { text: string; jistota: number; y: number; vyska: number };
 
-let ocr: Promise<OcrWorker> | null = null;
+let ocr: Worker | null = null;
 let ocrPrubeh = (_: string) => {};
 
-function nactiOcr(): Promise<OcrWorker> {
-  const cesta = document.body.dataset.ocr!;
-  ocr ??= import("tesseract.js")
-    .then(({ createWorker }) =>
-      createWorker("ces", 1, {
-        workerPath: `${cesta}/worker.min.js`,
-        corePath: cesta,
-        langPath: cesta,
-        logger: (m: { status: string; progress: number }) => {
-          const procent = Math.round((m.progress || 0) * 100);
-          if (m.status.includes("loading") || m.status.includes("initializ")) ocrPrubeh(`Připravuji čtení textu… ${procent} %`);
-          else if (m.status.includes("recogniz")) ocrPrubeh(`Čtu text… ${procent} %`);
-        },
-      }) as unknown as Promise<OcrWorker>)
-    .catch((chyba) => {
-      ocr = null;
-      throw chyba;
-    });
+function vlakno() {
+  ocr ??= new Worker(new URL("./ocr-vlakno.ts", import.meta.url), { type: "module" });
   return ocr;
+}
+
+/** Pošle obrázek do vlákna a počká na řádky textu (průběh hlásí přes ocrPrubeh). */
+function ocrUloha(zprava: object, prenos: Transferable[] = []): Promise<OcrRadek[]> {
+  const w = vlakno();
+  return new Promise((hotovo, chyba) => {
+    w.onmessage = ({ data }) => {
+      if (data.typ === "stav") ocrPrubeh(data.text);
+      else if (data.typ === "vysledek") hotovo(data.radky);
+      else chyba(new Error(data.text));
+    };
+    w.postMessage({ cesta: document.body.dataset.ocr, ...zprava }, prenos);
+  });
 }
 
 /** „BYLO NÁS PĚT“ → „Bylo nás pět“; odstraní šum na krajích. */
 function vycisti(text: string) {
   let t = text.replace(/[|_~^*<>{}[\]\\]/g, " ").replace(/\s+/g, " ").trim().replace(/^[^\p{L}\p{N}„"(]+|[^\p{L}\p{N}.!?)"“]+$/gu, "");
   const pismena = t.replace(/[^\p{L}]/gu, "");
-  if (pismena && pismena === pismena.toLocaleUpperCase("cs") && pismena.length > 3) t = t.charAt(0) + t.slice(1).toLocaleLowerCase("cs");
+  // Velkými písmeny (i kapitálky, kde OCR pár písmen přečte jako malá: „POSlEdNÍ“).
+  const velkych = pismena.replace(/[^\p{Lu}]/gu, "").length;
+  if (pismena.length > 3 && velkych >= pismena.length * 0.7) t = t.charAt(0) + t.slice(1).toLocaleLowerCase("cs");
   return t;
+}
+
+/* Oprava češtiny: model čte latinku pro desítky jazyků a u velkých písmen plete háčky a čárky
+   (PĚT → PÉT, Ď → D, Ž → Ż). Cizí znaky se převedou na české a slova se porovnají se slovy
+   z názvů a autorů v katalogu – když se liší jen diakritikou, vezme se česká podoba z katalogu. */
+const CIZI_ZNAKY: Record<string, string> = {
+  ż: "ž", ź: "ž", ś: "š", ć: "č", ń: "ň", ñ: "ň", ł: "l", ľ: "l", ĺ: "l", ŕ: "ř", ç: "c", ÿ: "ý",
+  à: "á", â: "á", ã: "á", ä: "a", ą: "a", è: "é", ê: "ě", ë: "e", ę: "e", ì: "í", î: "í", ï: "i",
+  ò: "ó", ô: "ó", õ: "ó", ö: "o", ő: "ó", ù: "ú", û: "ů", ü: "u", ű: "ů",
+};
+let slova: { zname: Set<string>; podle: Map<string, string> } | null = null;
+
+function ceskaSlova() {
+  if (slova || !katalog.length) return slova;
+  const pocty = new Map<string, Map<string, number>>();
+  for (const k of katalog) {
+    for (const slovo of `${k.nazev} ${k.autor}`.toLocaleLowerCase("cs").match(/\p{L}{2,}/gu) ?? []) {
+      const varianty = pocty.get(bezDiakritiky(slovo)) ?? new Map<string, number>();
+      varianty.set(slovo, (varianty.get(slovo) ?? 0) + 1);
+      pocty.set(bezDiakritiky(slovo), varianty);
+    }
+  }
+  const podle = new Map([...pocty].map(([klic, v]) => [klic, [...v].sort((a, b) => b[1] - a[1])[0][0]]));
+  slova = { zname: new Set([...pocty.values()].flatMap((v) => [...v.keys()])), podle };
+  return slova;
+}
+
+function opravCestinu(text: string) {
+  const t = text
+    .replace(/([dt])[’'](?=\p{Ll})/gu, (_, p: string) => (p === "d" ? "ď" : "ť"))
+    .replace(/\p{L}/gu, (z) => CIZI_ZNAKY[z] ?? CIZI_ZNAKY[z.toLowerCase()]?.toUpperCase() ?? z);
+  const s = ceskaSlova();
+  if (!s) return t;
+  return t.replace(/\p{L}{2,}/gu, (slovo) => {
+    const male = slovo.toLocaleLowerCase("cs");
+    const ceske = s.zname.has(male) ? null : s.podle.get(bezDiakritiky(slovo));
+    if (!ceske) return slovo;
+    if (slovo === slovo.toLocaleUpperCase("cs")) return ceske.toLocaleUpperCase("cs");
+    return slovo[0] === slovo[0].toLocaleUpperCase("cs") ? ceske[0].toLocaleUpperCase("cs") + ceske.slice(1) : ceske;
+  });
 }
 
 /** Řádky textu seřazené podle velikosti písma – název bývá na obálce největší. */
 async function prectiText(soubor: File) {
-  const worker = await nactiOcr();
-  const { data } = await worker.recognize(await naPlatno(soubor, 1600), {}, { blocks: true });
-  const radky = (data.blocks ?? []).flatMap((b) => b.paragraphs.flatMap((p) => p.lines));
+  const platno = await naPlatno(soubor, 1600, 1200);
+  const { data, width, height } = platno.getContext("2d")!.getImageData(0, 0, platno.width, platno.height);
+  const radky = await ocrUloha({ sirka: width, vyska: height, data }, [data.buffer]);
   return radky
-    .map((r, poradi) => ({ text: vycisti(r.text), surovy: r.text, vyska: r.bbox.y1 - r.bbox.y0, jistota: r.confidence, poradi }))
-    .filter((r) => r.text.length >= 2 && r.jistota > 35 && (r.text.match(/\p{L}/gu)?.length ?? 0) >= r.text.length * 0.5)
+    .map((r, poradi) => ({ text: vycisti(opravCestinu(r.text)), surovy: opravCestinu(r.text), vyska: r.vyska, jistota: r.jistota, poradi }))
+    .filter((r) => r.text.length >= 2 && r.jistota > 0.6 && (r.text.match(/\p{L}/gu)?.length ?? 0) >= r.text.length * 0.5)
     .sort((a, b) => b.vyska - a.vyska);
 }
 
@@ -373,9 +426,9 @@ function ukazRadky(radky: { text: string }[]) {
   kontejner.hidden = !radky.length;
 }
 
-// Model (~6 MB, jen poprvé) se začne stahovat už při klepnutí – než se vyfotí, bývá připravený.
+// Modely (~25 MB, jen poprvé) se začnou stahovat už při klepnutí – než se vyfotí, bývají připravené.
 $("#ocr-tl").addEventListener("click", () => {
-  nactiOcr().catch(() => {});
+  if (!ocr) ocrUloha({ jenPriprav: true }).catch(() => {});
   $<HTMLInputElement>("#ocr-vstup").click();
 });
 
@@ -400,7 +453,7 @@ $<HTMLInputElement>("#ocr-vstup").addEventListener("change", async (e) => {
     // Název = největší text; když je na dvou řádcích stejně velkým písmem, spojí se v pořadí čtení.
     // Velká písmena se převádí až na celém názvu („BYLO NÁS“ + „PĚT“ → „Bylo nás pět“).
     const nejvetsi = radky[0].vyska;
-    const nazev = vycisti(radky.filter((r) => r.vyska >= nejvetsi * 0.8).sort((a, b) => a.poradi - b.poradi).slice(0, 3).map((r) => r.surovy).join(" "));
+    const nazev = vycisti(radky.filter((r) => r.vyska >= nejvetsi * 0.7).sort((a, b) => a.poradi - b.poradi).slice(0, 3).map((r) => r.surovy).join(" "));
     // OCR občas ztratí háčky – když stejný název (bez diakritiky) je v katalogu, vezme se odtud přesně.
     pole("nazev").value = katalog.find((k) => k.text === bezDiakritiky(nazev))?.nazev ?? nazev;
     aktualizujUpozorneni();
