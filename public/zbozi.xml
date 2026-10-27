@@ -72075,4 +72075,13 @@ Sledujeme vzestup Fridricha Barbarossy v nejmocnějšího panovníka středověk
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788073354022</ISBN>
   </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>900007</ITEM_ID>
+    <PRODUCTNAME>Básně Karla Hynka Máchy</PRODUCTNAME>
+    <DESCRIPTION>Výbor z básnického díla uspořádal František Krčma.</DESCRIPTION>
+    <URL>https://dohnos.github.io/kniha4-feed/kniha/basne-karla-hynka-machy/</URL>
+    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/f_jpg,q_auto,w_1000/v1793117447/kniha4u/900007.jpg</IMGURL>
+    <PRICE_VAT>2500</PRICE_VAT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+  </SHOPITEM>
 </SHOP>
