@@ -442,8 +442,7 @@ $<HTMLInputElement>("#ocr-vstup").addEventListener("change", async (e) => {
   tl.disabled = true;
   ocrPrubeh = (t) => (stav.textContent = t);
   ocrPrubeh("Připravuji čtení textu…");
-  // Stejná fotka poslouží i jako obálka, když ještě žádnou nemá.
-  if (!novaFoto && !upravovany?.foto) zmensi(soubor).then((f) => ((novaFoto = f), ukazFoto(f)));
+  // Fotka pro OCR se jen přečte – obálka se fotí zvlášť tlačítkem „Vyfotit obálku“.
   try {
     const radky = await prectiText(soubor);
     if (!radky.length) {
