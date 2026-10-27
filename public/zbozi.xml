@@ -42651,7 +42651,7 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5240</ITEM_ID>
-    <PRODUCTNAME>Jurský park</PRODUCTNAME>
+    <PRODUCTNAME>Jurský park (Gail Herman, Baronet, 1993)</PRODUCTNAME>
     <DESCRIPTION>Kniha Jurský park – autor: Gail Herman, nakladatel: Baronet, rok vydání: 1993, počet stran: 92, jazyk: česky.</DESCRIPTION>
     <URL>https://dohnos.github.io/kniha4-feed/kniha/jursky-park/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1792932330/media_library/IMAGE_25102026_1345_1_OK58.jpg</IMGURL>
@@ -45235,15 +45235,6 @@ Zábřežsko je kraj, kde se patrně nebudete prodírat davy turistů. O to víc
     <URL>https://dohnos.github.io/kniha4-feed/kniha/vlak-z-paddingtonu/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1792932330/media_library/IMAGE_25102026_1345_1_OK58.jpg</IMGURL>
     <PRICE_VAT>40</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>5541</ITEM_ID>
-    <PRODUCTNAME>Vyšší život</PRODUCTNAME>
-    <DESCRIPTION>Kniha Vyšší život – autor: Frederick William Faber, nakladatel: Brněnské tiskárny, rok vydání: 1948, počet stran: 318, jazyk: česky.</DESCRIPTION>
-    <URL>https://dohnos.github.io/kniha4-feed/kniha/vyssi-zivot/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1792932330/media_library/IMAGE_25102026_1345_1_OK58.jpg</IMGURL>
-    <PRICE_VAT>170</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -59654,15 +59645,6 @@ staly a byly úspěšně vyřešeny.</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>7279</ITEM_ID>
-    <PRODUCTNAME>Muž a žena | sobectví</PRODUCTNAME>
-    <DESCRIPTION>Nové vydání dvou psychologických románů, rozvíjejících na pozadí milostného trojúhelníku mezní situace lásky a manželství. V prvním se žena zvěrolékaře zamiluje do muže, který ji upoutá, a po rozvodu ztroskotá a tragicky skončí ijejí milenecký vztah. Ve druhém jde o milostný příběh ženatého skladatele a mladé studentky, ve kterém autorka na mužově postavě podává mistrnou studii lidské lhostejnosti, přerůstající v přetvářku, lež a sobectví.</DESCRIPTION>
-    <URL>https://dohnos.github.io/kniha4-feed/kniha/muz-a-zena-sobectvi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1792932330/media_library/IMAGE_25102026_1345_1_OK58.jpg</IMGURL>
-    <PRICE_VAT>40</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>7280</ITEM_ID>
     <PRODUCTNAME>Na ostrově Syltu | cestopisná causerie</PRODUCTNAME>
     <DESCRIPTION>Kniha Na ostrově Syltu | cestopisná causerie – autor: Miloslav Buďárek, nakladatel: Alois Hynek, rok vydání: 1903, počet stran: 106.</DESCRIPTION>
@@ -72082,5 +72064,15 @@ Sledujeme vzestup Fridricha Barbarossy v nejmocnějšího panovníka středověk
     <PRICE_VAT>50</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8073620995</ISBN>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>900002</ITEM_ID>
+    <PRODUCTNAME>Jurský park (Michael Crichton, 2015)</PRODUCTNAME>
+    <DESCRIPTION>Jurský park, jenž patří k nejslavnějším knihám žánru sci-fi, nás vtahuje do ztraceného světa pradávných živočichů, který na zeměkouli kdysi skutečně existoval. V napínavém příběhu sledujeme dobrodružství, u jehož počátků stála odvěká lidská pýcha toužící ovládat živly mocnější než člověk. Příběh je</DESCRIPTION>
+    <URL>https://dohnos.github.io/kniha4-feed/kniha/jursky-park-900002/</URL>
+    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1792932330/media_library/IMAGE_25102026_1345_1_OK58.jpg</IMGURL>
+    <PRICE_VAT>40</PRICE_VAT>
+    <DELIVERY_DATE>0</DELIVERY_DATE>
+    <ISBN>9788073354022</ISBN>
   </SHOPITEM>
 </SHOP>
