@@ -77,7 +77,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .polozka:active { transform: scale(0.99); }
 @keyframes prijezd { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
 .nahled {
-  width: 52px; height: 72px; border-radius: 6px 12px 12px 6px; flex-shrink: 0;
+  width: 52px; height: 78px; border-radius: 4px 10px 10px 4px; flex-shrink: 0;
   display: grid; place-items: center; overflow: hidden;
   background: var(--plocha-2); color: var(--slaby);
 }
@@ -174,15 +174,77 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .pole-kod, .pole-nazev { display: grid; gap: 12px; }
 .upozorneni { margin: 0; padding: 10px 14px; border-radius: 14px; background: color-mix(in srgb, var(--pozor) 15%, transparent); color: var(--pozor); font-weight: 600; font-size: 0.92rem; }
 
-.foto {
-  display: grid !important; place-items: center;
-  height: 150px; border-radius: 18px; overflow: hidden;
+/* Obálka ve formuláři: prázdná = velké tlačítko, s fotkou = kniha 2 : 3 jako na webu + akce */
+.foto-prazdne {
+  display: grid; justify-items: center; gap: 4px; width: 100%;
+  padding: 22px 16px; border-radius: 18px;
   border: 2px dashed var(--linka); background: var(--pozadi);
-  color: var(--slaby); font-weight: 650; cursor: pointer;
+  color: var(--text); cursor: pointer;
 }
-.foto span { display: grid; justify-items: center; gap: 6px; }
-.foto svg { width: 30px; height: 30px; }
-.foto img { width: 100%; height: 100%; object-fit: contain; background: #000; }
+.foto-prazdne:active { transform: scale(0.99); }
+.foto-prazdne svg { width: 32px; height: 32px; margin-bottom: 4px; }
+.foto-prazdne small { color: var(--slaby); font-size: 0.84rem; }
+.foto-karta {
+  display: flex; align-items: center; gap: 18px;
+  padding: 14px 14px 14px 18px; border-radius: 18px;
+  background: radial-gradient(120% 140% at 0% 0%, var(--plocha-2), var(--pozadi) 70%);
+  border: 1px solid var(--linka);
+}
+.foto-obalka {
+  position: relative; flex-shrink: 0;
+  width: 104px; aspect-ratio: 2 / 3; padding: 0; border: 0;
+  border-radius: 4px 10px 10px 4px; overflow: hidden; cursor: pointer;
+  background: var(--plocha-2);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 14px 26px -12px rgb(0 0 0 / 0.55);
+  transform: rotate(-2deg); transition: transform 0.25s var(--pruzne);
+}
+.foto-obalka:active { transform: rotate(0) scale(0.97); }
+/* hřbet knihy jako na webu */
+.foto-obalka::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 9%; z-index: 1;
+  background: linear-gradient(to right, rgb(0 0 0 / 0.28), rgb(255 255 255 / 0.14) 55%, rgb(0 0 0 / 0.08));
+}
+.foto-obalka img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.foto-akce { flex: 1; min-width: 0; display: grid; gap: 6px; }
+.foto-akce > strong { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; color: var(--slaby); }
+.foto-tl {
+  display: flex; align-items: center; gap: 10px;
+  min-height: 42px; padding: 0 14px; border-radius: 12px;
+  border: 1px solid var(--linka); background: var(--plocha);
+  font-weight: 650; text-align: left; cursor: pointer;
+}
+.foto-tl svg { width: 18px; height: 18px; }
+.foto-tl:active { background: var(--plocha-2); }
+.foto-tl-pryc { border-color: transparent; background: none; color: var(--slaby); }
+
+/* ---------- ořez obálky (celá obrazovka) ---------- */
+.orez {
+  width: 100%; height: 100%; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0;
+  background: #000; color: #fff;
+  overscroll-behavior: contain;
+}
+.orez[open] { display: flex; flex-direction: column; animation: zavoj 0.2s; }
+.orez::backdrop { background: #000; }
+.orez-hlava {
+  display: grid; gap: 2px; text-align: center;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 20px 6px;
+}
+.orez-hlava strong { font-size: 1.1rem; letter-spacing: -0.01em; }
+.orez-hlava span { font-size: 0.85rem; opacity: 0.65; }
+.orez-platno { flex: 1; min-height: 0; width: 100%; touch-action: none; cursor: grab; }
+.orez-platno:active { cursor: grabbing; }
+.orez-nastroje { display: flex; justify-content: center; gap: 10px; padding: 6px 20px 2px; }
+.orez-cip {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 42px; padding: 0 16px; border-radius: 999px; border: 0;
+  background: rgb(255 255 255 / 0.14); color: #fff; font-weight: 650; cursor: pointer;
+}
+.orez-cip svg { width: 18px; height: 18px; }
+.orez-cip[aria-pressed="true"] { background: #fff; color: #000; }
+.orez-tlacitka { display: flex; gap: 10px; padding: 12px 20px calc(16px + var(--dole)); }
+.orez-tlacitka .tl { flex: 1; }
+.orez-zrusit { background: transparent; color: #fff; border-color: rgb(255 255 255 / 0.3); }
 
 /* OCR – přečtení názvu z fotky */
 .ocr-tl {

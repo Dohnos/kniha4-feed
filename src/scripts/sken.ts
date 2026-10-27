@@ -109,16 +109,15 @@ function zapamatujBox(box: string) {
   if (box) localStorage.setItem("boxy", JSON.stringify([box, ...posledniBoxy().filter((b) => b !== box)].slice(0, 6)));
 }
 
-/** Fotka z fotoaparátu → max. 1200 px, WebP (kde ho prohlížeč neumí, JPEG). */
-async function zmensi(soubor: File): Promise<Blob> {
-  const platno = await naPlatno(soubor, 1200);
+/** Plátno → WebP (kde ho prohlížeč neumí, JPEG). */
+async function naObrazek(platno: HTMLCanvasElement): Promise<Blob> {
   const naBlob = (typ: string, kvalita: number) => new Promise<Blob | null>((r) => platno.toBlob(r, typ, kvalita));
-  const webp = await naBlob("image/webp", 0.8);
-  return webp?.type === "image/webp" ? webp : (await naBlob("image/jpeg", 0.82))!;
+  const webp = await naBlob("image/webp", 0.82);
+  return webp?.type === "image/webp" ? webp : (await naBlob("image/jpeg", 0.85))!;
 }
 
 /** Obrázek na plátno: delší strana nejvýš `max`, malé obrázky se zvětší aspoň na `min`. */
-async function naPlatno(soubor: File, max: number, min = 0) {
+async function naPlatno(soubor: Blob, max: number, min = 0) {
   const obraz = await createImageBitmap(soubor, { imageOrientation: "from-image" });
   const delsi = Math.max(obraz.width, obraz.height);
   const pomer = Math.min(max / delsi, Math.max(1, min / delsi));
@@ -129,6 +128,8 @@ async function naPlatno(soubor: File, max: number, min = 0) {
 
 /* ---------- tlačítko Zpět (Android) / gesto zpět (iPhone) zavře okno nebo kameru ---------- */
 
+// Úrovně v historii: 1 = formulář nebo kamera, 2 = ořez obálky nad formulářem.
+const orez = $<HTMLDialogElement>("#orez");
 const otevrenaVrstva = () => formular.open || !kamera.hidden;
 function vrstvaOtevrena() {
   if (!history.state?.k4u) history.pushState({ k4u: 1 }, "");
@@ -137,7 +138,10 @@ function vrstvaZavrena() {
   // Když se hned otevře další vrstva (sken → formulář), záznam v historii zůstane.
   setTimeout(() => !otevrenaVrstva() && history.state?.k4u && history.back(), 60);
 }
-addEventListener("popstate", () => {
+addEventListener("popstate", (e) => {
+  const uroven = e.state?.k4u ?? 0;
+  if (uroven < 2 && orez.open) orez.close();
+  if (uroven >= 1) return;
   if (formular.open) zavritFormular();
   if (!kamera.hidden) zastavKameru();
 });
@@ -185,6 +189,7 @@ let novaFoto: Blob | null | undefined;
 function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">, zprava?: string) {
   upravovany = { id: crypto.randomUUID(), ean: "", nazev: "", autor: "", rok: "", box: posledniBoxy()[0] ?? "", cena: "", kusu: 1, poznamka: "", foto: null, kdy: new Date().toISOString(), ...sken };
   novaFoto = undefined;
+  zdrojObalky = null;
   const novy = !sken.id;
   $("#formular-nadpis").textContent = novy ? (sken.typ === "kod" ? "Naskenovaná kniha" : "Kniha bez kódu") : "Upravit";
   $("#pole-kod").hidden = sken.typ !== "kod";
@@ -231,11 +236,13 @@ function zavritFormular() {
   setTimeout(() => formular.close(""), 230);
 }
 
+let urlNahledu = "";
 function ukazFoto(foto: Blob | null) {
-  const img = $<HTMLImageElement>("#foto-nahled");
-  img.hidden = !foto;
-  $("#foto-text").hidden = !!foto;
-  if (foto) img.src = URL.createObjectURL(foto);
+  $("#foto-prazdne").hidden = !!foto;
+  $("#foto-karta").hidden = !foto;
+  URL.revokeObjectURL(urlNahledu);
+  urlNahledu = foto ? URL.createObjectURL(foto) : "";
+  if (foto) $<HTMLImageElement>("#foto-nahled").src = urlNahledu;
 }
 
 function aktualizujUpozorneni(zprava?: string) {
@@ -253,13 +260,37 @@ $("#kusu-minus").addEventListener("click", () => nastavKusy(Number(pole("kusu").
 $("#kusu-plus").addEventListener("click", () => nastavKusy(Number(pole("kusu").value) + 1));
 pole("kusu").addEventListener("change", () => nastavKusy(Number(pole("kusu").value)));
 
-$<HTMLInputElement>("#foto-vstup").addEventListener("change", async (e) => {
-  const soubor = (e.target as HTMLInputElement).files?.[0];
-  if (!soubor) return;
-  toast("Zpracovávám fotku…");
-  novaFoto = await zmensi(soubor);
+/* Obálka: vyfotit → oříznout na 2 : 3. Původní fotka zůstane v paměti, aby šel ořez kdykoli upravit. */
+let zdrojObalky: ZdrojObalky | null = null;
+
+async function upravObalku(zdroj: ZdrojObalky) {
+  const vysledek = await oriznout(zdroj);
+  if (!vysledek) return;
+  zdrojObalky = vysledek.zdroj;
+  novaFoto = vysledek.foto;
   ukazFoto(novaFoto);
-  (e.target as HTMLInputElement).value = "";
+}
+
+const vyfotitObalku = () => $<HTMLInputElement>("#foto-vstup").click();
+$("#foto-prazdne").addEventListener("click", vyfotitObalku);
+$("#foto-znovu").addEventListener("click", vyfotitObalku);
+$<HTMLInputElement>("#foto-vstup").addEventListener("change", (e) => {
+  const vstup = e.target as HTMLInputElement;
+  const soubor = vstup.files?.[0];
+  vstup.value = "";
+  if (soubor) upravObalku({ foto: soubor, otoceni: 0, vyrez: null });
+});
+
+const upravitOrez = () => {
+  const foto = novaFoto === undefined ? upravovany?.foto : novaFoto;
+  if (foto) upravObalku(zdrojObalky ?? { foto, otoceni: 0, vyrez: null });
+};
+$("#foto-obalka").addEventListener("click", upravitOrez);
+$("#foto-oriznout").addEventListener("click", upravitOrez);
+$("#foto-odebrat").addEventListener("click", () => {
+  novaFoto = null;
+  zdrojObalky = null;
+  ukazFoto(null);
 });
 
 // Zavření: ×, klepnutí na ztmavené pozadí, Esc (nativně) – vše bez uložení.
@@ -327,6 +358,239 @@ formular.addEventListener("close", async () => {
   await vykresli();
   if (akce === "dalsi") sken.typ === "kod" ? spustKameru() : otevriFormular({ typ: "nazev" });
 });
+
+/* ---------- ořez obálky na poměr 2 : 3 (jako obálky na webu) ---------- */
+
+const POMER = 3 / 2; // výška ku šířce
+/** Výřez v pixelech (otočené) zdrojové fotky. */
+type Vyrez = { x: number; y: number; sirka: number };
+type ZdrojObalky = { foto: Blob; otoceni: number; vyrez: Vyrez | null };
+
+const orezPlatno = $<HTMLCanvasElement>("#orez-platno");
+const kresba = orezPlatno.getContext("2d")!;
+let zdroj: HTMLCanvasElement | null = null; // fotka v editoru, delší strana max. 2000 px
+let otoceni = 0; // ve čtvrtotáčkách po směru hodin
+// Rámeček a střed fotky v CSS pixelech plátna, m = kolik pixelů obrazovky na pixel fotky.
+const ramecek = { x: 0, y: 0, s: 0, v: 0 };
+const fotka = { cx: 0, cy: 0, m: 1 };
+const prsty = new Map<number, { x: number; y: number }>();
+let orezHotovo = (_: boolean) => {};
+
+/** „Celá fotka“ = vejde se do rámečku celá (zbytek bílý), „vyplnit“ = vyplní rámeček bez okrajů. */
+const meritka = () => ({
+  cela: Math.min(ramecek.s / zdroj!.width, ramecek.v / zdroj!.height),
+  vyplnit: Math.max(ramecek.s / zdroj!.width, ramecek.v / zdroj!.height),
+});
+
+function otoc(platno: HTMLCanvasElement, ctvrtin: number) {
+  if (!(ctvrtin % 4)) return platno;
+  const nove = Object.assign(document.createElement("canvas"), ctvrtin % 2 ? { width: platno.height, height: platno.width } : { width: platno.width, height: platno.height });
+  const k = nove.getContext("2d")!;
+  k.translate(nove.width / 2, nove.height / 2);
+  k.rotate((ctvrtin * Math.PI) / 2);
+  k.drawImage(platno, -platno.width / 2, -platno.height / 2);
+  return nove;
+}
+
+const vyrez = (): Vyrez => ({
+  x: (ramecek.x - fotka.cx) / fotka.m + zdroj!.width / 2,
+  y: (ramecek.y - fotka.cy) / fotka.m + zdroj!.height / 2,
+  sirka: ramecek.s / fotka.m,
+});
+function nastavVyrez(v: Vyrez) {
+  fotka.m = ramecek.s / v.sirka;
+  fotka.cx = ramecek.x + (zdroj!.width / 2 - v.x) * fotka.m;
+  fotka.cy = ramecek.y + (zdroj!.height / 2 - v.y) * fotka.m;
+  omez();
+}
+
+/** Fotka nesmí v rámečku nechat díru – menší než rámeček zůstane uprostřed. */
+function omez() {
+  const { cela, vyplnit } = meritka();
+  fotka.m = Math.min(Math.max(fotka.m, cela), vyplnit * 6);
+  const osa = (stred: number, delka: number, zacatek: number, okno: number) =>
+    delka <= okno ? zacatek + okno / 2 : Math.min(Math.max(stred, zacatek + okno - delka / 2), zacatek + delka / 2);
+  fotka.cx = osa(fotka.cx, zdroj!.width * fotka.m, ramecek.x, ramecek.s);
+  fotka.cy = osa(fotka.cy, zdroj!.height * fotka.m, ramecek.y, ramecek.v);
+  $("#orez-cela").setAttribute("aria-pressed", String(fotka.m <= cela * 1.001));
+}
+
+function vycentruj(m: number) {
+  fotka.m = m;
+  fotka.cx = ramecek.x + ramecek.s / 2;
+  fotka.cy = ramecek.y + ramecek.v / 2;
+  omez();
+  kresli();
+}
+
+/** Velikost plátna a rámečku podle obrazovky; `zachovat` = stejný výřez i po otočení telefonu. */
+function rozmer(zachovat = true) {
+  const v = zachovat ? vyrez() : null;
+  const { clientWidth: s, clientHeight: h } = orezPlatno;
+  orezPlatno.width = Math.round(s * devicePixelRatio);
+  orezPlatno.height = Math.round(h * devicePixelRatio);
+  ramecek.v = Math.max(60, Math.min(h - 32, (s - 88) * POMER));
+  ramecek.s = ramecek.v / POMER;
+  ramecek.x = (s - ramecek.s) / 2;
+  ramecek.y = (h - ramecek.v) / 2;
+  if (v) nastavVyrez(v);
+  kresli();
+}
+
+function kresli() {
+  if (!zdroj) return;
+  const k = kresba;
+  const { clientWidth: s, clientHeight: v } = orezPlatno;
+  const { x, y, s: rs, v: rv } = ramecek;
+  k.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  k.fillStyle = "#000";
+  k.fillRect(0, 0, s, v);
+  k.fillStyle = "#fff"; // bílé okraje, když je vidět celá fotka
+  k.fillRect(x, y, rs, rv);
+  const w = zdroj.width * fotka.m;
+  const h = zdroj.height * fotka.m;
+  k.imageSmoothingQuality = "high";
+  k.drawImage(zdroj, fotka.cx - w / 2, fotka.cy - h / 2, w, h);
+  // Mimo rámeček je fotka vidět celá, jen ztmavená.
+  k.fillStyle = "rgba(0,0,0,0.6)";
+  k.beginPath();
+  k.rect(0, 0, s, v);
+  k.rect(x, y, rs, rv);
+  k.fill("evenodd");
+  // Při posouvání pomocné třetiny.
+  if (prsty.size) {
+    k.strokeStyle = "rgba(255,255,255,0.35)";
+    k.lineWidth = 1;
+    k.beginPath();
+    for (const t of [1 / 3, 2 / 3]) {
+      k.moveTo(x + rs * t, y);
+      k.lineTo(x + rs * t, y + rv);
+      k.moveTo(x, y + rv * t);
+      k.lineTo(x + rs, y + rv * t);
+    }
+    k.stroke();
+  }
+  k.strokeStyle = "rgba(255,255,255,0.9)";
+  k.lineWidth = 1.5;
+  k.strokeRect(x, y, rs, rv);
+  // Silné rohy.
+  const r = 22;
+  k.lineWidth = 4;
+  k.lineCap = "round";
+  k.beginPath();
+  for (const [rx, ry, sx, sy] of [[x, y, 1, 1], [x + rs, y, -1, 1], [x, y + rv, 1, -1], [x + rs, y + rv, -1, -1]]) {
+    k.moveTo(rx + sx * r, ry);
+    k.lineTo(rx, ry);
+    k.lineTo(rx, ry + sy * r);
+  }
+  k.stroke();
+}
+
+/** Přiblížení `k`× kolem bodu (x, y) a posun o (dx, dy). */
+function zmen(k: number, x: number, y: number, dx = 0, dy = 0) {
+  const { cela, vyplnit } = meritka();
+  const m = Math.min(Math.max(fotka.m * k, cela), vyplnit * 6);
+  k = m / fotka.m;
+  fotka.m = m;
+  fotka.cx = x + (fotka.cx + dx - x) * k;
+  fotka.cy = y + (fotka.cy + dy - y) * k;
+  omez();
+  kresli();
+}
+
+const bodPrstu = (e: PointerEvent | WheelEvent) => {
+  const o = orezPlatno.getBoundingClientRect();
+  return { x: e.clientX - o.left, y: e.clientY - o.top };
+};
+function gesto() {
+  const b = [...prsty.values()].slice(0, 2);
+  return {
+    x: b.reduce((s, p) => s + p.x, 0) / b.length,
+    y: b.reduce((s, p) => s + p.y, 0) / b.length,
+    vzdalenost: b.length > 1 ? Math.hypot(b[0].x - b[1].x, b[0].y - b[1].y) : 0,
+  };
+}
+orezPlatno.addEventListener("pointerdown", (e) => {
+  orezPlatno.setPointerCapture(e.pointerId);
+  prsty.set(e.pointerId, bodPrstu(e));
+  kresli();
+});
+orezPlatno.addEventListener("pointermove", (e) => {
+  if (!prsty.has(e.pointerId)) return;
+  const pred = gesto();
+  prsty.set(e.pointerId, bodPrstu(e));
+  const po = gesto();
+  zmen(pred.vzdalenost && po.vzdalenost ? po.vzdalenost / pred.vzdalenost : 1, po.x, po.y, po.x - pred.x, po.y - pred.y);
+});
+for (const udalost of ["pointerup", "pointercancel"]) {
+  orezPlatno.addEventListener(udalost, (e) => {
+    prsty.delete((e as PointerEvent).pointerId);
+    kresli();
+  });
+}
+// Na počítači kolečkem myši.
+orezPlatno.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const { x, y } = bodPrstu(e);
+  zmen(Math.exp(-e.deltaY * 0.0015), x, y);
+}, { passive: false });
+
+$("#orez-otocit").addEventListener("click", () => {
+  otoceni = (otoceni + 1) % 4;
+  zdroj = otoc(zdroj!, 1);
+  vycentruj(meritka().vyplnit);
+});
+$("#orez-cela").addEventListener("click", () => {
+  const { cela, vyplnit } = meritka();
+  vycentruj(fotka.m <= cela * 1.001 ? vyplnit : cela);
+});
+$("#orez-zrusit").addEventListener("click", () => orez.close());
+$("#orez-hotovo").addEventListener("click", () => orez.close("ok"));
+orez.addEventListener("close", () => {
+  prsty.clear();
+  if (history.state?.k4u === 2) history.back();
+  orezHotovo(orez.returnValue === "ok");
+  orez.returnValue = "";
+});
+addEventListener("resize", () => orez.open && rozmer());
+
+/** Výřez do obrázku: šířka nejvýš 800 px (na webu stačí), poměr 2 : 3. */
+function vyriznout() {
+  const v = vyrez();
+  const sirka = Math.max(1, Math.round(Math.min(800, v.sirka)));
+  const vystup = Object.assign(document.createElement("canvas"), { width: sirka, height: Math.round(sirka * POMER) });
+  const k = vystup.getContext("2d")!;
+  k.fillStyle = "#fff";
+  k.fillRect(0, 0, vystup.width, vystup.height);
+  k.imageSmoothingQuality = "high";
+  const n = sirka / v.sirka;
+  k.drawImage(zdroj!, -v.x * n, -v.y * n, zdroj!.width * n, zdroj!.height * n);
+  return naObrazek(vystup);
+}
+
+/** Otevře editor ořezu; vrátí oříznutou obálku a stav pro pozdější úpravu, nebo null (Zrušit). */
+async function oriznout(z: ZdrojObalky): Promise<{ foto: Blob; zdroj: ZdrojObalky } | null> {
+  toast("Načítám fotku…");
+  try {
+    otoceni = z.otoceni;
+    zdroj = otoc(await naPlatno(z.foto, 2000), otoceni);
+  } catch {
+    toast("Fotku se nepodařilo načíst");
+    return null;
+  }
+  $("#toast").hidden = true;
+  orez.returnValue = "";
+  orez.showModal();
+  history.pushState({ k4u: 2 }, "");
+  rozmer(false);
+  if (z.vyrez) nastavVyrez(z.vyrez);
+  else vycentruj(meritka().vyplnit);
+  kresli();
+  const ok = await new Promise<boolean>((r) => (orezHotovo = r));
+  const vysledek = ok ? { foto: await vyriznout(), zdroj: { foto: z.foto, otoceni, vyrez: vyrez() } } : null;
+  zdroj = null;
+  return vysledek;
+}
 
 /* ---------- OCR: název z fotky (PaddleOCR ve vlastním vlákně, čeština, vše z našeho webu) ---------- */
 
