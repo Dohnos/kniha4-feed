@@ -121,7 +121,7 @@ const jsonLd = [
 
         <dl class="udaje">
           {udaje.map((u) => (
-            <div class="udaj">
+            <div class:list={["udaj", { "udaj-siroky": u.ikona === "carovyKod" }]}>
               <Ikona nazev={u.ikona} velikost={18} />
               <div>
                 <dt>{u.nazev}</dt>

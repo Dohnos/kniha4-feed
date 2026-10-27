@@ -1021,3 +1021,5 @@ button, input, select { font: inherit; color: inherit; }
 /* Vějíř při rozevření nesmí na mobilu přetéct obrazovku; text v poli hledání na jeden řádek. */
 .hero { overflow-x: clip; }
 .hero-hledat > span:not(.tl) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.udaj-siroky { grid-column: span 2; }
+.udaj-siroky dd { overflow-wrap: normal; font-variant-numeric: tabular-nums; }
