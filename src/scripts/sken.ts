@@ -199,9 +199,7 @@ function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">, zprava?: string
   $("#formular-dalsi").textContent = sken.typ === "kod" ? "Uložit + skenovat" : "Uložit + další";
   for (const k of TEXTOVA_POLE) pole(k).value = upravovany[k];
   pole("kusu").value = String(upravovany.kusu);
-  $("#ocr-radky").hidden = true;
-  zOcr.nazev = zOcr.autor = "";
-  $("#ocr-stav").textContent = "Vyfoťte obálku nebo titulní stranu";
+  $("#ocr-radky").hidden = true;  $("#ocr-stav").textContent = "Vyfoťte obálku nebo titulní stranu";
   ukazFoto(upravovany.foto);
   aktualizujUpozorneni(zprava);
 
@@ -679,20 +677,22 @@ async function prectiText(soubor: File) {
     .sort((a, b) => b.vyska - a.vyska);
 }
 
-/* Řádky z OCR se do názvu i autora skládají za sebe, oddělené čárkou („Všechny cesty vedou, Do Santiaga“).
-   Další klepnutí řádek z pole zase odebere. Název, který OCR doplnilo samo, první klepnutí nahradí. */
+/* Řádky z OCR se do názvu i autora skládají za sebe, oddělené mezerou („Všechny cesty vedou do Santiaga“).
+   Řádek, který už v poli je (i v názvu doplněném automaticky), se dalším klepnutím z pole odebere. */
 type OcrPole = "nazev" | "autor";
-const zOcr: Record<OcrPole, string> = { nazev: "", autor: "" };
-const casti = (s: string) => s.split(",").map((c) => c.trim()).filter(Boolean);
-const stejne = (a: string, b: string) => a.toLocaleLowerCase("cs") === b.toLocaleLowerCase("cs");
+
+/** Kde v poli je text řádku – celá slova, bez ohledu na velikost písmen. */
+function najdi(hodnota: string, text: string) {
+  const vzor = text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  return new RegExp(`(?<![\\p{L}\\p{N}])${vzor}(?![\\p{L}\\p{N}])`, "iu").exec(hodnota);
+}
 
 function prepniRadek(klic: OcrPole, text: string) {
   const vstup = pole(klic);
-  const dosud = casti(vstup.value);
-  vstup.value = (dosud.some((c) => stejne(c, text))
-    ? dosud.filter((c) => !stejne(c, text))
-    : vstup.value.trim() === zOcr[klic] ? [text] : [...dosud, text]).join(", ");
-  zOcr[klic] = "";
+  const nalez = najdi(vstup.value, text);
+  vstup.value = (nalez ? vstup.value.slice(0, nalez.index) + vstup.value.slice(nalez.index + nalez[0].length) : `${vstup.value} ${text}`)
+    .replace(/\s+/g, " ")
+    .trim();
   oznacRadky();
   aktualizujUpozorneni();
   navigator.vibrate?.(15);
@@ -701,7 +701,7 @@ function prepniRadek(klic: OcrPole, text: string) {
 /** Tlačítka řádků, které už v poli jsou, se zvýrazní. */
 function oznacRadky() {
   for (const tl of $("#ocr-radky").querySelectorAll<HTMLButtonElement>("button")) {
-    tl.setAttribute("aria-pressed", String(casti(pole(tl.dataset.klic!).value).some((c) => stejne(c, tl.dataset.text!))));
+    tl.setAttribute("aria-pressed", String(!!najdi(pole(tl.dataset.klic!).value, tl.dataset.text!)));
   }
 }
 pole("nazev").addEventListener("input", oznacRadky);
@@ -751,8 +751,7 @@ $<HTMLInputElement>("#ocr-vstup").addEventListener("change", async (e) => {
     const nejvetsi = radky[0].vyska;
     const nazev = vycisti(radky.filter((r) => r.vyska >= nejvetsi * 0.7).sort((a, b) => a.poradi - b.poradi).slice(0, 3).map((r) => r.surovy).join(" "));
     // OCR občas ztratí háčky – když stejný název (bez diakritiky) je v katalogu, vezme se odtud přesně.
-    pole("nazev").value = zOcr.nazev = katalog.find((k) => k.text === bezDiakritiky(nazev))?.nazev ?? nazev;
-    zOcr.autor = "";
+    pole("nazev").value = katalog.find((k) => k.text === bezDiakritiky(nazev))?.nazev ?? nazev;
     aktualizujUpozorneni();
     ukazRadky(radky);
     stav.textContent = "Hotovo – řádky přidáte klepnutím do názvu nebo autora";
