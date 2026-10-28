@@ -259,6 +259,7 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 .ocr-radek { display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 12px; border-radius: 12px; background: var(--pozadi); border: 1px solid var(--linka); }
 .ocr-radek span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
 .ocr-radek button { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--linka); background: var(--plocha); font-size: 0.8rem; font-weight: 650; cursor: pointer; }
+.ocr-radek button[aria-pressed="true"] { background: var(--akcent); border-color: var(--akcent); color: var(--na-akcentu); }
 
 /* Počet kusů − 1 + */
 .kusy { display: grid; gap: 5px; }
