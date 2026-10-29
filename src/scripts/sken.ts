@@ -214,7 +214,8 @@ function otevriFormular(sken: Partial<Sken> & Pick<Sken, "typ">, zprava?: string
   $("#formular-dalsi").textContent = sken.typ === "kod" ? "Uložit + skenovat" : "Uložit + další";
   for (const k of TEXTOVA_POLE) pole(k).value = upravovany[k];
   pole("kusu").value = String(upravovany.kusu);
-  $("#ocr-radky").hidden = true;  $("#ocr-stav").textContent = "Vyfoťte obálku nebo titulní stranu";
+  $("#ocr-radky").hidden = true;
+  $("#ocr-stav").textContent = "Vyfoťte obálku nebo titulní stranu";
   ukazFoto(upravovany.foto);
   aktualizujUpozorneni(zprava);
 
