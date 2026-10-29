@@ -105,9 +105,19 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 
 /* ---------- kamera ---------- */
 .kamera { position: fixed; inset: 0; z-index: 20; background: #000; }
-/* Safari na iPhonu u videa z kamery nespolehlivě počítá výšku – video je proto přišpendlené na všechny strany. */
-.kamera video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.18s ease-out; }
-.kamera video.bezi { opacity: 1; }
+/* Video je vystředěné a jeho rozměr („cover“) nastavuje skript podle rozlišení kamery – Safari na iPhonu
+   by jinak první snímky ukázalo malé uprostřed černé plochy. */
+.kamera video { position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; translate: -50% -50%; object-fit: cover; }
+.kamera-start {
+  position: absolute; inset: 0; z-index: 2;
+  display: grid; place-content: center; justify-items: center; gap: 14px;
+  background: #000; color: rgb(255 255 255 / 0.8); font-weight: 600;
+  opacity: 0; visibility: hidden; transition: opacity 0.2s ease-out, visibility 0s 0.2s;
+}
+.kamera.startuje .kamera-start { opacity: 1; visibility: visible; transition: none; }
+.kamera-kolecko { width: 30px; height: 30px; border-radius: 50%; border: 3px solid rgb(255 255 255 / 0.25); border-top-color: #fff; animation: tocit 0.8s linear infinite; }
+@keyframes tocit { to { rotate: 360deg; } }
+.kamera-tlacitka { z-index: 3; }
 .ramecek {
   position: absolute; left: 50%; top: 42%; translate: -50% -50%;
   width: min(78vw, 360px); aspect-ratio: 2 / 1.1;

@@ -57,10 +57,12 @@ import "../../styles/sken.css";
     </nav>
 
     <!-- Kamera -->
-    <div class="kamera" id="kamera" hidden>
-      <video id="video" playsinline muted></video>
+    <div class="kamera startuje" id="kamera" hidden>
+      <video id="video" playsinline muted autoplay></video>
       <div class="ramecek"><span class="laser"></span></div>
       <p class="kamera-napoveda" id="kamera-napoveda">Namiřte na čárový kód</p>
+      <!-- Dokud kamera nedává obraz ve správné velikosti, zakrývá ho tahle vrstva (video pod ní běží). -->
+      <div class="kamera-start" aria-live="polite"><span class="kamera-kolecko"></span>Zapínám kameru…</div>
       <div class="kamera-tlacitka">
         <button class="kulate" id="kamera-zavrit" aria-label="Zavřít"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
         <button class="tl tl-svetle" id="kamera-rucne">Zadat kód ručně</button>

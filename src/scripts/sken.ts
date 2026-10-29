@@ -800,14 +800,52 @@ function nactiDetektor(): Promise<Detektor> {
   return detektor;
 }
 
+/**
+ * Video přes celou obrazovku („cover“) – velikost počítá aplikace podle skutečného rozlišení kamery.
+ * Safari na iPhonu jinak první snímky vykreslí malé uprostřed černé plochy a teprve pak je roztáhne.
+ */
+function velikostVidea() {
+  const video = $<HTMLVideoElement>("#video");
+  const { videoWidth: vw, videoHeight: vh } = video;
+  if (!vw || !vh) return false;
+  const k = Math.max(kamera.clientWidth / vw, kamera.clientHeight / vh);
+  video.style.width = `${Math.ceil(vw * k)}px`;
+  video.style.height = `${Math.ceil(vh * k)}px`;
+  return true;
+}
+$<HTMLVideoElement>("#video").addEventListener("resize", velikostVidea); // kamera změnila rozlišení
+addEventListener("resize", () => !kamera.hidden && velikostVidea());
+
+/**
+ * Počká, až kamera dává obraz a jeho rozlišení se ustálí (300 ms beze změny, nejdéle 2,5 s).
+ * Telefony často začnou v malém rozlišení a hned ho přepnou – obraz by pak „poskočil“.
+ */
+function prvniSnimky(video: HTMLVideoElement) {
+  return new Promise<void>((hotovo) => {
+    const start = performance.now();
+    let rozmer = "";
+    let od = start;
+    const kontrola = () => {
+      const ted = performance.now();
+      const novy = `${video.videoWidth}×${video.videoHeight}`;
+      if (novy !== rozmer) [rozmer, od] = [novy, ted];
+      const ustaleno = video.videoWidth > 0 && video.readyState >= 2 && ted - od >= 300;
+      if (kamera.hidden || ustaleno || ted - start > 2500) return velikostVidea(), hotovo();
+      requestAnimationFrame(kontrola);
+    };
+    requestAnimationFrame(kontrola);
+  });
+}
+
 async function spustKameru() {
+  // Dokud kamera nedává obraz, je vidět jen „Zapínám kameru…“ – rámeček a video se ukážou najednou.
+  kamera.classList.add("startuje");
   kamera.hidden = false;
   vrstvaOtevrena();
   const ctecka = nactiDetektor(); // načítá se souběžně se startem kamery
   ctecka.catch(() => {});
   $("#kamera-napoveda").textContent = "Namiřte na čárový kód";
   const video = $<HTMLVideoElement>("#video");
-  video.classList.remove("bezi");
   try {
     // Ostření se žádá rovnou při zapnutí – dodatečná změna nastavení kamery obraz na chvíli „cukne“.
     proud = await navigator.mediaDevices.getUserMedia({
@@ -821,11 +859,12 @@ async function spustKameru() {
   }
   // Kamera se mezitím zavřela (Zpět, ×) – nenechat ji běžet skrytou.
   if (kamera.hidden) return proud.getTracks().forEach((t) => t.stop());
-  // Obraz se plynule objeví až s prvním snímkem (bez černého probliknutí a skoku velikosti).
-  video.onplaying = () => video.classList.add("bezi");
   video.srcObject = proud;
+  const pripraveno = prvniSnimky(video);
   await video.play().catch(() => {});
+  await pripraveno;
   if (kamera.hidden) return;
+  kamera.classList.remove("startuje");
   const moznosti = (proud.getVideoTracks()[0].getCapabilities?.() ?? {}) as MediaTrackCapabilities & { torch?: boolean };
   const svetlo = $<HTMLButtonElement>("#kamera-svetlo");
   svetlo.hidden = !("torch" in moznosti);
@@ -892,9 +931,8 @@ function zastavKameru() {
   proud?.getTracks().forEach((t) => t.stop());
   proud = null;
   // Při dalším zapnutí se nesmí na okamžik ukázat poslední snímek z minula.
-  const video = $<HTMLVideoElement>("#video");
-  video.classList.remove("bezi");
-  video.srcObject = null;
+  $<HTMLVideoElement>("#video").srcObject = null;
+  kamera.classList.add("startuje");
   $(".ramecek").classList.remove("nalezeno");
   if (kamera.hidden) return;
   kamera.hidden = true;
