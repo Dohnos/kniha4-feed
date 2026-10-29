@@ -48,10 +48,6 @@ export function hledej(rejstrik: Polozka[], dotaz: string): Polozka[] {
 
 export const kc = new Intl.NumberFormat("cs-CZ", { style: "currency", currency: "CZK", maximumFractionDigits: 0 });
 
-/** Varianta fotky z Cloudinary (WebP, zmenšená); jiné adresy beze změny. */
-export const fotka = (url: string, transformace: string) =>
-  url.replace(/^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)/, `$1${transformace}/`);
-
 /** Bezpečné vytvoření prvku s textem. */
 export function prvek<K extends keyof HTMLElementTagNameMap>(tag: K, trida = "", text?: string): HTMLElementTagNameMap[K] {
   const el = document.createElement(tag);

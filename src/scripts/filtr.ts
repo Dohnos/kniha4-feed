@@ -4,7 +4,7 @@
  * Výsledky se dočítají po 48 při scrollování.
  */
 
-import { bezDiakritiky, fotka, hledej, kc, nactiRejstrik, prvek, type Polozka } from "./rejstrik";
+import { bezDiakritiky, hledej, kc, nactiRejstrik, prvek, type Polozka } from "./rejstrik";
 
 const NA_DAVKU = 48;
 const POLE = ["q", "cena", "obdobi", "nakladatel", "razeni"] as const;
@@ -35,7 +35,7 @@ function karta(p: Polozka, knihy: string) {
   a.href = `${knihy}${p.slug}/`;
   const obalka = prvek("div", `obalka v${p.id % 6}`);
   if (p.obrazek) {
-    obalka.append(Object.assign(prvek("img"), { src: fotka(p.obrazek, "f_webp,q_auto,c_limit,w_400"), alt: `Obálka knihy ${p.nazev}`, loading: "lazy", width: 400, height: 600 }));
+    obalka.append(Object.assign(prvek("img"), { src: p.obrazek, alt: `Obálka knihy ${p.nazev}`, loading: "lazy", width: 400, height: 600 }));
   } else {
     obalka.append(prvek("span", "obalka-znacka", "Kniha4U"), prvek("span", "obalka-linka"), prvek("p", "obalka-nazev", p.nazev));
     if (p.autor) obalka.append(prvek("span", "obalka-autor", p.autor));

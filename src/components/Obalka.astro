@@ -2,28 +2,24 @@
 /**
  * Obálka knihy: fotka, když ji kniha má, jinak typografická obálka v jedné ze šesti
  * černobílých variant (podle ID). `prechod` zapne plynulý přechod obálky z výpisu do detailu.
+ * Fotka je na Cloudinary uložená hotová (WebP, max. 600 × 900 px) – načítá se bez transformací.
  */
 import type { Kniha } from "../lib/knihy";
-import { fotka } from "../lib/web";
 
 interface Props {
   kniha: Kniha;
   priorita?: boolean;
   prechod?: boolean;
-  /** Šířka obrázku na stránce (pro výběr velikosti fotky). */
-  sizes?: string;
 }
 
-const { kniha, priorita = false, prechod = false, sizes = "(max-width: 560px) 45vw, (max-width: 800px) 280px, 220px" } = Astro.props;
+const { kniha, priorita = false, prechod = false } = Astro.props;
 ---
 
 <div class:list={["obalka", `v${kniha.id % 6}`]} style={prechod ? `view-transition-name: obalka-${kniha.id}` : undefined}>
   {
     kniha.obrazek ? (
       <img
-        src={fotka(kniha.obrazek, "f_webp,q_auto,c_limit,w_400")}
-        srcset={[300, 400, 600, 900].map((w) => `${fotka(kniha.obrazek, `f_webp,q_auto,c_limit,w_${w}`)} ${w}w`).join(", ")}
-        sizes={sizes}
+        src={kniha.obrazek}
         alt={`Obálka knihy ${kniha.nazev}`}
         loading={priorita ? "eager" : "lazy"}
         decoding="async"

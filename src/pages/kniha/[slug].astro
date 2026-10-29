@@ -5,7 +5,7 @@ import Obalka from "../../components/Obalka.astro";
 import Ikona, { type NazevIkony } from "../../components/Ikona.astro";
 import Karusel from "../../components/Karusel.astro";
 import { autori, knihy, kolekceObdobi, podobne, stranaAutora, stranaNakladatele, type Kniha } from "../../lib/knihy";
-import { KONTAKT, NAZEV_WEBU, absolutni, formatCena, fotka, odkaz, zkratit } from "../../lib/web";
+import { KONTAKT, NAZEV_WEBU, absolutni, formatCena, odkaz, zkratit } from "../../lib/web";
 
 export const getStaticPaths = (() => knihy.map((kniha) => ({ params: { slug: kniha.slug }, props: { kniha } }))) satisfies GetStaticPaths;
 
@@ -62,7 +62,7 @@ if (kniha.isbn) knihaLd.isbn = kniha.isbn;
 if (kniha.stran) knihaLd.numberOfPages = kniha.stran;
 if (kniha.vazba) knihaLd.bookFormat = /měkk|brož/i.test(kniha.vazba) ? "https://schema.org/Paperback" : "https://schema.org/Hardcover";
 if (kniha.popis) knihaLd.description = zkratit(kniha.popis, 500);
-if (kniha.obrazek) knihaLd.image = fotka(kniha.obrazek, "f_webp,q_auto,c_limit,w_1200");
+if (kniha.obrazek) knihaLd.image = kniha.obrazek;
 
 const jsonLd = [
   knihaLd,
@@ -78,7 +78,7 @@ const jsonLd = [
 ];
 ---
 
-<Zaklad titulek={kniha.autor ? `${kniha.nazev} – ${kniha.autor}` : kniha.nazev} popis={popis} jsonLd={jsonLd} ogTyp="book" obrazek={kniha.obrazek ? fotka(kniha.obrazek, "c_pad,b_white,w_1200,h_630,f_webp,q_auto") : undefined}>
+<Zaklad titulek={kniha.autor ? `${kniha.nazev} – ${kniha.autor}` : kniha.nazev} popis={popis} jsonLd={jsonLd} ogTyp="book" obrazek={kniha.obrazek || undefined}>
   <Fragment slot="hlava">
     {kniha.isbn && <meta property="book:isbn" content={kniha.isbn} />}
     {kniha.rok && <meta property="book:release_date" content={kniha.rok} />}
@@ -95,7 +95,7 @@ const jsonLd = [
 
     <article class="detail">
       <div class="detail-obalka">
-        <Obalka kniha={kniha} priorita prechod sizes="(max-width: 800px) 280px, 400px" />
+        <Obalka kniha={kniha} priorita prechod />
       </div>
 
       <div>
