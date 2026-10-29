@@ -63,6 +63,7 @@ fetch(document.body.dataset.rejstrik!)
   .then((data: (string | number)[][]) => {
     // Formát hledani.json: [id, slug, název, autor, cena, rok, nakladatel, isbn, fotka]
     katalog = data.map((z) => ({ nazev: String(z[2]), autor: String(z[3]), text: bezDiakritiky(String(z[2])), kody: cislice(String(z[7])) }));
+    vykresli(); // doplní názvy známých knih a štítky „už máte“
   })
   .catch(() => {});
 
@@ -131,14 +132,26 @@ async function naPlatno(soubor: Blob, max: number, min = 0) {
 // Úrovně v historii: 1 = formulář nebo kamera, 2 = ořez obálky nad formulářem.
 const orez = $<HTMLDialogElement>("#orez");
 const otevrenaVrstva = () => formular.open || !kamera.hidden;
+// Krok zpět, který dělá aplikace sama (po zavření vrstvy). Safari ho dokončí až za chvíli – mezitím se
+// už může otevřít další vrstva (sken → formulář) a ta se nesmí zavřít, jako by uživatel dal Zpět.
+let vlastniZpet = false;
+function vlastniKrokZpet() {
+  vlastniZpet = true;
+  history.back();
+}
 function vrstvaOtevrena() {
   if (!history.state?.k4u) history.pushState({ k4u: 1 }, "");
 }
 function vrstvaZavrena() {
   // Když se hned otevře další vrstva (sken → formulář), záznam v historii zůstane.
-  setTimeout(() => !otevrenaVrstva() && history.state?.k4u && history.back(), 60);
+  setTimeout(() => !otevrenaVrstva() && !vlastniZpet && history.state?.k4u && vlastniKrokZpet(), 60);
 }
 addEventListener("popstate", (e) => {
+  if (vlastniZpet) {
+    vlastniZpet = false;
+    if (otevrenaVrstva()) vrstvaOtevrena(); // mezitím otevřená vrstva dostane svůj záznam zpět
+    return;
+  }
   const uroven = e.state?.k4u ?? 0;
   if (uroven < 2 && orez.open) orez.close();
   if (uroven >= 1) return;
@@ -169,10 +182,12 @@ async function vykresli() {
     } else nahled.append(Object.assign(document.createElement("b"), { textContent: s.nazev.charAt(0).toUpperCase() }));
 
     const text = Object.assign(document.createElement("span"), { className: "polozka-text" });
-    const nazev = s.typ === "kod" ? `EAN ${s.ean}` : s.nazev;
-    const detail = s.typ === "kod" ? "údaje doplní PC" : [s.autor, s.rok].filter(Boolean).join(" · ") || "bez autora a roku";
+    // Naskenovaná kniha, která už je v nabídce, se ukáže pod svým názvem; ostatní doplní PC podle EAN.
+    const znama = uzMate(s);
+    const nazev = s.typ === "kod" ? znama ?? `EAN ${s.ean}` : s.nazev;
+    const detail = s.typ === "kod" ? (znama ? `EAN ${s.ean}` : "údaje doplní PC") : [s.autor, s.rok].filter(Boolean).join(" · ") || "bez autora a roku";
     const stitky = Object.assign(document.createElement("span"), { className: "stitky" });
-    for (const [t, pozor] of [[s.box || "bez boxu", !s.box], [s.kusu > 1 ? `${s.kusu} ks` : "", false], [s.cena ? `${s.cena} Kč` : "", false], [uzMate(s) ? "už máte" : "", true]] as const) {
+    for (const [t, pozor] of [[s.box || "bez boxu", !s.box], [s.kusu > 1 ? `${s.kusu} ks` : "", false], [s.cena ? `${s.cena} Kč` : "", false], [znama ? "už máte" : "", true]] as const) {
       if (t) stitky.append(Object.assign(document.createElement("span"), { className: `stitek${pozor ? " stitek-pozor" : ""}`, textContent: t }));
     }
     text.append(Object.assign(document.createElement("strong"), { textContent: nazev }), Object.assign(document.createElement("small"), { textContent: detail }), stitky);
@@ -547,7 +562,7 @@ $("#orez-zrusit").addEventListener("click", () => orez.close());
 $("#orez-hotovo").addEventListener("click", () => orez.close("ok"));
 orez.addEventListener("close", () => {
   prsty.clear();
-  if (history.state?.k4u === 2) history.back();
+  if (history.state?.k4u === 2) vlastniKrokZpet();
   orezHotovo(orez.returnValue === "ok");
   orez.returnValue = "";
 });
@@ -796,6 +811,8 @@ async function spustKameru() {
     toast("Kamera není povolená – zadejte kód ručně");
     return otevriFormular({ typ: "kod" });
   }
+  // Kamera se mezitím zavřela (Zpět, ×) – nenechat ji běžet skrytou.
+  if (kamera.hidden) return proud.getTracks().forEach((t) => t.stop());
   video.srcObject = proud;
   await video.play();
   const stopa = proud.getVideoTracks()[0];
@@ -813,10 +830,14 @@ async function spustKameru() {
     if (kod && kod === posledni) {
       $(".ramecek").classList.add("nalezeno");
       pipni();
-      await new Promise((r) => setTimeout(r, 180));
+      // Stejná kniha znovu → v seznamu jen přibude kus. Hledá se ještě při otevřené kameře,
+      // aby se formulář otevřel hned po jejím zavření.
+      const [, stejna] = await Promise.all([
+        new Promise((r) => setTimeout(r, 180)),
+        vsechny().then((v) => v.find((s) => s.typ === "kod" && cislice(s.ean) === cislice(kod))),
+      ]);
+      if (!bezi) return; // mezitím zavřeno
       zastavKameru();
-      // Stejná kniha znovu → v seznamu jen přibude kus.
-      const stejna = (await vsechny()).find((s) => s.typ === "kod" && cislice(s.ean) === cislice(kod));
       return stejna
         ? otevriFormular({ ...stejna, kusu: stejna.kusu + 1 }, `Tuhle už v seznamu máte – přidán kus (teď ${stejna.kusu + 1} ks).`)
         : otevriFormular({ typ: "kod", ean: kod });
