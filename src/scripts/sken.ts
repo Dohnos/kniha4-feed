@@ -803,10 +803,17 @@ function nactiDetektor(): Promise<Detektor> {
 async function spustKameru() {
   kamera.hidden = false;
   vrstvaOtevrena();
+  const ctecka = nactiDetektor(); // načítá se souběžně se startem kamery
+  ctecka.catch(() => {});
   $("#kamera-napoveda").textContent = "Namiřte na čárový kód";
   const video = $<HTMLVideoElement>("#video");
+  video.classList.remove("bezi");
   try {
-    proud = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
+    // Ostření se žádá rovnou při zapnutí – dodatečná změna nastavení kamery obraz na chvíli „cukne“.
+    proud = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 }, advanced: [{ focusMode: "continuous" } as MediaTrackConstraintSet] },
+      audio: false,
+    });
   } catch {
     zastavKameru();
     toast("Kamera není povolená – zadejte kód ručně");
@@ -814,20 +821,18 @@ async function spustKameru() {
   }
   // Kamera se mezitím zavřela (Zpět, ×) – nenechat ji běžet skrytou.
   if (kamera.hidden) return proud.getTracks().forEach((t) => t.stop());
+  // Obraz se plynule objeví až s prvním snímkem (bez černého probliknutí a skoku velikosti).
+  video.onplaying = () => video.classList.add("bezi");
   video.srcObject = proud;
-  await video.play();
-  const stopa = proud.getVideoTracks()[0];
-  const moznosti = (stopa.getCapabilities?.() ?? {}) as MediaTrackCapabilities & { torch?: boolean; zoom?: { min: number; max: number }; focusMode?: string[] };
+  await video.play().catch(() => {});
+  if (kamera.hidden) return;
+  const moznosti = (proud.getVideoTracks()[0].getCapabilities?.() ?? {}) as MediaTrackCapabilities & { torch?: boolean };
   const svetlo = $<HTMLButtonElement>("#kamera-svetlo");
   svetlo.hidden = !("torch" in moznosti);
   svetlo.setAttribute("aria-pressed", "false");
-  if (moznosti.focusMode?.includes("continuous")) stopa.applyConstraints({ advanced: [{ focusMode: "continuous" } as MediaTrackConstraintSet] }).catch(() => {});
-  // Přiblížení: zblízka telefon (hlavně iPhone) neostří – s 2× stačí držet knihu dál a kód je ostrý i velký.
-  zoomKamery = moznosti.zoom && moznosti.zoom.max >= 1.5 ? moznosti.zoom : null;
-  $("#kamera-zoom").hidden = !zoomKamery;
-  if (zoomKamery) nastavZoom(!("BarcodeDetector" in globalThis)); // iPhone (bez vestavěné čtečky) rovnou 2×
 
-  const cteni = await nactiDetektor();
+  const cteni = await ctecka;
+  if (kamera.hidden) return; // zavřeno, než se čtečka načetla – nečíst na pozadí
   bezi = true;
   let posledni = "";
   let chyb = 0;
@@ -860,13 +865,6 @@ async function spustKameru() {
   }
 }
 
-let zoomKamery: { min: number; max: number } | null = null;
-function nastavZoom(zapnout: boolean) {
-  const zoom = zapnout ? Math.min(2, zoomKamery!.max) : Math.max(1, zoomKamery!.min);
-  proud?.getVideoTracks()[0].applyConstraints({ advanced: [{ zoom } as MediaTrackConstraintSet] }).catch(() => {});
-  $("#kamera-zoom").setAttribute("aria-pressed", String(zapnout));
-}
-
 /** Část snímku pod rámečkem (s okrajem) – přepočet z obrazovky na pixely kamery (video je „cover“). */
 const vyrezPlatno = document.createElement("canvas");
 function vyrezRamecku(video: HTMLVideoElement) {
@@ -893,6 +891,10 @@ function zastavKameru() {
   bezi = false;
   proud?.getTracks().forEach((t) => t.stop());
   proud = null;
+  // Při dalším zapnutí se nesmí na okamžik ukázat poslední snímek z minula.
+  const video = $<HTMLVideoElement>("#video");
+  video.classList.remove("bezi");
+  video.srcObject = null;
   $(".ramecek").classList.remove("nalezeno");
   if (kamera.hidden) return;
   kamera.hidden = true;
@@ -903,7 +905,6 @@ $("#skenovat").addEventListener("click", spustKameru);
 $("#bez-kodu").addEventListener("click", () => otevriFormular({ typ: "nazev" }));
 $("#kamera-zavrit").addEventListener("click", zastavKameru);
 $("#kamera-rucne").addEventListener("click", () => (zastavKameru(), otevriFormular({ typ: "kod" })));
-$("#kamera-zoom").addEventListener("click", (e) => nastavZoom((e.currentTarget as HTMLElement).getAttribute("aria-pressed") !== "true"));
 $("#kamera-svetlo").addEventListener("click", async (e) => {
   const tl = e.currentTarget as HTMLButtonElement;
   const zapnout = tl.getAttribute("aria-pressed") !== "true";
