@@ -64,7 +64,10 @@ import "../../styles/sken.css";
       <div class="kamera-tlacitka">
         <button class="kulate" id="kamera-zavrit" aria-label="Zavřít"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
         <button class="tl tl-svetle" id="kamera-rucne">Zadat kód ručně</button>
-        <button class="kulate" id="kamera-svetlo" aria-label="Svítilna" hidden><svg viewBox="0 0 24 24"><path d="M9 2h6l-1 7h-4zM10 9h4v13h-4z" /></svg></button>
+        <div class="kamera-vpravo">
+          <button class="kulate kulate-text" id="kamera-zoom" aria-label="Přiblížit 2×" aria-pressed="false" hidden>2×</button>
+          <button class="kulate" id="kamera-svetlo" aria-label="Svítilna" hidden><svg viewBox="0 0 24 24"><path d="M9 2h6l-1 7h-4zM10 9h4v13h-4z" /></svg></button>
+        </div>
       </div>
     </div>
 

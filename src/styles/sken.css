@@ -105,7 +105,8 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 
 /* ---------- kamera ---------- */
 .kamera { position: fixed; inset: 0; z-index: 20; background: #000; }
-.kamera video { width: 100%; height: 100%; object-fit: cover; }
+/* Safari na iPhonu u videa z kamery nespolehlivě počítá výšku – video je proto přišpendlené na všechny strany. */
+.kamera video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .ramecek {
   position: absolute; left: 50%; top: 42%; translate: -50% -50%;
   width: min(78vw, 360px); aspect-ratio: 2 / 1.1;
@@ -135,6 +136,8 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   background: rgb(255 255 255 / 0.18); color: #fff; backdrop-filter: blur(10px);
 }
 .kulate[aria-pressed="true"] { background: #fff; color: #000; }
+.kulate-text { font-weight: 750; font-size: 1.05rem; }
+.kamera-vpravo { display: flex; justify-content: flex-end; gap: 10px; min-width: 54px; } /* i bez tlačítek drží „Zadat kód ručně“ uprostřed */
 
 /* ---------- spodní list s formulářem ---------- */
 .list {
