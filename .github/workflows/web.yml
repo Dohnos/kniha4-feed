@@ -2,8 +2,7 @@
 # Feed (public/zbozi.xml, public/zbozitest.xml) jde na web beze změny, na stejnou adresu.
 #
 # Jednorázové nastavení: Settings → Pages → Source: „GitHub Actions“,
-# Custom domain: kniha4u.cz + Enforce HTTPS. (Při nasazení přes Actions GitHub soubor public/CNAME
-# nečte – doména se nastavuje jen tam; CNAME je v repozitáři pro přehled.)
+# Custom domain: kniha4u.cz + Enforce HTTPS. Soubor CNAME v kořeni repozitáře si spravuje GitHub sám.
 
 name: Web
 
