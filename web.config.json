@@ -1,6 +1,7 @@
 {
   "site": "https://kniha4u.cz",
   "base": "/",
+  "opona": true,
   "kontakt": {
     "email": "kniha4u@seznam.cz",
     "telefon": ""

@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Hledani from "../components/Hledani.astro";
 import Ikona, { type NazevIkony } from "../components/Ikona.astro";
 import { kolekceCen, vygenerovano } from "../lib/knihy";
-import { KONTAKT, NAZEV_WEBU, POPIS_WEBU, absolutni, identitaProvozovatele, odkaz, soubor } from "../lib/web";
+import { KONTAKT, NAZEV_WEBU, OPONA, POPIS_WEBU, absolutni, identitaProvozovatele, odkaz, soubor } from "../lib/web";
 
 interface Props {
   titulek?: string;
@@ -29,10 +29,22 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
 ---
 
 <!doctype html>
-<html lang="cs">
+<html lang="cs" class:list={{ "s-oponou": OPONA }}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    {
+      OPONA && (
+        <script is:inline>
+          // Opona: majitel si web prohlédne přes ?nahled=1 (zapamatuje se), ?nahled=0 oponu vrátí.
+          try {
+            const n = new URLSearchParams(location.search).get("nahled");
+            if (n !== null) localStorage.setItem("nahled", n);
+            if (localStorage.getItem("nahled") === "1") document.documentElement.classList.remove("s-oponou");
+          } catch {}
+        </script>
+      )
+    }
     <script is:inline>
       // Režim nastavit ještě před vykreslením (bez probliknutí). Výchozí je světlý, tmavý si volí návštěvník.
       try {
@@ -42,7 +54,7 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
     </script>
     <title>{celyTitulek}</title>
     <meta name="description" content={popis} />
-    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
+    <meta name="robots" content={OPONA ? "noindex, nofollow" : noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
     <link rel="canonical" href={kanonicka} />
     <link rel="sitemap" type="application/xml" href={soubor("sitemap.xml")} />
     <link rel="icon" href={soubor("favicon.svg")} type="image/svg+xml" />
@@ -72,6 +84,20 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
     }
   </head>
   <body>
+    {
+      OPONA && (
+        <div class="opona" role="status" aria-live="polite">
+          <div class="opona-obsah">
+            <div class="opona-knihy" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <p class="opona-logo">{NAZEV_WEBU}</p>
+            <h1 class="opona-nadpis">Připravujeme pro vás <em>nový antikvariát</em></h1>
+            <p class="opona-text">Tisíce knih už čekají na poličkách. Brzy se otevřeme.</p>
+            <div class="opona-prubeh" aria-hidden="true"><span></span></div>
+            {KONTAKT.email && <a class="opona-kontakt" href={`mailto:${KONTAKT.email}`}>{KONTAKT.email}</a>}
+          </div>
+        </div>
+      )
+    }
     <header class="lista">
       <div class="obal">
         <div class="lista-obsah">

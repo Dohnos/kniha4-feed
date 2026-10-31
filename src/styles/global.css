@@ -1086,3 +1086,58 @@ button, input, select { font: inherit; color: inherit; }
 .obj-souhlas:has(input:checked) { border-color: var(--text); }
 .obj-souhlas input { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; accent-color: var(--akcent); }
 .obj-souhlas a, .obj-napoveda a { color: inherit; text-underline-offset: 3px; }
+
+/* ---------- opona „Připravujeme“ (web.config.json → opona) ---------- */
+.opona { display: none; }
+.s-oponou body { overflow: hidden; }
+.s-oponou body > :not(.opona) { display: none !important; }
+.s-oponou .opona {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center; padding: 24px;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, color-mix(in srgb, var(--plocha) 90%, transparent), transparent 70%),
+    var(--pozadi);
+  color: var(--text);
+}
+.opona-obsah { display: grid; justify-items: center; gap: 14px; max-width: 560px; text-align: center; animation: opona-objevit 0.9s var(--pruzne) both; }
+@keyframes opona-objevit { from { opacity: 0; transform: translateY(14px); } }
+.opona-logo { margin: 8px 0 0; font-family: var(--pismo-nadpis); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.02em; }
+.opona-nadpis { margin: 0; font-family: var(--pismo-nadpis); font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; }
+.opona-nadpis em { font-style: italic; font-weight: 380; }
+.opona-text { margin: 0; color: var(--slaby); font-size: 1.05rem; }
+.opona-kontakt { margin-top: 10px; padding: 10px 20px; border: 1px solid var(--linka); border-radius: var(--r-pill); background: var(--plocha); color: var(--text); font-weight: 600; text-decoration: none; transition: border-color 0.2s; }
+.opona-kontakt:hover { border-color: var(--text); }
+
+/* Knihy, které se postupně zasouvají do poličky. */
+.opona-knihy { display: flex; align-items: flex-end; gap: 6px; height: 92px; padding: 0 14px; border-bottom: 3px solid var(--text); }
+.opona-knihy span {
+  width: 20px; border-radius: 4px 4px 2px 2px; background: var(--text);
+  transform-origin: bottom; animation: opona-kniha 2.4s var(--pruzne) infinite;
+}
+.opona-knihy span:nth-child(1) { height: 64px; animation-delay: 0s; }
+.opona-knihy span:nth-child(2) { height: 82px; width: 26px; animation-delay: 0.16s; background: #3a3a37; }
+.opona-knihy span:nth-child(3) { height: 56px; animation-delay: 0.32s; }
+.opona-knihy span:nth-child(4) { height: 74px; width: 16px; animation-delay: 0.48s; background: #5c5b55; }
+.opona-knihy span:nth-child(5) { height: 60px; width: 24px; animation-delay: 0.64s; transform-origin: bottom left; }
+@keyframes opona-kniha {
+  0% { transform: translateY(-120%); opacity: 0; }
+  18%, 70% { transform: translateY(0); opacity: 1; }
+  85%, 100% { transform: translateY(0) rotate(0); opacity: 0; }
+}
+.opona-knihy span:nth-child(5) { animation-name: opona-kniha-opreni; }
+@keyframes opona-kniha-opreni {
+  0% { transform: translateY(-120%) rotate(0); opacity: 0; }
+  18% { transform: translateY(0) rotate(0); opacity: 1; }
+  30%, 70% { transform: rotate(-12deg); opacity: 1; }
+  85%, 100% { transform: rotate(-12deg); opacity: 0; }
+}
+
+/* Ukazatel načítání. */
+.opona-prubeh { position: relative; width: min(240px, 60vw); height: 4px; margin-top: 8px; border-radius: var(--r-pill); background: var(--plocha-2); overflow: hidden; }
+.opona-prubeh span { position: absolute; inset: 0 auto 0 0; width: 40%; border-radius: inherit; background: var(--text); animation: opona-prubeh 1.6s ease-in-out infinite; }
+@keyframes opona-prubeh { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .opona-knihy span, .opona-prubeh span, .opona-obsah { animation: none; }
+  .opona-knihy span { opacity: 1; }
+}

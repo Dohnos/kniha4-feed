@@ -9,6 +9,12 @@ export const POPIS_WEBU =
 /** Kontakt z `web.config.json`. Když je prázdný, tlačítko „Mám zájem“ se nezobrazuje. */
 export const KONTAKT: { email?: string; telefon?: string } = (nastaveni as { kontakt?: object }).kontakt ?? {};
 
+/**
+ * Opona „Připravujeme“ přes celý web (web.config.json → "opona": true). Feed a /sken/ fungují dál.
+ * Majitel web uvidí přes adresu s ?nahled=1 (vypne zase ?nahled=0) – jen v jeho prohlížeči.
+ */
+export const OPONA = Boolean((nastaveni as { opona?: boolean }).opona);
+
 /** Provozovatel e-shopu (obchodní podmínky, ochrana údajů, patička, e-maily). Prázdné údaje se nevypisují. */
 export const PROVOZOVATEL: { jmeno: string; ico: string; adresa: string; platceDph: boolean } = {
   jmeno: "", ico: "", adresa: "", platceDph: false,
