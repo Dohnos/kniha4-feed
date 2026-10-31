@@ -24,6 +24,10 @@ if (okno) {
   const kc = (n: number) => `${n.toLocaleString("cs-CZ")} Kč`;
   const html = (t: string) => t.replace(/[&<>"']/g, (z) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[z]!);
 
+  // Zkušební účet (kód banky 0000 neexistuje – platba nikam neodejde): zákazník dostane upozornění.
+  const zkusebniUcet = nastaveni.ucet.trim().endsWith("/0000");
+  const UPOZORNENI = "Číslo účtu je zatím zkušební – prosím neplaťte, platební údaje vám pošleme e-mailem.";
+
   let kniha: Kniha;
   let misto: Misto | null = null;
 
@@ -191,7 +195,8 @@ if (okno) {
     const qr = platba() === "predem"
       ? `<h3 style="margin:24px 0 8px">Platba předem</h3>
          <p>Zaplaťte prosím <b>${kc(castka)}</b> na účet <b>${html(nastaveni.ucet)}</b>, variabilní symbol <b>${kniha.id}</b>.<br>Nebo naskenujte QR kód v aplikaci banky:</p>
-         <img src="${qrObrazek(castka)}" width="220" height="220" alt="QR kód pro platbu">`
+         <img src="${qrObrazek(castka)}" width="220" height="220" alt="QR kód pro platbu">
+         ${zkusebniUcet ? `<p style="color:#b42318"><b>${UPOZORNENI}</b></p>` : ""}`
       : "";
     const obsah = pro === "obchod"
       ? `<p><b>Nová objednávka z webu kniha4u.cz</b></p>${tabulka}`
@@ -257,6 +262,7 @@ if (okno) {
       : `Objednávku jsme přijali, potvrzení na ${email} se ale nepodařilo odeslat – ozveme se vám.`;
     const predem = platba() === "predem";
     $("#obj-platba").hidden = !predem;
+    $("#obj-zkusebni").hidden = !(predem && zkusebniUcet);
     if (predem) {
       const qr = qrcode(0, "M");
       qr.addData(spayd(castka));

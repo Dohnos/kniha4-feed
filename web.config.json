@@ -7,11 +7,11 @@
   },
   "objednavky": {
     "emailjs": {
-      "publicKey": "",
-      "serviceId": "",
-      "templateId": ""
+      "publicKey": "TJRmVM_YRqmfCKXKn",
+      "serviceId": "service_lz3m85n",
+      "templateId": "template_98po33e"
     },
-    "ucet": "",
+    "ucet": "123456789/0000",
     "doprava": {
       "zasilkovna": 59,
       "balikovna": 59,
@@ -19,6 +19,6 @@
       "dpd": 59,
       "gls": 59
     },
-    "dobirka": 0
+    "dobirka": 20
   }
 }
