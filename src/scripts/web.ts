@@ -135,8 +135,7 @@ document.querySelectorAll<HTMLButtonElement>("[data-sdilet]").forEach((tl) => {
 
 /* ---------- světlý / tmavý režim ---------- */
 
-const jeTmavy = () =>
-  document.documentElement.dataset.tema ? document.documentElement.dataset.tema === "tmavy" : matchMedia("(prefers-color-scheme: dark)").matches;
+const jeTmavy = () => document.documentElement.dataset.tema === "tmavy";
 
 document.querySelectorAll("[data-tema-prepinac]").forEach((tl) =>
   tl.addEventListener("click", () => {

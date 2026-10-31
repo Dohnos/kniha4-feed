@@ -2,7 +2,23 @@
   "site": "https://kniha4u.cz",
   "base": "/",
   "kontakt": {
-    "email": "",
+    "email": "kniha4u@seznam.cz",
     "telefon": ""
+  },
+  "objednavky": {
+    "emailjs": {
+      "publicKey": "",
+      "serviceId": "",
+      "templateId": ""
+    },
+    "ucet": "",
+    "doprava": {
+      "zasilkovna": 59,
+      "balikovna": 59,
+      "ppl": 59,
+      "dpd": 59,
+      "gls": 59
+    },
+    "dobirka": 0
   }
 }

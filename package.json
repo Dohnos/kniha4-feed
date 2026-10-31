@@ -16,6 +16,7 @@
     "barcode-detector": "^3.2.3",
     "fflate": "^0.8.3",
     "onnxruntime-web": "^1.31.1",
-    "paddleocr": "^1.2.0"
+    "paddleocr": "^1.2.0",
+    "qrcode-generator": "^2.0.4"
   }
 }

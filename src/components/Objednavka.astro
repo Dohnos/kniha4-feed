@@ -1,0 +1,86 @@
+---
+/**
+ * Okno „Mám zájem“ – objednávka knihy: kontakt, výdejní místo (mapa Zaslat), platba předem (QR) nebo
+ * na dobírku. Odesílá se přes EmailJS – jeden e-mail obchodu, druhý zákazníkovi (s QR platbou).
+ * Otevírá ho tlačítko s atributem data-objednat (údaje o knize v data-kniha).
+ */
+import Ikona from "./Ikona.astro";
+import { OBJEDNAVKY } from "../lib/web";
+
+const nastaveni = OBJEDNAVKY && {
+  ...OBJEDNAVKY.emailjs,
+  iban: OBJEDNAVKY.iban,
+  ucet: OBJEDNAVKY.ucet,
+  doprava: OBJEDNAVKY.doprava,
+  dobirka: OBJEDNAVKY.dobirka,
+  email: OBJEDNAVKY.email,
+};
+---
+
+<dialog class="objednavka" id="objednavka" aria-labelledby="obj-nadpis" data-nastaveni={JSON.stringify(nastaveni)}>
+  <form class="obj-formular" id="obj-formular" novalidate>
+    <header class="obj-hlava">
+      <h2 id="obj-nadpis">Objednat knihu</h2>
+      <button class="tl tl-kulate tl-obrys" type="button" data-obj-zavrit aria-label="Zavřít"><Ikona nazev="zavrit" velikost={18} /></button>
+    </header>
+
+    <div class="obj-kniha">
+      <img id="obj-obalka" alt="" hidden />
+      <div>
+        <strong id="obj-kniha-nazev"></strong>
+        <span id="obj-kniha-autor"></span>
+      </div>
+      <b id="obj-kniha-cena"></b>
+    </div>
+
+    <fieldset>
+      <legend>Kontakt</legend>
+      <label class="obj-pole"><span>Jméno a příjmení *</span><input name="jmeno" autocomplete="name" required /></label>
+      <div class="obj-radek">
+        <label class="obj-pole"><span>E-mail *</span><input name="email" type="email" autocomplete="email" inputmode="email" required /></label>
+        <label class="obj-pole"><span>Telefon *</span><input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required /></label>
+      </div>
+      <!-- Past na roboty: člověk pole nevidí ani nevyplní. -->
+      <input class="obj-past" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    </fieldset>
+
+    <fieldset>
+      <legend>Doprava</legend>
+      <div class="obj-misto" id="obj-misto" hidden></div>
+      <label class="obj-pole" id="obj-dopravce-pole" hidden><span>Dopravce na tomto místě</span><select id="obj-dopravce"></select></label>
+      <button class="tl tl-obrys obj-mapa-tl" type="button" id="obj-mapa"><Ikona nazev="mapa" velikost={18} /><span>Vybrat výdejní místo na mapě</span></button>
+      <small class="obj-napoveda">Zásilkovna, Balíkovna, PPL, DPD nebo GLS – vyberete na mapě.</small>
+    </fieldset>
+
+    <fieldset>
+      <legend>Platba</legend>
+      <label class="obj-volba"><input type="radio" name="platba" value="predem" checked /><span><strong>Předem převodem</strong><small>Po odeslání dostanete QR kód pro platbu.</small></span></label>
+      <label class="obj-volba"><input type="radio" name="platba" value="dobirka" /><span><strong>Na dobírku</strong><small id="obj-dobirka-popis">Zaplatíte při převzetí.</small></span></label>
+    </fieldset>
+
+    <label class="obj-pole"><span>Poznámka</span><textarea name="poznamka" rows="2" maxlength="600"></textarea></label>
+
+    <dl class="obj-souhrn" id="obj-souhrn"></dl>
+
+    <p class="obj-chyba" id="obj-chyba" role="alert" hidden></p>
+    <button class="tl obj-odeslat" type="submit" id="obj-odeslat"><Ikona nazev="mail" velikost={18} /><span>Odeslat objednávku</span></button>
+    <small class="obj-napoveda">Údaje použijeme jen k vyřízení objednávky. Potvrzení vám přijde e-mailem.</small>
+  </form>
+
+  <div class="obj-hotovo" id="obj-hotovo" hidden>
+    <header class="obj-hlava">
+      <h2>Děkujeme za objednávku</h2>
+      <button class="tl tl-kulate tl-obrys" type="button" data-obj-zavrit aria-label="Zavřít"><Ikona nazev="zavrit" velikost={18} /></button>
+    </header>
+    <p id="obj-hotovo-text"></p>
+    <div class="obj-platba" id="obj-platba" hidden>
+      <div class="obj-qr" id="obj-qr" role="img" aria-label="QR kód pro platbu"></div>
+      <dl id="obj-platba-udaje"></dl>
+    </div>
+    <button class="tl" type="button" data-obj-zavrit>Zavřít</button>
+  </div>
+</dialog>
+
+<script>
+  import "../scripts/objednavka.ts";
+</script>

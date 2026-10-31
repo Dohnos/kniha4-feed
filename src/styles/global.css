@@ -32,24 +32,7 @@
   color-scheme: light;
 }
 
-/* Tmavý režim: podle systému, dokud si návštěvník nevybere sám (atribut data-tema na <html>). */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-tema="svetly"]) {
-    --pozadi: #0c0c0c;
-    --plocha: #151514;
-    --plocha-2: #1f1f1d;
-    --text: #f2f1ec;
-    --slaby: #a4a39b;
-    --linka: #2a2a28;
-    --akcent: #f2f1ec;
-    --na-akcentu: #0c0c0c;
-    --stin: 0 1px 2px rgb(0 0 0 / 0.5), 0 10px 30px -14px rgb(0 0 0 / 0.8);
-    --stin-velky: 0 2px 6px rgb(0 0 0 / 0.5), 0 30px 60px -24px rgb(0 0 0 / 0.95);
-    color-scheme: dark;
-  }
-  :root:not([data-tema="svetly"]) .ikona-mesic { display: none; }
-  :root:not([data-tema="svetly"]) .ikona-slunce { display: inline; }
-}
+/* Tmavý režim jen na přání návštěvníka (přepínač nahoře → data-tema="tmavy" na <html>). Výchozí je světlý. */
 :root[data-tema="tmavy"] {
   --pozadi: #0c0c0c;
   --plocha: #151514;
@@ -1023,3 +1006,61 @@ button, input, select { font: inherit; color: inherit; }
 .hero-hledat > span:not(.tl) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .udaj-siroky { grid-column: span 2; }
 .udaj-siroky dd { overflow-wrap: normal; font-variant-numeric: tabular-nums; }
+
+/* ---------- objednávka („Mám zájem“) ---------- */
+.objednavka {
+  width: min(600px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: 0;
+  border: 1px solid var(--linka);
+  border-radius: var(--r-lg);
+  background: var(--plocha);
+  color: var(--text);
+  box-shadow: var(--stin-velky);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.objednavka::backdrop { background: rgb(0 0 0 / 0.45); backdrop-filter: blur(6px); }
+.objednavka[open] { animation: obj-otevrit 0.28s var(--pruzne); }
+@keyframes obj-otevrit { from { opacity: 0; transform: translateY(16px) scale(0.98); } }
+.obj-formular, .obj-hotovo { display: grid; gap: 16px; padding: 22px; }
+.obj-hlava { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.obj-hlava h2 { margin: 0; font-family: var(--pismo-nadpis); font-size: 1.5rem; font-weight: 600; }
+.obj-kniha { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 12px; border-radius: var(--r-md); background: var(--plocha-2); }
+.obj-kniha img { width: 52px; height: 76px; object-fit: cover; border-radius: 6px; }
+.obj-kniha strong, .obj-kniha span { display: block; }
+.obj-kniha span { color: var(--slaby); font-size: 0.9rem; }
+.obj-kniha b { font-size: 1.1rem; white-space: nowrap; }
+.objednavka fieldset { display: grid; gap: 10px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.objednavka legend { padding: 0 0 6px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slaby); }
+.obj-radek { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 520px) { .obj-radek { grid-template-columns: 1fr; } .obj-formular, .obj-hotovo { padding: 18px 16px; } }
+.obj-pole { display: grid; gap: 5px; min-width: 0; }
+.obj-pole > span { font-size: 0.85rem; font-weight: 600; color: var(--slaby); }
+.obj-pole input, .obj-pole select, .obj-pole textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--linka); border-radius: var(--r-sm);
+  background: var(--pozadi); color: var(--text); font: inherit; font-size: 1rem; outline: 0;
+}
+.obj-pole textarea { resize: vertical; }
+.obj-pole input:focus, .obj-pole select:focus, .obj-pole textarea:focus { border-color: var(--text); box-shadow: 0 0 0 4px color-mix(in srgb, var(--text) 9%, transparent); }
+.obj-past { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.obj-mapa-tl { justify-self: start; }
+.obj-misto { padding: 12px 14px; border-radius: var(--r-sm); border: 1px solid var(--text); background: var(--pozadi); font-size: 0.95rem; }
+.obj-volba { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--linka); border-radius: var(--r-sm); cursor: pointer; }
+.obj-volba:has(input:checked) { border-color: var(--text); background: var(--pozadi); }
+.obj-volba input { margin-top: 4px; accent-color: var(--akcent); }
+.obj-volba small { display: block; color: var(--slaby); }
+.obj-napoveda { color: var(--slaby); font-size: 0.85rem; }
+.obj-souhrn { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; margin: 0; padding: 14px; border-radius: var(--r-md); background: var(--plocha-2); }
+.obj-souhrn dt { color: var(--slaby); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.obj-souhrn dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.obj-souhrn dt:last-of-type, .obj-souhrn dd:last-of-type { padding-top: 8px; border-top: 1px solid var(--linka); color: var(--text); font-weight: 700; font-size: 1.1rem; }
+.obj-chyba { margin: 0; padding: 10px 14px; border-radius: var(--r-sm); background: color-mix(in srgb, #c0392b 12%, var(--plocha)); color: #b42318; font-weight: 600; }
+.obj-odeslat { width: 100%; padding-block: 15px; font-size: 1.05rem; }
+.obj-platba { display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; padding: 16px; border-radius: var(--r-md); background: var(--plocha-2); }
+@media (max-width: 520px) { .obj-platba { grid-template-columns: 1fr; justify-items: center; } }
+.obj-qr { width: 200px; padding: 8px; border-radius: var(--r-sm); background: #fff; }
+.obj-qr svg { display: block; width: 100%; height: auto; }
+.obj-platba dl { display: grid; gap: 2px 12px; margin: 0; }
+.obj-platba dt { color: var(--slaby); font-size: 0.85rem; }
+.obj-platba dd { margin: 0 0 8px; font-weight: 700; font-size: 1.1rem; }

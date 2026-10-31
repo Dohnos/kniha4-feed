@@ -9,6 +9,34 @@ export const POPIS_WEBU =
 /** Kontakt z `web.config.json`. Když je prázdný, tlačítko „Mám zájem“ se nezobrazuje. */
 export const KONTAKT: { email?: string; telefon?: string } = (nastaveni as { kontakt?: object }).kontakt ?? {};
 
+/** Číslo účtu „[předčíslí-]číslo/kód banky“ → IBAN (CZ, kontrolní číslice mod 97). Neplatné → "". */
+export function ucetNaIban(ucet: string): string {
+  const m = ucet.replace(/\s/g, "").match(/^(?:(\d{1,6})-)?(\d{2,10})\/(\d{4})$/);
+  if (!m) return "";
+  const bban = m[3] + (m[1] ?? "").padStart(6, "0") + m[2].padStart(10, "0");
+  const kontrola = 98n - (BigInt(`${bban}123500`) % 97n); // „CZ00“ → C=12, Z=35, 00
+  return `CZ${String(kontrola).padStart(2, "0")}${bban}`;
+}
+
+type Objednavky = {
+  emailjs: { publicKey: string; serviceId: string; templateId: string };
+  ucet: string;
+  doprava: Record<string, number>;
+  dobirka: number;
+};
+const objednavky = (nastaveni as { objednavky?: Objednavky }).objednavky;
+
+/**
+ * Objednávky z webu (formulář „Mám zájem“): EmailJS, účet pro platbu předem a ceny dopravy.
+ * Aktivní, jen když je vyplněno EmailJS i platné číslo účtu – jinak tlačítko otevře e-mail.
+ */
+export const OBJEDNAVKY = objednavky && {
+  ...objednavky,
+  iban: ucetNaIban(objednavky.ucet),
+  email: KONTAKT.email ?? "",
+  aktivni: Boolean(objednavky.emailjs.publicKey && objednavky.emailjs.serviceId && objednavky.emailjs.templateId && ucetNaIban(objednavky.ucet)),
+};
+
 const base = () => import.meta.env.BASE_URL.replace(/\/+$/, "");
 
 /** Odkaz uvnitř webu, vždy s lomítkem na konci (stránky jsou složky). */

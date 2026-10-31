@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Hledani from "../components/Hledani.astro";
 import Ikona, { type NazevIkony } from "../components/Ikona.astro";
 import { kolekceCen, vygenerovano } from "../lib/knihy";
-import { NAZEV_WEBU, POPIS_WEBU, absolutni, odkaz, soubor } from "../lib/web";
+import { KONTAKT, NAZEV_WEBU, POPIS_WEBU, absolutni, odkaz, soubor } from "../lib/web";
 
 interface Props {
   titulek?: string;
@@ -34,7 +34,7 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <script is:inline>
-      // Režim nastavit ještě před vykreslením (bez probliknutí). Bez volby se řídí systémem.
+      // Režim nastavit ještě před vykreslením (bez probliknutí). Výchozí je světlý, tmavý si volí návštěvník.
       try {
         const t = localStorage.getItem("tema");
         if (t) document.documentElement.dataset.tema = t;
@@ -48,8 +48,7 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
     <link rel="icon" href={soubor("favicon.svg")} type="image/svg+xml" />
     <link rel="apple-touch-icon" href={soubor("apple-touch-icon.png")} />
     <link rel="manifest" href={soubor("manifest.webmanifest")} />
-    <meta name="theme-color" content="#f5f4f0" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0c0c0c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f4f0" />
 
     <meta property="og:type" content={ogTyp} />
     <meta property="og:site_name" content={NAZEV_WEBU} />
@@ -112,6 +111,7 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
           <div>
             <p class="paticka-velky">{NAZEV_WEBU}</p>
             <p>Antikvariát s tisíci knih skladem. Romány, historie, odborná literatura i sběratelské kousky.</p>
+            {KONTAKT.email && <p><a href={`mailto:${KONTAKT.email}`}>{KONTAKT.email}</a></p>}
           </div>
           <nav aria-label="Procházet">
             <h2>Procházet</h2>
