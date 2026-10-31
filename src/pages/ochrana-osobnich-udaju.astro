@@ -1,0 +1,80 @@
+---
+/** Zásady ochrany osobních údajů (nařízení EU 2016/679 – GDPR, zákon č. 110/2019 Sb.). */
+import Zaklad from "../layouts/Zaklad.astro";
+import { KONTAKT, NAZEV_WEBU, identitaProvozovatele, odkaz } from "../lib/web";
+
+const email = KONTAKT.email ?? "";
+const ucinnost = "1. 11. 2026";
+---
+
+<Zaklad titulek="Ochrana osobních údajů" popis={`Jak antikvariát ${NAZEV_WEBU} zpracovává osobní údaje zákazníků (GDPR).`}>
+  <article class="obal pravni">
+    <p class="stitek-nad">Platné od {ucinnost}</p>
+    <h1 class="nadpis-l">Ochrana osobních údajů</h1>
+
+    <section class="pravni-karta">
+      <h2>Správce údajů</h2>
+      <p><strong>{identitaProvozovatele()}</strong><br />E-mail: <a href={`mailto:${email}`}>{email}</a></p>
+      <p>S jakýmkoli dotazem k vašim údajům nám napište – odpovíme do 30 dnů.</p>
+    </section>
+
+    <section>
+      <h2>Jaké údaje a proč</h2>
+      <div class="pravni-tabulka">
+        <table>
+          <thead><tr><th>Údaje</th><th>Účel</th><th>Právní základ</th><th>Jak dlouho</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Jméno, e-mail, telefon, vybrané výdejní místo, poznámka, objednaná kniha a cena</td>
+              <td>Vyřízení objednávky – potvrzení, doručení, platba, komunikace s vámi</td>
+              <td>Plnění smlouvy (čl. 6 odst. 1 písm. b) GDPR)</td>
+              <td>Po dobu vyřízení objednávky a záruky (12 měsíců), poté nejvýše 3 roky kvůli případným nárokům</td>
+            </tr>
+            <tr>
+              <td>Údaje na účetních a daňových dokladech</td>
+              <td>Splnění zákonných povinností</td>
+              <td>Právní povinnost (čl. 6 odst. 1 písm. c) GDPR)</td>
+              <td>Po dobu stanovenou zákonem (až 10 let)</td>
+            </tr>
+            <tr>
+              <td>E-mailová komunikace</td>
+              <td>Odpovědi na dotazy, reklamace, odstoupení od smlouvy</td>
+              <td>Plnění smlouvy, oprávněný zájem (čl. 6 odst. 1 písm. b, f) GDPR)</td>
+              <td>Po dobu nezbytnou k vyřízení, nejvýše 3 roky</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Údaje nepoužíváme k reklamě, neprodáváme je a nerozhodujeme o vás automatizovaně. Uvedení údajů je nutné k uzavření smlouvy – bez nich objednávku vyřídit nemůžeme.</p>
+    </section>
+
+    <section>
+      <h2>Kdo údaje může vidět (příjemci a zpracovatelé)</h2>
+      <ul>
+        <li><strong>EmailJS</strong> (emailjs.com) – odeslání objednávky z formuláře e-mailem. Poskytovatel může údaje zpracovávat i mimo EU; předání probíhá jen se zárukami podle GDPR.</li>
+        <li><strong>Seznam.cz, a.s.</strong> – e-mailová schránka, do které objednávky přicházejí.</li>
+        <li><strong>Dopravce</strong> podle vaší volby – <strong>Česká pošta, s.p.</strong> (Balíkovna) nebo <strong>Zásilkovna s.r.o.</strong> – jméno, telefon a e-mail kvůli doručení.</li>
+        <li><strong>Zaslat.cz</strong> – mapa výdejních míst v objednávce. Do mapy žádné osobní údaje nezadáváte.</li>
+        <li><strong>GitHub</strong> (hosting webu) a <strong>Cloudinary</strong> (obrázky knih) – technické údaje o návštěvě (např. IP adresa) v provozních záznamech.</li>
+        <li>QR kód pro platbu v potvrzovacím e-mailu se načítá ze služby <strong>Paylibo</strong> – obsahuje jen číslo našeho účtu, částku a variabilní symbol.</li>
+        <li>Účetní, úřady a soudy – jen pokud to vyžaduje zákon.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Cookies a úložiště v prohlížeči</h2>
+      <p>Web <strong>nepoužívá žádné cookies</strong> ani měřicí či reklamní nástroje. V úložišti vašeho prohlížeče (localStorage) se ukládá jen to, co si sami nastavíte: <strong>světlý / tmavý vzhled</strong> a pro pohodlí <strong>jméno, e-mail a telefon z objednávky</strong>, aby se příště vyplnily samy. Tyto údaje zůstávají jen ve vašem zařízení a smažete je vymazáním dat stránky v prohlížeči. Mapa výdejních míst se načte až po kliknutí na „Vybrat výdejní místo“.</p>
+    </section>
+
+    <section class="pravni-karta">
+      <h2>Vaše práva</h2>
+      <ul>
+        <li>na <strong>přístup</strong> k údajům, jejich <strong>opravu</strong> a <strong>výmaz</strong>,</li>
+        <li>na <strong>omezení zpracování</strong> a <strong>přenositelnost</strong> údajů,</li>
+        <li>vznést <strong>námitku</strong> proti zpracování založenému na oprávněném zájmu,</li>
+        <li>podat <strong>stížnost u dozorového úřadu</strong> – Úřad pro ochranu osobních údajů, Pplk. Sochora 27, 170 00 Praha 7 (<a href="https://uoou.gov.cz" rel="noopener">uoou.gov.cz</a>).</li>
+      </ul>
+      <p>Práva uplatníte e-mailem na <a href={`mailto:${email}`}>{email}</a>. Další informace najdete v <a href={odkaz("obchodni-podminky")}>obchodních podmínkách</a>.</p>
+    </section>
+  </article>
+</Zaklad>

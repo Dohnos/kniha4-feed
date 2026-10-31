@@ -1,0 +1,103 @@
+---
+/**
+ * Obchodní podmínky (zákon č. 89/2012 Sb., občanský zákoník, a č. 634/1992 Sb., o ochraně spotřebitele).
+ * Ceny dopravy a dobírky se berou z web.config.json, aby vždy odpovídaly objednávkovému formuláři.
+ */
+import Zaklad from "../layouts/Zaklad.astro";
+import { KONTAKT, NAZEV_WEBU, OBJEDNAVKY, PROVOZOVATEL, formatCena, identitaProvozovatele, odkaz } from "../lib/web";
+
+const DOPRAVCI: Record<string, string> = { balikovna: "Balíkovna (Česká pošta) – výdejní místo nebo box", zasilkovna: "Zásilkovna – výdejní místo nebo Z-BOX" };
+const doprava = Object.entries(OBJEDNAVKY?.doprava ?? {});
+const email = KONTAKT.email ?? "";
+const ucinnost = "1. 11. 2026";
+---
+
+<Zaklad titulek="Obchodní podmínky" popis={`Obchodní podmínky antikvariátu ${NAZEV_WEBU} – objednávka, platba, doprava, odstoupení od smlouvy a reklamace.`}>
+  <article class="obal pravni">
+    <p class="stitek-nad">Platné od {ucinnost}</p>
+    <h1 class="nadpis-l">Obchodní podmínky</h1>
+
+    <section class="pravni-karta">
+      <h2>1. Prodávající</h2>
+      <p>
+        <strong>{identitaProvozovatele()}</strong><br />
+        E-mail: <a href={`mailto:${email}`}>{email}</a>{KONTAKT.telefon && <>, telefon: {KONTAKT.telefon}</>}<br />
+        Internetový obchod: <a href={odkaz()}>kniha4u.cz</a>
+      </p>
+      <p>Tyto podmínky upravují prodej knih přes internetový obchod {NAZEV_WEBU} mezi prodávajícím a kupujícím. Kupující, který je spotřebitelem, má navíc všechna práva podle zákona – podmínky je nemohou omezit.</p>
+    </section>
+
+    <section>
+      <h2>2. Zboží a ceny</h2>
+      <ul>
+        <li>Nabízíme převážně <strong>použité (antikvariátní) knihy</strong>. Stav knihy odpovídá jejímu stáří a předchozímu používání; drobné známky opotřebení nejsou vadou.</li>
+        <li>Každou knihu máme obvykle v jednom kusu. Nabídka na webu se aktualizuje průběžně – kniha mohla být mezitím prodána jinak; v tom případě vás neprodleně kontaktujeme.</li>
+        <li>Ceny jsou <strong>konečné</strong>{PROVOZOVATEL.platceDph ? " včetně DPH" : ""}. K ceně se připočítává doprava, případně dobírka – celková cena se zobrazí před odesláním objednávky.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Objednávka a uzavření smlouvy</h2>
+      <ul>
+        <li>Objednávku odešlete tlačítkem <strong>„Mám zájem“</strong> u knihy a vyplněním formuláře. Před odesláním vidíte všechny údaje, dopravu, způsob platby a celkovou cenu a můžete je změnit.</li>
+        <li>Odesláním tlačítkem <strong>„Objednat s povinností platby“</strong> nám zasíláte závaznou objednávku. Hned poté vám e-mailem přijde <strong>potvrzení o přijetí objednávky</strong>.</li>
+        <li><strong>Kupní smlouva vzniká</strong> naším potvrzením objednávky (e-mailem nebo telefonicky), nejpozději odesláním knihy. Do té doby můžeme objednávku odmítnout, např. když už byla kniha prodána.</li>
+        <li>Smlouvu uzavíráme v češtině. Objednávky archivujeme v elektronické podobě; nejsou přístupné třetím osobám.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Platba</h2>
+      <ul>
+        <li><strong>Předem převodem</strong> na účet <strong>{OBJEDNAVKY?.ucet}</strong> – variabilním symbolem je kód knihy. Údaje a QR kód pro platbu dostanete po odeslání objednávky. Knihu odešleme po připsání platby.</li>
+        <li><strong>Na dobírku</strong> – platíte při převzetí zásilky{OBJEDNAVKY?.dobirka ? <>, příplatek za dobírku je <strong>{formatCena(OBJEDNAVKY.dobirka)}</strong></> : ""}.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Doprava a dodání</h2>
+      <ul>
+        {doprava.map(([d, cena]) => <li>{DOPRAVCI[d] ?? d}: <strong>{formatCena(cena)}</strong></li>)}
+      </ul>
+      <p>Výdejní místo vyberete na mapě v objednávce. Knihu odesíláme zpravidla do 3 pracovních dnů od potvrzení objednávky (u platby předem od připsání platby). Nebezpečí škody na knize přechází na kupujícího jejím převzetím.</p>
+    </section>
+
+    <section class="pravni-karta" id="odstoupeni">
+      <h2>6. Odstoupení od smlouvy (14 dní)</h2>
+      <ul>
+        <li>Jste-li spotřebitel, můžete od smlouvy <strong>odstoupit bez udání důvodu do 14 dnů od převzetí knihy</strong>. Stačí nám v této lhůtě poslat jednoznačné prohlášení – e-mailem na <a href={`mailto:${email}`}>{email}</a>, můžete využít vzorový formulář níže.</li>
+        <li>Knihu nám vraťte do 14 dnů od odstoupení. <strong>Náklady na vrácení nesete vy.</strong> Knihu nezasílejte na dobírku.</li>
+        <li>Peníze včetně ceny nejlevnějšího nabízeného způsobu dopravy vrátíme do 14 dnů od odstoupení, stejným způsobem, jakým jste platili (nebo jinak, pokud s tím souhlasíte). Můžeme je vrátit až po obdržení knihy nebo dokladu o jejím odeslání.</li>
+        <li>Odpovídáte za snížení hodnoty knihy, které vzniklo nakládáním s ní jinak, než je nutné k seznámení se s její povahou a vlastnostmi.</li>
+      </ul>
+      <h3>Vzorový formulář pro odstoupení od smlouvy</h3>
+      <div class="pravni-formular">
+        <p>Adresát: {identitaProvozovatele()}, e-mail: {email}</p>
+        <p>Oznamuji, že tímto odstupuji od smlouvy o nákupu tohoto zboží: …………… (název knihy, kód knihy)</p>
+        <p>Datum objednání / datum převzetí: ……………</p>
+        <p>Jméno a příjmení: ……………<br />Adresa: ……………<br />Číslo účtu pro vrácení peněz: ……………</p>
+        <p>Datum: …………… Podpis (jen u listinné podoby): ……………</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Reklamace (práva z vadného plnění)</h2>
+      <ul>
+        <li>Knihu si při převzetí prohlédněte. Vadu (např. chybějící strany nebo poškození, které nebylo uvedeno) nám oznamte bez zbytečného odkladu e-mailem na <a href={`mailto:${email}`}>{email}</a>, ideálně s fotografií.</li>
+        <li>Neodpovídáme za vady odpovídající míře používání nebo opotřebení, které kniha měla při převzetí – u antikvariátních knih jde o běžné známky stáří.</li>
+        <li>U použitého zboží lze práva z vadného plnění uplatnit do <strong>12 měsíců od převzetí</strong>.</li>
+        <li>Reklamaci vyřídíme bez zbytečného odkladu, nejpozději do 30 dnů. Protože jde většinou o jedinečný kus, řešíme vadu zpravidla slevou z ceny, nebo odstoupením od smlouvy a vrácením peněz.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Mimosoudní řešení sporů a dozor</h2>
+      <p>Nepodaří-li se spor vyřešit dohodou, můžete se jako spotřebitel obrátit na <strong>Českou obchodní inspekci</strong> (<a href="https://coi.gov.cz/informace-o-adr/" rel="noopener">coi.gov.cz/informace-o-adr</a>), která je subjektem mimosoudního řešení spotřebitelských sporů. Dozor nad dodržováním povinností vykonává Česká obchodní inspekce (<a href="https://coi.gov.cz" rel="noopener">coi.gov.cz</a>), v oblasti ochrany osobních údajů Úřad pro ochranu osobních údajů.</p>
+    </section>
+
+    <section>
+      <h2>9. Závěrečná ustanovení</h2>
+      <p>Osobní údaje zpracováváme podle <a href={odkaz("ochrana-osobnich-udaju")}>Zásad ochrany osobních údajů</a>. Pro vztahy neupravené těmito podmínkami platí právní řád České republiky. Podmínky můžeme měnit; pro objednávku platí znění účinné v době jejího odeslání.</p>
+    </section>
+  </article>
+</Zaklad>

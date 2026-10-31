@@ -9,6 +9,15 @@ export const POPIS_WEBU =
 /** Kontakt z `web.config.json`. Když je prázdný, tlačítko „Mám zájem“ se nezobrazuje. */
 export const KONTAKT: { email?: string; telefon?: string } = (nastaveni as { kontakt?: object }).kontakt ?? {};
 
+/** Provozovatel e-shopu (obchodní podmínky, ochrana údajů, patička, e-maily). Prázdné údaje se nevypisují. */
+export const PROVOZOVATEL: { jmeno: string; ico: string; adresa: string; platceDph: boolean } = {
+  jmeno: "", ico: "", adresa: "", platceDph: false,
+  ...(nastaveni as { provozovatel?: object }).provozovatel,
+};
+/** „Jan Novák, IČO 12345678, Ulice 1, 110 00 Praha“ – jen vyplněné části. */
+export const identitaProvozovatele = () =>
+  [PROVOZOVATEL.jmeno || NAZEV_WEBU, PROVOZOVATEL.ico && `IČO ${PROVOZOVATEL.ico}`, PROVOZOVATEL.adresa].filter(Boolean).join(", ");
+
 /** Číslo účtu „[předčíslí-]číslo/kód banky“ → IBAN (CZ, kontrolní číslice mod 97). Neplatné → "". */
 export function ucetNaIban(ucet: string): string {
   const m = ucet.replace(/\s/g, "").match(/^(?:(\d{1,6})-)?(\d{2,10})\/(\d{4})$/);

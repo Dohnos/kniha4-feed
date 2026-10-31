@@ -9,7 +9,7 @@ export const GET: APIRoute = ({ site }) => {
     Array.from({ length: Math.ceil(pocet / NA_STRANKU) }, (_, i) => odkaz(i === 0 ? zaklad : `${zaklad}/${i + 1}`));
 
   const adresy: [string, string][] = [
-    ...[odkaz(), odkaz("autori"), odkaz("nakladatelstvi")].map((a) => [a, dnes] as [string, string]),
+    ...[odkaz(), odkaz("autori"), odkaz("nakladatelstvi"), odkaz("obchodni-podminky"), odkaz("ochrana-osobnich-udaju")].map((a) => [a, dnes] as [string, string]),
     ...strany("katalog", knihy.length).map((a) => [a, dnes] as [string, string]),
     ...kolekceCen.flatMap((k) => strany(`cena/${k.slug}`, k.knihy.length)).map((a) => [a, dnes] as [string, string]),
     ...kolekceObdobi.flatMap((k) => strany(`vydani/${k.slug}`, k.knihy.length)).map((a) => [a, dnes] as [string, string]),

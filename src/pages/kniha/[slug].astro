@@ -36,7 +36,7 @@ const kratce = [kniha.autor, kniha.nakladatel, kniha.rok].filter(Boolean).join("
 const popis = zkratit(kniha.popis || `${kniha.nazev}${kratce ? ` (${kratce})` : ""} – kniha skladem v antikvariátu ${NAZEV_WEBU} za ${formatCena(kniha.cena)}.`);
 // „Mám zájem“: s nastaveným EmailJS a účtem otevře objednávkový formulář, jinak e-mail / telefon.
 const objednat = OBJEDNAVKY?.aktivni
-  ? JSON.stringify({ id: kniha.id, nazev: kniha.nazev, autor: kniha.autor, cena: kniha.cena, url, obalka: kniha.obrazek })
+  ? JSON.stringify({ id: kniha.id, nazev: kniha.nazev, autor: kniha.autor, cena: kniha.cena, url, obalka: kniha.obrazek, box: kniha.box ?? "" })
   : null;
 const zajem = KONTAKT.email
   ? `mailto:${KONTAKT.email}?subject=${encodeURIComponent(`Zájem o knihu: ${kniha.nazev} (kód ${kniha.id})`)}`

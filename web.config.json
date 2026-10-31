@@ -5,19 +5,22 @@
     "email": "kniha4u@seznam.cz",
     "telefon": ""
   },
+  "provozovatel": {
+    "jmeno": "",
+    "ico": "",
+    "adresa": "",
+    "platceDph": false
+  },
   "objednavky": {
     "emailjs": {
       "publicKey": "TJRmVM_YRqmfCKXKn",
       "serviceId": "service_lz3m85n",
       "templateId": "template_98po33e"
     },
-    "ucet": "123456789/0000",
+    "ucet": "114228230/0100",
     "doprava": {
-      "zasilkovna": 59,
-      "balikovna": 59,
-      "ppl": 59,
-      "dpd": 59,
-      "gls": 59
+      "balikovna": 65,
+      "zasilkovna": 90
     },
     "dobirka": 20
   }

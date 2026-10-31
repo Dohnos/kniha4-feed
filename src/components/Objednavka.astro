@@ -5,9 +5,15 @@
  * Otevírá ho tlačítko s atributem data-objednat (údaje o knize v data-kniha).
  */
 import Ikona from "./Ikona.astro";
-import { OBJEDNAVKY } from "../lib/web";
+import { OBJEDNAVKY, absolutni, formatCena, identitaProvozovatele, odkaz } from "../lib/web";
 
+const NAZVY: Record<string, string> = { zasilkovna: "Zásilkovna", balikovna: "Balíkovna" };
+const dopravci = Object.entries(OBJEDNAVKY?.doprava ?? {}).map(([d, c]) => `${NAZVY[d] ?? d} ${formatCena(c)}`).join(" · ");
 const nastaveni = OBJEDNAVKY && {
+  podminky: absolutni(odkaz("obchodni-podminky"), Astro.site),
+  ochrana: absolutni(odkaz("ochrana-osobnich-udaju"), Astro.site),
+  web: absolutni(odkaz(), Astro.site),
+  prodavajici: identitaProvozovatele(),
   ...OBJEDNAVKY.emailjs,
   iban: OBJEDNAVKY.iban,
   ucet: OBJEDNAVKY.ucet,
@@ -49,7 +55,7 @@ const nastaveni = OBJEDNAVKY && {
       <div class="obj-misto" id="obj-misto" hidden></div>
       <label class="obj-pole" id="obj-dopravce-pole" hidden><span>Dopravce na tomto místě</span><select id="obj-dopravce"></select></label>
       <button class="tl tl-obrys obj-mapa-tl" type="button" id="obj-mapa"><Ikona nazev="mapa" velikost={18} /><span>Vybrat výdejní místo na mapě</span></button>
-      <small class="obj-napoveda">Zásilkovna, Balíkovna, PPL, DPD nebo GLS – vyberete na mapě.</small>
+      <small class="obj-napoveda">{dopravci} – výdejní místo vyberete na mapě.</small>
     </fieldset>
 
     <fieldset>
@@ -62,9 +68,17 @@ const nastaveni = OBJEDNAVKY && {
 
     <dl class="obj-souhrn" id="obj-souhrn"></dl>
 
+    <label class="obj-souhlas">
+      <input type="checkbox" name="souhlas" required />
+      <span>Souhlasím s <a href={odkaz("obchodni-podminky")} target="_blank">obchodními podmínkami</a> a beru na vědomí <a href={odkaz("ochrana-osobnich-udaju")} target="_blank">zpracování osobních údajů</a> za účelem vyřízení objednávky.</span>
+    </label>
+
     <p class="obj-chyba" id="obj-chyba" role="alert" hidden></p>
-    <button class="tl obj-odeslat" type="submit" id="obj-odeslat"><Ikona nazev="mail" velikost={18} /><span>Odeslat objednávku</span></button>
-    <small class="obj-napoveda">Údaje použijeme jen k vyřízení objednávky. Potvrzení vám přijde e-mailem.</small>
+    <button class="tl obj-odeslat" type="submit" id="obj-odeslat"><Ikona nazev="ok" velikost={18} /><span>Objednat s povinností platby</span></button>
+    <small class="obj-napoveda">
+      Jako spotřebitel můžete do 14 dnů od převzetí od smlouvy odstoupit (<a href={odkaz("obchodni-podminky") + "#odstoupeni"} target="_blank">jak na to</a>).
+      Prodávající: {identitaProvozovatele()}.
+    </small>
   </form>
 
   <div class="obj-hotovo" id="obj-hotovo" hidden>

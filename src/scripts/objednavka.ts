@@ -9,8 +9,9 @@ import qrcode from "qrcode-generator";
 type Nastaveni = {
   publicKey: string; serviceId: string; templateId: string;
   iban: string; ucet: string; doprava: Record<string, number>; dobirka: number; email: string;
+  podminky: string; ochrana: string; web: string; prodavajici: string;
 };
-type Kniha = { id: number; nazev: string; autor: string; cena: number; url: string; obalka: string };
+type Kniha = { id: number; nazev: string; autor: string; cena: number; url: string; obalka: string; box: string };
 type Misto = { id: number; name: string; street: string; city: string; zip: string; is_locker?: number; is_post_office?: number; carriers: Record<string, { code: string }> };
 
 const okno = document.querySelector<HTMLDialogElement>("#objednavka");
@@ -179,30 +180,117 @@ if (okno) {
 
   /* ---------- e-maily ---------- */
 
+  /*
+   * E-maily ve stylu webu: krémové pozadí, bílá karta se zakulacenými rohy, nadpisy patkovým písmem,
+   * černá „pilulková“ tlačítka. Tabulky a styly přímo v prvcích – tak to zobrazí všechny poštovní programy.
+   */
+  const BARVY = { pozadi: "#f5f4f0", plocha: "#ffffff", panel: "#f5f4f0", linka: "#dfded8", text: "#0c0c0c", slaby: "#67665f" };
+  const PISMO = "-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+  const NADPIS = "Georgia,'Times New Roman',serif";
+
+  const tlacitko = (href: string, text: string) =>
+    `<a href="${html(href)}" style="display:inline-block;padding:13px 26px;border-radius:999px;background:${BARVY.text};color:#fafaf7;font-weight:700;font-size:15px;text-decoration:none">${text}</a>`;
+  const radek = (popis: string, hodnota: string, posledni = false) =>
+    `<tr><td style="padding:10px 0;${posledni ? "" : `border-bottom:1px solid ${BARVY.linka};`}color:${BARVY.slaby};font-size:14px;vertical-align:top;width:42%">${popis}</td>
+     <td style="padding:10px 0;${posledni ? "" : `border-bottom:1px solid ${BARVY.linka};`}font-size:15px;vertical-align:top">${hodnota}</td></tr>`;
+  const panel = (obsah: string) =>
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BARVY.panel};border-radius:18px"><tr><td style="padding:6px 20px">
+       <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${obsah}</table></td></tr></table>`;
+
+  /** Karta knihy: obálka + název, autor, kód. */
+  const kartaKnihy = () =>
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BARVY.linka};border-radius:18px"><tr>
+      ${kniha.obalka ? `<td style="padding:14px 0 14px 14px;width:64px"><img src="${html(kniha.obalka)}" width="64" alt="" style="display:block;width:64px;border-radius:8px"></td>` : ""}
+      <td style="padding:14px 16px">
+        <a href="${html(kniha.url)}" style="color:${BARVY.text};font-family:${NADPIS};font-size:19px;font-weight:600;text-decoration:none">${html(kniha.nazev)}</a>
+        ${kniha.autor ? `<div style="color:${BARVY.slaby};font-size:14px;margin-top:2px">${html(kniha.autor)}</div>` : ""}
+        <div style="color:${BARVY.slaby};font-size:13px;margin-top:6px">Kód knihy ${kniha.id}</div>
+      </td>
+      <td style="padding:14px 16px 14px 0;text-align:right;font-weight:700;font-size:16px;white-space:nowrap">${kc(kniha.cena)}</td>
+    </tr></table>`;
+
+  /** Obal e-mailu: logo, karta s obsahem, patička s prodávajícím a odkazy na podmínky. */
+  const obalEmailu = (obsah: string, paticka: string) =>
+    `<div style="margin:0;padding:24px 12px;background:${BARVY.pozadi};font-family:${PISMO};color:${BARVY.text};line-height:1.55">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto">
+        <tr><td style="padding:4px 8px 18px"><a href="${html(nastaveni.web)}" style="color:${BARVY.text};font-family:${NADPIS};font-size:26px;font-weight:600;text-decoration:none">Kniha4U</a>
+          <span style="color:${BARVY.slaby};font-size:13px;margin-left:6px">antikvariát</span></td></tr>
+        <tr><td style="background:${BARVY.plocha};border:1px solid ${BARVY.linka};border-radius:28px;padding:30px 28px">${obsah}</td></tr>
+        <tr><td style="padding:20px 12px;color:${BARVY.slaby};font-size:12px;line-height:1.6;text-align:center">${paticka}</td></tr>
+      </table>
+    </div>`;
+
   function obsahEmailu(pro: "obchod" | "zakaznik") {
     const z = { jmeno: pole("jmeno").value.trim(), email: pole("email").value.trim(), telefon: pole("telefon").value.trim(), poznamka: pole("poznamka").value.trim() };
     const castka = celkem();
-    const zpusob = platba() === "predem" ? `Platba PŘEDEM převodem (VS ${kniha.id})` : `Platba na DOBÍRKU${nastaveni.dobirka ? ` (+ ${kc(nastaveni.dobirka)})` : ""}`;
-    const r = (popis: string, hodnota: string) => `<tr><td style="padding:4px 12px 4px 0;color:#67665f;vertical-align:top">${popis}</td><td style="padding:4px 0">${hodnota}</td></tr>`;
-    const tabulka = `<table style="border-collapse:collapse;font-size:15px">
-      ${r("Kniha", `<a href="${html(kniha.url)}">${html(kniha.nazev)}</a>${kniha.autor ? ` – ${html(kniha.autor)}` : ""} (kód ${kniha.id}) – ${kc(kniha.cena)}`)}
-      ${r("Celková cena objednávky", `<b>${castka},- Kč</b>`)}
-      ${r("Doprava", `${html(popisMista())} – ${kc(cenaDopravy())}`)}
-      ${r("Zvolený způsob platby", zpusob)}
-      ${r("Fakturační adresa", `${html(z.jmeno)}<br>${html(z.telefon)}<br>${html(z.email)}`)}
-      ${z.poznamka ? r("Poznámka", html(z.poznamka).replace(/\n/g, "<br>")) : ""}
-    </table>`;
-    const qr = platba() === "predem"
-      ? `<h3 style="margin:24px 0 8px">Platba předem</h3>
-         <p>Zaplaťte prosím <b>${kc(castka)}</b> na účet <b>${html(nastaveni.ucet)}</b>, variabilní symbol <b>${kniha.id}</b>.<br>Nebo naskenujte QR kód v aplikaci banky:</p>
-         <img src="${qrObrazek(castka)}" width="220" height="220" alt="QR kód pro platbu">
-         ${zkusebniUcet ? `<p style="color:#b42318"><b>${UPOZORNENI}</b></p>` : ""}`
-      : "";
-    const obsah = pro === "obchod"
-      ? `<p><b>Nová objednávka z webu kniha4u.cz</b></p>${tabulka}`
-      : `<p>Dobrý den,</p><p>děkujeme za objednávku v antikvariátu Kniha4U. Shrnutí:</p>${tabulka}${qr}
-         <p style="margin-top:24px">Knihu odešleme ${platba() === "predem" ? "po připsání platby" : "co nejdříve"}. S dotazy odpovězte na tento e-mail.<br>Kniha4U · <a href="mailto:${html(nastaveni.email)}">${html(nastaveni.email)}</a></p>`;
-    return { z, obsah: `<div style="font-family:Arial,sans-serif;color:#0c0c0c;line-height:1.5">${obsah}</div>` };
+    const predem = platba() === "predem";
+    const zpusob = predem ? `Platba PŘEDEM převodem (VS ${kniha.id})` : `Platba na DOBÍRKU${nastaveni.dobirka ? ` (+ ${kc(nastaveni.dobirka)})` : ""}`;
+    const kontakt = `${html(z.jmeno)}<br>${html(z.telefon)}<br><a href="mailto:${html(z.email)}" style="color:${BARVY.text}">${html(z.email)}</a>`;
+    const poznamka = z.poznamka ? html(z.poznamka).replace(/\n/g, "<br>") : "";
+    const pravni = `${html(nastaveni.prodavajici)} · <a href="mailto:${html(nastaveni.email)}" style="color:${BARVY.slaby}">${html(nastaveni.email)}</a><br>
+      <a href="${html(nastaveni.podminky)}" style="color:${BARVY.slaby}">Obchodní podmínky</a> ·
+      <a href="${html(nastaveni.podminky)}#odstoupeni" style="color:${BARVY.slaby}">Odstoupení od smlouvy</a> ·
+      <a href="${html(nastaveni.ochrana)}" style="color:${BARVY.slaby}">Ochrana osobních údajů</a>`;
+
+    if (pro === "obchod") {
+      // Kde knihu najít – hned pod nadpisem: „BOX111 | Vyšší život“
+      const umisteni = `${kniha.box || "bez boxu"} | ${kniha.nazev}`;
+      return {
+        z,
+        obsah: obalEmailu(
+          `<div style="display:inline-block;padding:6px 14px;border-radius:999px;background:${BARVY.panel};font-size:13px;font-weight:700;letter-spacing:.02em">Nová objednávka z webu kniha4u.cz</div>
+           <div style="margin:14px 0 20px;padding:16px 20px;border-radius:18px;background:${BARVY.text};color:#fafaf7;font-size:20px;font-weight:700">${html(umisteni)}</div>
+           ${kartaKnihy()}
+           <div style="height:18px"></div>
+           ${panel(
+             radek("Celková cena objednávky", `<b style="font-size:17px">${castka},- Kč</b>`) +
+             radek("Doprava", `${html(popisMista())}<br><span style="color:${BARVY.slaby}">${kc(cenaDopravy())}</span>`) +
+             radek("Zvolený způsob platby", zpusob) +
+             radek("Fakturační adresa", kontakt, !poznamka) +
+             (poznamka ? radek("Poznámka", poznamka, true) : ""),
+           )}
+           <div style="margin-top:24px">${tlacitko(`mailto:${z.email}?subject=${encodeURIComponent(`Objednávka: ${kniha.nazev}`)}`, "Odpovědět zákazníkovi")}</div>`,
+          pravni,
+        ),
+      };
+    }
+
+    const platbaBlok = predem
+      ? `<h2 style="margin:28px 0 12px;font-family:${NADPIS};font-size:22px;font-weight:600">Platba předem</h2>
+         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BARVY.panel};border-radius:18px"><tr>
+           <td style="padding:18px;width:200px;vertical-align:top"><img src="${qrObrazek(castka)}" width="180" height="180" alt="QR kód pro platbu" style="display:block;border-radius:12px;background:#fff;padding:8px"></td>
+           <td style="padding:18px 18px 18px 0;vertical-align:top;font-size:15px">
+             <div style="color:${BARVY.slaby};font-size:13px">Částka</div><div style="font-weight:700;font-size:18px;margin-bottom:8px">${kc(castka)}</div>
+             <div style="color:${BARVY.slaby};font-size:13px">Číslo účtu</div><div style="font-weight:700;margin-bottom:8px">${html(nastaveni.ucet)}</div>
+             <div style="color:${BARVY.slaby};font-size:13px">Variabilní symbol</div><div style="font-weight:700">${kniha.id}</div>
+           </td></tr></table>
+         <p style="margin:10px 0 0;color:${BARVY.slaby};font-size:14px">QR kód naskenujte v aplikaci banky. Knihu odešleme po připsání platby.</p>
+         ${zkusebniUcet ? `<p style="margin:10px 0 0;padding:12px 16px;border-radius:14px;background:#fdecea;color:#b42318;font-weight:700">${UPOZORNENI}</p>` : ""}`
+      : `<p style="margin:24px 0 0;padding:14px 18px;border-radius:18px;background:${BARVY.panel}">Platíte <b>na dobírku ${kc(castka)}</b> při převzetí zásilky.</p>`;
+
+    return {
+      z,
+      obsah: obalEmailu(
+        `<h1 style="margin:0 0 8px;font-family:${NADPIS};font-size:30px;font-weight:600;line-height:1.2">Děkujeme za objednávku</h1>
+         <p style="margin:0 0 22px;color:${BARVY.slaby}">Dobrý den, ${html(z.jmeno)}, objednávku jsme přijali. Ozveme se vám s potvrzením – kupní smlouva vzniká naším potvrzením, nejpozději odesláním knihy.</p>
+         ${kartaKnihy()}
+         <div style="height:18px"></div>
+         ${panel(
+           radek("Kniha", kc(kniha.cena)) +
+           radek("Doprava", `${html(popisMista())}<br><span style="color:${BARVY.slaby}">${kc(cenaDopravy())}</span>`) +
+           (!predem && nastaveni.dobirka ? radek("Dobírka", kc(nastaveni.dobirka)) : "") +
+           radek("Platba", predem ? "Předem převodem" : "Na dobírku") +
+           radek("Kontakt", kontakt, !poznamka) +
+           (poznamka ? radek("Poznámka", poznamka, true) : "") ,
+         )}
+         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px"><tr>
+           <td style="font-size:16px;font-weight:700">Celkem</td><td style="text-align:right;font-size:22px;font-weight:700">${kc(castka)}</td></tr></table>
+         ${platbaBlok}
+         <p style="margin:26px 0 0;font-size:14px;color:${BARVY.slaby}">Jako spotřebitel můžete od smlouvy odstoupit bez udání důvodu do 14 dnů od převzetí knihy – postup a formulář najdete v <a href="${html(nastaveni.podminky)}#odstoupeni" style="color:${BARVY.text}">obchodních podmínkách</a>. S dotazy stačí odpovědět na tento e-mail.</p>
+         <div style="margin-top:24px">${tlacitko(kniha.url, "Zobrazit knihu na webu")}</div>`,
+        pravni,
+      ),
+    };
   }
 
   async function posli(parametry: Record<string, string>) {
@@ -224,6 +312,7 @@ if (okno) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return chyba("Zkontrolujte e-mail."), pole("email").focus();
     if (pole("telefon").value.replace(/\D/g, "").length < 9) return chyba("Zkontrolujte telefon (aspoň 9 číslic)."), pole("telefon").focus();
     if (!misto) return chyba("Vyberte výdejní místo na mapě.");
+    if (!pole("souhlas").checked) return chyba("Pro odeslání potvrďte souhlas s obchodními podmínkami."), pole("souhlas").focus();
     chyba("");
 
     const tl = $<HTMLButtonElement>("#obj-odeslat");
@@ -249,7 +338,7 @@ if (okno) {
       chyba(`Objednávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám napište na ${nastaveni.email}.`);
     } finally {
       tl.disabled = false;
-      $("#obj-odeslat span").textContent = "Odeslat objednávku";
+      $("#obj-odeslat span").textContent = "Objednat s povinností platby";
     }
   });
 

@@ -1064,3 +1064,25 @@ button, input, select { font: inherit; color: inherit; }
 .obj-platba dl { display: grid; gap: 2px 12px; margin: 0; }
 .obj-platba dt { color: var(--slaby); font-size: 0.85rem; }
 .obj-platba dd { margin: 0 0 8px; font-weight: 700; font-size: 1.1rem; }
+
+/* ---------- právní stránky (obchodní podmínky, ochrana údajů) ---------- */
+.pravni { max-width: 820px; padding-block: 40px 80px; display: grid; gap: 28px; }
+.pravni h1 { margin: 0; }
+.pravni section { display: grid; gap: 10px; }
+.pravni h2 { margin: 0; font-family: var(--pismo-nadpis); font-size: 1.45rem; font-weight: 600; }
+.pravni h3 { margin: 10px 0 0; font-size: 1.05rem; }
+.pravni p, .pravni ul { margin: 0; line-height: 1.65; }
+.pravni ul { padding-left: 1.2em; display: grid; gap: 6px; }
+.pravni a { text-underline-offset: 3px; }
+.pravni-karta { padding: 22px 24px; border: 1px solid var(--linka); border-radius: var(--r-lg); background: var(--plocha); }
+.pravni-formular { display: grid; gap: 8px; padding: 18px 20px; border: 1px dashed var(--linka); border-radius: var(--r-md); background: var(--pozadi); font-size: 0.95rem; }
+.pravni-tabulka { overflow-x: auto; border: 1px solid var(--linka); border-radius: var(--r-md); }
+.pravni-tabulka table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 0.92rem; }
+.pravni-tabulka th, .pravni-tabulka td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--linka); }
+.pravni-tabulka th { background: var(--plocha-2); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slaby); }
+.pravni-tabulka tr:last-child td { border-bottom: 0; }
+.paticka-pravni { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.obj-souhlas { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--linka); border-radius: var(--r-sm); font-size: 0.92rem; line-height: 1.45; cursor: pointer; }
+.obj-souhlas:has(input:checked) { border-color: var(--text); }
+.obj-souhlas input { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; accent-color: var(--akcent); }
+.obj-souhlas a, .obj-napoveda a { color: inherit; text-underline-offset: 3px; }

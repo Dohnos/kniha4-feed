@@ -20,6 +20,8 @@ export type Kniha = {
   isbn: string;
   cena: number;
   kusu: number;
+  /** Kde kniha leží (jen do e-mailu s objednávkou). */
+  box?: string;
   popis: string;
   /** Vlastní fotka obálky, nebo "" – pak se kreslí typografická obálka. */
   obrazek: string;
