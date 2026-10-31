@@ -6,9 +6,9 @@
     "telefon": ""
   },
   "provozovatel": {
-    "jmeno": "",
-    "ico": "",
-    "adresa": "",
+    "jmeno": "[Jméno a příjmení / název firmy]",
+    "ico": "[IČO]",
+    "adresa": "[Ulice a číslo, PSČ Město]",
     "platceDph": false
   },
   "objednavky": {
