@@ -11,7 +11,7 @@ type Nastaveni = {
   iban: string; ucet: string; doprava: Record<string, number>; dobirka: number; email: string;
 };
 type Kniha = { id: number; nazev: string; autor: string; cena: number; url: string; obalka: string };
-type Misto = { id: number; name: string; street: string; city: string; zip: string; is_locker?: number; carriers: Record<string, { code: string }> };
+type Misto = { id: number; name: string; street: string; city: string; zip: string; is_locker?: number; is_post_office?: number; carriers: Record<string, { code: string }> };
 
 const okno = document.querySelector<HTMLDialogElement>("#objednavka");
 const DOPRAVCI: Record<string, string> = { zasilkovna: "Zásilkovna", balikovna: "Balíkovna", ppl: "PPL", dpd: "DPD", gls: "GLS" };
@@ -38,7 +38,7 @@ if (okno) {
 
   /** „Zásilkovna – výdejní místo, Míni market, Petrohradská 403/50, 10100 Praha (kód 32596)“ */
   const popisMista = () =>
-    misto ? `${DOPRAVCI[dopravce()]} – ${misto.is_locker ? "výdejní box" : "výdejní místo"}, ${misto.name}, ${misto.street}, ${misto.zip} ${misto.city} (kód ${misto.carriers[dopravce()].code})` : "";
+    misto ? `${DOPRAVCI[dopravce()]} – ${misto.is_locker ? "výdejní box" : misto.is_post_office ? "pošta" : "výdejní místo"}, ${misto.name}, ${misto.street}, ${misto.zip} ${misto.city} (kód ${misto.carriers[dopravce()].code})` : "";
 
   function souhrn() {
     const radky: [string, string][] = [[kniha.nazev, kc(kniha.cena)]];
