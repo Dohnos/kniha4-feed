@@ -2,6 +2,10 @@
   "site": "https://kniha4u.cz",
   "base": "/",
   "opona": true,
+  "ceny": {
+    "minimum": 49,
+    "priplatekFeed": 10
+  },
   "kontakt": {
     "email": "kniha4u@seznam.cz",
     "telefon": ""
