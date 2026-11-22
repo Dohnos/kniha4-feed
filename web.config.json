@@ -1,7 +1,7 @@
 {
   "site": "https://kniha4u.cz",
   "base": "/",
-  "opona": true,
+  "opona": false,
   "ceny": {
     "minimum": 49,
     "priplatekFeed": 10
