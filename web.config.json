@@ -11,9 +11,9 @@
     "telefon": ""
   },
   "provozovatel": {
-    "jmeno": "[Jméno a příjmení / název firmy]",
-    "ico": "[IČO]",
-    "adresa": "[Ulice a číslo, PSČ Město]",
+    "jmeno": "Petr Dohnálek",
+    "ico": "64962873",
+    "adresa": "Zvole 37, 789 01 Zvole",
     "platceDph": false
   },
   "objednavky": {
