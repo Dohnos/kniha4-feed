@@ -351,16 +351,6 @@ Součástí knížky je i výklad generálských hodností v průběhu historie 
     <ISBN>8073417804</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>136_BOX2</ITEM_ID>
-    <PRODUCTNAME>Vietnam - Nick Ray, Wendy Yanagihara</PRODUCTNAME>
-    <DESCRIPTION>Cestovní příručka obsahuje praktické rady a údaje pro turisty, popisy míst, krajiny a pamětihodností i pojednání o historii a kultuře Vietnamu.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/vietnam/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287086/kniha4u/136.webp</IMGURL>
-    <PRICE_VAT>190</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8073523957</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>138_BOX2</ITEM_ID>
     <PRODUCTNAME>Velmi stručné dějiny světa - Geoffrey Blainey</PRODUCTNAME>
     <DESCRIPTION>Tyto dějiny sledují historii lidstva během posledních čtyř miliónů let. Člověka představují těsně předtím, než první lidé vyšli z Afriky objevovat a osidlovat další světadíly, a loučí se s ním v polovině 20. století. Staletí a tisíciletí existence lidstva se tu odvíjejí jako mistrovsky vyprávěný a napínavý příběh. Úctyhodná šíře znalostí, velký vypravěčský talent a hluboká lidská moudrost dovolují autorovi, aby oživil minulost a sepsal dějiny, v nichž nechybí rozhodující okamžiky, které určovaly další směr vývoje.</DESCRIPTION>
@@ -675,15 +665,6 @@ Publikace dokumentuje životní pouť generála Lafayetta od jeho narození pře
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>291_BOX5</ITEM_ID>
-    <PRODUCTNAME>Český kreslený humor XX. století - Radko Pytlík</PRODUCTNAME>
-    <DESCRIPTION>Kniha Český kreslený humor XX. století – autor: Radko Pytlík, rok vydání: 1988, počet stran: 158.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cesky-kresleny-humor-xx-stoleti/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287091/kniha4u/291.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>292_BOX5</ITEM_ID>
     <PRODUCTNAME>Dona Flor a její dva manželé - Jorge Amado</PRODUCTNAME>
     <DESCRIPTION>Známý brazilský spisovatel si zvolil za námět románu dvojí manželství mladé krasavice z brazilského města Bahie. Ve vyprávění, zalidněném spoustou dalších postav a postaviček, jež vytvářejí jakýsi sociologický obraz bahijského prostředí, se uplatňuje satirický pohled a břitký humor.</DESCRIPTION>
@@ -716,15 +697,6 @@ Publikace dokumentuje životní pouť generála Lafayetta od jeho narození pře
     <DESCRIPTION>Úsměvný román italské novinářky, publikující v humoristických rubrikách novin a časopisů, vypráví o manželských, rodičovských a rodinných starostech dnešní ženy. Je to rozmarně prezentovaná analýza rodinného soužití a postavení ženy v italské společnosti.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/jako-zena-nula/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287091/kniha4u/295.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>296_BOX5</ITEM_ID>
-    <PRODUCTNAME>Jana Eyrová - Charlotte Brontë (Mladá Fronta, 1973)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Jana Eyrová – autor: Charlotte Brontë, nakladatel: Mladá Fronta, rok vydání: 1973, počet stran: 445.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/jana-eyrova/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287091/kniha4u/296.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -786,16 +758,6 @@ Publikace dokumentuje životní pouť generála Lafayetta od jeho narození pře
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>304_BOX5</ITEM_ID>
-    <PRODUCTNAME>Milenci a manželé - John Updike</PRODUCTNAME>
-    <DESCRIPTION>Z anglických originálů The Music School (1962), Bech: A Book (1970), Museum, Woman and Other Stories (1972), Problems and Other Stories (1979), Too Far to Go (1979 a Bech is Back (1982 zhruba třicítku povídek vybral, uspořádal, přeložil a doslovem opatřil Antonín Přidal.
-Povídky tématicky nevybočují z hlavního proudu Updikovy tvorby, soustřeďují se na americkou středostavovskou rodinu, její změny, proměny a posuny hodnot v období od 50. do 70. let minulého století. Jeho pohled na manželské troj a víceúhelníky je věcný, bez zbytečného moralizování. Krizi manželství si ostatně sám prožil</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/milenci-a-manzele/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287091/kniha4u/304.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>305_BOX5</ITEM_ID>
     <PRODUCTNAME>Moll Flandersová - Daniel Defoe</PRODUCTNAME>
     <DESCRIPTION>Kniha Moll Flandersová – autor: Daniel Defoe, rok vydání: 1986, počet stran: 278.</DESCRIPTION>
@@ -815,7 +777,7 @@ Povídky tématicky nevybočují z hlavního proudu Updikovy tvorby, soustřeďu
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>307_BOX5</ITEM_ID>
-    <PRODUCTNAME>Motýlek. - Henri Charriere (Československý spisovatel, 1971) – výtisk 1</PRODUCTNAME>
+    <PRODUCTNAME>Motýlek. - Henri Charriere (Československý spisovatel, 1971)</PRODUCTNAME>
     <DESCRIPTION>Kniha Motýlek. – autor: Henri Charriere, nakladatel: Československý spisovatel, rok vydání: 1971.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/motylek/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287092/kniha4u/307.webp</IMGURL>
@@ -977,15 +939,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DESCRIPTION>Kniha Slavní detektivové – autor: Julian Symons, rok vydání: 1986, počet stran: 185.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/slavni-detektivove/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287093/kniha4u/329.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>330_BOX5</ITEM_ID>
-    <PRODUCTNAME>Slovácko sa nesúdí - Zdeněk Galuška</PRODUCTNAME>
-    <DESCRIPTION>Kniha Slovácko sa nesúdí – autor: Zdeněk Galuška, nakladatel: Mladá Fronta, rok vydání: 1972, počet stran: 157.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/slovacko-sa-nesudi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287093/kniha4u/330.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -1222,15 +1175,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <ISBN>8072038168</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>376_BOX7</ITEM_ID>
-    <PRODUCTNAME>Léčivé rostliny - Antonín Příhoda</PRODUCTNAME>
-    <DESCRIPTION>Kniha Léčivé rostliny – autor: Antonín Příhoda, rok vydání: 1973.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/lecive-rostliny/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287096/kniha4u/376.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>377_BOX7</ITEM_ID>
     <PRODUCTNAME>Majolenka - Ellen Niit</PRODUCTNAME>
     <DESCRIPTION>Kniha Majolenka – autor: Ellen Niit, nakladatel: Albatros, rok vydání: 1981, počet stran: 120.</DESCRIPTION>
@@ -1322,15 +1266,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>390_BOX7</ITEM_ID>
-    <PRODUCTNAME>Pohádky a povídky pro malé čtenáře - Irena Fabiánová; Anna Šimanová; K. F. Sedláček; Jarmila Hřebejková</PRODUCTNAME>
-    <DESCRIPTION>Kniha Pohádky a povídky pro malé čtenáře – autor: Irena Fabiánová; Anna Šimanová; K. F. Sedláček; Jarmila Hřebejková, rok vydání: 1969, počet stran: 52.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/pohadky-a-povidky-pro-male-ctenare/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287097/kniha4u/390.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>391_BOX7</ITEM_ID>
     <PRODUCTNAME>Pozdrav z Bratislavy - Lýdia Kyseľová</PRODUCTNAME>
     <DESCRIPTION>Kniha Pozdrav z Bratislavy – autor: Lýdia Kyseľová, nakladatel: Albatros, rok vydání: 1977.</DESCRIPTION>
@@ -1357,15 +1292,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>800000710X</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>400_BOX7</ITEM_ID>
-    <PRODUCTNAME>Tři mušketýři po dvaceti letech - Alexandre Dumas (Mladá Fronta, 1972)</PRODUCTNAME>
-    <DESCRIPTION>Čtyři roky po Třech mušketýrech dokončuje &quot;velký vypravěč&quot; další romantický příběh statečnosti, věrnosti a zrady, provázený třeskem kordů a mečů. Téměř čtyřicetiletý d’Artagnan se svými nalezenými přáteli Athosem, Aramisem a Porthosem zachrání královnu, matku Ludvíka XIV., zavítají do cromwellovské Anglie a nakonec šťastně vyváznou z léčky královnina milce kardinála Mazarina, Richelieuova stínu.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/tri-musketyri-po-dvaceti-letech/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287098/kniha4u/400.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>401_BOX7</ITEM_ID>
@@ -1406,7 +1332,7 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>408_BOX8</ITEM_ID>
-    <PRODUCTNAME>Balady a romance - Jan Neruda (1957)</PRODUCTNAME>
+    <PRODUCTNAME>Balady a romance - Jan Neruda</PRODUCTNAME>
     <DESCRIPTION>Kniha Balady a romance – autor: Jan Neruda, rok vydání: 1957.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/balady-a-romance/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287098/kniha4u/408.webp</IMGURL>
@@ -1668,15 +1594,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>441_BOX8</ITEM_ID>
-    <PRODUCTNAME>Otec Goriot - Honoré de Balzac</PRODUCTNAME>
-    <DESCRIPTION>Kniha Otec Goriot – autor: Honoré de Balzac, nakladatel: Mladá Fronta, rok vydání: 1984, počet stran: 223.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/otec-goriot/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287100/kniha4u/441.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>442_BOX8</ITEM_ID>
     <PRODUCTNAME>Pan Wołodyjowski - Henryk Sienkiewicz</PRODUCTNAME>
     <DESCRIPTION>Kniha Pan Wołodyjowski – autor: Henryk Sienkiewicz, rok vydání: 1977, počet stran: 589.</DESCRIPTION>
@@ -1701,15 +1618,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DESCRIPTION>Kniha Příběhy, pověsti a pohádky paní Hudby – autor: Anna Hostomská, rok vydání: 1966, počet stran: 414.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/pribehy-povesti-a-pohadky-pani-hudby/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287100/kniha4u/444.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>445_BOX8</ITEM_ID>
-    <PRODUCTNAME>Říkali mi Leni - Zdeňka Bezděková</PRODUCTNAME>
-    <DESCRIPTION>Kniha Říkali mi Leni – autor: Zdeňka Bezděková, rok vydání: 1962.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/rikali-mi-leni/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287100/kniha4u/445.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -1751,24 +1659,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <ISBN>8090170315</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>451_BOX8</ITEM_ID>
-    <PRODUCTNAME>Tři mušketýři - Alexandre Dumas (Albatros, 1971, 421 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Tři mušketýři – autor: Alexandre Dumas, nakladatel: Albatros, rok vydání: 1971, počet stran: 421.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/tri-musketyri/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287101/kniha4u/451.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>452_BOX8</ITEM_ID>
-    <PRODUCTNAME>Tři mušketýři - Alexandre Dumas (Albatros, 1971, 405 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Tři mušketýři – autor: Alexandre Dumas, nakladatel: Albatros, rok vydání: 1971, počet stran: 405.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/tri-musketyri-452/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287101/kniha4u/452.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>453_BOX8</ITEM_ID>
     <PRODUCTNAME>Tři mušketýři ještě po deseti letech, aneb, Vikomt de Bragelonne - Alexandre Dumas (Albatros, 1978, 324 stran)</PRODUCTNAME>
     <DESCRIPTION>Kniha Tři mušketýři ještě po deseti letech, aneb, Vikomt de Bragelonne – autor: Alexandre Dumas, nakladatel: Albatros, rok vydání: 1978, počet stran: 324.</DESCRIPTION>
@@ -1797,7 +1687,7 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>456_BOX8</ITEM_ID>
-    <PRODUCTNAME>Tři mušketýři po dvaceti letech. - Alexandre Dumas (Albatros, 1982)</PRODUCTNAME>
+    <PRODUCTNAME>Tři mušketýři po dvaceti letech. - Alexandre Dumas</PRODUCTNAME>
     <DESCRIPTION>Kniha Tři mušketýři po dvaceti letech. – autor: Alexandre Dumas, nakladatel: Albatros, rok vydání: 1982, počet stran: 487.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/tri-musketyri-po-dvaceti-letech-456/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287101/kniha4u/456.webp</IMGURL>
@@ -1895,30 +1785,11 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>470_BOX9</ITEM_ID>
-    <PRODUCTNAME>Černí baroni - Miloslav Švandrlík</PRODUCTNAME>
-    <DESCRIPTION>aneb Válčili jsme za Čepičky</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cerni-baroni/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287102/kniha4u/470.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8020401814</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>471_BOX9</ITEM_ID>
     <PRODUCTNAME>Deset a jeden - Ed McBain</PRODUCTNAME>
     <DESCRIPTION>Kniha Deset a jeden – autor: Ed McBain, rok vydání: 1972.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/deset-a-jeden/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287102/kniha4u/471.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>472_BOX9</ITEM_ID>
-    <PRODUCTNAME>Devět hran - Dorothy L. Sayers</PRODUCTNAME>
-    <DESCRIPTION>Kniha Devět hran – autor: Dorothy L. Sayers, nakladatel: Vyšehrad, rok vydání: 1970.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/devet-hran/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287102/kniha4u/472.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -1968,15 +1839,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>482_BOX9</ITEM_ID>
-    <PRODUCTNAME>Kilometr devatenáct - Eduard Fiker</PRODUCTNAME>
-    <DESCRIPTION>Kniha Kilometr devatenáct – autor: Eduard Fiker, nakladatel: Naše Vojsko, rok vydání: 1973, počet stran: 219.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kilometr-devatenact/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287103/kniha4u/482.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>483_BOX9</ITEM_ID>
     <PRODUCTNAME>Knihy džunglí - Rudyard Kipling (1968)</PRODUCTNAME>
     <DESCRIPTION>Kniha Knihy džunglí – autor: Rudyard Kipling, rok vydání: 1968.</DESCRIPTION>
@@ -2018,15 +1880,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DESCRIPTION>Kniha Maškary – autor: Andrzej Piwowarczyk, nakladatel: Naše Vojsko, rok vydání: 1972.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/maskary/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287103/kniha4u/490.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>491_BOX9</ITEM_ID>
-    <PRODUCTNAME>Na východ od ráje - John Steinbeck</PRODUCTNAME>
-    <DESCRIPTION>Kniha Na východ od ráje – autor: John Steinbeck, nakladatel: Československý spisovatel, rok vydání: 1968.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/na-vychod-od-raje/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287103/kniha4u/491.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -2202,15 +2055,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>518_BOX9</ITEM_ID>
-    <PRODUCTNAME>Zlatí úhoři - Ota Pavel</PRODUCTNAME>
-    <DESCRIPTION>Kniha Zlatí úhoři – autor: Ota Pavel, nakladatel: Československý spisovatel, rok vydání: 1985, počet stran: 174.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zlati-uhori/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287105/kniha4u/518.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>519_BOX9</ITEM_ID>
     <PRODUCTNAME>Zoo na zámku - Gerald Malcolm Durrell</PRODUCTNAME>
     <DESCRIPTION>Kniha Zoo na zámku – autor: Gerald Malcolm Durrell, rok vydání: 1980.</DESCRIPTION>
@@ -2290,15 +2134,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DESCRIPTION>Kniha Biliáry – autor: Petr Ritter, rok vydání: 1987, počet stran: 281.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/biliary/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287105/kniha4u/528.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>529_BOX10</ITEM_ID>
-    <PRODUCTNAME>Cesta na severozápad - Kenneth Lewis Roberts</PRODUCTNAME>
-    <DESCRIPTION>První úplné vydání slavného dobrodružného románu historického, který u nás zkráceně vyšel poprvé r. 1939. Americký novinář, reportér a spisovatel (1885-1957) zde zachycuje pokus amerického majora a později plukovníka onalezení cesty, která by po vodě spojila Evropu napříč severoamerickým kontinentem s Tichomořím, tj. cesty na severozápad. J. Polišenský v doslovu říká: &quot;Kolem Rogersovy postavy, ostatně volně obměněné, seskupil Kenneth Robertsřadu rázovitých postav a postaviček a všechny dohromady vrhl do víru strhujících dějových zápletek ... Zájem o pronikání do indiánské divočiny na hranici Nové Anglie i v prostoru mezi Velkými jezery, řekou Missouri a Skalistýmihorami dovedl Roberts vzbudit líp než kterýkoli z historiků.&quot;</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cesta-na-severozapad/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287106/kniha4u/529.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -2388,15 +2223,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8085636158</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>543_BOX10</ITEM_ID>
-    <PRODUCTNAME>Motýlek. - Henri Charriere (Československý spisovatel, 1971) – výtisk 2</PRODUCTNAME>
-    <DESCRIPTION>Kniha Motýlek. – autor: Henri Charriere, nakladatel: Československý spisovatel, rok vydání: 1971.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/motylek-543/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287107/kniha4u/543.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>546_BOX10</ITEM_ID>
@@ -2491,15 +2317,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8020700188</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>560_BOX10</ITEM_ID>
-    <PRODUCTNAME>Tichá hrůza</PRODUCTNAME>
-    <DESCRIPTION>Kniha Tichá hrůza – nakladatel: Mladá Fronta, rok vydání: 1970, počet stran: 279.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/ticha-hruza/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287108/kniha4u/560.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>561_BOX10</ITEM_ID>
@@ -2605,16 +2422,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287109/kniha4u/582.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>583_BOX11</ITEM_ID>
-    <PRODUCTNAME>Jak se to dělá?</PRODUCTNAME>
-    <DESCRIPTION>Kniha shrnuje informace ze všech oborů lidské činnosti - od vynálezů přes špionáž, od chemie po počítače, od mikrochirurgie k iluzionistickým trikům a mnoho dalších věcí, o kterých někdy ani netušíte, JAK SE TO DĚLÁ. Odpovědi na tuto otázku vystihují podstatu problému, ale současně jsou zcela srozumitelné i pro laika. Získáte informace o základních principech některých úžasných vynálezů a o cestách, které k nim vedly.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/jak-se-to-dela/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287109/kniha4u/583.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8090206999</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>584_BOX11</ITEM_ID>
@@ -2822,15 +2629,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8020709967</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>612_BOX12</ITEM_ID>
-    <PRODUCTNAME>Brno =</PRODUCTNAME>
-    <DESCRIPTION>Kniha Brno = – rok vydání: 1988, počet stran: 45.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/brno/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287111/kniha4u/612.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>613_BOX12</ITEM_ID>
@@ -3066,16 +2864,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <ISBN>8020600302</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>644_BOX12</ITEM_ID>
-    <PRODUCTNAME>Paříž - Dakar - Radek Fencl</PRODUCTNAME>
-    <DESCRIPTION>Kniha Paříž - Dakar – autor: Radek Fencl, rok vydání: 1989, počet stran: 237.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/pariz-dakar/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287113/kniha4u/644.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8070330295</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>645_BOX12</ITEM_ID>
     <PRODUCTNAME>Pasekův kratochvilný astrologický kalendář 1992</PRODUCTNAME>
     <DESCRIPTION>Kniha Pasekův kratochvilný astrologický kalendář 1992 – nakladatel: Paseka, rok vydání: 1991, počet stran: 163.</DESCRIPTION>
@@ -3255,15 +3043,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DESCRIPTION>Kniha Hemingwayova Afrika – autor: Čestmír Sládek, rok vydání: 1974.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/hemingwayova-afrika/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287114/kniha4u/668.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>669_BOX13</ITEM_ID>
-    <PRODUCTNAME>Hry - William Shakespeare</PRODUCTNAME>
-    <DESCRIPTION>Kniha Hry – autor: William Shakespeare, nakladatel: Mladá Fronta, rok vydání: 1963.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/hry/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287114/kniha4u/669.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -3704,16 +3483,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>747_BOX15</ITEM_ID>
-    <PRODUCTNAME>Hrabě Monte Cristo - Alexandre Dumas (Albatros, 1991, 664 stran) – výtisk 1</PRODUCTNAME>
-    <DESCRIPTION>Román je vydaný ve 2 sv. z technických důvodů. Svazek 1. Obsahuje 1.až 3. díl</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/hrabe-monte-cristo/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287119/kniha4u/747.webp</IMGURL>
-    <PRICE_VAT>85</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8000001330</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>748_BOX15</ITEM_ID>
     <PRODUCTNAME>Hrůzy lásky a nenávisti - Zdena Frýbová</PRODUCTNAME>
     <DESCRIPTION>Kniha Hrůzy lásky a nenávisti – autor: Zdena Frýbová, nakladatel: Československý spisovatel, rok vydání: 1991, počet stran: 420.</DESCRIPTION>
@@ -3823,7 +3592,7 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>772_BOX15</ITEM_ID>
-    <PRODUCTNAME>Velký cirkus - Pierre Clostermann (Naše Vojsko, 1990)</PRODUCTNAME>
+    <PRODUCTNAME>Velký cirkus - Pierre Clostermann</PRODUCTNAME>
     <DESCRIPTION>Kniha Velký cirkus – autor: Pierre Clostermann, nakladatel: Naše Vojsko, rok vydání: 1990, počet stran: 278.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/velky-cirkus/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287120/kniha4u/772.webp</IMGURL>
@@ -3861,15 +3630,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>780_BOX16</ITEM_ID>
-    <PRODUCTNAME>1000 dobrých rad zahrádkářům - Radoslav Šrot</PRODUCTNAME>
-    <DESCRIPTION>Kniha 1000 dobrých rad zahrádkářům – autor: Radoslav Šrot, rok vydání: 1989, počet stran: 636.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/1000-dobrych-rad-zahradkarum/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287121/kniha4u/780.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>785_BOX16</ITEM_ID>
     <PRODUCTNAME>Důkazy z pěti kontinentů - Erich von Däniken</PRODUCTNAME>
     <DESCRIPTION>Kniha Důkazy z pěti kontinentů – autor: Erich von Däniken, nakladatel: Dialog, rok vydání: 1992, počet stran: 272.</DESCRIPTION>
@@ -3895,15 +3655,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DESCRIPTION>Příhody skupiny dětí, které mají za městem ve staré kůlně svůj klub chrabrých - Chrabrovku.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/chrabrovka/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287121/kniha4u/788.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>790_BOX16</ITEM_ID>
-    <PRODUCTNAME>Kapesní atlas léčivých rostlin - František Starý</PRODUCTNAME>
-    <DESCRIPTION>Kniha Kapesní atlas léčivých rostlin – autor: František Starý, rok vydání: 1986, počet stran: 319.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kapesni-atlas-lecivych-rostlin/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287121/kniha4u/790.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -4002,25 +3753,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <ISBN>8003006201</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>806_BOX16</ITEM_ID>
-    <PRODUCTNAME>Osm černých koní - Ed McBain</PRODUCTNAME>
-    <DESCRIPTION>Kniha Osm černých koní – autor: Ed McBain, rok vydání: 2012, počet stran: 263.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/osm-cernych-koni/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287122/kniha4u/806.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788074611384</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>808_BOX16</ITEM_ID>
-    <PRODUCTNAME>Pařeniště, fóliové kryty a skleníky - Armin Lutz</PRODUCTNAME>
-    <DESCRIPTION>Kniha Pařeniště, fóliové kryty a skleníky – autor: Armin Lutz, rok vydání: 1987, počet stran: 176.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/pareniste-foliove-kryty-a-skleniky/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287122/kniha4u/808.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>809_BOX16</ITEM_ID>
     <PRODUCTNAME>Poklad na ostrově - Robert Louis Stevenson</PRODUCTNAME>
     <DESCRIPTION>Kniha Poklad na ostrově – autor: Robert Louis Stevenson, nakladatel: Albatros, rok vydání: 1972.</DESCRIPTION>
@@ -4087,15 +3819,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>822_BOX16</ITEM_ID>
-    <PRODUCTNAME>Tajuplný ostrov - Jules Verne</PRODUCTNAME>
-    <DESCRIPTION>Kniha Tajuplný ostrov – autor: Jules Verne, nakladatel: Albatros, rok vydání: 1974.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/tajuplny-ostrov/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287123/kniha4u/822.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>823_BOX16</ITEM_ID>
     <PRODUCTNAME>Tak chladná řeka - Michael Koryta</PRODUCTNAME>
     <DESCRIPTION>Kniha Tak chladná řeka – autor: Michael Koryta, nakladatel: Knižní klub, rok vydání: 2012, počet stran: 445.</DESCRIPTION>
@@ -4146,15 +3869,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <ISBN>800001324X</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>831_BOX16</ITEM_ID>
-    <PRODUCTNAME>Vzpomínky na budoucnost - Erich von Däniken</PRODUCTNAME>
-    <DESCRIPTION>Kniha Vzpomínky na budoucnost – autor: Erich von Däniken, rok vydání: 1970, počet stran: 141.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/vzpominky-na-budoucnost/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287124/kniha4u/831.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>832_BOX16</ITEM_ID>
     <PRODUCTNAME>Zemřela jako Sadie - Ed McBain</PRODUCTNAME>
     <DESCRIPTION>Detektiv Steve Carella si nebyl jistý, jestli správně slyšel, co ten člověk řekl. Od muže, jehož žena leží rozpáraná na podlaze ložnice v kaluži vlastní krve, by člověk něco takového nečekal. Stál vedle nočního stolku. Oči měl jasné a modré a v žádném případě se v nich nezračila bolest ani zármutek. Jako kdyby se chtěl ujistit, že mu Carella rozuměl, opakoval úryvek svého předešlého výroku, tentokrát s ještě větším důrazem. &quot;Strašně rád, že je mrtvá,&quot; řekl.</DESCRIPTION>
@@ -4163,16 +3877,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788073816827</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>834_BOX16</ITEM_ID>
-    <PRODUCTNAME>Zvěrolékař a jeho přátelé - James Herriot (1996)</PRODUCTNAME>
-    <DESCRIPTION>Dvaapadesát zastaveních nejen o čtyřnohých pacientech, ale také o jeho blízkých, o manželce Heleně, synkovi Jimmym a dcerce Rosii, oddaném pomocníku Siegfriedovi, stejně jako o mnoha dalších barvitých postavách a postavičkách z yorkshirské vrchoviny. Potěší nás ironická historka se šťastným koncem o kolapsu nádherného koně pana Kettlewella, a naopak zarmoutí tragický příběh kocoura Ollyho - jenže tak už to v životě zvěrolékaře a ostatně i nás všech chodí. Herriotova knížka vypráví o úspěších i omylech, životních výhrách i klopýtnutích, s nimiž se každý musí vyrovnat.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zverolekar-a-jeho-pratele/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287124/kniha4u/834.webp</IMGURL>
-    <PRICE_VAT>95</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>802050415X</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>836_BOX17</ITEM_ID>
@@ -4202,16 +3906,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>839_BOX17</ITEM_ID>
-    <PRODUCTNAME>Byliny v prevenci - Josef Antonín Zentrich</PRODUCTNAME>
-    <DESCRIPTION>Kniha Byliny v prevenci – autor: Josef Antonín Zentrich, rok vydání: 1991, počet stran: 331.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/byliny-v-prevenci/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287124/kniha4u/839.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>809002050X</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>842_BOX17</ITEM_ID>
     <PRODUCTNAME>Dejiny Vietnamu - Vien Khac Nguyen</PRODUCTNAME>
     <DESCRIPTION>Kniha Dejiny Vietnamu – autor: Vien Khac Nguyen, rok vydání: 1978, počet stran: 330.</DESCRIPTION>
@@ -4222,7 +3916,7 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>843_BOX17</ITEM_ID>
-    <PRODUCTNAME>Devět set devadesát devět rad pro domácnost - Tamara Aleksandrovna Mirovskaja (1988, 214 stran) – výtisk 1</PRODUCTNAME>
+    <PRODUCTNAME>Devět set devadesát devět rad pro domácnost - Tamara Aleksandrovna Mirovskaja</PRODUCTNAME>
     <DESCRIPTION>Kniha Devět set devadesát devět rad pro domácnost – autor: Tamara Aleksandrovna Mirovskaja, rok vydání: 1988, počet stran: 214.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/devet-set-devadesat-devet-rad-pro-domacnost/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287125/kniha4u/843.webp</IMGURL>
@@ -4418,15 +4112,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>872_BOX17</ITEM_ID>
-    <PRODUCTNAME>Případ začal za svítání - Ivo Hertl</PRODUCTNAME>
-    <DESCRIPTION>Kniha Případ začal za svítání – autor: Ivo Hertl, rok vydání: 1975, počet stran: 127.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/pripad-zacal-za-svitani/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287126/kniha4u/872.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>876_BOX17</ITEM_ID>
     <PRODUCTNAME>Sluha dvou pánů - František Hanzlík</PRODUCTNAME>
     <DESCRIPTION>Kniha Sluha dvou pánů – autor: František Hanzlík, rok vydání: 1999, počet stran: 445.</DESCRIPTION>
@@ -4472,15 +4157,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8085204037</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>886_BOX17</ITEM_ID>
-    <PRODUCTNAME>Velká kniha pohádek - Božena Němcová</PRODUCTNAME>
-    <DESCRIPTION>Kniha Velká kniha pohádek – autor: Božena Němcová, nakladatel: Albatros, rok vydání: 1988, počet stran: 359.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/velka-kniha-pohadek/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287127/kniha4u/886.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>888_BOX17</ITEM_ID>
@@ -4533,15 +4209,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DESCRIPTION>Formou dopisů rozebírá autor problémy stáří, jeho potíže i radosti a upozorňuje na způsoby a možnosti, jak prodloužit období životní aktivity do vysokého věku. Seznamuje s názory na stáří v minulosti i v současné době, s fyziologickou podstatou stáří a jeho projevy, s nemocemi stáří a zdůrazňuje nezbytnost pohybu, práce a zájmu o okolní dění pro zachování tělesné a duševní svěžesti ve stáří</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/cesta-do-stari-aneb-dopisy-i-pro-mlade/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287128/kniha4u/896.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>898_BOX18</ITEM_ID>
-    <PRODUCTNAME>Český Honza - Jiří Horák</PRODUCTNAME>
-    <DESCRIPTION>Kniha Český Honza – autor: Jiří Horák, rok vydání: 1957, počet stran: 283.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cesky-honza/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287128/kniha4u/898.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -4758,16 +4425,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>940_BOX19</ITEM_ID>
-    <PRODUCTNAME>Angličtina pro samouky - Libuše Bubeníková; Ludmila Kollmannová; Alena Kopecká</PRODUCTNAME>
-    <DESCRIPTION>Kniha Angličtina pro samouky – autor: Libuše Bubeníková; Ludmila Kollmannová; Alena Kopecká, rok vydání: 1995, počet stran: 447.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/anglictina-pro-samouky/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287130/kniha4u/940.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085927020</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>942_BOX19</ITEM_ID>
     <PRODUCTNAME>Antikrist - Josef Hais Týnecký (Naše Vojsko, 1958, 398 stran)</PRODUCTNAME>
     <DESCRIPTION>Druhý díl (Před bouří) líčí složité intriky mezi věrolomným Rackem z Janovic, pánem rožmberským a jeho synem, únos kmetičny Marie a její rozhodnutí vstoupit pro záchranu novice Ondřeje do kláštera a nekonečné třenice německých a českých šlechticů a měšťanů. Jan Nákvasa, trestaný církevní klatbou arcibiskupovou jako představitel radikálního křídla husitského učení, zvedá opět hlavu a nebojácně burcuje proti zlořádům církevním, pronásledován německou i českou šlechtou, která kolaboruje se Zikmundem.</DESCRIPTION>
@@ -4814,15 +4471,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>947_BOX19</ITEM_ID>
-    <PRODUCTNAME>Brno - proměny města - Bohumil Samek</PRODUCTNAME>
-    <DESCRIPTION>Kniha Brno - proměny města – autor: Bohumil Samek, rok vydání: 1982.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/brno-promeny-mesta/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287131/kniha4u/947.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>948_BOX19</ITEM_ID>
     <PRODUCTNAME>Červený a černý - Stendhal (1974) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Červený a černý – autor: Stendhal, rok vydání: 1974.</DESCRIPTION>
@@ -4860,15 +4508,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <ISBN>8024100460</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>954_BOX19</ITEM_ID>
-    <PRODUCTNAME>Kapesní atlas hub - Albert Pilát (1965)</PRODUCTNAME>
-    <DESCRIPTION>Pomocná kniha pro základní devítileté školy, střední všeobecně vzdělávací a pedagogické školy</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kapesni-atlas-hub/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287131/kniha4u/954.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>955_BOX19</ITEM_ID>
     <PRODUCTNAME>Kord na vějíři - Halina Popławska</PRODUCTNAME>
     <DESCRIPTION>Kniha Kord na vějíři – autor: Halina Popławska, rok vydání: 1981, počet stran: 291.</DESCRIPTION>
@@ -4876,16 +4515,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287131/kniha4u/955.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>957_BOX19</ITEM_ID>
-    <PRODUCTNAME>Kuchařka - Karina Havlů</PRODUCTNAME>
-    <DESCRIPTION>Autorka seznamuje s principy použití horkovzdušné trouby v moderní kuchyni a přináší mnoho zajímavých receptů.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kucharka/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287131/kniha4u/957.webp</IMGURL>
-    <PRICE_VAT>60</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085463806</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>958_BOX19</ITEM_ID>
@@ -4916,15 +4545,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>962_BOX19</ITEM_ID>
-    <PRODUCTNAME>Následník trůnu - Ludwig Winder</PRODUCTNAME>
-    <DESCRIPTION>Kniha Následník trůnu – autor: Ludwig Winder, rok vydání: 1979, počet stran: 458.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/naslednik-trunu/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287132/kniha4u/962.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>963_BOX19</ITEM_ID>
     <PRODUCTNAME>Nová domácí kuchařka - Joza Břízová</PRODUCTNAME>
     <DESCRIPTION>Kniha Nová domácí kuchařka – autor: Joza Břízová, rok vydání: 1981, počet stran: 510.</DESCRIPTION>
@@ -4939,15 +4559,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DESCRIPTION>Kniha O slušném chování fakta – autor: Milena Majorová, rok vydání: 1970.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/o-slusnem-chovani-fakta/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287132/kniha4u/964.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>965_BOX19</ITEM_ID>
-    <PRODUCTNAME>Opera - Anna Hostomská; Emil Ludvík; Lubomír Dorůžka; Jarmila Brožovská</PRODUCTNAME>
-    <DESCRIPTION>Souborná informační kniha o operních skladatelích a jejich dílech je proti poslední naší příručce toho druhu (J. Branberger, &quot;svět v opeře&quot; 1946) mnohem obsáhlejší, zejména pokud jde o opery slovanské. Díla jsou seřazena skupinově podle historického vývoje národních kultur, kromě kapitoly úvodní, věnované autorům klasickým. Opery téhož skladatele jsou seřazeny podle data premiér. Rychlou orientaci v knize umozňují rejstříky: skladatelů, autorů libret a literárních předloh, názvů oper. U každého díla je podán podrobný rozbor námětu, doby a okolností, za nichž vznikalo, dále volné vyprávění obsahu děje podle jednotlivých aktů a konečně výčet charakteristických scénaarií. Notové ukázky připojeny nejsou, zato však kniha přináší stručně životopisné portréty skladatelů a seznam česky vydané literatury o nich. Úvodní kapitoly k jednotlivým oddílům a historický výklad o opeře jako uměleckém útvaru napsal M.Očadlík.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/opera/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287132/kniha4u/965.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -5044,29 +4655,11 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>980_BOX19</ITEM_ID>
-    <PRODUCTNAME>Severní nádraží - Adolf Branald (Československý spisovatel, 1965)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Severní nádraží – autor: Adolf Branald, nakladatel: Československý spisovatel, rok vydání: 1965.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/severni-nadrazi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287133/kniha4u/980.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>981_BOX19</ITEM_ID>
     <PRODUCTNAME>Sloky lásky - Stepan Petrovič Ščipačev (1967)</PRODUCTNAME>
     <DESCRIPTION>Kniha Sloky lásky – autor: Stepan Petrovič Ščipačev, rok vydání: 1967.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/sloky-lasky/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287133/kniha4u/981.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>982_BOX19</ITEM_ID>
-    <PRODUCTNAME>Škola ovocnáře - Vladimír Urban</PRODUCTNAME>
-    <DESCRIPTION>Kniha Škola ovocnáře – autor: Vladimír Urban, rok vydání: 1986, počet stran: 329.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/skola-ovocnare/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287133/kniha4u/982.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -5201,25 +4794,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <ISBN>8090037879</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1003_BOX20</ITEM_ID>
-    <PRODUCTNAME>Konzervace a ukládání potravin v domácnosti - Karel Půhoný</PRODUCTNAME>
-    <DESCRIPTION>Kniha Konzervace a ukládání potravin v domácnosti – autor: Karel Půhoný, rok vydání: 1986, počet stran: 319.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/konzervace-a-ukladani-potravin-v-domacnosti/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287135/kniha4u/1003.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1005_BOX20</ITEM_ID>
-    <PRODUCTNAME>Královna Margot - André Castelot (Melantrich, 1995, 217 stran) – výtisk 1</PRODUCTNAME>
-    <DESCRIPTION>Kniha Královna Margot – autor: André Castelot, nakladatel: Melantrich, rok vydání: 1995, počet stran: 217.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kralovna-margot/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287135/kniha4u/1005.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8070232005</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1006_BOX20</ITEM_ID>
     <PRODUCTNAME>Květinářství - Jan Tykač; Věra Pokorná; Lubomír Unar</PRODUCTNAME>
     <DESCRIPTION>Kniha Květinářství – autor: Jan Tykač; Věra Pokorná; Lubomír Unar, rok vydání: 1980, počet stran: 339.</DESCRIPTION>
@@ -5271,15 +4845,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DESCRIPTION>Kniha Staré pověsti české – autor: Alois Jirásek, rok vydání: 1953.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/stare-povesti-ceske-1017/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287136/kniha4u/1017.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1019_BOX20</ITEM_ID>
-    <PRODUCTNAME>Stromy - Zbyněk Malinský</PRODUCTNAME>
-    <DESCRIPTION>Kniha Stromy – autor: Zbyněk Malinský, nakladatel: Albatros, rok vydání: 1985.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/stromy/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287136/kniha4u/1019.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -5346,15 +4911,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/z-pekingu-do-moskvy/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287137/kniha4u/1028.webp</IMGURL>
     <PRICE_VAT>185</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1030_BOX21</ITEM_ID>
-    <PRODUCTNAME>Cantervillské strašidlo a jiné prózy - Oscar Wilde</PRODUCTNAME>
-    <DESCRIPTION>Kniha chce seznámit především mladé čtenaře s dílem vynikajícího anglického spisovatele vybranými ukázkami od jeho první a hned i slavné práce &quot;Cantervillské strašidlo&quot; přes povídky menšího dosahu (&quot;Sfinga bez záhady&quot;, &quot;Neobyčejný model&quot;, &quot;Zločin lorda Artura Savila&quot;) až po proslulý román &quot;Obraz Doriana Graye&quot;, který osudně zasáhl do autorova života a svým způsobem napomohl jeho smutnému konci.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cantervillske-strasidlo-a-jine-prozy/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287137/kniha4u/1030.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -5507,15 +5063,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1055_BOX21</ITEM_ID>
-    <PRODUCTNAME>Učebnice pro autoškoly - František Hynek</PRODUCTNAME>
-    <DESCRIPTION>První díl učebnice pro žáky svazarmovských autoškol obsahuje látku z předmětů, kterým se v autoškolách vyučuje. Jsou zde popsány základní konstrukce osobních automobilů a motocyklů, jejich údržba, technické prohlídkyvozidla,zjišťování a odstraňování poruch. Vysvětlují se rovněž nejzákladnější zásady &quot;teorie jízdy&quot; za běžných i ztížených podmínek a probírá se také výuka na cvičných stolicích - trenažérech. Poslední část učebnice se zabývá poskytováním první pomoci při dopravních nehodách.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/ucebnice-pro-autoskoly/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287138/kniha4u/1055.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1056_BOX21</ITEM_ID>
     <PRODUCTNAME>Vzestup člověka - Jacob Bronowski</PRODUCTNAME>
     <DESCRIPTION>Kniha Vzestup člověka – autor: Jacob Bronowski, rok vydání: 1985, počet stran: 442.</DESCRIPTION>
@@ -5580,24 +5127,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/cessko-russkij-slovar/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287139/kniha4u/1064.webp</IMGURL>
     <PRICE_VAT>95</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1066_BOX22</ITEM_ID>
-    <PRODUCTNAME>Devět set devadesát devět rad pro domácnost - Tamara Aleksandrovna Mirovskaja (1988, 214 stran) – výtisk 2</PRODUCTNAME>
-    <DESCRIPTION>Kniha Devět set devadesát devět rad pro domácnost – autor: Tamara Aleksandrovna Mirovskaja, rok vydání: 1988, počet stran: 214.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/devet-set-devadesat-devet-rad-pro-domacnost-1066/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287139/kniha4u/1066.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1068_BOX22</ITEM_ID>
-    <PRODUCTNAME>Diana - Andrew Morton (1997)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Diana – autor: Andrew Morton, rok vydání: 1997, počet stran: 200.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/diana/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287139/kniha4u/1068.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -5770,15 +5299,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <ISBN>8071060305</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1096_BOX22</ITEM_ID>
-    <PRODUCTNAME>Švýcarský Robinzon - Johann David Wyss</PRODUCTNAME>
-    <DESCRIPTION>Dobrodružný román švýcarského spisovatele a pastora (1782–1830). Osudy chudé švýcarské rodiny, která za napoleonských válek opouští Evropu a hledá si nový domov v zámořských koloniích a po ztroskotání lodi nalézá tento domovna neobydleném ostrově. Na tomto ostrově žije potom tato rodina robinzonským životem deset let. Napínavá kniha, propagující únik od evropské civilizace a návrat k přírodě.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/svycarsky-robinzon/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287141/kniha4u/1096.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1097_BOX22</ITEM_ID>
     <PRODUCTNAME>Táta Žemlička a jeho dcera - Sergej Anatol'jevič Ivanov</PRODUCTNAME>
     <DESCRIPTION>Kniha Táta Žemlička a jeho dcera – autor: Sergej Anatol'jevič Ivanov, nakladatel: Albatros, rok vydání: 1984, počet stran: 170.</DESCRIPTION>
@@ -5833,24 +5353,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1104_BOX22</ITEM_ID>
-    <PRODUCTNAME>Vnitřní lékařství pro studující medicíny a lékaře - Pavel Lukl</PRODUCTNAME>
-    <DESCRIPTION>Kniha Vnitřní lékařství pro studující medicíny a lékaře – autor: Pavel Lukl, rok vydání: 1960, počet stran: 744.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/vnitrni-lekarstvi-pro-studujici-mediciny-a-lekare/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287142/kniha4u/1104.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1106_BOX22</ITEM_ID>
-    <PRODUCTNAME>Zvěrolékař mezi nebem a zemí - James Herriot</PRODUCTNAME>
-    <DESCRIPTION>Kniha Zvěrolékař mezi nebem a zemí – autor: James Herriot, rok vydání: 1986, počet stran: 494.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zverolekar-mezi-nebem-a-zemi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287142/kniha4u/1106.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1107_BOX22</ITEM_ID>
     <PRODUCTNAME>Zvláštní oblast Číny 1942-1945 - Petr Parfenovič Vladimirov</PRODUCTNAME>
     <DESCRIPTION>Kniha Zvláštní oblast Číny 1942-1945 – autor: Petr Parfenovič Vladimirov, rok vydání: 1975.</DESCRIPTION>
@@ -5865,15 +5367,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DESCRIPTION>Kniha Atlas alpínek – autor: Albert Pilát, nakladatel: Academia, rok vydání: 1973.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/atlas-alpinek/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287142/kniha4u/1108.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1110_BOX23</ITEM_ID>
-    <PRODUCTNAME>Babička - Božena Němcová</PRODUCTNAME>
-    <DESCRIPTION>Kniha Babička – autor: Božena Němcová, rok vydání: 1949.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/babicka/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287142/kniha4u/1110.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -5942,7 +5435,7 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1119_BOX23</ITEM_ID>
-    <PRODUCTNAME>Chaloupka strýčka Toma. - Harriet Elizabeth Beecher-Stowe (Albatros, 1969) – výtisk 1</PRODUCTNAME>
+    <PRODUCTNAME>Chaloupka strýčka Toma. - Harriet Elizabeth Beecher-Stowe (Albatros, 1969)</PRODUCTNAME>
     <DESCRIPTION>Kniha Chaloupka strýčka Toma. – autor: Harriet Elizabeth Beecher-Stowe, nakladatel: Albatros, rok vydání: 1969.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/chaloupka-strycka-toma-1119/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287142/kniha4u/1119.webp</IMGURL>
@@ -6032,16 +5525,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1137_BOX24</ITEM_ID>
-    <PRODUCTNAME>Bílá smrt - Petri Sarjanen</PRODUCTNAME>
-    <DESCRIPTION>Životní příběh legendárního finského odstřelovače Sima Häyhäho, nenápadného, drobného chlapíka, který za Zimní války se Sovětským svazem výrazně zasáhl do těžkých bojů o řeku Kollaa. Jeho přesný, takřka neomylný střelecký um budil v řadách nepřítele oprávněnou hrůzu a vysloužil mu přezdívku Bílá smrt. Svými více než 500 prokázanými zásahy se zařadil mezi nejúspěšnější odstřelovače všech dob. Kniha se také dílem zabývá osudy dalších pozoruhodných postav, majících významný podíl na tom, že se v klimaticky náročných bojových podmínkách podařilo s vynaložením nadlidského úsilí zastavit postup agresora, a zachovat tak nezávislost Finska. V závěru se autor zamýšlí nad historickou i současnou úlohou odstřelovačů a jejich postavením v očích veřejnosti.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/bila-smrt/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287143/kniha4u/1137.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788020435583</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1142_BOX24</ITEM_ID>
     <PRODUCTNAME>Ďáblův trezor - Josef Glückselig (Naše Vojsko, 1983, 219 stran) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Ďáblův trezor – autor: Josef Glückselig, nakladatel: Naše Vojsko, rok vydání: 1983, počet stran: 219.</DESCRIPTION>
@@ -6096,15 +5579,6 @@ Anarchista Čtvrtek - románová fantazie na kriminální žánr</DESCRIPTION>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8020504109</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1148_BOX24</ITEM_ID>
-    <PRODUCTNAME>Dnem i nocí</PRODUCTNAME>
-    <DESCRIPTION>Kniha Dnem i nocí – nakladatel: Naše Vojsko, rok vydání: 1986.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dnem-i-noci/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287144/kniha4u/1148.webp</IMGURL>
-    <PRICE_VAT>640</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1149_BOX24</ITEM_ID>
@@ -6329,15 +5803,6 @@ Název druhé části nákladu: (Ne)milostivé léto Lídy Baarové : podle nale
     <ISBN>8090070736</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1186_BOX25</ITEM_ID>
-    <PRODUCTNAME>Cizokrajní ptáci v klecích - Rudolf Vít</PRODUCTNAME>
-    <DESCRIPTION>V chovatelské příručce, která informuje o životě, výživě, nemocech a chovu astrildovitých pěvců, jsou shrnuty nejnovější poznatky našich i zahraničních autorů. V třetím vydání popisuje autor některé zcela nové druhy těchto ptáků a přihlíží i ke změnám v novém českém názvosloví astrildovitých pěvců.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cizokrajni-ptaci-v-klecich-1186/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287146/kniha4u/1186.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1187_BOX25</ITEM_ID>
     <PRODUCTNAME>Čtrnácté patro, čtrnáctý rok - Vladimír Svoboda</PRODUCTNAME>
     <DESCRIPTION>Dívčí román vypráví o čtrnáctileté hrdince, jejíž rodina se přestěhovala z tichého maloměstského prostředí do velkoměsta. S jemnou psychologií a humorem jsou zachyceny i trampoty celé rodiny v moderním věžovém domě.</DESCRIPTION>
@@ -6358,7 +5823,7 @@ Název druhé části nákladu: (Ne)milostivé léto Lídy Baarové : podle nale
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1190_BOX25</ITEM_ID>
-    <PRODUCTNAME>Hrabě Monte Cristo - Alexandre Dumas (Albatros, 1991, 664 stran) – výtisk 2</PRODUCTNAME>
+    <PRODUCTNAME>Hrabě Monte Cristo - Alexandre Dumas (Albatros, 1991)</PRODUCTNAME>
     <DESCRIPTION>Román je vydaný ve 2 sv. z technických důvodů. Svazek 1. Obsahuje 1.až 3. díl</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/hrabe-monte-cristo-1190/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287147/kniha4u/1190.webp</IMGURL>
@@ -6540,16 +6005,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1221_BOX26</ITEM_ID>
-    <PRODUCTNAME>Biblické příběhy - Slavomír Pejčoch Ravik</PRODUCTNAME>
-    <DESCRIPTION>Kniha Biblické příběhy – autor: Slavomír Pejčoch Ravik, nakladatel: Levné knihy, rok vydání: 2006, počet stran: 537.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/biblicke-pribehy/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287149/kniha4u/1221.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8073093448</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1222_BOX26</ITEM_ID>
     <PRODUCTNAME>Flora Olomouc - Rudolf Smahel</PRODUCTNAME>
     <DESCRIPTION>Kniha Flora Olomouc – autor: Rudolf Smahel, rok vydání: 1973, počet stran: 193.</DESCRIPTION>
@@ -6602,15 +6057,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <URL>https://kniha4u.cz/kniha/nizke-tatry/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287149/kniha4u/1233.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1234_BOX26</ITEM_ID>
-    <PRODUCTNAME>Ostravsko ve fotografii</PRODUCTNAME>
-    <DESCRIPTION>Kniha Ostravsko ve fotografii – rok vydání: 1958.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/ostravsko-ve-fotografii/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287149/kniha4u/1234.webp</IMGURL>
-    <PRICE_VAT>820</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -6742,16 +6188,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1260_BOX27</ITEM_ID>
-    <PRODUCTNAME>Emma - Jane Austen</PRODUCTNAME>
-    <DESCRIPTION>Kniha Emma – autor: Jane Austen, rok vydání: 2009, počet stran: 543.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/emma/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287151/kniha4u/1260.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788073355203</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1261_BOX27</ITEM_ID>
     <PRODUCTNAME>Epidemie - Robin Cook</PRODUCTNAME>
     <DESCRIPTION>Kniha Epidemie – autor: Robin Cook, rok vydání: 1996, počet stran: 287.</DESCRIPTION>
@@ -6813,15 +6249,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <DESCRIPTION>Kniha Minehava – autor: Eduard Štorch, nakladatel: Albatros, rok vydání: 1973.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/minehava/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287151/kniha4u/1269.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1270_BOX27</ITEM_ID>
-    <PRODUCTNAME>Moučníky - Mária Hajková</PRODUCTNAME>
-    <DESCRIPTION>Kniha Moučníky – autor: Mária Hajková, rok vydání: 1968, počet stran: 352.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/moucniky/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287151/kniha4u/1270.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -6893,16 +6320,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8072431773</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1282_BOX27</ITEM_ID>
-    <PRODUCTNAME>Takoví jsme byli - Paul Burrell</PRODUCTNAME>
-    <DESCRIPTION>Kniha Takoví jsme byli – autor: Paul Burrell, rok vydání: 2007, počet stran: 219.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/takovi-jsme-byli/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287152/kniha4u/1282.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788073033538</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1283_BOX27</ITEM_ID>
@@ -7034,16 +6451,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <ISBN>8090163009</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1300_BOX28</ITEM_ID>
-    <PRODUCTNAME>Dana Medřická - Jindřich Černý</PRODUCTNAME>
-    <DESCRIPTION>Jindřich Černý, divadelní kritik, ve své knize vypracoval ucelený umělecký a osobní portrét Dany Medřické, jedné z největších ženských hereček moderního českého divadla. Podrobně sleduje uměleckou a životní dráhu pražské rodačky, která z pražské konzervatoře záhy odchází do divadla v Brně, Plzni a nakonec v Praze. Tato kniha, která se obrací ke všem, kdo Danu Medřickou a divadlo stále milují, je doplněna bohatou fotografickou přílohou a přehledem rolí této umělkyně</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dana-medricka/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287153/kniha4u/1300.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8024209152</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1301_BOX28</ITEM_ID>
     <PRODUCTNAME>Gauguin na Tahiti a Markézách - Bengt Danielsson</PRODUCTNAME>
     <DESCRIPTION>Kniha Gauguin na Tahiti a Markézách – autor: Bengt Danielsson, nakladatel: Vyšehrad, rok vydání: 1983, počet stran: 301.</DESCRIPTION>
@@ -7149,16 +6556,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287154/kniha4u/1311.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1312_BOX28</ITEM_ID>
-    <PRODUCTNAME>Každý den radost - Josef Bek</PRODUCTNAME>
-    <DESCRIPTION>Kniha Každý den radost – autor: Josef Bek, nakladatel: Baronet, rok vydání: 1994, počet stran: 292.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kazdy-den-radost/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287154/kniha4u/1312.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085621991</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1313_BOX28</ITEM_ID>
@@ -7841,15 +7238,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <ISBN>8071766348</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1403_BOX29</ITEM_ID>
-    <PRODUCTNAME>Velký cirkus - Pierre Clostermann (Naše Vojsko, 1970)</PRODUCTNAME>
-    <DESCRIPTION>Kniha obsahuje vzpomínky a zápisy z deníku francouzského stíhacího letce P. H. Clostermanna.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/velky-cirkus-1403/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287161/kniha4u/1403.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1405_BOX30</ITEM_ID>
     <PRODUCTNAME>99 specialit sovětské kuchyně - Alena Vlčková (1980)</PRODUCTNAME>
     <DESCRIPTION>Obsahuje předpisy z jednotlivých svazových republik na přípravu různých studených pokrmů. Jedná se o studená jídla z ryb, masa, zvěřiny a drůbeže, studené omáčky, marinovanou zeleninu a ovoce, zeleninové saláty, samostatné pokrmy ze zeleniny, polévky a pirohy.</DESCRIPTION>
@@ -7961,16 +7349,6 @@ Z pozlacených tanečních sálů císařské Vídně až do zamrzlých lesů v�
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8020601082</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1421_BOX30</ITEM_ID>
-    <PRODUCTNAME>Korzár Marten. - Janusz Meissner (Naše Vojsko, 1990, 175 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Korzár Marten. – autor: Janusz Meissner, nakladatel: Naše Vojsko, rok vydání: 1990, počet stran: 175.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/korzar-marten-1421/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287162/kniha4u/1421.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8020601104</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1422_BOX30</ITEM_ID>
@@ -8216,7 +7594,7 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1452_BOX30</ITEM_ID>
-    <PRODUCTNAME>Severní nádraží - Adolf Branald (Československý spisovatel, 1949)</PRODUCTNAME>
+    <PRODUCTNAME>Severní nádraží - Adolf Branald</PRODUCTNAME>
     <DESCRIPTION>Kniha Severní nádraží – autor: Adolf Branald, nakladatel: Československý spisovatel, rok vydání: 1949.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/severni-nadrazi-1452/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287164/kniha4u/1452.webp</IMGURL>
@@ -9191,16 +8569,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1610_BOX33</ITEM_ID>
-    <PRODUCTNAME>Praktická homeopatie - Jiří Janča</PRODUCTNAME>
-    <DESCRIPTION>Cesta ke zdraví, rádce pro celou rodinu, to je podtitul nového doplněného vydání knihy z autorovy v evropském kontextu ojedinělé řady, přibližující obor alternativní medicíny, jenž se u nás stal v posledních letech velmi populárním. Jiří Janča se věnuje homeopatii desítky let. Za tu dobu vyvinul řadu vlastních prostředků a postupů, které v knize nabízí, včetně přípravy homeopatických prostředků, vysvětlením jejich působení a dávkování. Důležitou součástí této publikace je přehled samopomoci v homeopatii.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/prakticka-homeopatie/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287174/kniha4u/1610.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8090017606</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1611_BOX33</ITEM_ID>
     <PRODUCTNAME>Případ toulavé kočky - Leonid Semenovič Slovin</PRODUCTNAME>
     <DESCRIPTION>Kniha Případ toulavé kočky – autor: Leonid Semenovič Slovin, rok vydání: 1987, počet stran: 238.</DESCRIPTION>
@@ -9714,16 +9082,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1678_BOX35</ITEM_ID>
-    <PRODUCTNAME>Do panského stavu - Popelka Biliánová</PRODUCTNAME>
-    <DESCRIPTION>Zahradník Kráčmera se ženou Barborou a dcerou Baruškou vyhrají v loterii půl milionu. Postupně se mění životní styl rodiny. Kráčmerovi se stěhují do měšťanského bytu a matka s dcerou si nakupují - kritizovány bývalými sousedkami - městské oblečení. Matka také pomáhá těhotné neteři. Zahradník Kráčmera slibuje svému bývalému zaměstnavateli, že se mu bude i nadále starat o zahradu. Zanedlouho kupuje Kráčmera nový dům. Baruška se na výletě s učitelem hudby seznámí s medikem Václavem. Vzruch do rodiny přinese návštěva Václavova strýce, bývalého nadlesního Fialy. Matka způsobí při výběru surovin pro zásnubní oběd na trhu výstup a domů ji - bez nákupu - přivede strážník. Václav požádá o Baruščinu ruku a matka Kráčmerka sdělí muži, že budou chovat. Později se objasní, že matkou bude Kráčmerka. Do Fialovy hájovny, kde probíhají přípravy na svatbu, zavítá Fialova dávná láska Lilinka, takže svatby se konají dvě. Zvoníka, který usnul, zastoupí Kráčmerka.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/do-panskeho-stavu/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287179/kniha4u/1678.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8071166839</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1681_BOX35</ITEM_ID>
     <PRODUCTNAME>Duch lásky - Daphne Du Maurier (Baronet, 1992, 334 stran) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Duch lásky – autor: Daphne Du Maurier, nakladatel: Baronet, rok vydání: 1992, počet stran: 334.</DESCRIPTION>
@@ -9829,16 +9187,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <PRICE_VAT>60</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788074062407</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1696_BOX35</ITEM_ID>
-    <PRODUCTNAME>Nejlepší světové čtení - Nick Trout; Ann Cleeves; Joseph Finder; Beth Hoffman</PRODUCTNAME>
-    <DESCRIPTION>Kniha Nejlepší světové čtení – autor: Nick Trout; Ann Cleeves; Joseph Finder; Beth Hoffman, rok vydání: 2015, počet stran: 558.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/nejlepsi-svetove-cteni-1696/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287180/kniha4u/1696.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788074063121</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1697_BOX35</ITEM_ID>
@@ -9952,16 +9300,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287181/kniha4u/1709.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1712_BOX35</ITEM_ID>
-    <PRODUCTNAME>Upírovo tajemství - Raven Hart</PRODUCTNAME>
-    <DESCRIPTION>Kniha Upírovo tajemství – autor: Raven Hart, nakladatel: Levné knihy, rok vydání: 2011, počet stran: 414.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/upirovo-tajemstvi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287181/kniha4u/1712.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788073099473</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1713_BOX35</ITEM_ID>
@@ -10336,7 +9674,7 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1760_BOX37</ITEM_ID>
-    <PRODUCTNAME>Co život dal a vzal - Betty MacDonald (Vyšehrad, 1992)</PRODUCTNAME>
+    <PRODUCTNAME>Co život dal a vzal - Betty MacDonald</PRODUCTNAME>
     <DESCRIPTION>Kniha Co život dal a vzal – autor: Betty MacDonald, nakladatel: Vyšehrad, rok vydání: 1992, počet stran: 559.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/co-zivot-dal-a-vzal/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287184/kniha4u/1760.webp</IMGURL>
@@ -11143,16 +10481,6 @@ Dopisy např.: J. Pospíšilovi, K. Staňkové, F. L. Čelakovskému, K. Havlí�
     <ISBN>8072057219</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1882_BOX39</ITEM_ID>
-    <PRODUCTNAME>Templáři - Piers Paul Read</PRODUCTNAME>
-    <DESCRIPTION>Kniha Templáři – autor: Piers Paul Read, nakladatel: BB/art, rok vydání: 2002, počet stran: 405.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/templari/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287192/kniha4u/1882.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8072577506</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1883_BOX39</ITEM_ID>
     <PRODUCTNAME>Vaříme s Zepterem (Zepter, 2000, 144 stran) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Vaříme s Zepterem – nakladatel: Zepter, rok vydání: 2000, počet stran: 144.</DESCRIPTION>
@@ -11336,16 +10664,6 @@ Dopisy např.: J. Pospíšilovi, K. Staňkové, F. L. Čelakovskému, K. Havlí�
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788074321382</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>1907_BOX40</ITEM_ID>
-    <PRODUCTNAME>Miluj svůj život - Louise L. Hay (Radost, 1993)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Miluj svůj život – autor: Louise L. Hay, nakladatel: Radost, rok vydání: 1993, počet stran: 233.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/miluj-svuj-zivot/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287193/kniha4u/1907.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>808518916X</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>1908_BOX40</ITEM_ID>
@@ -11712,15 +11030,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1958_BOX41</ITEM_ID>
-    <PRODUCTNAME>Ladovy veselé učebnice - Ladislav Stehlík; Josef Lada (Albatros, 1979)</PRODUCTNAME>
-    <DESCRIPTION>Výběr z Ladových obrázků ptáků provázejí u každého jedince verše a krátký naučný text.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/ladovy-vesele-ucebnice/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287197/kniha4u/1958.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1959_BOX41</ITEM_ID>
     <PRODUCTNAME>Lidé na křižovatce - Marie Pujmanová</PRODUCTNAME>
     <DESCRIPTION>Kniha Lidé na křižovatce – autor: Marie Pujmanová, nakladatel: Československý spisovatel, rok vydání: 1963.</DESCRIPTION>
@@ -11891,16 +11200,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <ISBN>8024209268</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>1983_BOX41</ITEM_ID>
-    <PRODUCTNAME>Zdraví ve vlastních rukách</PRODUCTNAME>
-    <DESCRIPTION>Kniha Zdraví ve vlastních rukách – nakladatel: Reader’s Digest, rok vydání: 2012, počet stran: 352.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zdravi-ve-vlastnich-rukach/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287199/kniha4u/1983.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788074061882</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>1984_BOX42</ITEM_ID>
     <PRODUCTNAME>Ani pták nezazpíval - Farley Mowat</PRODUCTNAME>
     <DESCRIPTION>Kniha Ani pták nezazpíval – autor: Farley Mowat, nakladatel: Naše vojsko, rok vydání: 1983, počet stran: 262.</DESCRIPTION>
@@ -12041,16 +11340,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <ISBN>9788074062070</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>2002_BOX42</ITEM_ID>
-    <PRODUCTNAME>Nikdy není pozdě na dlouhý život - Sarí Harrar (Reader’s Digest, 2009, 400 stran) – výtisk 1</PRODUCTNAME>
-    <DESCRIPTION>Kniha se stane vaší uživatelskou příručkou péče o tělo zaručující zdravý a šťastný dlouhý život. Přečtěte ji od začátku do konce a budete určitě spokojeni!</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/nikdy-neni-pozde-na-dlouhy-zivot/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287200/kniha4u/2002.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788074060519</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>2003_BOX42</ITEM_ID>
     <PRODUCTNAME>Ostrov Fulakona - Eric Lambert (Naše vojsko, 1971, 169 stran) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Ostrov Fulakona – autor: Eric Lambert, nakladatel: Naše vojsko, rok vydání: 1971, počet stran: 169.</DESCRIPTION>
@@ -12084,15 +11373,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <URL>https://kniha4u.cz/kniha/s-hedinem-celym-svetem/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287200/kniha4u/2007.webp</IMGURL>
     <PRICE_VAT>95</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2009_BOX42</ITEM_ID>
-    <PRODUCTNAME>Slovácko sa súdí - Zdeněk Galuška (Mladá fronta, 1974)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Slovácko sa súdí – autor: Zdeněk Galuška, nakladatel: Mladá fronta, rok vydání: 1974, počet stran: 125.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/slovacko-sa-sudi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287200/kniha4u/2009.webp</IMGURL>
-    <PRICE_VAT>60</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -12317,7 +11597,7 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>2039_BOX43</ITEM_ID>
-    <PRODUCTNAME>Kříž u potoka - Karolina Světlá (Československý spisovatel, 1972) – výtisk 1</PRODUCTNAME>
+    <PRODUCTNAME>Kříž u potoka - Karolina Světlá (Československý spisovatel, 1972)</PRODUCTNAME>
     <DESCRIPTION>Kniha Kříž u potoka – autor: Karolina Světlá, nakladatel: Československý spisovatel, rok vydání: 1972.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/kriz-u-potoka-2039/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287202/kniha4u/2039.webp</IMGURL>
@@ -12518,15 +11798,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>2066_BOX43</ITEM_ID>
-    <PRODUCTNAME>Skleněný klíč - Dashiell Hammett</PRODUCTNAME>
-    <DESCRIPTION>Kniha Skleněný klíč – autor: Dashiell Hammett, nakladatel: Svoboda, rok vydání: 1981, počet stran: 206.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/skleneny-klic/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287204/kniha4u/2066.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>2067_BOX43</ITEM_ID>
     <PRODUCTNAME>Slečnám to nevadí - Peter Cheyney (Mladá fronta, 1969) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Slečnám to nevadí – autor: Peter Cheyney, nakladatel: Mladá fronta, rok vydání: 1969.</DESCRIPTION>
@@ -12705,16 +11976,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287206/kniha4u/2091.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2092_BOX44</ITEM_ID>
-    <PRODUCTNAME>Čachtická paní - Jožo Nižnánsky (Petrklíč ve spolupráci s nakladatelstvím NIKY, 1991)</PRODUCTNAME>
-    <DESCRIPTION>Příběh hraběnky Batrhoryové, který tak pravdivě a věrně popsal Jožo Nižnánsky v románu Čachtická paní, se odehrává na rozhraní 16. a 17. století a čerpá ze skutečných událostí. Děj je nabitý nejen zajímavými historickými a dobovými fakty, ale je především napínavým až detektivním čtením. Vyvrcholením děje je nekonečná až chorobná touha čachtické paní být za každou cenu krásnou. Tato touha byla příčinou zmaření životů mnoha nevinných a mladých dívek.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cachticka-pani/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287206/kniha4u/2092.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085243105</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>2095_BOX44</ITEM_ID>
@@ -13235,15 +12496,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>2170_BOX45</ITEM_ID>
-    <PRODUCTNAME>Prázdniny s babou Jagou - Eduard Nikolajevič Uspenskij</PRODUCTNAME>
-    <DESCRIPTION>Kniha Prázdniny s babou Jagou – autor: Eduard Nikolajevič Uspenskij, nakladatel: Lidové nakladatelství, rok vydání: 1983, počet stran: 98.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/prazdniny-s-babou-jagou/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287211/kniha4u/2170.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>2171_BOX45</ITEM_ID>
     <PRODUCTNAME>První prapor - Jan Mareš</PRODUCTNAME>
     <DESCRIPTION>Kniha První prapor – autor: Jan Mareš, nakladatel: Naše vojsko, rok vydání: 1965.</DESCRIPTION>
@@ -13269,16 +12521,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287211/kniha4u/2173.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2174_BOX45</ITEM_ID>
-    <PRODUCTNAME>Rady bylináře Pavla - Pavel Váňa</PRODUCTNAME>
-    <DESCRIPTION>Kniha Rady bylináře Pavla – autor: Pavel Váňa, nakladatel: ÁKA Čejkovo nakladatelství, rok vydání: 1990, počet stran: 119.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/rady-bylinare-pavla/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287211/kniha4u/2174.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8090029809</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>2175_BOX45</ITEM_ID>
@@ -13893,15 +13135,6 @@ Autor seznamuje se soudobým vývojem Evropy, s diplomatickým zákulisím tehde
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>2256_BOX47</ITEM_ID>
-    <PRODUCTNAME>Balady a romance - Jan Neruda (SPN, 1958)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Balady a romance – autor: Jan Neruda, nakladatel: SPN, rok vydání: 1958.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/balady-a-romance-2256/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287217/kniha4u/2256.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>2257_BOX47</ITEM_ID>
     <PRODUCTNAME>Dílo Jiřího Wolkra. - Jiří Wolker (Václav Petr, 1941)</PRODUCTNAME>
     <DESCRIPTION>Kniha Dílo Jiřího Wolkra. – autor: Jiří Wolker, nakladatel: Václav Petr, rok vydání: 1941, počet stran: 318.</DESCRIPTION>
@@ -14131,24 +13364,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DESCRIPTION>Kniha Romeo &amp; Julie 2300 – autor: Vladimír Páral, nakladatel: Práce, rok vydání: 1982, počet stran: 201.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/romeo-julie-2300-2292/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287220/kniha4u/2292.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2293_BOX47</ITEM_ID>
-    <PRODUCTNAME>Rozhovory s Janem Werichem - Jiří Janoušek</PRODUCTNAME>
-    <DESCRIPTION>Kniha Rozhovory s Janem Werichem – autor: Jiří Janoušek, nakladatel: Mladá fronta, rok vydání: 1986, počet stran: 261.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/rozhovory-s-janem-werichem/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287220/kniha4u/2293.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2294_BOX47</ITEM_ID>
-    <PRODUCTNAME>Řez ovocných dřevin - František Kyncl (SZN, 1979)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Řez ovocných dřevin – autor: František Kyncl, nakladatel: SZN, rok vydání: 1979.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/rez-ovocnych-drevin-2294/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287220/kniha4u/2294.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -14565,15 +13780,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DESCRIPTION>Kniha Oheň – autor: Emil Dvořák, nakladatel: Vicher, rok vydání: 1935, počet stran: 39.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/ohen/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287223/kniha4u/2351.webp</IMGURL>
-    <PRICE_VAT>500</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2352_BOX48</ITEM_ID>
-    <PRODUCTNAME>Paměti - Heinrich Heine</PRODUCTNAME>
-    <DESCRIPTION>Kniha Paměti – autor: Heinrich Heine, nakladatel: Pelcl, rok vydání: 1911, počet stran: 78.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/pameti/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287223/kniha4u/2352.webp</IMGURL>
     <PRICE_VAT>500</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -15844,15 +15050,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>2515_BOX52</ITEM_ID>
-    <PRODUCTNAME>Doznání - Artur London</PRODUCTNAME>
-    <DESCRIPTION>Kniha Doznání – autor: Artur London, nakladatel: Československý spisovatel, rok vydání: 1969.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/doznani/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287235/kniha4u/2515.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>2516_BOX52</ITEM_ID>
     <PRODUCTNAME>Dvě cesty malých národů jihovýchodní Evropy - Edvard Kardelj</PRODUCTNAME>
     <DESCRIPTION>Kniha Dvě cesty malých národů jihovýchodní Evropy – autor: Edvard Kardelj, nakladatel: Orbis, rok vydání: 1945.</DESCRIPTION>
@@ -16211,15 +15408,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DESCRIPTION>Kniha Cesty k dlouhověkosti – autor: Stanislav Trča, nakladatel: Avicenum, rok vydání: 1987, počet stran: 283.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/cesty-k-dlouhovekosti/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287238/kniha4u/2563.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2564_BOX53</ITEM_ID>
-    <PRODUCTNAME>Co život dal (a vzal) - Betty MacDonald (Práce, 1972)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Co život dal (a vzal) – autor: Betty MacDonald, nakladatel: Práce, rok vydání: 1972.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/co-zivot-dal-a-vzal-2564/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287238/kniha4u/2564.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -16933,15 +16121,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>2675_BOX55</ITEM_ID>
-    <PRODUCTNAME>Chaloupka strýčka Toma. - Harriet Elizabeth Beecher-Stowe (Albatros, 1969) – výtisk 2</PRODUCTNAME>
-    <DESCRIPTION>Kniha Chaloupka strýčka Toma. – autor: Harriet Elizabeth Beecher-Stowe, nakladatel: Albatros, rok vydání: 1969.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/chaloupka-strycka-toma-2675/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287246/kniha4u/2675.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>2676_BOX55</ITEM_ID>
     <PRODUCTNAME>Jančino jaro - Věra Němotová</PRODUCTNAME>
     <DESCRIPTION>Kniha Jančino jaro – autor: Věra Němotová, nakladatel: Atos, rok vydání: 1992, počet stran: 142.</DESCRIPTION>
@@ -17049,15 +16228,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <URL>https://kniha4u.cz/kniha/petr-zavodi/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287247/kniha4u/2689.webp</IMGURL>
     <PRICE_VAT>60</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2691_BOX55</ITEM_ID>
-    <PRODUCTNAME>Poledne, XXII. století - Arkadij Natanovič Strugackij</PRODUCTNAME>
-    <DESCRIPTION>Kniha Poledne, XXII. století – autor: Arkadij Natanovič Strugackij, nakladatel: Práce, rok vydání: 1980.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/poledne-xxii-stoleti/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287247/kniha4u/2691.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -17336,15 +16506,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DESCRIPTION>Kniha Arrowsmith – autor: Sinclair Lewis, nakladatel: Mladá fronta, rok vydání: 1967.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/arrowsmith-2729/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287249/kniha4u/2729.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2730_BOX57</ITEM_ID>
-    <PRODUCTNAME>Básně noci - Vítězslav Nezval (Odeon, 1966, 162 stran) – výtisk 1</PRODUCTNAME>
-    <DESCRIPTION>Kniha Básně noci – autor: Vítězslav Nezval, nakladatel: Odeon, rok vydání: 1966, počet stran: 162.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/basne-noci/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287250/kniha4u/2730.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -17747,15 +16908,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <URL>https://kniha4u.cz/kniha/muzikantska-liduska/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287253/kniha4u/2793.webp</IMGURL>
     <PRICE_VAT>170</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2794_BOX58</ITEM_ID>
-    <PRODUCTNAME>Naši předkové - Italo Calvino</PRODUCTNAME>
-    <DESCRIPTION>Kniha Naši předkové – autor: Italo Calvino, nakladatel: Odeon, rok vydání: 1970, počet stran: 371.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/nasi-predkove/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287253/kniha4u/2794.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -18196,15 +17348,6 @@ V textu knížky je zachována pravopisná úprava z roku 1969, neboť se jedná
     <DESCRIPTION>Dva odlišné charaktery, úspěšný hudební skladatel, povrchní, jdoucí za kariérou a zásadová studentka medicíny odlišně chápou a řeší citové vzplanutí, které je sblížilo. Přímočarost děvčete marně bojuje se sobectvím partnera, který se nehodlá rozejít ani s ní, ani s manželkou. Kniha vrcholí sebevraždou mladé dívky</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/sobectvi/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287258/kniha4u/2848.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2849_BOX59</ITEM_ID>
-    <PRODUCTNAME>Staré pověsti české - Alois Jirásek (SPN, 1965)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Staré pověsti české – autor: Alois Jirásek, nakladatel: SPN, rok vydání: 1965.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/stare-povesti-ceske-2849/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287258/kniha4u/2849.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -18699,7 +17842,7 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>2922_BOX61</ITEM_ID>
-    <PRODUCTNAME>Básně noci - Vítězslav Nezval (Odeon, 1966, 162 stran) – výtisk 2</PRODUCTNAME>
+    <PRODUCTNAME>Básně noci - Vítězslav Nezval</PRODUCTNAME>
     <DESCRIPTION>Kniha Básně noci – autor: Vítězslav Nezval, nakladatel: Odeon, rok vydání: 1966, počet stran: 162.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/basne-noci-2922/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287263/kniha4u/2922.webp</IMGURL>
@@ -18713,15 +17856,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <URL>https://kniha4u.cz/kniha/biologie-cloveka-pro-3-rocnik-strednich-vseobecne-vzdelavacich-skol-pr/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287263/kniha4u/2923.webp</IMGURL>
     <PRICE_VAT>350</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2924_BOX61</ITEM_ID>
-    <PRODUCTNAME>Buddenbrookovi - Thomas Mann (Melantrich, 1932)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Buddenbrookovi – autor: Thomas Mann, nakladatel: Melantrich, rok vydání: 1932, počet stran: 334.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/buddenbrookovi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287263/kniha4u/2924.webp</IMGURL>
-    <PRICE_VAT>319</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -18790,15 +17924,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <ISBN>800424369X</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>2932_BOX61</ITEM_ID>
-    <PRODUCTNAME>Český jazyk pro pátý ročník</PRODUCTNAME>
-    <DESCRIPTION>Kniha Český jazyk pro pátý ročník – nakladatel: Státní pedagogické nakladatelství, rok vydání: 1989, počet stran: 159.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/cesky-jazyk-pro-paty-rocnik-2932/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287264/kniha4u/2932.webp</IMGURL>
-    <PRICE_VAT>350</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>2933_BOX61</ITEM_ID>
     <PRODUCTNAME>Český jazyk pro střední všeobecně vzdělávací školy a pro střední odborné školy - Karel Svoboda (SPN, 1968)</PRODUCTNAME>
     <DESCRIPTION>Kniha Český jazyk pro střední všeobecně vzdělávací školy a pro střední odborné školy – autor: Karel Svoboda, nakladatel: SPN, rok vydání: 1968.</DESCRIPTION>
@@ -18814,15 +17939,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <URL>https://kniha4u.cz/kniha/citanka-pro-devaty-rocnik-zakladnich-devitiletych-skol/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287264/kniha4u/2935.webp</IMGURL>
     <PRICE_VAT>90</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2936_BOX61</ITEM_ID>
-    <PRODUCTNAME>Dějepis pro 9. ročník základní devítileté školy - Karel Bartošek</PRODUCTNAME>
-    <DESCRIPTION>Kniha Dějepis pro 9. ročník základní devítileté školy – autor: Karel Bartošek, nakladatel: Státní pedagogické nakladatelství, rok vydání: 1963, počet stran: 234.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dejepis-pro-9-rocnik-zakladni-devitilete-skoly/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287264/kniha4u/2936.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -18904,15 +18020,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <DESCRIPTION>Kniha Konečná diagnóza – autor: Arthur Hailey, nakladatel: Československý spisovatel, rok vydání: 1976, počet stran: 325.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/konecna-diagnoza/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287265/kniha4u/2949.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>2950_BOX61</ITEM_ID>
-    <PRODUCTNAME>Legendy o Divokém Západě - Jaroslav Šikl</PRODUCTNAME>
-    <DESCRIPTION>Kniha Legendy o Divokém Západě – autor: Jaroslav Šikl, nakladatel: Práce, rok vydání: 1981, počet stran: 221.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/legendy-o-divokem-zapade-2950/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287265/kniha4u/2950.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -19138,7 +18245,7 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>2984_BOX63</ITEM_ID>
-    <PRODUCTNAME>Kapesní atlas hub - Albert Pilát (SPN, 1975)</PRODUCTNAME>
+    <PRODUCTNAME>Kapesní atlas hub - Albert Pilát</PRODUCTNAME>
     <DESCRIPTION>Kniha Kapesní atlas hub – autor: Albert Pilát, nakladatel: SPN, rok vydání: 1975, počet stran: 191.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/kapesni-atlas-hub-2984/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287268/kniha4u/2984.webp</IMGURL>
@@ -19240,15 +18347,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3003_BOX62</ITEM_ID>
-    <PRODUCTNAME>Bílá velryba - Herman Melville</PRODUCTNAME>
-    <DESCRIPTION>Kniha Bílá velryba – autor: Herman Melville, nakladatel: Odeon, rok vydání: 1975, počet stran: 552.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/bila-velryba/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287269/kniha4u/3003.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3004_BOX62</ITEM_ID>
     <PRODUCTNAME>Botanická zahrada Prostějov - Vladimíra Jašková</PRODUCTNAME>
     <DESCRIPTION>Kniha Botanická zahrada Prostějov – autor: Vladimíra Jašková, nakladatel: Český svaz ochránců přírody, Regionální sdružení Iris, rok vydání: 2008, počet stran: 63.</DESCRIPTION>
@@ -19328,15 +18426,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <DESCRIPTION>Kniha Dech na skle – autor: Josef Hora, nakladatel: Lidové noviny, rok vydání: 1939.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/dech-na-skle/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287270/kniha4u/3013.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3014_BOX62</ITEM_ID>
-    <PRODUCTNAME>Dějiny umění v Československu - Jakub Pavel</PRODUCTNAME>
-    <DESCRIPTION>Kniha Dějiny umění v Československu – autor: Jakub Pavel, nakladatel: Práce, rok vydání: 1978, počet stran: 424.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dejiny-umeni-v-ceskoslovensku/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287270/kniha4u/3014.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -19669,16 +18758,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3060_BOX64</ITEM_ID>
-    <PRODUCTNAME>Dějiny zemí Koruny české. (Paseka, 1992, 308 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Dějiny zemí Koruny české. – nakladatel: Paseka, rok vydání: 1992, počet stran: 308.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dejiny-zemi-koruny-ceske/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287274/kniha4u/3060.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085192306</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3061_BOX64</ITEM_ID>
     <PRODUCTNAME>Encyklopedie pro milovníky Švejka s mnoha vyobrazeními - Milan Hodík</PRODUCTNAME>
     <DESCRIPTION>Kniha Encyklopedie pro milovníky Švejka s mnoha vyobrazeními – autor: Milan Hodík, nakladatel: Academia, rok vydání: 1998, počet stran: 1.</DESCRIPTION>
@@ -19949,16 +19028,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <ISBN>8071761559</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3104_BOX65</ITEM_ID>
-    <PRODUCTNAME>Dějiny zemí Koruny české. (Paseka, 1992, 302 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Dějiny zemí Koruny české. – nakladatel: Paseka, rok vydání: 1992, počet stran: 302.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dejiny-zemi-koruny-ceske-3104/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287276/kniha4u/3104.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085192292</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3105_BOX65</ITEM_ID>
     <PRODUCTNAME>Dobrá mysl - Helena Šmahelová</PRODUCTNAME>
     <DESCRIPTION>Hrdinka knížky, školačka Dora, prožívá příjemné chvíle na zámku Dobrá mysl v jižních Čechách, kde její otec malíř opravuje kresby v zámeckém sále. Najde tam dětské i zvířecí kamarády a domů do Prahy se vrací nejen s čápem Pepíčkem, ale i s novou maminkou, učitelkou, a jejím synkem, jenž jí byl v Dobré mysli nejlepším kamarádem.</DESCRIPTION>
@@ -20082,7 +19151,7 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>3119_BOX65</ITEM_ID>
-    <PRODUCTNAME>Královna Margot - André Castelot (Melantrich, 1995, 217 stran) – výtisk 2</PRODUCTNAME>
+    <PRODUCTNAME>Královna Margot - André Castelot</PRODUCTNAME>
     <DESCRIPTION>Kniha Královna Margot – autor: André Castelot, nakladatel: Melantrich, rok vydání: 1995, počet stran: 217.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/kralovna-margot-3119/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287277/kniha4u/3119.webp</IMGURL>
@@ -20328,24 +19397,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <DESCRIPTION>Kniha Vlčí jáma – autor: Jarmila Glazarová, nakladatel: Československý spisovatel, rok vydání: 1954, počet stran: 239.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/vlci-jama-3154/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287280/kniha4u/3154.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3155_BOX65</ITEM_ID>
-    <PRODUCTNAME>Zvonokosy - Gabriel Chevallier (Odeon, 1973)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Zvonokosy – autor: Gabriel Chevallier, nakladatel: Odeon, rok vydání: 1973.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zvonokosy-3155/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287280/kniha4u/3155.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3156_BOX65</ITEM_ID>
-    <PRODUCTNAME>Židovka z Toleda - Lion Feuchtwanger</PRODUCTNAME>
-    <DESCRIPTION>Kniha Židovka z Toleda – autor: Lion Feuchtwanger, nakladatel: Státní nakladatelství krásné literatury a umění, rok vydání: 1965.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zidovka-z-toleda/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287280/kniha4u/3156.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -20621,15 +19672,6 @@ Na mapkách zachycuje hlavní etapy světového vývoje od paleolitu až do poč
     <DESCRIPTION>Kniha Školní zeměpisný atlas – autor: Bedřich Šalamon, nakladatel: Státní nakladatelství učebnic, rok vydání: 1952.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/skolni-zemepisny-atlas/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287282/kniha4u/3193.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3195_BOX66</ITEM_ID>
-    <PRODUCTNAME>Toulavý autobus - John Steinbeck</PRODUCTNAME>
-    <DESCRIPTION>Kniha Toulavý autobus – autor: John Steinbeck, nakladatel: Mladá fronta, rok vydání: 1966.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/toulavy-autobus/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287282/kniha4u/3195.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -21860,15 +20902,6 @@ Dojemně upřímný příběh.</DESCRIPTION>
     <ISBN>8020500723</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3390_BOX70</ITEM_ID>
-    <PRODUCTNAME>Krásy Československa - Vilém Heckel</PRODUCTNAME>
-    <DESCRIPTION>Kniha Krásy Československa – autor: Vilém Heckel, nakladatel: Orbis, rok vydání: 1972.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/krasy-ceskoslovenska/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287295/kniha4u/3390.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3391_BOX70</ITEM_ID>
     <PRODUCTNAME>Kronika o svatém Brandanu - Julius Zeyer</PRODUCTNAME>
     <DESCRIPTION>Kniha Kronika o svatém Brandanu – autor: Julius Zeyer, nakladatel: Česká grafická Unie, rok vydání: 1929.</DESCRIPTION>
@@ -22229,16 +21262,6 @@ Dojemně upřímný příběh.</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3446_BOX71</ITEM_ID>
-    <PRODUCTNAME>Nový začátek - Maria Calasanz Ziesche</PRODUCTNAME>
-    <DESCRIPTION>Kniha Nový začátek – autor: Maria Calasanz Ziesche, nakladatel: Karmelitánské nakladatelství, rok vydání: 2001, počet stran: 255.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/novy-zacatek/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287298/kniha4u/3446.webp</IMGURL>
-    <PRICE_VAT>60</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8071925942</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3449_BOX71</ITEM_ID>
     <PRODUCTNAME>Oni přijdou - Milan Jariš</PRODUCTNAME>
     <DESCRIPTION>Kniha Oni přijdou – autor: Milan Jariš, nakladatel: Československý spisovatel, rok vydání: 1963, počet stran: 230.</DESCRIPTION>
@@ -22543,16 +21566,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <ISBN>8071926248</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3500_BOX72</ITEM_ID>
-    <PRODUCTNAME>Dokonalá svoboda - Maria Calasanz Ziesche</PRODUCTNAME>
-    <DESCRIPTION>Kniha Dokonalá svoboda – autor: Maria Calasanz Ziesche, nakladatel: Portál, rok vydání: 1991, počet stran: 189.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dokonala-svoboda-3500/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287301/kniha4u/3500.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>808528202X</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3503_BOX72</ITEM_ID>
     <PRODUCTNAME>Homeopatie - Neznámý</PRODUCTNAME>
     <DESCRIPTION>Kniha Homeopatie – autor: Neznámý, nakladatel: Neznámý, rok vydání: 2000.</DESCRIPTION>
@@ -22746,16 +21759,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3531_BOX72</ITEM_ID>
-    <PRODUCTNAME>Stála jsem u brány nebe a pekla - Gloria Polo (Matice Cyrillo-Methodějská, 2008, 63 stran) – výtisk 1</PRODUCTNAME>
-    <DESCRIPTION>Kniha Stála jsem u brány nebe a pekla – autor: Gloria Polo, nakladatel: Matice Cyrillo-Methodějská, rok vydání: 2008, počet stran: 63.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/stala-jsem-u-brany-nebe-a-pekla/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287304/kniha4u/3531.webp</IMGURL>
-    <PRICE_VAT>70</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788072663255</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3532_BOX72</ITEM_ID>
     <PRODUCTNAME>Svět na váhách - Upton Sinclair (Erika, 1994, 443 stran) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Svět na váhách – autor: Upton Sinclair, nakladatel: Erika, rok vydání: 1994, počet stran: 443.</DESCRIPTION>
@@ -22812,16 +21815,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8071051462</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3539_BOX72</ITEM_ID>
-    <PRODUCTNAME>Velké poslání - Upton Sinclair (Erika, 1995, 364 stran) – výtisk 1</PRODUCTNAME>
-    <DESCRIPTION>Kniha Velké poslání – autor: Upton Sinclair, nakladatel: Erika, rok vydání: 1995, počet stran: 364.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/velke-poslani/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287304/kniha4u/3539.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085612844</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>3540_BOX72</ITEM_ID>
@@ -22980,23 +21973,13 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>3563_BOX73</ITEM_ID>
-    <PRODUCTNAME>Miluj svůj život - Louise L. Hay (Radost, 1992)</PRODUCTNAME>
+    <PRODUCTNAME>Miluj svůj život - Louise L. Hay</PRODUCTNAME>
     <DESCRIPTION>Kniha Miluj svůj život – autor: Louise L. Hay, nakladatel: Radost, rok vydání: 1992, počet stran: 233.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/miluj-svuj-zivot-3563/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287306/kniha4u/3563.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8085189127</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3565_BOX73</ITEM_ID>
-    <PRODUCTNAME>Neohlížej se, miláčku - Daphne Du Maurier (Dialog, 1996)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Neohlížej se, miláčku – autor: Daphne Du Maurier, nakladatel: Dialog, rok vydání: 1996, počet stran: 278.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/neohlizej-se-milacku/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287306/kniha4u/3565.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085843420</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>3566_BOX73</ITEM_ID>
@@ -23981,15 +22964,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <ISBN>8085612321</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3720_BOX76</ITEM_ID>
-    <PRODUCTNAME>Brno - Chmelíková</PRODUCTNAME>
-    <DESCRIPTION>Kniha Brno – autor: Chmelíková, nakladatel: Kartografie Praha, rok vydání: 1982.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/brno-3720/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287316/kniha4u/3720.webp</IMGURL>
-    <PRICE_VAT>350</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3721_BOX76</ITEM_ID>
     <PRODUCTNAME>Cesty knížecí - Pavel Hejcman</PRODUCTNAME>
     <DESCRIPTION>Kniha Cesty knížecí – autor: Pavel Hejcman, nakladatel: Krajské nakladatelství, rok vydání: 1960, počet stran: 337.</DESCRIPTION>
@@ -24111,26 +23085,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <ISBN>8023907662</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3739_BOX76</ITEM_ID>
-    <PRODUCTNAME>Můj život - Vlasta Javořická (Jota, 2006, 429 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Můj život – autor: Vlasta Javořická, nakladatel: Jota, rok vydání: 2006, počet stran: 429.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/muj-zivot-3739/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287317/kniha4u/3739.webp</IMGURL>
-    <PRICE_VAT>1309</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>807217391X</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3743_BOX76</ITEM_ID>
-    <PRODUCTNAME>Můj život - Vlasta Javořická (Jota, 2006, 431 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Můj život – autor: Vlasta Javořická, nakladatel: Jota, rok vydání: 2006, počet stran: 431.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/muj-zivot-3743/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287317/kniha4u/3743.webp</IMGURL>
-    <PRICE_VAT>1000</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8072174282</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3744_BOX76</ITEM_ID>
     <PRODUCTNAME>Národní divadlo</PRODUCTNAME>
     <DESCRIPTION>Kniha Národní divadlo – nakladatel: [Národní divadlo], rok vydání: 1955, počet stran: 99.</DESCRIPTION>
@@ -24203,24 +23157,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <PRICE_VAT>800</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788072951567</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3754_BOX76</ITEM_ID>
-    <PRODUCTNAME>Slovácko sa sudí aj nesúdí - Zdeněk Galuška</PRODUCTNAME>
-    <DESCRIPTION>Kniha Slovácko sa sudí aj nesúdí – autor: Zdeněk Galuška, nakladatel: Levné knihy, rok vydání: 2019.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/slovacko-sa-sudi-aj-nesudi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287318/kniha4u/3754.webp</IMGURL>
-    <PRICE_VAT>350</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3755_BOX76</ITEM_ID>
-    <PRODUCTNAME>Syn brusiče nožů - Wilhelm Hünermann</PRODUCTNAME>
-    <DESCRIPTION>Kniha Syn brusiče nožů – autor: Wilhelm Hünermann, nakladatel: Křesťanská akademie, rok vydání: 1969, počet stran: 310.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/syn-brusice-nozu/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287318/kniha4u/3755.webp</IMGURL>
-    <PRICE_VAT>65</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>3756_BOX76</ITEM_ID>
@@ -24868,24 +23804,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <ISBN>9788071954347</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3845_BOX78</ITEM_ID>
-    <PRODUCTNAME>Kněžím, přemilým synům Panny Marie - kolektiv</PRODUCTNAME>
-    <DESCRIPTION>Kniha Kněžím, přemilým synům Panny Marie – autor: kolektiv, nakladatel: Mariánské kněžské hnutí, rok vydání: 1992.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/knezim-premilym-synum-panny-marie/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287324/kniha4u/3845.webp</IMGURL>
-    <PRICE_VAT>90</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3846_BOX78</ITEM_ID>
-    <PRODUCTNAME>Kubula a Kuba Kubikula - Vladislav Vančura</PRODUCTNAME>
-    <DESCRIPTION>Kniha Kubula a Kuba Kubikula – autor: Vladislav Vančura, nakladatel: Albatros, rok vydání: 1972.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kubula-a-kuba-kubikula-3846/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287324/kniha4u/3846.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3847_BOX78</ITEM_ID>
     <PRODUCTNAME>Legenda o Ulenspieglovi - Charles Théodore Henri De Coster</PRODUCTNAME>
     <DESCRIPTION>Kniha Legenda o Ulenspieglovi – autor: Charles Théodore Henri De Coster, nakladatel: Smena, rok vydání: 1963, počet stran: 550.</DESCRIPTION>
@@ -25460,16 +24378,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>3922_BOX79</ITEM_ID>
-    <PRODUCTNAME>Poutník - Maria Calasanz Ziesche</PRODUCTNAME>
-    <DESCRIPTION>Kniha Poutník – autor: Maria Calasanz Ziesche, nakladatel: Portál, rok vydání: 1995, počet stran: 246.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/poutnik-3922/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287330/kniha4u/3922.webp</IMGURL>
-    <PRICE_VAT>121</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8071780820</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>3923_BOX79</ITEM_ID>
     <PRODUCTNAME>Požár Národního divadla, aneb, Příliš mnoho náhod - Miroslav Ivanov</PRODUCTNAME>
     <DESCRIPTION>Kniha Požár Národního divadla, aneb, Příliš mnoho náhod – autor: Miroslav Ivanov, nakladatel: Panorama, rok vydání: 1983, počet stran: 225.</DESCRIPTION>
@@ -25946,16 +24854,6 @@ Sestavil Jaroslav Herout a Marie Maršálková. Slovem doprovází Miroslav Ivan
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8070333812</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>3996_BOX81</ITEM_ID>
-    <PRODUCTNAME>Hřebec - Jackie Collins</PRODUCTNAME>
-    <DESCRIPTION>Kniha Hřebec – autor: Jackie Collins, nakladatel: Alpress, rok vydání: 1993, počet stran: 206.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/hrebec/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287335/kniha4u/3996.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8090118720</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>3997_BOX81</ITEM_ID>
@@ -26732,15 +25630,6 @@ Vylodění v Normandii bylo z důvodů vojenských, technických i logistických
     <URL>https://kniha4u.cz/kniha/kleopatra/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287343/kniha4u/4120.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>4121_BOX84</ITEM_ID>
-    <PRODUCTNAME>Kniha Tisíce a jedné noci (Československá akademie věd, 1960, 469 stran)</PRODUCTNAME>
-    <DESCRIPTION>Arabská rámcová sbírka lidových vypravování - pohádek, bajek pověstí, legend, novel, románů, humoresek, anekdot, mravoličných historek atd.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kniha-tisice-a-jedne-noci/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287343/kniha4u/4121.webp</IMGURL>
-    <PRICE_VAT>115</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -27595,16 +26484,6 @@ Děj se rozvíjí kolem tragédie vesnické dívky, kterou šlechtický syn uved
     <ISBN>8090149162</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>4235_BOX86</ITEM_ID>
-    <PRODUCTNAME>Šance - Jackie Collins</PRODUCTNAME>
-    <DESCRIPTION>Z atraktivního námětu chce autorka vytěžit co nejvíce - barvitě líčí, jak se hrdina z nejnuznějších poměrů vypracoval k pozici jednoho z nejobávanějších mužů Ameriky. Kromě dobrodružných a brutálních akcí, které ho vynesly z periferie mezi společenskou smetánku, si autorka také všímá jeho pestrých sexuálních dobrodružství a nezapomíná ani na líčení celkové atmosféry určité části poválečné americké společnosti.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/sance/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287352/kniha4u/4235.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8090118704</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>4236_BOX86</ITEM_ID>
     <PRODUCTNAME>Šerif - Jean Labrunie</PRODUCTNAME>
     <DESCRIPTION>Kniha Šerif – autor: Jean Labrunie, nakladatel: Mladá fronta, rok vydání: 1984, počet stran: 181.</DESCRIPTION>
@@ -27880,7 +26759,7 @@ Doslov „Třetí dáma zločinu“ napsala Hana Knížková.</DESCRIPTION>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>4277_BOX87</ITEM_ID>
-    <PRODUCTNAME>Kniha Tisíce a jedné noci (Československá akademie věd, 1960, 341 stran)</PRODUCTNAME>
+    <PRODUCTNAME>Kniha Tisíce a jedné noci (Československá akademie věd, 1960)</PRODUCTNAME>
     <DESCRIPTION>Arabská rámcová sbírka lidových vypravování - pohádek, bajek pověstí, legend, novel, románů, humoresek, anekdot, mravoličných historek atd.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/kniha-tisice-a-jedne-noci-4277/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287356/kniha4u/4277.webp</IMGURL>
@@ -28006,15 +26885,6 @@ V tomto svazku obsahuje jeden samostatný román.</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>4294_BOX87</ITEM_ID>
-    <PRODUCTNAME>Přišel z hor - Jan Weiss</PRODUCTNAME>
-    <DESCRIPTION>Kniha Přišel z hor – autor: Jan Weiss, nakladatel: Československý spisovatel, rok vydání: 1957.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/prisel-z-hor-4294/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287357/kniha4u/4294.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>4295_BOX87</ITEM_ID>
     <PRODUCTNAME>Rendez-vous s Paříží - Josef Hotmar (Odeon, 1988)</PRODUCTNAME>
     <DESCRIPTION>Ve svém průvodci metropolí nad Seinou autor využil svých poznatků a zkušeností z mnohaletého pobytu ve Francii.
@@ -28039,15 +26909,6 @@ Kniha obsahuje velké množství černobílých i barevných fotografií.</DESCR
     <DESCRIPTION>Kniha Říkali si vojevůdci – autor: Miroslav Honzík, nakladatel: Naše vojsko, rok vydání: 1984, počet stran: 297.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/rikali-si-vojevudci/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287357/kniha4u/4297.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>4298_BOX87</ITEM_ID>
-    <PRODUCTNAME>Slunce nad Slavkovem - Dušan Uhlíř</PRODUCTNAME>
-    <DESCRIPTION>Kniha Slunce nad Slavkovem – autor: Dušan Uhlíř, nakladatel: Mladá fronta, rok vydání: 1984, počet stran: 422.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/slunce-nad-slavkovem/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287358/kniha4u/4298.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -29229,15 +28090,6 @@ Nobody (Nikdo) je obdařen řadou schopností, pro normálního smrtelníka nepo
     <ISBN>8070210397</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>4459_BOX90</ITEM_ID>
-    <PRODUCTNAME>Přísně tajné šifry - Václav Pavel Borovička</PRODUCTNAME>
-    <DESCRIPTION>Kniha Přísně tajné šifry – autor: Václav Pavel Borovička, nakladatel: Naše vojsko, rok vydání: 1982, počet stran: 315.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/prisne-tajne-sifry/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287369/kniha4u/4459.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>4460_BOX90</ITEM_ID>
     <PRODUCTNAME>Příšerný náklad - Gerhard Friedrich Basner</PRODUCTNAME>
     <DESCRIPTION>Kniha Příšerný náklad – autor: Gerhard Friedrich Basner, nakladatel: Ivo Železný, rok vydání: 1992, počet stran: 63, jazyk: česky.</DESCRIPTION>
@@ -29902,15 +28754,6 @@ Nobody (Nikdo) je obdařen řadou schopností, pro normálního smrtelníka nepo
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>4551_BOX92</ITEM_ID>
-    <PRODUCTNAME>Medžugorje - František Mraáček</PRODUCTNAME>
-    <DESCRIPTION>Kniha Medžugorje – autor: František Mraáček, nakladatel: Vérité, rok vydání: 1993.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/medzugorje/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287375/kniha4u/4551.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>4552_BOX92</ITEM_ID>
     <PRODUCTNAME>A Bůh viděl, že je to dobré - Carlo Carretto</PRODUCTNAME>
     <DESCRIPTION>Kniha A Bůh viděl, že je to dobré – autor: Carlo Carretto, nakladatel: Portál, rok vydání: 1996, počet stran: 111, jazyk: česky.</DESCRIPTION>
@@ -30127,7 +28970,7 @@ Nobody (Nikdo) je obdařen řadou schopností, pro normálního smrtelníka nepo
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>4602_BOX92</ITEM_ID>
-    <PRODUCTNAME>Slovácko sa súdí - Zdeněk Galuška (Lidová demokracie, 1969)</PRODUCTNAME>
+    <PRODUCTNAME>Slovácko sa súdí - Zdeněk Galuška</PRODUCTNAME>
     <DESCRIPTION>Kniha Slovácko sa súdí – autor: Zdeněk Galuška, nakladatel: Lidová demokracie, rok vydání: 1969, počet stran: 155.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/slovacko-sa-sudi-4602/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287378/kniha4u/4602.webp</IMGURL>
@@ -30335,15 +29178,6 @@ Nobody (Nikdo) je obdařen řadou schopností, pro normálního smrtelníka nepo
     <URL>https://kniha4u.cz/kniha/chameleon/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287380/kniha4u/4635.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>4636_BOX93</ITEM_ID>
-    <PRODUCTNAME>Ilustrované dějiny světové - Jaroslav Kosina (Jos. R. Vilímek, 1940, 513 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Ilustrované dějiny světové – autor: Jaroslav Kosina, nakladatel: Jos. R. Vilímek, rok vydání: 1940, počet stran: 513.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/ilustrovane-dejiny-svetove/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287380/kniha4u/4636.webp</IMGURL>
-    <PRICE_VAT>139</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -30642,24 +29476,6 @@ Nobody (Nikdo) je obdařen řadou schopností, pro normálního smrtelníka nepo
     <DESCRIPTION>Kniha Dáma na kolejích – autor: Vratislav Blažek, nakladatel: Dilia, rok vydání: 1966.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/dama-na-kolejich/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287383/kniha4u/4674.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>4676_BOX94</ITEM_ID>
-    <PRODUCTNAME>F.L. Věk - Alois Jirásek (Orbis, 1951, 402 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha F.L. Věk – autor: Alois Jirásek, nakladatel: Orbis, rok vydání: 1951, počet stran: 402.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/f-l-vek/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287383/kniha4u/4676.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>4677_BOX94</ITEM_ID>
-    <PRODUCTNAME>F.L. Věk - Alois Jirásek (Orbis, 1951, 266 stran)</PRODUCTNAME>
-    <DESCRIPTION>Kniha F.L. Věk – autor: Alois Jirásek, nakladatel: Orbis, rok vydání: 1951, počet stran: 266.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/f-l-vek-4677/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287383/kniha4u/4677.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -32628,29 +31444,11 @@ Ona je krásná, příjemná a v lásce opatrná, protože je traumatizována z 
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>4958_BOX99</ITEM_ID>
-    <PRODUCTNAME>Quo vadis - Henryk Sienkiewicz (Státní nakladatelství krásné literatury, hudby a umění, 1958)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Quo vadis – autor: Henryk Sienkiewicz, nakladatel: Státní nakladatelství krásné literatury, hudby a umění, rok vydání: 1958, počet stran: 589, jazyk: česky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/quo-vadis-4958/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287401/kniha4u/4958.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>4959_BOX99</ITEM_ID>
     <PRODUCTNAME>Růže na úvěr - Elsa Triolet</PRODUCTNAME>
     <DESCRIPTION>Kniha Růže na úvěr – autor: Elsa Triolet, nakladatel: SNKLU, rok vydání: 1962, jazyk: česky.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/ruze-na-uver/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287401/kniha4u/4959.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>4960_BOX99</ITEM_ID>
-    <PRODUCTNAME>Římanka - Alberto Moravia (Odeon, 1966, 330 stran) – výtisk 3</PRODUCTNAME>
-    <DESCRIPTION>Román známého italského spisovatele (nar. 1907), brojícího proti konvenci bohaté italské společnosti, jehož mnohá díla získala mezinárodní uznání a některá byla zfilmována. Příběh prostitutky, která přes své prodejné zaměstnání je schopna toužit po klidném, rodinném kruhu, je však příliš vitální a tak si ji nakonec takřka proti její vůli podmaňuje milenec jejího těla, se kterým má dítě, zatímco milenec jejího srdce hyne sebevraždou.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/rimanka-4960/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287401/kniha4u/4960.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -32878,15 +31676,6 @@ Ona je krásná, příjemná a v lásce opatrná, protože je traumatizována z 
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>4987_BOX100</ITEM_ID>
-    <PRODUCTNAME>Kříž u potoka - Karolina Světlá (Československý spisovatel, 1972) – výtisk 2</PRODUCTNAME>
-    <DESCRIPTION>Kniha Kříž u potoka – autor: Karolina Světlá, nakladatel: Československý spisovatel, rok vydání: 1972.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/kriz-u-potoka-4987/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287403/kniha4u/4987.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>4988_BOX100</ITEM_ID>
     <PRODUCTNAME>Lázeňský host z Norimberka - Jiří Horský</PRODUCTNAME>
     <DESCRIPTION>Kniha Lázeňský host z Norimberka – autor: Jiří Horský, nakladatel: Magnet, rok vydání: 1977, počet stran: 127.</DESCRIPTION>
@@ -32912,16 +31701,6 @@ Ona je krásná, příjemná a v lásce opatrná, protože je traumatizována z 
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287404/kniha4u/4990.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>4991_BOX100</ITEM_ID>
-    <PRODUCTNAME>Milovat - Danielle Steel (1998)</PRODUCTNAME>
-    <DESCRIPTION>Životní příběh dcery úspěšného dramatika, jehož smrt znamenala velký mezník v jejím životě a zahájila řadu životních úspěchů a hlavně neúspěchů. Manželství se čtyřmi muži a narození dvou dětí - to je hlavní obsah románu. Líčí hrdinčinu závislost na mužích, kteří prošli jejím životem a zachycuje její snahu odpoutat se od nich a stát se nezávislou</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/milovat/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287404/kniha4u/4991.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8071766798</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>4992_BOX100</ITEM_ID>
@@ -34225,15 +33004,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>5156_BOX102</ITEM_ID>
-    <PRODUCTNAME>Nové základy experimentální psychologie - Břetislav Kafka</PRODUCTNAME>
-    <DESCRIPTION>Kniha Nové základy experimentální psychologie – autor: Břetislav Kafka, nakladatel: B. Kafka, rok vydání: 1947, počet stran: 427.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/nove-zaklady-experimentalni-psychologie/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287415/kniha4u/5156.webp</IMGURL>
-    <PRICE_VAT>1500</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>5157_BOX102</ITEM_ID>
     <PRODUCTNAME>Nový velký atlas světa</PRODUCTNAME>
     <DESCRIPTION>Kniha Nový velký atlas světa – nakladatel: Universum, rok vydání: 2008.</DESCRIPTION>
@@ -34667,15 +33437,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <ISBN>8004258387</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>5223_BOX103</ITEM_ID>
-    <PRODUCTNAME>Zápisky z mrtvého domu - Fedor Michajlovič Dostojevskij</PRODUCTNAME>
-    <DESCRIPTION>Kniha Zápisky z mrtvého domu – autor: Fedor Michajlovič Dostojevskij, nakladatel: Odeon, rok vydání: 1973, jazyk: česky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zapisky-z-mrtveho-domu-5223/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287420/kniha4u/5223.webp</IMGURL>
-    <PRICE_VAT>99</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>5224_BOX103</ITEM_ID>
     <PRODUCTNAME>Zpíváme ve sboru - Milan Uherek</PRODUCTNAME>
     <DESCRIPTION>Kniha Zpíváme ve sboru – autor: Milan Uherek, nakladatel: SPN, rok vydání: 1987, počet stran: 479.</DESCRIPTION>
@@ -35016,16 +33777,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <ISBN>8090118763</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>5263_BOX104</ITEM_ID>
-    <PRODUCTNAME>Smrtelné objetí - Jackie Collins</PRODUCTNAME>
-    <DESCRIPTION>Kniha Smrtelné objetí – autor: Jackie Collins, nakladatel: Alpress, rok vydání: 2002, počet stran: 536, jazyk: česky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/smrtelne-objeti/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287423/kniha4u/5263.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8072187686</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>5264_BOX104</ITEM_ID>
     <PRODUCTNAME>Svět na váhách - Upton Sinclair (Erika, 1994, 443 stran) – výtisk 3</PRODUCTNAME>
     <DESCRIPTION>Kniha Svět na váhách – autor: Upton Sinclair, nakladatel: Erika, rok vydání: 1994, počet stran: 443, jazyk: česky.</DESCRIPTION>
@@ -35077,7 +33828,7 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5269_BOX104</ITEM_ID>
-    <PRODUCTNAME>Velké poslání - Upton Sinclair (Erika, 1995, 364 stran) – výtisk 2</PRODUCTNAME>
+    <PRODUCTNAME>Velké poslání - Upton Sinclair (Erika, 1995, 364 stran)</PRODUCTNAME>
     <DESCRIPTION>Kniha Velké poslání – autor: Upton Sinclair, nakladatel: Erika, rok vydání: 1995, počet stran: 364.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/velke-poslani-5269/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287423/kniha4u/5269.webp</IMGURL>
@@ -35143,7 +33894,7 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5280_BOX105</ITEM_ID>
-    <PRODUCTNAME>Ladovy veselé učebnice - Ladislav Stehlík; Josef Lada (Albatros, 1988)</PRODUCTNAME>
+    <PRODUCTNAME>Ladovy veselé učebnice - Ladislav Stehlík; Josef Lada</PRODUCTNAME>
     <DESCRIPTION>Kniha Ladovy veselé učebnice – autor: Ladislav Stehlík; Josef Lada, nakladatel: Albatros, rok vydání: 1988, počet stran: 22.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/ladovy-vesele-ucebnice-5280/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287424/kniha4u/5280.webp</IMGURL>
@@ -35637,15 +34388,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <ISBN>8073162288</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>5346_BOX106</ITEM_ID>
-    <PRODUCTNAME>Umělecké památky Čech</PRODUCTNAME>
-    <DESCRIPTION>Kniha Umělecké památky Čech – nakladatel: Academia, rok vydání: 1977, počet stran: 643.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/umelecke-pamatky-cech/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287428/kniha4u/5346.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>5347_BOX106</ITEM_ID>
     <PRODUCTNAME>Umělecké památky Čech - Emanuel Poche</PRODUCTNAME>
     <DESCRIPTION>Kniha Umělecké památky Čech – autor: Emanuel Poche, nakladatel: Academia, rok vydání: 1980, počet stran: 538.</DESCRIPTION>
@@ -35731,16 +34473,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <PRICE_VAT>310</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788073215927</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>5361_BOX107</ITEM_ID>
-    <PRODUCTNAME>Bystrý mozek do 100 let - Sarí Harrar</PRODUCTNAME>
-    <DESCRIPTION>Kniha Bystrý mozek do 100 let – autor: Sarí Harrar, nakladatel: Reader’s Digest, rok vydání: 2014, počet stran: 320.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/bystry-mozek-do-100-let-5361/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287429/kniha4u/5361.webp</IMGURL>
-    <PRICE_VAT>60</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788074062810</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5362_BOX107</ITEM_ID>
@@ -35897,7 +34629,7 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5380_BOX107</ITEM_ID>
-    <PRODUCTNAME>Nikdy není pozdě na dlouhý život - Sarí Harrar (Reader’s Digest, 2009, 400 stran) – výtisk 2</PRODUCTNAME>
+    <PRODUCTNAME>Nikdy není pozdě na dlouhý život - Sarí Harrar</PRODUCTNAME>
     <DESCRIPTION>Kniha se stane vaší uživatelskou příručkou péče o tělo zaručující zdravý a šťastný dlouhý život. Přečtěte ji od začátku do konce a budete určitě spokojeni!</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/nikdy-neni-pozde-na-dlouhy-zivot-5380/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287430/kniha4u/5380.webp</IMGURL>
@@ -35973,7 +34705,7 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5394_BOX108</ITEM_ID>
-    <PRODUCTNAME>Diana - Andrew Morton (Columbus, 1995)</PRODUCTNAME>
+    <PRODUCTNAME>Diana - Andrew Morton</PRODUCTNAME>
     <DESCRIPTION>Vázaná s přebalem, dobrý stav. Pokračování knihy Diana: Její pravdivý příběh. S pomocí několika nejbližších přátel a rádců z Walesu mohl Andrew Morton, autor knihy Diana: Její pravdivý příběh, opět nahlédnout za drapérie oficiální královské propagandy a vylíčit, jak se Diana, jež se stala princeznou dříve, než dosáhla dospělosti, nyní učí být paní vlastního osudu, a nikoli jen palácovou loutkou. Morton odhaluje spory a intriky, které stály v pozadí rozluky s Charlesem, a tlumočí Dianiny osobní názory</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/diana-5394/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287431/kniha4u/5394.webp</IMGURL>
@@ -36387,15 +35119,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>5454_BOX110</ITEM_ID>
-    <PRODUCTNAME>Božská komedie - Dante Alighieri</PRODUCTNAME>
-    <DESCRIPTION>Nový překlad stěžejní části Božské komedie, doplňuje vedle podrobného poznámkového aparátu (a doslovu překladatele) komentář a úryvky z díla Giovanniho Boccaccia o Dantovi a studie ruského sovětského básníka a překladatele Osipa Mandelštama.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/bozska-komedie-5454/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287435/kniha4u/5454.webp</IMGURL>
-    <PRICE_VAT>250</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>5455_BOX110</ITEM_ID>
     <PRODUCTNAME>Bylinková kuchařka - Ladislav Chmel</PRODUCTNAME>
     <DESCRIPTION>Kniha Bylinková kuchařka – autor: Ladislav Chmel, nakladatel: Levné knihy KMa, rok vydání: 2005, počet stran: 285.</DESCRIPTION>
@@ -36485,15 +35208,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <DESCRIPTION>Kniha Kriminální příběh – autor: Vladimír Mináč, nakladatel: Československý spisovatel, rok vydání: 1966, jazyk: česky.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/kriminalni-pribeh/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287436/kniha4u/5466.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>5467_BOX110</ITEM_ID>
-    <PRODUCTNAME>Léčivé rostliny - Karel Klimeš; Ludmila Černá; Štěpán Neubauer; Pavel Lisý</PRODUCTNAME>
-    <DESCRIPTION>Kniha Léčivé rostliny – autor: Karel Klimeš; Ludmila Černá; Štěpán Neubauer; Pavel Lisý, nakladatel: Svépomoc, rok vydání: 1984, počet stran: 153.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/lecive-rostliny-5467/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287436/kniha4u/5467.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
@@ -36609,16 +35323,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287437/kniha4u/5481.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>5482_BOX110</ITEM_ID>
-    <PRODUCTNAME>Řeka Bohů - Wilbur Smith</PRODUCTNAME>
-    <DESCRIPTION>Kniha Řeka Bohů – autor: Wilbur Smith, nakladatel: OSNA, rok vydání: 1994, počet stran: 739, jazyk: česky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/reka-bohu/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287437/kniha4u/5482.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8085859106</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5483_BOX110</ITEM_ID>
@@ -36942,15 +35646,6 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>5525_BOX111</ITEM_ID>
-    <PRODUCTNAME>Řez ovocných dřevin - František Kyncl (SZN, 1980)</PRODUCTNAME>
-    <DESCRIPTION>Kniha Řez ovocných dřevin – autor: František Kyncl, nakladatel: SZN, rok vydání: 1980, počet stran: 175.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/rez-ovocnych-drevin-5525/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287440/kniha4u/5525.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>5526_BOX111</ITEM_ID>
     <PRODUCTNAME>Říkají mu otec - Esteban Uriburu</PRODUCTNAME>
     <DESCRIPTION>Kniha Říkají mu otec – autor: Esteban Uriburu, nakladatel: Česká provincie schönstattských sester Mariiných, rok vydání: 1997.</DESCRIPTION>
@@ -37072,7 +35767,7 @@ Kdysi parta studentů zavinila vážné zranění kamaráda, které ho poznamena
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>5550_BOX112</ITEM_ID>
-    <PRODUCTNAME>Buddenbrookovi - Thomas Mann (SNKLHU, 1955)</PRODUCTNAME>
+    <PRODUCTNAME>Buddenbrookovi - Thomas Mann</PRODUCTNAME>
     <DESCRIPTION>Román je mistrným vylíčením sestupné tendence tří generací spisovatelovy rodiny (v postavě mladého Hanna je zpodobněn sám autor) a zároveň věrným odrazem pozvolného rozkladu německé buržoasie v období přechodu kapitalismu dostadia imperialismu. Důsledky průmyslové revoluce pronikají i do tichých kontoirů Mannových předků, zámožných lubeckých velkoobchodníků; jejich podnikatelská zdatnost a robustnost je z počátku ještě s to zakrýt první trhliny,ohrožující starý patricijský dům z r. 1958, jemuž je předurčeno definitivně vzít za své až za jedné z hrůzných nocí druhé světové války, více než padesát let po tom, co vlastní hrdina knihy, Mannův otec (předloha románovéhoThomase Buddenbrooka) umírá. Autor, jeden z nejpřednějších současných německých prozaiků (nar. 1875), nedovedl sice správně odhadnout úlohu proletariátu, dokázal však s nevšedním mistrovstvím zachytit poslední, předsmrtné křečezanikajícího světa buržoasie.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/buddenbrookovi-5550/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287441/kniha4u/5550.webp</IMGURL>
@@ -37207,15 +35902,6 @@ Díl 2. P - Ž</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/rukovet-zahradkare-5570/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287442/kniha4u/5570.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>5572_BOX112</ITEM_ID>
-    <PRODUCTNAME>Subtropy - Jiří Šamla</PRODUCTNAME>
-    <DESCRIPTION>Kniha Subtropy – autor: Jiří Šamla, nakladatel: Citrusář, rok vydání: 1993, počet stran: 167.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/subtropy-5572/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287442/kniha4u/5572.webp</IMGURL>
-    <PRICE_VAT>90</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
@@ -40816,16 +39502,6 @@ Díl 2. P - Ž</DESCRIPTION>
     <ISBN>9788073901417</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>6181_BOX121</ITEM_ID>
-    <PRODUCTNAME>Bellagrand - Paullina Simons</PRODUCTNAME>
-    <DESCRIPTION>Počátek dvacátého století, Massachusetts. Italská imigrantka Gina je nezávislá, vášnivá a silná osobnost, která zoufale touží po vlastní rodině. Harry pochází z vysokých vrstev bostonské aristokracie a má jiný sen – chce vytvořit lepší svět. Byli ochotní dát cokoliv za to, aby mohli být spolu – a ve vztahu plném emocí, vášní, zuřivosti a trýzně si ti dva navzájem zlomí srdce, aby nakonec společně došli na rozcestí, na němž jediné rozhodnutí určí jejich další osud. Román klenoucí se přes dva kontinenty a čtyři desítky let z pera autorky Měděného jezdce.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/bellagrand/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287476/kniha4u/6181.webp</IMGURL>
-    <PRICE_VAT>65</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788024928593</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>6182_BOX121</ITEM_ID>
     <PRODUCTNAME>Benátský proces | návrat porodní báby - Roberta Rich</PRODUCTNAME>
     <DESCRIPTION>Pět let po událostech předchozího dílu se musí Hanna vrátit zpět do Benátek, z kterých kdysi s nasazením života uprchla. Její milovaný adoptivní syn Matteo byl totiž unesen. Ve hře je totiž stále dědictví rodiny di Padovani. V honosných palácích stejně jako v zbídačeném židovském ghettu však na Hannu nečekají pouze noví nepřátelé, ale především osudové následky jejích dávných činů…</DESCRIPTION>
@@ -42117,15 +40793,6 @@ Ale multimilionář Ryan Mulcahy vstoupí do Ashleyina života právě včas. Je
     <ISBN>8070220279</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>6378_BOX125</ITEM_ID>
-    <PRODUCTNAME>Zločin a trest - Fedor Michajlovič Dostojevskij</PRODUCTNAME>
-    <DESCRIPTION>Kniha Zločin a trest – autor: Fedor Michajlovič Dostojevskij, nakladatel: Lidové nakladatelství, rok vydání: 1988, počet stran: 434, jazyk: česky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zlocin-a-trest-6378/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287488/kniha4u/6378.webp</IMGURL>
-    <PRICE_VAT>280</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>6380_BOX125</ITEM_ID>
     <PRODUCTNAME>Život pana Molièra - Michail Afanasjevič Bulgakov</PRODUCTNAME>
     <DESCRIPTION>Kniha Život pana Molièra – autor: Michail Afanasjevič Bulgakov, nakladatel: Lidové nakladatelství, rok vydání: 1990, počet stran: 181, jazyk: česky.</DESCRIPTION>
@@ -42234,16 +40901,6 @@ Ale multimilionář Ryan Mulcahy vstoupí do Ashleyina života právě včas. Je
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8071163015</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>6391_BOX126</ITEM_ID>
-    <PRODUCTNAME>Dějiny světa</PRODUCTNAME>
-    <DESCRIPTION>Chronologicky uspořádané, bohatě ilustrované dějiny světa od pravěku do současnosti. Kniha je určena především starším dětem</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dejiny-sveta/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287489/kniha4u/6391.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8071817449</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>6392_BOX126</ITEM_ID>
@@ -46966,18 +45623,6 @@ Zachránil ji až hrabě z Walgravu a Elfled, stále ještě maskovaná, s ním 
     <ISBN>8072026402</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>6958_BOX140</ITEM_ID>
-    <PRODUCTNAME>Skandál - Suzanne Enoch</PRODUCTNAME>
-    <DESCRIPTION>Půvabná slečna Emma Grenvilleová je ředitelkou dívčí školy a vede své žačky v duchu vlastního přesvědčení, že ženy nejsou na světě proto, aby byly zdrojem mužské potěchy. Má až po krk nadutých šlechticů, kteří ženami pohrdají – a nejvíce ji dráždí vévoda z Wycliffu. Uhrančivý lord chce ztrojnásobit školné, aby finančně vypomohl své rodině, ale Emma je odhodlána jeho rozhodnutí zmařit.
-
-Hříšně přitažlivý Greydon Brakenridge za svůj dosavadní život nepotkal ženu, kterou by nedokázal svést. I tentokrát je přesvědčen, že tvrdohlavou slečnu ředitelku dokáže dostat tam, kde ji chce mít – a posléze snad i do svého lože. Zapřisáhlý svobodný mládenec ovšem inteligentní a překvapivě smyslnou slečnu Grenvilleovou hrubě podcenil. Netušil, že jeho působení v dívčí škole vyústí ve společenský skandál, a už vůbec si nebyl ochoten připustit, že by ho Emma mohla vmanipulovat tam, kde se nikdy nechtěl ocitnout: před oltář.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/skandal-6958/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287528/kniha4u/6958.webp</IMGURL>
-    <PRICE_VAT>250</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788073033620</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>6959_BOX140</ITEM_ID>
     <PRODUCTNAME>Smrtící věrnost - J. D. Robb</PRODUCTNAME>
     <DESCRIPTION>Jako všechny příběhy z této napínavé detektivní řady se i tento odehrává v polovině 21. století v kulisách kypícího přetechnizovaného New Yorku. Kromě neohrožené policistky Evy se i tentokrát setkáme s jejím manželem, meziplanetárním podnikatelem Roarkem, a všemi jejími přáteli, kolegy a známými. Všechno to začne jedním zazvoněním telefonu. Jistá žena se přiznává k vraždě svého manžela. Poručík Eva Dallasová však vyšetřuje ještě jednu vraždu, k níž se překvapivě přihlásí teroristická skupina. Na důkaz své moci povraždí jediným výbuchem desítky lidí. To je ale teprve začátek. V ohrožení se ocitají nejdůležitější dominanty města jako je sídlo OSN, sportovní hala na Madison Square nebo socha Svobody. Před Evou stojí nelehký a smrtelně nebezpečný úkol…</DESCRIPTION>
@@ -46996,16 +45641,6 @@ Hříšně přitažlivý Greydon Brakenridge za svůj dosavadní život nepotkal
     <PRICE_VAT>115</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788024328867</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>6961_BOX140</ITEM_ID>
-    <PRODUCTNAME>Tajné deníky slečny Mirandy Cheeverové - Julia Quinn</PRODUCTNAME>
-    <DESCRIPTION>2. března 1810… Dnes jsem se zamilovala. Ve věku deseti let Miranda Cheeverová vůbec nevypadá na to, že se z ní stane oslňující kráska. Smiřuje se s tím, že do ní společnost nevkládá velká očekávání - až do odpoledne, kdy jí Nigel Bevelstoke, pohledný a neodolatelný vikomt Turner, vážně políbí ruku a slíbí jí, že až dospěje, bude stejně krásná jako chytrá. A ve věku deseti let Miranda pochopí, že ho bude do konce života milovat. Následující léta jsou však k Turnerovi stejně krutá, jako k Mirandě laskavá. Stane se z ní půvabná žena, jak vikomt v onen pamětihodný den předpovídal - kdežto on je opuštěný, zahořklý muž, zdrcený zničující ztrátou. Miranda však nezapomene na pravdu, kterou před všemi těmi lety svěřila papíru - a nedovolí, aby jí osudová láska proklouzla mezi prsty…</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/tajne-deniky-slecny-mirandy-cheeverove/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287528/kniha4u/6961.webp</IMGURL>
-    <PRICE_VAT>165</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788024911366</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>6962_BOX140</ITEM_ID>
@@ -47371,16 +46006,6 @@ Hříšně přitažlivý Greydon Brakenridge za svůj dosavadní život nepotkal
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287531/kniha4u/7010.webp</IMGURL>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>7011_BOX142</ITEM_ID>
-    <PRODUCTNAME>Dům duchů - Isabel Allende</PRODUCTNAME>
-    <DESCRIPTION>Vázaná s přebalem, dobrý stav. Román je příběhem rodiny senátora Estebana Trueby.Na pozadí groteskních i dojemných historek vylíčila spisovatelka vývoj Chile od počátku 20. století až po fašistický převrat v roce 1973. Tento román byl úspěšně zfilmován - 1993 - s Meryl Streepovou v hlavní roli</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/dum-duchu/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287531/kniha4u/7011.webp</IMGURL>
-    <PRICE_VAT>60</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8020504079</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7012_BOX142</ITEM_ID>
@@ -47984,7 +46609,7 @@ Hříšně přitažlivý Greydon Brakenridge za svůj dosavadní život nepotkal
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7082_BOX144</ITEM_ID>
-    <PRODUCTNAME>Jana Eyrová - Charlotte Brontë (Český spisovatel, 1994)</PRODUCTNAME>
+    <PRODUCTNAME>Jana Eyrová - Charlotte Brontë</PRODUCTNAME>
     <DESCRIPTION>Kniha Jana Eyrová – autor: Charlotte Brontë, nakladatel: Český spisovatel, rok vydání: 1994, počet stran: 464, jazyk: česky.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/jana-eyrova-7082/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287536/kniha4u/7082.webp</IMGURL>
@@ -48879,16 +47504,6 @@ Hříšně přitažlivý Greydon Brakenridge za svůj dosavadní život nepotkal
     <ISBN>9788024251844</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>7185_BOX146</ITEM_ID>
-    <PRODUCTNAME>Svět koček - Marcus Schneck</PRODUCTNAME>
-    <DESCRIPTION>Tato kniha je nepostradatelnou příručkou pro všechny milovníky koček. Je plná cenných informací a půvabných ilustrací. Obsahuje vyčerpávající barevnou část popisující a ilustrující nejpopulárnější plemena na světě. Vysvětluje myšlenkové procesy, motivace a chování koček, které vám pomohou pochopit ji a komunikovat s ní. Najdete v ní zajímavé rady, jak ji pozorovat a uvádí na pravou míru mnohé mýty o kočkách. Poradí vám, jak své kočce zajistit zdravý a štastný život.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/svet-kocek/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287543/kniha4u/7185.webp</IMGURL>
-    <PRICE_VAT>89</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788073529673</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>7186_BOX146</ITEM_ID>
     <PRODUCTNAME>Šalamoun a královna ze Sáby - Siegfried Obermeier</PRODUCTNAME>
     <DESCRIPTION>Kniha Šalamoun a královna ze Sáby – autor: Siegfried Obermeier, nakladatel: Knižní klub, rok vydání: 2005, počet stran: 389, jazyk: česky.</DESCRIPTION>
@@ -48907,16 +47522,6 @@ Hříšně přitažlivý Greydon Brakenridge za svůj dosavadní život nepotkal
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8088828074</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>7188_BOX146-BOX162</ITEM_ID>
-    <PRODUCTNAME>Tajemství letního odpoledne - Kate Morton</PRODUCTNAME>
-    <DESCRIPTION>Parný letní den v Suffolku. Zatímco zbytek rodiny vyráží na piknik, šestnáctiletá Laurel sní v koruně stromu o chlapci jménem Billy, o Londýně a zářivé budoucnosti. Než však odpoledne skončí, stane se svědkyní otřesného zločinu, který všechno změní. O třicet let později je Laurel oblíbenou herečku, kterou však stále tíží stíny minulosti a vzpomínky. Vrací se proto zpátky na rodinnou farmu a začíná skládat střípky utajené historie - příběhu Dorothy, Vivien a Jimmyho, tří osob ze zcela odlišných světů, které za války svedla v Londýně dohromady náhoda a jejichž životy se krutě a osudově propletly. Strhující příběh o záhadách a tajemstvích, o divadle a krádeži, o vraždě a věrné lásce, odehrávající se střídavě ve třicátých a šedesátých letech minulého století.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/tajemstvi-letniho-odpoledne/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287543/kniha4u/7188.webp</IMGURL>
-    <PRICE_VAT>70</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788024924984</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7189_BOX146</ITEM_ID>
@@ -49499,7 +48104,7 @@ Hříšně přitažlivý Greydon Brakenridge za svůj dosavadní život nepotkal
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7256_BOX148</ITEM_ID>
-    <PRODUCTNAME>Čachtická paní - Jožo Nižnánsky (Tatran, 1970)</PRODUCTNAME>
+    <PRODUCTNAME>Čachtická paní - Jožo Nižnánsky</PRODUCTNAME>
     <DESCRIPTION>Kniha Čachtická paní – autor: Jožo Nižnánsky, nakladatel: Tatran, rok vydání: 1970, počet stran: 613.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/cachticka-pani-7256/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287549/kniha4u/7256.webp</IMGURL>
@@ -50483,16 +49088,6 @@ staly a byly úspěšně vyřešeny.</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>7369_BOX150</ITEM_ID>
-    <PRODUCTNAME>Malá encyklopedie Vánoc - Valburga Vavřinová</PRODUCTNAME>
-    <DESCRIPTION>Každoroční vánoční bestseller již od roku 2000, který obdržel i prestižní ocenění Zlatá stuha, vychází v nezměněném vydání. Autorka v jednotlivých, esejisticky psaných statích vypráví o svátcích od počátku adventu až po Hromnice, o tom, jak se slaví Mikuláš a Vánoce v řadě dalších zemí, o zvycích, koledách, stolování, vánočních pokrmech, cukroví, čarování ap.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/mala-encyklopedie-vanoc/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287556/kniha4u/7369.webp</IMGURL>
-    <PRICE_VAT>200</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8072771329</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>7370_BOX150</ITEM_ID>
     <PRODUCTNAME>Modrá krev - Daphne Du Maurier</PRODUCTNAME>
     <DESCRIPTION>Kniha Modrá krev – autor: Daphne Du Maurier, nakladatel: Dialog, rok vydání: 1998, počet stran: 293, jazyk: česky.</DESCRIPTION>
@@ -50727,15 +49322,6 @@ staly a byly úspěšně vyřešeny.</DESCRIPTION>
     <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>7395_BOX150</ITEM_ID>
-    <PRODUCTNAME>Večery kněžny Niny - Lidija Aleksejevna Čarskaja</PRODUCTNAME>
-    <DESCRIPTION>Kniha Večery kněžny Niny – autor: Lidija Aleksejevna Čarskaja, nakladatel: Jos. R. Vilímek, rok vydání: 1917, počet stran: 156, jazyk: česky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/vecery-knezny-niny-7395/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287558/kniha4u/7395.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>7396_BOX150</ITEM_ID>
     <PRODUCTNAME>Věrka vede kvartu | dívčí román - Eva Marešová</PRODUCTNAME>
     <DESCRIPTION>Kniha Věrka vede kvartu | dívčí román – autor: Eva Marešová, nakladatel: Atos, rok vydání: 1991, počet stran: 139.</DESCRIPTION>
@@ -50876,15 +49462,6 @@ staly a byly úspěšně vyřešeny.</DESCRIPTION>
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8023816373</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>7411_BOX151</ITEM_ID>
-    <PRODUCTNAME>Malá řeka - Jakub Obrovský</PRODUCTNAME>
-    <DESCRIPTION>Kniha Malá řeka – autor: Jakub Obrovský, nakladatel: Alois Hynek, rok vydání: 1947, počet stran: 383.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/mala-reka-7411/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287560/kniha4u/7411.webp</IMGURL>
-    <PRICE_VAT>100</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7412_BOX151</ITEM_ID>
@@ -51480,15 +50057,6 @@ Robin je nucena vrátit se do nenáviděného rodného maloměsta, a předevší
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8086029891</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>7498_BOX153</ITEM_ID>
-    <PRODUCTNAME>Rozrušená země - Michail Aleksandrovič Šolochov</PRODUCTNAME>
-    <DESCRIPTION>Kniha Rozrušená země – autor: Michail Aleksandrovič Šolochov, nakladatel: Svět sovětů, rok vydání: 1967, jazyk: česky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/rozrusena-zeme/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287565/kniha4u/7498.webp</IMGURL>
-    <PRICE_VAT>60</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7499_BOX153</ITEM_ID>
@@ -52889,7 +51457,7 @@ Damaris Myddletonová vyrůstala na venkovském sídle. Po otcově smrti se Dama
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7663_BOX100-BOX157</ITEM_ID>
-    <PRODUCTNAME>Milovat - Danielle Steel (Ikar; Knižní klub, 1998)</PRODUCTNAME>
+    <PRODUCTNAME>Milovat - Danielle Steel</PRODUCTNAME>
     <DESCRIPTION>Životní příběh dcery úspěšného dramatika, jehož smrt znamenala velký mezník v jejím životě a zahájila řadu životních úspěchů a hlavně neúspěchů. Manželství se čtyřmi muži a narození dvou dětí - to je hlavní obsah románu. Líčí hrdinčinu závislost na mužích, kteří prošli jejím životem a zachycuje její snahu odpoutat se od nich a stát se nezávislou</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/milovat-7663/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287576/kniha4u/7663.webp</IMGURL>
@@ -52946,16 +51514,6 @@ Damaris Myddletonová vyrůstala na venkovském sídle. Po otcově smrti se Dama
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>8071763276</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>7674_BOX157</ITEM_ID>
-    <PRODUCTNAME>Pilíře země - Ken Follett</PRODUCTNAME>
-    <DESCRIPTION>Rozsáhlý historický román z pera mistra akčních thrillerů Kena Folletta líčí příběh odehrávající se v Anglii 12. století. Na pozadí mocenských politicko-náboženských sporů sleduje po půl století osudy několika lidí, kteří zasvětili život výstavbě katedrály. Strhující dobová freska v sobě spájí tradiční vypravěčský um, originální myšlenku přiblížit čtenářům formou napínavého příběhu vznik jedinečných a charakteristických staveb své doby a především neobyčejně barvitou představu o středověké Anglii, jež obnáší mozaiku lidských vztahů nabitých napětím, svár dobra a zla, statečnost a lásku, nenávist, násilí, intriky i zradu... Celosvětově prodáno přes 23 miliónů výtisků! Více info na www.ken-follett.com.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/pilire-zeme/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287577/kniha4u/7674.webp</IMGURL>
-    <PRICE_VAT>460</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788024245454</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>7676_BOX157</ITEM_ID>
@@ -55786,16 +54344,6 @@ V dalším svazku Spisů Viktora Fischla se mohou čtenáři znovu setkat s pros
     <ISBN>8071130095</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>8028_BOX167</ITEM_ID>
-    <PRODUCTNAME>Hon na manžela - Barbara Cartland</PRODUCTNAME>
-    <DESCRIPTION>Ovdovělý plukovník Maldon není schopen postarat se o své tři mladičké dcery, a tak je nejstarší z nich, Andrina, nucena převzít péči o domácnost i o své sestry. Navíc plukovník téměř celé rodinné jmění prohraje v hazardu a budoucnost jeho dcer je ohrožena. Aby se mohly vdát, musí být uvedeny do společnosti, a tak se Andrina vydává do Londýna za dávným otcovým přítelem s prosbou o pomoc. Tam je však přijata zatrpklým vévodovým synem, kterého jen stěží přiměje poskytnout pomoc. Obě mladší sestry se úspěšně provdají a Andrina během doby zjistí příčinu zahořklosti svého ochránce, jinak velmi šlechetného člověka, a zamiluje se do něj. Její cit je opětován - a dojde i na svatbu z upřímné oboustranné lásky.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/hon-na-manzela-8028/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287601/kniha4u/8028.webp</IMGURL>
-    <PRICE_VAT>99</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788073843373</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>8029_BOX167</ITEM_ID>
     <PRODUCTNAME>Chlad - Maya Banks</PRODUCTNAME>
     <DESCRIPTION>Jace s Ashem se vždy o vše delili – i o ženy. Když se seznámí s Bethany, Jace zacíná cítit neco, co nikdy predtím nepoznal: žárlivost a silnou touhu, která ho naprosto ovládá a vzrušuje více, než je schopen zvládnout. O Bethany se delit nechce – s nikým. Je odhodlaný být jediným mužem jejího života, což ohrožuje jeho dlouholeté prátelství s Ashem. Bethany bude jen a pouze jeho. I kdyby se mel obrátit zády ke svému nejlepšímu príteli. Druhá část erotické série Bez dechu.</DESCRIPTION>
@@ -56893,16 +55441,6 @@ Annie Marlowová se po tragické události stěhuje do letního domku na severn�
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788073628703</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>8143_BOX169</ITEM_ID>
-    <PRODUCTNAME>Měděný jezdec - Paullina Simons</PRODUCTNAME>
-    <DESCRIPTION>Poutavá historická freska je zároveň nezapomenutelným příběhem o lásce vzdorující hrůzám války i lidské zášti. 17letá Taťána vyrostla v Leningradě, v městě, kde památníky zašlé slávy kontrastují s šedivou realitou stalinského Ruska. V roce 1941, ten den, kdy Němci napadnou Rusko, se Taťána poprvé zamiluje - vzápětí pocítí trpkost zakázané lásky: nadporučík Alexandr Bělov je vyvolený její sestry Dáši. Navíc má Alexandr temné tajemství - pochází z rodiny amerických komunistů, kterou zlikvidovalo NKVD. Lásce Taťány a Alexandra není přáno: město drtí německá blokáda, hladomor, zima a všudypřítomný strach ze smrti. Ale jindy slabá Táňa se ukáže jako nejsilnější člen rodiny a s Alexandrovou pomocí překonává všechny útrapy. Nejtěžší zkouškou však bude odolat vlastní touze.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/medeny-jezdec/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287609/kniha4u/8143.webp</IMGURL>
-    <PRICE_VAT>90</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788024921099</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>8144_BOX169</ITEM_ID>
@@ -58262,16 +56800,6 @@ Beth je mladá vdova, která nikdy nepoznala pravou lásku se vším, co k ní p
     <ISBN>8072181874</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>8289_BOX172</ITEM_ID>
-    <PRODUCTNAME>Tajemství minulosti - Barbara Taylor Bradfor</PRODUCTNAME>
-    <DESCRIPTION>Serena píše knihu o svém slavném otci, navíc má dohlédnout na bývalého milence a kolegu Zacharyho, který je po návratu z Afghánistánu na pokraji zhroucení. Serena váhá, nechce jitřit bolestné vzpomínky na jejich rozchod. Paradoxně je to nakonec Zac, kdo Sereně přispěchá na pomoc, když se jí dostanou do rukou šokující informace o otci a převrátí její život naruby.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/tajemstvi-minulosti-8289/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287620/kniha4u/8289.webp</IMGURL>
-    <PRICE_VAT>70</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788074663864</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>8290_BOX172</ITEM_ID>
     <PRODUCTNAME>Tři týdny v Paříži - Barbara Taylor Bradford</PRODUCTNAME>
     <DESCRIPTION>Kniha Tři týdny v Paříži – autor: Barbara Taylor Bradford, nakladatel: Alpress, rok vydání: 2003, počet stran: 335, jazyk: česky.</DESCRIPTION>
@@ -59303,16 +57831,6 @@ Po smrti své dcery Ragnheidy, žije biskup sám na Skálholtu a s jejím svůdc
     <ISBN>8085609320</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>8410_BOX175</ITEM_ID>
-    <PRODUCTNAME>Jak získávat přátele a působit na lidi - Dale Carnegie</PRODUCTNAME>
-    <DESCRIPTION>Kniha Jak získávat přátele a působit na lidi – autor: Dale Carnegie, nakladatel: Bradlo, rok vydání: 1991, počet stran: 169.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/jak-ziskavat-pratele-a-pusobit-na-lidi/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287629/kniha4u/8410.webp</IMGURL>
-    <PRICE_VAT>59</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>8071270261</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>8411_BOX175</ITEM_ID>
     <PRODUCTNAME>Jane Fondová | [neautorizovaná biografie kontroverzní hollywoodské hvězdy] - Christopher P. Andersen</PRODUCTNAME>
     <DESCRIPTION>Kniha Jane Fondová | [neautorizovaná biografie kontroverzní hollywoodské hvězdy] – autor: Christopher P. Andersen, nakladatel: Votobia, rok vydání: 1995, počet stran: 289, jazyk: česky.</DESCRIPTION>
@@ -59473,16 +57991,6 @@ Po smrti své dcery Ragnheidy, žije biskup sám na Skálholtu a s jejím svůdc
     <ISBN>8085859165</ISBN>
   </SHOPITEM>
   <SHOPITEM>
-    <ITEM_ID>8428_BOX175</ITEM_ID>
-    <PRODUCTNAME>Sezdáni za rozbřesku - Lisa Kleypas</PRODUCTNAME>
-    <DESCRIPTION>Když Leovi nenadálou shodou náhod spadne do klína šlechtický titul a panství, má vskutku důvod k radosti: konečně může bez výčitek svědomí vést život zhýralého hejska. Spokojeně sleduje, jak jedna sestra po druhé končí pod čepcem, ale sám se ženit nehodlá – a kdyby se náhodou oženit musel, vybral by si tak protivnou ženskou, jako je Catherine Marksová. Alespoň by se s ní mohl hádat, po právu ji podvádět a stýskat si na zkažený život. Ani Catherine, která u Hathawayových pracuje jako guvernantka a společnice, nemá Lea příliš v lásce. Dráždí ji jeho arogantní povznesenost i uštěpačné poznámky. Vše se ale změní, když Catherine zachrání Leovi život a mladík si konečně přizná, že na zdánlivě upjatou „šedou myš“ dávno myslí. Ledy roztají, ale štěstí nepřichází. Leovo postavení začne ohrožovat vzdálená příbuzná, a pokud si chce sídlo udržet, musí se ihned oženit a zplodit dědice. I Catherine má velké starosti: pokud vyjde najevo tajemství z její minulosti, nadobro ji to společensky zničí. Za daných okolností sotva může rozkvést láska… Anebo se Leovi i Catherine podaří zaplašit stíny, aby mohli naplnit své sny?</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/sezdani-za-rozbresku/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287630/kniha4u/8428.webp</IMGURL>
-    <PRICE_VAT>1459</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788073035624</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
     <ITEM_ID>8429_BOX175</ITEM_ID>
     <PRODUCTNAME>Síla ženy - Louise L. Hay</PRODUCTNAME>
     <DESCRIPTION>Průvodce úspěšným životem pro každou ženu Autorka přesvědčivým způsobem vysvětluje ženám, jakým způsobem se mohou naučit vážit si sebe samých, získat sebevědomí a respekt, které jim po právu náleží, a dosáhnout pevného postavení ve společnosti. Kniha pomáhá tisícům žen na celém světě objevovat a rozvíjet nevyužité tvůrčí síly, najít sebe samé a žít plným, autentickým životem.</DESCRIPTION>
@@ -59561,16 +58069,6 @@ Po smrti své dcery Ragnheidy, žije biskup sám na Skálholtu a s jejím svůdc
     <PRICE_VAT>59</PRICE_VAT>
     <DELIVERY_DATE>0</DELIVERY_DATE>
     <ISBN>9788073627072</ISBN>
-  </SHOPITEM>
-  <SHOPITEM>
-    <ITEM_ID>8438_BOX175</ITEM_ID>
-    <PRODUCTNAME>Život! - Louise L. Hay</PRODUCTNAME>
-    <DESCRIPTION>Právě tato kniha dokáže konečně pohnout s vaším životem! Světoznámá autorka vám pomůže odhalit zdroje tlaků a okolností, které ovlivňují vaši životní cestu, a nasměrovat je tak, abyste dosáhli uspokojení ve všech oblastech života - partnerských vztazích, práci, zdraví či duchovnosti. Rovněž vysvětluje zákonistosti stárnutí a smrti. Díky této knize už si nemusíte dělat starosti s překážkami či strachem, který vám leží ve vaší cestě. Vždyť máte k dispozici svůj vlastní, úžasný, neopakovatelný a jedinečný život.</DESCRIPTION>
-    <URL>https://kniha4u.cz/kniha/zivot-8438/</URL>
-    <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287631/kniha4u/8438.webp</IMGURL>
-    <PRICE_VAT>85</PRICE_VAT>
-    <DELIVERY_DATE>0</DELIVERY_DATE>
-    <ISBN>9788024739571</ISBN>
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>8439_BOX176</ITEM_ID>
@@ -60184,7 +58682,7 @@ Po smrti své dcery Ragnheidy, žije biskup sám na Skálholtu a s jejím svůdc
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>8508_BOX177</ITEM_ID>
-    <PRODUCTNAME>Neohlížej se, miláčku - Daphne Du Maurier (Motto, 2012)</PRODUCTNAME>
+    <PRODUCTNAME>Neohlížej se, miláčku - Daphne Du Maurier</PRODUCTNAME>
     <DESCRIPTION>Kniha Neohlížej se, miláčku – autor: Daphne Du Maurier, nakladatel: Motto, rok vydání: 2012, počet stran: 357, jazyk: česky.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/neohlizej-se-milacku-8508/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287636/kniha4u/8508.webp</IMGURL>
@@ -61054,7 +59552,7 @@ Sledujeme vzestup Fridricha Barbarossy v nejmocnějšího panovníka středověk
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>900023_BOX72</ITEM_ID>
-    <PRODUCTNAME>Stála jsem u brány nebe a pekla - Gloria Polo (Matice Cyrillo-Methodějská, 2008, 63 stran) – výtisk 2</PRODUCTNAME>
+    <PRODUCTNAME>Stála jsem u brány nebe a pekla - Gloria Polo (Matice Cyrillo-Methodějská, 2008, 63 stran) – výtisk 1</PRODUCTNAME>
     <DESCRIPTION>Kniha Stála jsem u brány nebe a pekla – autor: Gloria Polo, nakladatel: Matice Cyrillo-Methodějská, rok vydání: 2008, počet stran: 63.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/stala-jsem-u-brany-nebe-a-pekla-900023/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287304/kniha4u/3531.webp</IMGURL>
@@ -61064,7 +59562,7 @@ Sledujeme vzestup Fridricha Barbarossy v nejmocnějšího panovníka středověk
   </SHOPITEM>
   <SHOPITEM>
     <ITEM_ID>900024_BOX72</ITEM_ID>
-    <PRODUCTNAME>Stála jsem u brány nebe a pekla - Gloria Polo (Matice Cyrillo-Methodějská, 2008, 63 stran) – výtisk 3</PRODUCTNAME>
+    <PRODUCTNAME>Stála jsem u brány nebe a pekla - Gloria Polo (Matice Cyrillo-Methodějská, 2008, 63 stran) – výtisk 2</PRODUCTNAME>
     <DESCRIPTION>Kniha Stála jsem u brány nebe a pekla – autor: Gloria Polo, nakladatel: Matice Cyrillo-Methodějská, rok vydání: 2008, počet stran: 63.</DESCRIPTION>
     <URL>https://kniha4u.cz/kniha/stala-jsem-u-brany-nebe-a-pekla-900024/</URL>
     <IMGURL>https://res.cloudinary.com/drrzl7evt/image/upload/v1793287304/kniha4u/3531.webp</IMGURL>
