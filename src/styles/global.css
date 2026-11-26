@@ -269,8 +269,28 @@ button, input, select { font: inherit; color: inherit; }
 
 .menu-tl { display: none; }
 .oblibene-tl { position: relative; }
-.menu-pocet { margin-left: auto; padding: 1px 9px; border-radius: var(--r-pill); background: var(--plocha-2); font-size: 0.85rem; }
-@media (max-width: 560px) { .oblibene-tl { display: none; } }
+.menu-tema { display: none; }
+@media (max-width: 560px) {
+  .tema-tl { display: none; }
+  .menu-tema {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 6px;
+    padding: 13px 14px;
+    border: 0;
+    border-top: 1px solid var(--linka);
+    border-radius: 0 0 var(--r-sm) var(--r-sm);
+    background: none;
+    color: inherit;
+    font: 600 1rem var(--pismo);
+    cursor: pointer;
+  }
+  .menu-tema:hover { background: var(--plocha-2); }
+}
+/* Nápovědy ke klávesnici (Ctrl K, Enter, Esc) jen tam, kde klávesnice je. */
+@media (hover: none), (max-width: 720px) { .jen-klavesnice { display: none !important; } }
 
 .menu-panel {
   inset: 76px 12px auto auto;
@@ -373,6 +393,8 @@ button, input, select { font: inherit; color: inherit; }
 }
 .paleta-pata a { font-weight: 650; color: var(--text); }
 .paleta-pata kbd { padding: 1px 6px; border: 1px solid var(--linka); border-radius: 6px; font-family: inherit; }
+.mini-obalka { overflow: hidden; }
+.mini-obalka img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- úvod ---------- */
 

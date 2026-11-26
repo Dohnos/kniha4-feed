@@ -110,9 +110,9 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
             {NAVIGACE.map((n) => <a class="nav-odkaz" href={n.href} aria-current={sekce === n.sekce ? "page" : undefined}>{n.text}</a>)}
           </nav>
           <button class="hledat-tl" type="button" data-hledat aria-label="Hledat (Ctrl+K)">
-            <Ikona nazev="hledat" velikost={18} /><span>Hledat knihu…</span><kbd>Ctrl K</kbd>
+            <Ikona nazev="hledat" velikost={18} /><span>Hledat knihu…</span><kbd class="jen-klavesnice">Ctrl K</kbd>
           </button>
-          <button class="lista-tl" type="button" data-tema-prepinac aria-label="Přepnout světlý / tmavý režim" title="Světlý / tmavý režim">
+          <button class="lista-tl tema-tl" type="button" data-tema-prepinac aria-label="Přepnout světlý / tmavý režim" title="Světlý / tmavý režim">
             <Ikona nazev="mesic" velikost={19} class="ikona-mesic" /><Ikona nazev="slunce" velikost={19} class="ikona-slunce" />
           </button>
           <a class="lista-tl oblibene-tl" href={odkaz("oblibene")} aria-label="Oblíbené knihy" title="Oblíbené">
@@ -138,7 +138,11 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
       <a href={odkaz()}><Ikona nazev="kniha" /> Úvod</a>
       {NAVIGACE.map((n) => <a href={n.href}><Ikona nazev={n.ikona} /> {n.text}</a>)}
       <a href={odkaz("hledat")}><Ikona nazev="filtr" /> Hledání s filtry</a>
-      <a href={odkaz("oblibene")}><Ikona nazev="srdce" /> Oblíbené <span class="menu-pocet" data-oblibene-pocet hidden></span></a>
+      <!-- Na telefonu je přepínač režimu jen tady (v liště je místo něj srdce s oblíbenými). -->
+      <button class="menu-tema" type="button" data-tema-prepinac>
+        <Ikona nazev="mesic" class="ikona-mesic" /><Ikona nazev="slunce" class="ikona-slunce" />
+        <span class="ikona-mesic">Tmavý režim</span><span class="ikona-slunce">Světlý režim</span>
+      </button>
     </div>
 
     <main>

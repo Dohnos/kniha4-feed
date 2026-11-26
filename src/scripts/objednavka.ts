@@ -453,12 +453,14 @@ if (okno) {
         </td></tr></table>`;
     const platbaBlok = o.predem
       ? `<h2 style="margin:28px 0 12px;font-family:${NADPIS};font-size:22px;font-weight:600">Platba předem – až po potvrzení</h2>
-         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BARVY.panel};border-radius:18px"><tr>
-           <td style="padding:18px;width:200px;vertical-align:top"><img src="${qrObrazek(o.castka, o.cislo)}" width="180" height="180" alt="QR kód pro platbu" style="display:block;border-radius:12px;background:#fff;padding:8px"></td>
-           <td style="padding:18px 18px 18px 0;vertical-align:top;font-size:15px">
-             <div style="color:${BARVY.slaby};font-size:13px">Částka</div><div style="font-weight:700;font-size:18px;margin-bottom:8px">${kc(o.castka)}</div>
-             <div style="color:${BARVY.slaby};font-size:13px">Číslo účtu</div><div style="font-weight:700;margin-bottom:8px">${html(nastaveni.ucet)}</div>
-             <div style="color:${BARVY.slaby};font-size:13px">Variabilní symbol</div><div style="font-weight:700">${o.cislo}</div>
+         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BARVY.panel};border-radius:18px">
+           <tr><td align="center" style="padding:20px 18px 6px"><img src="${qrObrazek(o.castka, o.cislo)}" width="200" height="200" alt="QR kód pro platbu" style="display:block;margin:0 auto;border-radius:12px;background:#fff;padding:8px"></td></tr>
+           <tr><td style="padding:8px 20px 14px">
+             <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+               ${radek("Částka", `<b style="font-size:17px">${kc(o.castka)}</b>`)}
+               ${radek("Číslo účtu", `<b>${html(nastaveni.ucet)}</b>`)}
+               ${radek("Variabilní symbol", `<b>${o.cislo}</b>`, true)}
+             </table>
            </td></tr></table>
          <p style="margin:10px 0 0;color:${BARVY.slaby};font-size:14px">QR kód naskenujte v aplikaci banky, až objednávku potvrdíme. Knihy odešleme po připsání platby.</p>
          ${zkusebniUcet ? `<p style="margin:10px 0 0;padding:12px 16px;border-radius:14px;background:#fdecea;color:#b42318;font-weight:700">${UPOZORNENI}</p>` : ""}`

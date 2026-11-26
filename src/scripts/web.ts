@@ -26,7 +26,10 @@ if (paleta) {
       a.href = `${knihy}${p.slug}/`;
       const text = prvek("span", "paleta-text");
       text.append(prvek("strong", "", p.nazev), prvek("small", "", [p.autor, p.rok || ""].filter(Boolean).join(" · ")));
-      a.append(prvek("span", `mini-obalka v${p.id % 6}`, p.nazev.charAt(0)), text, prvek("span", "cena", kc.format(p.cena)));
+      // Fotka obálky, když ji kniha má – jinak typografická miniatura s prvním písmenem.
+      const mini = prvek("span", `mini-obalka v${p.id % 6}`, p.obrazek ? undefined : p.nazev.charAt(0));
+      if (p.obrazek) mini.append(Object.assign(prvek("img"), { src: p.obrazek, alt: "", loading: "lazy", decoding: "async" }));
+      a.append(mini, text, prvek("span", "cena", kc.format(p.cena)));
       li.append(a);
       return li;
     }));
