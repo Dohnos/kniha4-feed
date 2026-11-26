@@ -1190,6 +1190,7 @@ button, input, select { font: inherit; color: inherit; }
   animation: kosik-pocet 0.35s var(--pruzne);
 }
 @keyframes kosik-pocet { from { transform: scale(0.4); } }
+.oblibene-pocet { background: #e03131; } /* oblíbené červeně, košík zeleně */
 
 .kosik-toast {
   position: fixed;
