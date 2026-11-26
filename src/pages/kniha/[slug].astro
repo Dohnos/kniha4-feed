@@ -14,7 +14,7 @@ const url = absolutni(odkaz(`kniha/${kniha.slug}`), Astro.site);
 const autoriKnihy = autori(kniha).map((jmeno) => ({ jmeno, stranka: stranaAutora(jmeno) }));
 const obdobi = kolekceObdobi.find((k) => k.knihy.includes(kniha));
 const nakladatel = kniha.nakladatel ? stranaNakladatele(kniha.nakladatel) : undefined;
-const { odAutora, dalsi } = podobne(kniha);
+const { odAutora, odNakladatele, dalsi } = podobne(kniha);
 
 const udaje: { ikona: NazevIkony; nazev: string; hodnota: string; href?: string }[] = [
   { ikona: "nakladatel", nazev: "Nakladatel", hodnota: kniha.nakladatel, href: nakladatel && odkaz(`nakladatelstvi/${nakladatel.slug}`) },
@@ -159,6 +159,8 @@ const jsonLd = [
     </article>
 
     {odAutora.length > 0 && <Karusel id="od-autora" nadpis={`Další knihy: ${autoriKnihy[0]?.jmeno}`} knihy={odAutora} odkaz={autoriKnihy[0]?.stranka && { href: odkaz(`autor/${autoriKnihy[0].stranka.slug}`), text: "Všechny" }} />}
-    <Karusel id="dalsi" nadpis="Mohlo by vás zajímat" knihy={dalsi} odkaz={{ href: odkaz("katalog"), text: "Katalog" }} />
+    {odNakladatele.length > 0 && nakladatel && <Karusel id="od-nakladatele" nadpis={`Další knihy: ${nakladatel.jmeno}`} knihy={odNakladatele} odkaz={{ href: odkaz(`nakladatelstvi/${nakladatel.slug}`), text: "Všechny" }} />}
+    {/* „Mohlo by vás zajímat“ jen tam, kde chybí knihy od autora nebo od nakladatele. */}
+    {(!odAutora.length || !odNakladatele.length) && <Karusel id="dalsi" nadpis="Mohlo by vás zajímat" knihy={dalsi} odkaz={{ href: odkaz("katalog"), text: "Katalog" }} />}
   </div>
 </Zaklad>

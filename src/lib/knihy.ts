@@ -111,12 +111,16 @@ export const kolekceObdobi: Kolekce[] = (() => {
 /* ---------- tipy na další knihy ---------- */
 
 /** Nejdřív další knihy stejného autora, pak sousedé v katalogu. */
-export function podobne(k: Kniha, pocet = 8): { odAutora: Kniha[]; dalsi: Kniha[] } {
+/** Pro detail knihy: další knihy od autora, od nakladatele (bez těch od autora) a obecně „mohlo by vás zajímat“. */
+export function podobne(k: Kniha, pocet = 8): { odAutora: Kniha[]; odNakladatele: Kniha[]; dalsi: Kniha[] } {
   const odAutora = autori(k)
     .flatMap((a) => stranaAutora(a)?.knihy ?? [])
     .filter((x, i, vse) => x.id !== k.id && vse.indexOf(x) === i)
     .slice(0, pocet);
+  const odNakladatele = (k.nakladatel ? stranaNakladatele(k.nakladatel)?.knihy ?? [] : [])
+    .filter((x) => x.id !== k.id && !odAutora.includes(x))
+    .slice(0, pocet);
   const i = knihy.indexOf(k);
-  const dalsi = [...knihy.slice(i + 1), ...knihy.slice(0, i)].filter((x) => !odAutora.includes(x)).slice(0, pocet);
-  return { odAutora, dalsi };
+  const dalsi = [...knihy.slice(i + 1), ...knihy.slice(0, i)].filter((x) => !odAutora.includes(x) && !odNakladatele.includes(x)).slice(0, pocet);
+  return { odAutora, odNakladatele, dalsi };
 }
