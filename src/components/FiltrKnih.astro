@@ -23,6 +23,10 @@ const ceny = kolekceCen.map((k) => ({
   od: Math.min(...k.knihy.map((x) => x.cena)),
   do: Math.max(...k.knihy.map((x) => x.cena)),
 }));
+const VYBERY = [
+  { pole: "nakladatel", nazev: "Nakladatelství", ikona: "nakladatel" },
+  { pole: "autor", nazev: "Autor", ikona: "autor" },
+] as const;
 const obdobi = kolekceObdobi.map((k) => ({ slug: k.slug, nazev: k.slug === "pred-1950" ? "před 1950" : `${k.slug.slice(0, 4)}. léta` }));
 ---
 
@@ -59,11 +63,19 @@ const obdobi = kolekceObdobi.map((k) => ({ slug: k.slug, nazev: k.slug === "pred
     </div>
 
     <div class="filtr-spodek">
-      <label class="filtr-pole">
-        <Ikona nazev="nakladatel" velikost={18} />
-        <input name="nakladatel" list={`nakladatele-${rezim}`} placeholder="Nakladatelství" autocomplete="off" aria-label="Nakladatelství" />
-        <datalist id={`nakladatele-${rezim}`}></datalist>
-      </label>
+      {
+        VYBERY.map((v) => (
+          <div class="filtr-pole filtr-vyber" data-vyber={v.pole}>
+            <button class="filtr-vyber-tl" type="button" aria-haspopup="dialog">
+              <Ikona nazev={v.ikona} velikost={18} />
+              <span class="filtr-vyber-text" data-vyber-text data-prazdny={v.nazev}>{v.nazev}</span>
+              <Ikona nazev="sipkaVpravo" velikost={16} class="filtr-sipka" />
+            </button>
+            <button class="filtr-vyber-zrusit" type="button" data-vyber-zrusit aria-label={`Zrušit výběr: ${v.nazev}`} hidden><Ikona nazev="zavrit" velikost={14} /></button>
+            <input type="hidden" name={v.pole} />
+          </div>
+        ))
+      }
       <label class="filtr-pole">
         <Ikona nazev="filtr" velikost={18} />
         <select name="razeni" aria-label="Řazení">
@@ -87,7 +99,22 @@ const obdobi = kolekceObdobi.map((k) => ({ slug: k.slug, nazev: k.slug === "pred
     <strong>Nic jsme nenašli</strong>
     Zkuste jiné slovo nebo zrušte některý filtr – na diakritice ani velkých písmenech nezáleží.
   </div>
+  <!-- Výběr nakladatelství / autora: hledání + seznam s počty knih (plní scripts/filtr.ts). -->
+  <dialog class="vyber-okno" data-vyber-okno aria-labelledby={`vyber-nadpis-${rezim}`}>
+    <div class="vyber-hlava">
+      <h2 id={`vyber-nadpis-${rezim}`} data-vyber-nadpis>Vybrat</h2>
+      <button class="tl tl-kulate tl-obrys" type="button" data-vyber-zavrit aria-label="Zavřít"><Ikona nazev="zavrit" velikost={18} /></button>
+    </div>
+    <label class="filtr-hledat vyber-hledat">
+      <Ikona nazev="hledat" velikost={20} />
+      <input type="search" data-vyber-hledat autocomplete="off" aria-label="Hledat v seznamu" />
+    </label>
+    <p class="vyber-info" data-vyber-info></p>
+    <ul class="vyber-seznam" data-vyber-seznam role="listbox"></ul>
+    <div data-vyber-dalsi style="height: 1px"></div>
+  </dialog>
 </section>
+
 
 <script>
   import "../scripts/filtr.ts";

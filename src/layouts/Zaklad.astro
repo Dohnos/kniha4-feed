@@ -115,6 +115,10 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
           <button class="lista-tl" type="button" data-tema-prepinac aria-label="Přepnout světlý / tmavý režim" title="Světlý / tmavý režim">
             <Ikona nazev="mesic" velikost={19} class="ikona-mesic" /><Ikona nazev="slunce" velikost={19} class="ikona-slunce" />
           </button>
+          <a class="lista-tl oblibene-tl" href={odkaz("oblibene")} aria-label="Oblíbené knihy" title="Oblíbené">
+            <Ikona nazev="srdce" velikost={20} />
+            <span class="kosik-pocet oblibene-pocet" data-oblibene-pocet hidden></span>
+          </a>
           {
             KOSIK && (
               <button class="lista-tl kosik-tl" type="button" data-kosik-otevrit aria-label="Košík" title="Košík">
@@ -134,6 +138,7 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
       <a href={odkaz()}><Ikona nazev="kniha" /> Úvod</a>
       {NAVIGACE.map((n) => <a href={n.href}><Ikona nazev={n.ikona} /> {n.text}</a>)}
       <a href={odkaz("hledat")}><Ikona nazev="filtr" /> Hledání s filtry</a>
+      <a href={odkaz("oblibene")}><Ikona nazev="srdce" /> Oblíbené <span class="menu-pocet" data-oblibene-pocet hidden></span></a>
     </div>
 
     <main>

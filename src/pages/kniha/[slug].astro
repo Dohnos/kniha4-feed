@@ -122,6 +122,7 @@ const jsonLd = [
                 zajem && <a class="tl" href={zajem}><Ikona nazev={KONTAKT.email ? "mail" : "telefon"} velikost={18} /> Mám zájem</a>
               )
             }
+            <button class="tl tl-obrys tl-srdce" type="button" data-oblibene data-kniha={doKosiku(kniha)} aria-label="Uložit do oblíbených"><Ikona nazev="srdce" velikost={18} /><span>Uložit</span></button>
             <button class="tl tl-obrys" type="button" data-sdilet><Ikona nazev="sdilet" velikost={18} /><span>Sdílet</span></button>
           </div>
         </div>

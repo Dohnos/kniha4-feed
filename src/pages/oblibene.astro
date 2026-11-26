@@ -1,0 +1,30 @@
+---
+/** Oblíbené knihy – seznam je jen v prohlížeči návštěvníka (scripts/oblibene.ts), stránka se proto neindexuje. */
+import Zaklad from "../layouts/Zaklad.astro";
+import Ikona from "../components/Ikona.astro";
+import { KOSIK, odkaz, soubor } from "../lib/web";
+---
+
+<Zaklad titulek="Oblíbené knihy" popis="Knihy, které jste si uložili srdíčkem." noindex>
+  <section class="obal oblibene" data-oblibene-stranka data-zdroj={soubor("hledani.json")} data-knihy={odkaz("kniha")}>
+    <ol class="drobecky" style="margin-top: 20px">
+      <li><a href={odkaz()}>Úvod</a></li>
+      <li aria-current="page">Oblíbené</li>
+    </ol>
+    <div class="oblibene-hlava">
+      <div>
+        <h1 class="nadpis-l">Oblíbené knihy</h1>
+        <p class="text-slaby"><span data-pocet></span> Uložené jen v tomto prohlížeči – srdíčkem u knihy přidáte nebo odeberete.</p>
+      </div>
+      {KOSIK && <button class="tl" type="button" data-vse-do-kosiku hidden><Ikona nazev="kosik" velikost={18} /> Vše do košíku</button>}
+    </div>
+    <p class="obj-info oblibene-info" data-info role="status" hidden></p>
+    <div class="mrizka" data-mrizka></div>
+    <div class="prazdno" data-prazdno hidden>
+      <Ikona nazev="srdce" velikost={40} />
+      <strong>Zatím tu nic není</strong>
+      Knihu si uložíte srdíčkem na obálce nebo tlačítkem „Uložit“ u knihy.
+      <a class="tl" href={odkaz("katalog")} style="margin-top: 10px">Prohlédnout katalog <Ikona nazev="vpravo" velikost={18} class="ikona-posun" /></a>
+    </div>
+  </section>
+</Zaklad>

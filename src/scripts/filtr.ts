@@ -1,13 +1,14 @@
 /**
- * Filtr knih (komponenta FiltrKnih.astro): hledání, cena, doba vydání, nakladatelství, řazení.
- * Stav je v adrese (?q=…&cena=…&obdobi=…&nakladatel=…&razeni=…), takže jde sdílet.
- * Výsledky se dočítají po 48 při scrollování.
+ * Filtr knih (komponenta FiltrKnih.astro): hledání, cena, doba vydání, nakladatelství, autor, řazení.
+ * Stav je v adrese (?q=…&cena=…&obdobi=…&nakladatel=…&autor=…&razeni=…), takže jde sdílet.
+ * Výsledky se dočítají po 48 při scrollování. Nakladatelství a autor se vybírají v okně se seznamem.
  */
 
-import { bezDiakritiky, hledej, kc, nactiRejstrik, prvek, type Polozka } from "./rejstrik";
+import { bezDiakritiky, hledej, nactiRejstrik, prvek, type Polozka } from "./rejstrik";
+import { karta } from "./karta";
 
 const NA_DAVKU = 48;
-const POLE = ["q", "cena", "obdobi", "nakladatel", "razeni"] as const;
+const POLE = ["q", "cena", "obdobi", "nakladatel", "autor", "razeni"] as const;
 type Stav = Record<(typeof POLE)[number], string>;
 
 const RAZENI: Record<string, (a: Polozka, b: Polozka) => number> = {
@@ -27,45 +28,10 @@ function vObdobi(p: Polozka, slug: string) {
   return p.rok >= od && p.rok <= od + 9;
 }
 
+const autoriKnihy = (p: Polozka) => p.autor.split(", ").filter(Boolean);
+const stejne = (a: string, b: string) => bezDiakritiky(a) === bezDiakritiky(b);
+
 const pocet = (n: number) => `${new Intl.NumberFormat("cs-CZ").format(n)} ${n === 1 ? "kniha" : n >= 2 && n <= 4 ? "knihy" : "knih"}`;
-
-// Košík je zapnutý, když je na stránce okno objednávky (components/Objednavka.astro).
-const sKosikem = !!document.getElementById("objednavka");
-
-/** Karta knihy – stejné značky jako KnihaKarta.astro. */
-function karta(p: Polozka, knihy: string) {
-  const a = prvek("a", "karta-odkaz");
-  a.href = `${knihy}${p.slug}/`;
-  const obalka = prvek("div", `obalka v${p.id % 6}`);
-  if (p.obrazek) {
-    obalka.append(Object.assign(prvek("img"), { src: p.obrazek, alt: `Obálka knihy ${p.nazev}`, loading: "lazy", width: 400, height: 600 }));
-  } else {
-    obalka.append(prvek("span", "obalka-znacka", "Kniha4U"), prvek("span", "obalka-linka"), prvek("p", "obalka-nazev", p.nazev));
-    if (p.autor) obalka.append(prvek("span", "obalka-autor", p.autor));
-  }
-  const text = prvek("span", "karta-text");
-  text.append(prvek("span", "karta-nazev", p.nazev), prvek("span", "karta-autor", p.autor || " "), prvek("span", "karta-rok", p.rok ? String(p.rok) : " "));
-  a.append(obalka, text);
-  const spodek = prvek("div", "karta-spodek");
-  spodek.append(prvek("span", "cena", kc.format(p.cena)));
-  if (sKosikem) {
-    const tl = prvek("button", "karta-koupit");
-    tl.type = "button";
-    tl.dataset.doKosiku = "";
-    tl.dataset.kniha = JSON.stringify({ id: p.id, slug: p.slug, nazev: p.nazev, autor: p.autor, cena: p.cena, obalka: p.obrazek, box: p.box });
-    tl.setAttribute("aria-label", `Koupit: ${p.nazev}`);
-    tl.innerHTML = IKONA_KOSIK;
-    tl.append(prvek("span", "", "Koupit"));
-    spodek.append(tl);
-  }
-  const karta = prvek("article", "karta");
-  karta.append(a, spodek);
-  return karta;
-}
-
-// Stejná ikona jako <Ikona nazev="kosik" velikost={16} /> v KnihaKarta.astro
-const IKONA_KOSIK =
-  '<svg class="ikona" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 11V7a3 3 0 0 1 6 0v4"/></svg>';
 
 for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
   const rezim = koren.dataset.filtr;
@@ -77,7 +43,7 @@ for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
   const vymazat = koren.querySelector<HTMLButtonElement>("[data-vymazat]")!;
   const staticky = koren.dataset.staticky ? document.querySelector<HTMLElement>(koren.dataset.staticky) : null;
   const ceny: { slug: string; nazev: string; od: number; do: number }[] = JSON.parse(koren.dataset.ceny!);
-  const stav: Stav = { q: "", cena: "", obdobi: "", nakladatel: "", razeni: "" };
+  const stav: Stav = { q: "", cena: "", obdobi: "", nakladatel: "", autor: "", razeni: "" };
 
   let rejstrik: Polozka[] | null = null;
   let nalezene: Polozka[] = [];
@@ -104,6 +70,7 @@ for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
     if (stav.cena) stitky.push(["cena", ceny.find((c) => c.slug === stav.cena)?.nazev ?? stav.cena]);
     if (stav.obdobi) stitky.push(["obdobi", koren.querySelector(`[data-skupina="obdobi"] button[value="${stav.obdobi}"]`)?.textContent ?? stav.obdobi]);
     if (stav.nakladatel) stitky.push(["nakladatel", stav.nakladatel]);
+    if (stav.autor) stitky.push(["autor", stav.autor]);
     if (stav.razeni) stitky.push(["razeni", `řazení: ${POPIS_RAZENI[stav.razeni]}`]);
 
     souhrn.replaceChildren(prvek("strong", "", pocet(nalezene.length)));
@@ -142,16 +109,9 @@ for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
         souhrn.replaceChildren(prvek("strong", "", "Nabídku se nepodařilo načíst. Zkuste stránku obnovit."));
         return;
       }
-      const datalist = koren.querySelector("datalist")!;
-      datalist.replaceChildren(...[...new Set(rejstrik.map((p) => p.nakladatel).filter(Boolean))].sort((a, b) => a.localeCompare(b, "cs")).map((n) => Object.assign(prvek("option"), { value: n })));
     }
 
-    const cena = ceny.find((c) => c.slug === stav.cena);
-    const nakladatel = bezDiakritiky(stav.nakladatel.trim());
-    nalezene = hledej(rejstrik, stav.q).filter((p) =>
-      (!cena || (p.cena >= cena.od && p.cena <= cena.do)) &&
-      vObdobi(p, stav.obdobi) &&
-      (!nakladatel || bezDiakritiky(p.nakladatel).includes(nakladatel)));
+    nalezene = vyfiltruj();
     if (RAZENI[stav.razeni]) nalezene.sort(RAZENI[stav.razeni]);
 
     vysledky.replaceChildren();
@@ -164,10 +124,27 @@ for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
     history.replaceState(null, "", parametry.size ? `?${parametry}` : location.pathname);
   }
 
+  /** Knihy podle hledání a filtrů; `bez` = filtr, který se vynechá (počty ve výběru nakladatele / autora). */
+  function vyfiltruj(bez?: "nakladatel" | "autor") {
+    const cena = ceny.find((c) => c.slug === stav.cena);
+    return hledej(rejstrik!, stav.q).filter((p) =>
+      (!cena || (p.cena >= cena.od && p.cena <= cena.do)) &&
+      vObdobi(p, stav.obdobi) &&
+      (bez === "nakladatel" || !stav.nakladatel || stejne(p.nakladatel, stav.nakladatel)) &&
+      (bez === "autor" || !stav.autor || autoriKnihy(p).some((a) => stejne(a, stav.autor))));
+  }
+
   /** Stav → formulář (po změně z adresy nebo ze štítku v souhrnu). */
   function synchronizuj() {
     pole("q").value = stav.q;
-    pole("nakladatel").value = stav.nakladatel;
+    for (const v of koren.querySelectorAll<HTMLElement>("[data-vyber]")) {
+      const hodnota = stav[v.dataset.vyber as "nakladatel" | "autor"];
+      const text = v.querySelector<HTMLElement>("[data-vyber-text]")!;
+      pole(v.dataset.vyber!).value = hodnota;
+      text.textContent = hodnota || text.dataset.prazdny!;
+      v.classList.toggle("vybrano", !!hodnota);
+      v.querySelector<HTMLElement>("[data-vyber-zrusit]")!.hidden = !hodnota;
+    }
     pole("razeni").value = stav.razeni;
     cip("cena", stav.cena);
     cip("obdobi", stav.obdobi);
@@ -180,12 +157,10 @@ for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
   }
 
   let casovac: number | undefined;
-  for (const nazev of ["q", "nakladatel"] as const) {
-    pole(nazev).addEventListener("input", (e) => {
-      clearTimeout(casovac);
-      casovac = window.setTimeout(() => ((stav[nazev] = (e.target as HTMLInputElement).value), aktualizuj()), 160);
-    });
-  }
+  pole("q").addEventListener("input", (e) => {
+    clearTimeout(casovac);
+    casovac = window.setTimeout(() => ((stav.q = (e.target as HTMLInputElement).value), aktualizuj()), 160);
+  });
   pole("razeni").addEventListener("change", (e) => zmen("razeni", (e.target as HTMLSelectElement).value));
   koren.querySelectorAll<HTMLElement>("[data-skupina]").forEach((skupina) =>
     skupina.addEventListener("click", (e) => {
@@ -195,6 +170,99 @@ for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
       zmen(klic, tl.getAttribute("aria-pressed") === "true" ? "" : tl.value);
     }));
   vymazat.addEventListener("click", () => (zmen("q", ""), pole("q").focus()));
+
+  /* ---------- okno výběru nakladatelství / autora ---------- */
+
+  const okno = koren.querySelector<HTMLDialogElement>("[data-vyber-okno]")!;
+  const hledatVe = okno.querySelector<HTMLInputElement>("[data-vyber-hledat]")!;
+  const seznam = okno.querySelector<HTMLElement>("[data-vyber-seznam]")!;
+  const info = okno.querySelector<HTMLElement>("[data-vyber-info]")!;
+  const NAZVY = { nakladatel: ["Nakladatelství", "Všechna nakladatelství"], autor: ["Autor", "Všichni autoři"] } as const;
+  const TVARY = { nakladatel: ["nakladatelství", "nakladatelství", "nakladatelství"], autor: ["autor", "autoři", "autorů"] } as const;
+  const kolik = (n: number) => `${new Intl.NumberFormat("cs-CZ").format(n)} ${TVARY[vyberPole][n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2]}`;
+  const NA_STRANKU_VYBERU = 60;
+  let vyberPole: "nakladatel" | "autor" = "nakladatel";
+  let moznosti: { nazev: string; pocet: number; hledany: string }[] = [];
+  let vyberNalez: typeof moznosti = [];
+  let vyberZobrazeno = 0;
+
+  function polozkaVyberu(nazev: string, popis: string, hodnota: string) {
+    const li = prvek("li");
+    const tl = prvek("button", "vyber-polozka");
+    tl.type = "button";
+    tl.setAttribute("role", "option");
+    tl.setAttribute("aria-selected", String(stejne(hodnota, stav[vyberPole])));
+    tl.append(prvek("span", "", nazev), prvek("small", "", popis));
+    tl.onclick = () => (okno.close(), zmen(vyberPole, hodnota));
+    li.append(tl);
+    return li;
+  }
+  function dalsiVyber() {
+    seznam.append(...vyberNalez.slice(vyberZobrazeno, vyberZobrazeno + NA_STRANKU_VYBERU).map((m) => polozkaVyberu(m.nazev, pocet(m.pocet), m.nazev)));
+    vyberZobrazeno = Math.min(vyberNalez.length, vyberZobrazeno + NA_STRANKU_VYBERU);
+  }
+  /** Seznam podle textu v hledání: nejdřív jména začínající dotazem, pak obsahující; bez dotazu podle počtu knih. */
+  function vykresliVyber() {
+    const q = bezDiakritiky(hledatVe.value.trim());
+    vyberNalez = q
+      ? moznosti.filter((m) => m.hledany.includes(q)).sort((a, b) => Number(!a.hledany.startsWith(q)) - Number(!b.hledany.startsWith(q)) || b.pocet - a.pocet)
+      : moznosti;
+    info.textContent = vyberNalez.length ? `${q ? "Nalezeno" : "Celkem"}: ${kolik(vyberNalez.length)}${q ? "" : " · řazeno podle počtu knih"}` : "Nic jsme nenašli – zkuste jiné slovo.";
+    seznam.replaceChildren();
+    if (stav[vyberPole] && !q) seznam.append(polozkaVyberu(NAZVY[vyberPole][1], "zrušit výběr", ""));
+    vyberZobrazeno = 0;
+    dalsiVyber();
+    seznam.scrollTop = 0;
+  }
+  async function otevriVyber(co: "nakladatel" | "autor") {
+    vyberPole = co;
+    okno.querySelector("[data-vyber-nadpis]")!.textContent = NAZVY[co][0];
+    hledatVe.placeholder = co === "autor" ? "Hledat autora – např. Dumas" : "Hledat nakladatelství – např. Albatros";
+    hledatVe.value = "";
+    seznam.replaceChildren();
+    info.textContent = "Načítám nabídku…";
+    okno.showModal();
+    if (matchMedia("(hover: hover)").matches) hledatVe.focus(); // na telefonu hned neotvírat klávesnici
+    try {
+      rejstrik ??= await nactiRejstrik(koren.dataset.zdroj!);
+    } catch {
+      info.textContent = "Nabídku se nepodařilo načíst. Zkuste to prosím znovu.";
+      return;
+    }
+    // Počty knih v rámci ostatních filtrů – nabízí se jen to, co opravdu něco najde. Stejné jméno v různém
+    // zápisu („Mladá fronta“ / „Mladá Fronta“) je jedna položka s nejčastějším zápisem (filtr je porovnává stejně).
+    const skupiny = new Map<string, { pocet: number; zapisy: Map<string, number> }>();
+    for (const p of vyfiltruj(co)) {
+      for (const jmeno of co === "autor" ? autoriKnihy(p) : [p.nakladatel]) {
+        if (!jmeno) continue;
+        const klic = bezDiakritiky(jmeno);
+        const g = skupiny.get(klic) ?? skupiny.set(klic, { pocet: 0, zapisy: new Map() }).get(klic)!;
+        g.pocet++;
+        g.zapisy.set(jmeno, (g.zapisy.get(jmeno) ?? 0) + 1);
+      }
+    }
+    moznosti = [...skupiny].map(([hledany, g]) => ({ nazev: [...g.zapisy].sort((a, b) => b[1] - a[1])[0][0], pocet: g.pocet, hledany }))
+      .sort((a, b) => b.pocet - a.pocet || a.nazev.localeCompare(b.nazev, "cs"));
+    vykresliVyber();
+  }
+
+  let casVyberu = 0;
+  hledatVe.addEventListener("input", () => {
+    cancelAnimationFrame(casVyberu);
+    casVyberu = requestAnimationFrame(vykresliVyber);
+  });
+  hledatVe.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") (e.preventDefault(), seznam.querySelector<HTMLButtonElement>(".vyber-polozka")?.click());
+  });
+  okno.querySelector("[data-vyber-zavrit]")!.addEventListener("click", () => okno.close());
+  okno.addEventListener("click", (e) => e.target === okno && okno.close()); // klik vedle okna
+  new IntersectionObserver(([z]) => z.isIntersecting && vyberZobrazeno < vyberNalez.length && dalsiVyber(), { root: okno, rootMargin: "400px" })
+    .observe(okno.querySelector("[data-vyber-dalsi]")!);
+  for (const v of koren.querySelectorAll<HTMLElement>("[data-vyber]")) {
+    const co = v.dataset.vyber as "nakladatel" | "autor";
+    v.querySelector(".filtr-vyber-tl")!.addEventListener("click", () => otevriVyber(co));
+    v.querySelector("[data-vyber-zrusit]")!.addEventListener("click", () => zmen(co, ""));
+  }
   // V katalogu se rejstřík začne stahovat už při kliknutí do pole – než uživatel dopíše, je tu.
   pole("q").addEventListener("focus", () => nactiRejstrik(koren.dataset.zdroj!).catch(() => {}), { once: true });
 

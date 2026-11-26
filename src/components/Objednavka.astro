@@ -88,6 +88,20 @@ const nastaveni = OBJEDNAVKY && {
     </div>
   </form>
 
+  <!-- Průběh odesílání – okno mezitím nejde zavřít (Esc, křížek, klik vedle, odchod ze stránky). -->
+  <div class="obj-odesilani" id="obj-odesilani" role="status" aria-live="polite" hidden>
+    <div class="obj-odesilani-obsah">
+      <span class="obj-kolecko" aria-hidden="true"></span>
+      <strong>Odesíláme vaši objednávku</strong>
+      <ol class="obj-kroky">
+        <li data-krok="1">Předáváme objednávku antikvariátu</li>
+        <li data-krok="2">Posíláme vám shrnutí e-mailem</li>
+      </ol>
+      <div class="obj-prubeh" aria-hidden="true"><span id="obj-prubeh"></span></div>
+      <p class="obj-nezavirat" id="obj-nezavirat">Prosím nezavírejte okno ani stránku – zabere to jen pár vteřin.</p>
+    </div>
+  </div>
+
   <div class="obj-hotovo" id="obj-hotovo" hidden>
     <header class="obj-hlava">
       <h2>Děkujeme za objednávku</h2>

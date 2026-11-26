@@ -14,7 +14,7 @@ interface Props {
 const { kniha, priorita, prechod = true } = Astro.props;
 ---
 
-<!-- Stejné značky skládá i scripts/filtr.ts (karty dočítané v prohlížeči). Tlačítko „Koupit“ je mimo odkaz. -->
+<!-- Stejné značky skládá i scripts/karta.ts (karty v prohlížeči). Srdíčko a „Koupit“ jsou mimo odkaz (tlačítko v <a> nesmí být). -->
 <article class="karta objev">
   <a class="karta-odkaz" href={odkaz(`kniha/${kniha.slug}`)}>
     <Obalka kniha={kniha} priorita={priorita} prechod={prechod} />
@@ -24,6 +24,7 @@ const { kniha, priorita, prechod = true } = Astro.props;
       <span class="karta-rok">{kniha.rok || " "}</span>
     </span>
   </a>
+  <button class="karta-srdce" type="button" data-oblibene data-kniha={doKosiku(kniha)} aria-label={`Uložit do oblíbených: ${kniha.nazev}`}><Ikona nazev="srdce" velikost={18} /></button>
   <div class="karta-spodek">
     <span class="cena">{formatCena(kniha.cena)}</span>
     {KOSIK && <button class="karta-koupit" type="button" data-do-kosiku data-kniha={doKosiku(kniha)} aria-label={`Koupit: ${kniha.nazev}`}><Ikona nazev="kosik" velikost={16} /><span>Koupit</span></button>}

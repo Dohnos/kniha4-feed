@@ -294,9 +294,43 @@ if (okno) {
       document.getElementById("kosik-toast")!.hidden = true;
       return otevri();
     }
-    if (cil.closest("[data-obj-zavrit]")) okno.close();
+    if (cil.closest("[data-obj-zavrit]")) zavri();
   });
-  okno.addEventListener("click", (e) => e.target === okno && okno.close()); // klik vedle okna
+  okno.addEventListener("click", (e) => e.target === okno && zavri()); // klik vedle okna
+
+  /* ---------- během odesílání okno nejde zavřít ---------- */
+
+  let odesilam = false;
+  function zavri() {
+    if (!odesilam) return okno.close();
+    // Omylem zavřít: jen upozornit (zatřese se a zvýrazní se „nezavírejte“).
+    const text = $("#obj-nezavirat");
+    text.classList.remove("obj-zatres");
+    void text.offsetWidth;
+    text.classList.add("obj-zatres");
+  }
+  okno.addEventListener("cancel", (e) => {
+    if (odesilam) (e.preventDefault(), zavri()); // klávesa Esc
+  });
+  okno.addEventListener("close", () => {
+    if (odesilam) okno.showModal(); // pojistka: prohlížeč okno přesto zavřel (např. opakované Esc)
+  });
+  window.addEventListener("beforeunload", (e) => {
+    if (odesilam) e.preventDefault(); // zavření záložky / obnovení stránky → prohlížeč se zeptá
+  });
+
+  /** Průběh odesílání: krok 0 = skryto, 1 = obchod, 2 = zákazník, 3 = hotovo. */
+  function prubeh(krok: number) {
+    odesilam = krok > 0 && krok < 3;
+    okno.classList.toggle("odesilam", odesilam);
+    if (odesilam) okno.scrollTop = 0; // překryv zakryje celé okno
+    $("#obj-odesilani").hidden = !odesilam;
+    for (const li of okno.querySelectorAll<HTMLElement>("[data-krok]")) {
+      const n = Number(li.dataset.krok);
+      li.className = n < krok ? "hotovo" : n === krok ? "bezi" : "";
+    }
+    $("#obj-prubeh").style.width = `${[0, 45, 85, 100][krok]}%`;
+  }
 
   /* ---------- číslo objednávky a QR Platba (SPAYD) ---------- */
 
@@ -352,25 +386,27 @@ if (okno) {
       </table>
     </div>`;
 
-  type Objednavka = { cislo: string; knihy: Kniha[]; castka: number; predem: boolean; misto: string; doprava: number; z: Record<"jmeno" | "email" | "telefon" | "poznamka", string> };
+  type Objednavka = { cislo: string; knihy: Kniha[]; castka: number; predem: boolean; misto: string; mistoKratce: string; doprava: number; z: Record<"jmeno" | "email" | "telefon" | "poznamka", string> };
 
   /** Text e-mailu, kterým obchod objednávku potvrdí (tlačítko „Potvrdit objednávku“ = mailto zákazníkovi). */
   function textPotvrzeni(o: Objednavka) {
     return [
       "Dobrý den,",
       "",
-      `potvrzujeme Vaši objednávku č. ${o.cislo} z kniha4u.cz:`,
-      ...o.knihy.map((k) => `- ${k.nazev}${k.autor ? ` (${k.autor})` : ""} – ${kc(k.cena)}`),
-      `Doprava: ${o.misto} – ${kc(o.doprava)}`,
-      ...(!o.predem && nastaveni.dobirka ? [`Dobírka: ${kc(nastaveni.dobirka)}`] : []),
+      `děkujeme – Vaši objednávku č. ${o.cislo} potvrzujeme ✅`,
+      "",
+      "📚 OBJEDNÁVKA",
+      ...o.knihy.map((k) => `• ${k.nazev} – ${kc(k.cena)}`),
+      `• Doprava (${o.mistoKratce}) – ${kc(o.doprava)}`,
+      ...(!o.predem && nastaveni.dobirka ? [`• Dobírka – ${kc(nastaveni.dobirka)}`] : []),
       `Celkem: ${kc(o.castka)}`,
       "",
-      o.predem
-        ? `Prosíme o platbu ${kc(o.castka)} na účet ${nastaveni.ucet}, variabilní symbol ${o.cislo}. Knihy odešleme do 3 pracovních dnů od připsání platby.`
-        : `Knihy odešleme do 3 pracovních dnů, ${kc(o.castka)} zaplatíte při převzetí zásilky.`,
+      ...(o.predem
+        ? ["💳 PLATBA", `Účet: ${nastaveni.ucet}`, `Variabilní symbol: ${o.cislo}`, `Částka: ${kc(o.castka)}`, "", "Knihy odešleme do 3 pracovních dnů od připsání platby."]
+        : ["💳 PLATBA", `Na dobírku – ${kc(o.castka)} zaplatíte při převzetí.`, "", "Knihy odešleme do 3 pracovních dnů."]),
       "",
-      "Děkujeme a přejeme příjemné čtení,",
-      "Kniha4U",
+      "Příjemné čtení přeje",
+      "Kniha4U · kniha4u.cz",
     ].join("\n");
   }
 
@@ -479,6 +515,7 @@ if (okno) {
       castka: celkem(),
       predem: platba() === "predem",
       misto: popisMista(),
+      mistoKratce: misto ? `${DOPRAVCI[dopravce()]}, ${misto.name}, ${misto.city}` : "",
       doprava: cenaDopravy(),
       z: { jmeno: pole("jmeno").value.trim(), email, telefon: pole("telefon").value.trim(), poznamka: pole("poznamka").value.trim() },
     };
@@ -486,8 +523,10 @@ if (okno) {
     tl.disabled = true;
     $("#obj-odeslat span").textContent = "Odesílám…";
     const nazvy = o.knihy.length === 1 ? o.knihy[0].nazev : knih(o.knihy.length);
+    prubeh(1);
     try {
       await posli({ to_email: nastaveni.email, reply_to: email, from_name: o.z.jmeno, predmet: `Objednávka č. ${o.cislo}: ${nazvy} – ${o.z.jmeno}`, obsah: obsahEmailu("obchod", o) });
+      prubeh(2);
       let potvrzeni = true;
       try {
         await posli({ to_email: email, reply_to: nastaveni.email, from_name: "Kniha4U", predmet: `Přijali jsme objednávku č. ${o.cislo} – Kniha4U`, obsah: obsahEmailu("zakaznik", o) });
@@ -500,10 +539,12 @@ if (okno) {
         // nevadí
       }
       ulozKosik([]);
+      prubeh(3);
       hotovo(o, potvrzeni);
     } catch {
       chyba(`Objednávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám napište na ${nastaveni.email}.`);
     } finally {
+      if (odesilam) prubeh(0); // chyba – formulář zůstává vyplněný
       tl.disabled = false;
       $("#obj-odeslat span").textContent = "Objednat s povinností platby";
     }

@@ -1,6 +1,7 @@
 /** Drobné interakce na všech stránkách: vyhledávací paleta, karusely, počítadla, sdílení. */
 
 import { hledej, kc, nactiRejstrik, prvek, type Polozka } from "./rejstrik";
+import "./oblibene";
 
 /* ---------- vyhledávací paleta ---------- */
 
