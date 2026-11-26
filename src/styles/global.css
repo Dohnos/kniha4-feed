@@ -265,7 +265,7 @@ button, input, select { font: inherit; color: inherit; }
   transition: background 0.2s, transform 0.3s var(--pruzne);
 }
 .lista-tl:hover { background: color-mix(in srgb, var(--na-liste) 22%, transparent); }
-[data-tema-prepinac]:hover { transform: rotate(-20deg); }
+.tema-tl:hover { transform: rotate(-20deg); } /* jen kulaté tlačítko v liště – v menu by se natočil celý řádek */
 
 .menu-tl { display: none; }
 .oblibene-tl { position: relative; }
