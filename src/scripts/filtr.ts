@@ -29,9 +29,12 @@ function vObdobi(p: Polozka, slug: string) {
 
 const pocet = (n: number) => `${new Intl.NumberFormat("cs-CZ").format(n)} ${n === 1 ? "kniha" : n >= 2 && n <= 4 ? "knihy" : "knih"}`;
 
+// Košík je zapnutý, když je na stránce okno objednávky (components/Objednavka.astro).
+const sKosikem = !!document.getElementById("objednavka");
+
 /** Karta knihy – stejné značky jako KnihaKarta.astro. */
 function karta(p: Polozka, knihy: string) {
-  const a = prvek("a", "karta");
+  const a = prvek("a", "karta-odkaz");
   a.href = `${knihy}${p.slug}/`;
   const obalka = prvek("div", `obalka v${p.id % 6}`);
   if (p.obrazek) {
@@ -40,13 +43,29 @@ function karta(p: Polozka, knihy: string) {
     obalka.append(prvek("span", "obalka-znacka", "Kniha4U"), prvek("span", "obalka-linka"), prvek("p", "obalka-nazev", p.nazev));
     if (p.autor) obalka.append(prvek("span", "obalka-autor", p.autor));
   }
-  const spodek = prvek("span", "karta-spodek");
-  spodek.append(prvek("span", "karta-rok", p.rok ? String(p.rok) : ""), prvek("span", "cena", kc.format(p.cena)));
   const text = prvek("span", "karta-text");
-  text.append(prvek("span", "karta-nazev", p.nazev), prvek("span", "karta-autor", p.autor || " "), spodek);
+  text.append(prvek("span", "karta-nazev", p.nazev), prvek("span", "karta-autor", p.autor || " "), prvek("span", "karta-rok", p.rok ? String(p.rok) : " "));
   a.append(obalka, text);
-  return a;
+  const spodek = prvek("div", "karta-spodek");
+  spodek.append(prvek("span", "cena", kc.format(p.cena)));
+  if (sKosikem) {
+    const tl = prvek("button", "karta-koupit");
+    tl.type = "button";
+    tl.dataset.doKosiku = "";
+    tl.dataset.kniha = JSON.stringify({ id: p.id, slug: p.slug, nazev: p.nazev, autor: p.autor, cena: p.cena, obalka: p.obrazek, box: p.box });
+    tl.setAttribute("aria-label", `Koupit: ${p.nazev}`);
+    tl.innerHTML = IKONA_KOSIK;
+    tl.append(prvek("span", "", "Koupit"));
+    spodek.append(tl);
+  }
+  const karta = prvek("article", "karta");
+  karta.append(a, spodek);
+  return karta;
 }
+
+// Stejná ikona jako <Ikona nazev="kosik" velikost={16} /> v KnihaKarta.astro
+const IKONA_KOSIK =
+  '<svg class="ikona" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 11V7a3 3 0 0 1 6 0v4"/></svg>';
 
 for (const koren of document.querySelectorAll<HTMLElement>("[data-filtr]")) {
   const rezim = koren.dataset.filtr;

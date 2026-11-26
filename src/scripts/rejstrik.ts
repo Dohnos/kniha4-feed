@@ -9,6 +9,7 @@ export type Polozka = {
   rok: number;
   nakladatel: string;
   obrazek: string;
+  box: string;
   text: string;
 };
 
@@ -19,10 +20,10 @@ let nacitani: Promise<Polozka[]> | null = null;
 export function nactiRejstrik(zdroj: string): Promise<Polozka[]> {
   nacitani ??= fetch(zdroj)
     .then((r) => r.json())
-    // [id, slug, název, autor, cena, rok, nakladatel, isbn, fotka] – viz pages/hledani.json.ts
-    .then((data: [number, string, string, string, number, string, string, string, string][]) =>
-      data.map(([id, slug, nazev, autor, cena, rok, nakladatel, isbn, obrazek]) => ({
-        id, slug, nazev, autor, cena, nakladatel, obrazek,
+    // [id, slug, název, autor, cena, rok, nakladatel, isbn, fotka, box] – viz pages/hledani.json.ts
+    .then((data: [number, string, string, string, number, string, string, string, string, string?][]) =>
+      data.map(([id, slug, nazev, autor, cena, rok, nakladatel, isbn, obrazek, box = ""]) => ({
+        id, slug, nazev, autor, cena, nakladatel, obrazek, box,
         rok: Number(rok.match(/\d{4}/)?.[0] ?? 0),
         text: bezDiakritiky(`${nazev} ${autor} ${rok} ${nakladatel} ${isbn}`),
       }))

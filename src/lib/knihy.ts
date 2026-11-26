@@ -35,6 +35,10 @@ export const NA_STRANKU = 48;
 
 export const autori = (k: Kniha) => k.autor.split(", ").filter(Boolean);
 
+/** Údaje pro košík (atribut data-kniha u tlačítek „Koupit“ / „Do košíku“) – stejný tvar skládá i scripts/filtr.ts. */
+export const doKosiku = (k: Kniha) =>
+  JSON.stringify({ id: k.id, slug: k.slug, nazev: k.nazev, autor: k.autor, cena: k.cena, obalka: k.obrazek, box: k.box ?? "" });
+
 /** Adresa z textu: „Jaroslav Foglar“ → „jaroslav-foglar“. */
 export const slug = (text: string) =>
   text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

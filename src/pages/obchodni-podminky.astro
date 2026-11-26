@@ -39,7 +39,7 @@ const ucinnost = "1. 11. 2026";
     <section>
       <h2>3. Objednávka a uzavření smlouvy</h2>
       <ul>
-        <li>Objednávku odešlete tlačítkem <strong>„Mám zájem“</strong> u knihy a vyplněním formuláře. Před odesláním vidíte všechny údaje, dopravu, způsob platby a celkovou cenu a můžete je změnit.</li>
+        <li>Knihy vložte do <strong>košíku</strong> tlačítkem „Koupit“ / „Do košíku“ a objednávku odešlete z košíku vyplněním formuláře. Jednou objednávkou můžete koupit více knih. Před odesláním vidíte všechny údaje, dopravu, způsob platby a celkovou cenu a můžete je změnit.</li>
         <li>Odesláním tlačítkem <strong>„Objednat s povinností platby“</strong> nám zasíláte závaznou objednávku. Hned poté vám e-mailem přijde <strong>potvrzení o přijetí objednávky</strong>.</li>
         <li><strong>Kupní smlouva vzniká</strong> naším potvrzením objednávky (e-mailem nebo telefonicky), nejpozději odesláním knihy. Do té doby můžeme objednávku odmítnout, např. když už byla kniha prodána.</li>
         <li>Smlouvu uzavíráme v češtině. Objednávky archivujeme v elektronické podobě; nejsou přístupné třetím osobám.</li>
@@ -49,7 +49,7 @@ const ucinnost = "1. 11. 2026";
     <section>
       <h2>4. Platba</h2>
       <ul>
-        <li><strong>Předem převodem</strong> na účet <strong>{OBJEDNAVKY?.ucet}</strong> – variabilním symbolem je kód knihy. Údaje a QR kód pro platbu dostanete po odeslání objednávky. Knihu odešleme po připsání platby.</li>
+        <li><strong>Předem převodem</strong> na účet <strong>{OBJEDNAVKY?.ucet}</strong> – variabilním symbolem je číslo objednávky. Údaje a QR kód pro platbu dostanete po odeslání objednávky; zaplaťte prosím až po našem potvrzení objednávky. Knihy odešleme po připsání platby.</li>
         <li><strong>Na dobírku</strong> – platíte při převzetí zásilky{OBJEDNAVKY?.dobirka ? <>, příplatek za dobírku je <strong>{formatCena(OBJEDNAVKY.dobirka)}</strong></> : ""}.</li>
       </ul>
     </section>
@@ -59,7 +59,7 @@ const ucinnost = "1. 11. 2026";
       <ul>
         {doprava.map(([d, cena]) => <li>{DOPRAVCI[d] ?? d}: <strong>{formatCena(cena)}</strong></li>)}
       </ul>
-      <p>Výdejní místo vyberete na mapě v objednávce. Knihu odesíláme zpravidla do 3 pracovních dnů od potvrzení objednávky (u platby předem od připsání platby). Nebezpečí škody na knize přechází na kupujícího jejím převzetím.</p>
+      <p>Cena dopravy platí za celou objednávku, výdejní místo vyberete na mapě v objednávce. Knihy odesíláme zpravidla do 3 pracovních dnů od potvrzení objednávky (u platby předem od připsání platby). Nebezpečí škody na knize přechází na kupujícího jejím převzetím.</p>
     </section>
 
     <section class="pravni-karta" id="odstoupeni">
@@ -73,7 +73,7 @@ const ucinnost = "1. 11. 2026";
       <h3>Vzorový formulář pro odstoupení od smlouvy</h3>
       <div class="pravni-formular">
         <p>Adresát: {identitaProvozovatele()}, e-mail: {email}</p>
-        <p>Oznamuji, že tímto odstupuji od smlouvy o nákupu tohoto zboží: …………… (název knihy, kód knihy)</p>
+        <p>Oznamuji, že tímto odstupuji od smlouvy o nákupu tohoto zboží: …………… (číslo objednávky, název knihy)</p>
         <p>Datum objednání / datum převzetí: ……………</p>
         <p>Jméno a příjmení: ……………<br />Adresa: ……………<br />Číslo účtu pro vrácení peněz: ……………</p>
         <p>Datum: …………… Podpis (jen u listinné podoby): ……………</p>

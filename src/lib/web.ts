@@ -6,7 +6,7 @@ export const NAZEV_WEBU = "Kniha4U";
 export const POPIS_WEBU =
   "Antikvariát Kniha4U – tisíce knih skladem. Romány, historie, odborná literatura i sběratelské kousky za příznivé ceny.";
 
-/** Kontakt z `web.config.json`. Když je prázdný, tlačítko „Mám zájem“ se nezobrazuje. */
+/** Kontakt z `web.config.json`. Když je prázdný, tlačítko „Mám zájem“ (bez košíku) se nezobrazuje. */
 export const KONTAKT: { email?: string; telefon?: string } = (nastaveni as { kontakt?: object }).kontakt ?? {};
 
 /**
@@ -42,7 +42,7 @@ type Objednavky = {
 const objednavky = (nastaveni as { objednavky?: Objednavky }).objednavky;
 
 /**
- * Objednávky z webu (formulář „Mám zájem“): EmailJS, účet pro platbu předem a ceny dopravy.
+ * Objednávky z webu (košík a objednávkový formulář): EmailJS, účet pro platbu předem a ceny dopravy.
  * Aktivní, jen když je vyplněno EmailJS i platné číslo účtu – jinak tlačítko otevře e-mail.
  */
 export const OBJEDNAVKY = objednavky && {
@@ -51,6 +51,9 @@ export const OBJEDNAVKY = objednavky && {
   email: KONTAKT.email ?? "",
   aktivni: Boolean(objednavky.emailjs.publicKey && objednavky.emailjs.serviceId && objednavky.emailjs.templateId && ucetNaIban(objednavky.ucet)),
 };
+
+/** Nákupní košík (tlačítka „Koupit“, ikona v liště, objednávka více knih) – jen s funkčními objednávkami. */
+export const KOSIK = Boolean(OBJEDNAVKY?.aktivni);
 
 const base = () => import.meta.env.BASE_URL.replace(/\/+$/, "");
 

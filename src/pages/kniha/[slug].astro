@@ -4,9 +4,8 @@ import Zaklad from "../../layouts/Zaklad.astro";
 import Obalka from "../../components/Obalka.astro";
 import Ikona, { type NazevIkony } from "../../components/Ikona.astro";
 import Karusel from "../../components/Karusel.astro";
-import Objednavka from "../../components/Objednavka.astro";
-import { autori, knihy, kolekceObdobi, podobne, stranaAutora, stranaNakladatele, type Kniha } from "../../lib/knihy";
-import { KONTAKT, NAZEV_WEBU, OBJEDNAVKY, absolutni, formatCena, odkaz, zkratit } from "../../lib/web";
+import { autori, doKosiku, knihy, kolekceObdobi, podobne, stranaAutora, stranaNakladatele, type Kniha } from "../../lib/knihy";
+import { KONTAKT, KOSIK, NAZEV_WEBU, absolutni, formatCena, odkaz, zkratit } from "../../lib/web";
 
 export const getStaticPaths = (() => knihy.map((kniha) => ({ params: { slug: kniha.slug }, props: { kniha } }))) satisfies GetStaticPaths;
 
@@ -34,10 +33,7 @@ const [popisZacatek, popisZbytek] = zlom > 0 ? [kniha.popis.slice(0, zlom), knih
 
 const kratce = [kniha.autor, kniha.nakladatel, kniha.rok].filter(Boolean).join(", ");
 const popis = zkratit(kniha.popis || `${kniha.nazev}${kratce ? ` (${kratce})` : ""} – kniha skladem v antikvariátu ${NAZEV_WEBU} za ${formatCena(kniha.cena)}.`);
-// „Mám zájem“: s nastaveným EmailJS a účtem otevře objednávkový formulář, jinak e-mail / telefon.
-const objednat = OBJEDNAVKY?.aktivni
-  ? JSON.stringify({ id: kniha.id, nazev: kniha.nazev, autor: kniha.autor, cena: kniha.cena, url, obalka: kniha.obrazek, box: kniha.box ?? "" })
-  : null;
+// S funkčními objednávkami „Do košíku“, jinak „Mám zájem“ přes e-mail / telefon.
 const zajem = KONTAKT.email
   ? `mailto:${KONTAKT.email}?subject=${encodeURIComponent(`Zájem o knihu: ${kniha.nazev} (kód ${kniha.id})`)}`
   : KONTAKT.telefon ? `tel:${KONTAKT.telefon.replace(/\s/g, "")}` : null;
@@ -120,8 +116,8 @@ const jsonLd = [
           </div>
           <div class="nakup-akce">
             {
-              objednat ? (
-                <button class="tl" type="button" data-objednat data-kniha={objednat}><Ikona nazev="balik" velikost={18} /> Mám zájem</button>
+              KOSIK ? (
+                <button class="tl" type="button" data-do-kosiku data-kniha={doKosiku(kniha)}><Ikona nazev="kosik" velikost={18} /><span>Do košíku</span></button>
               ) : (
                 zajem && <a class="tl" href={zajem}><Ikona nazev={KONTAKT.email ? "mail" : "telefon"} velikost={18} /> Mám zájem</a>
               )
@@ -164,5 +160,4 @@ const jsonLd = [
     {odAutora.length > 0 && <Karusel id="od-autora" nadpis={`Další knihy: ${autoriKnihy[0]?.jmeno}`} knihy={odAutora} odkaz={autoriKnihy[0]?.stranka && { href: odkaz(`autor/${autoriKnihy[0].stranka.slug}`), text: "Všechny" }} />}
     <Karusel id="dalsi" nadpis="Mohlo by vás zajímat" knihy={dalsi} odkaz={{ href: odkaz("katalog"), text: "Katalog" }} />
   </div>
-  {objednat && <Objednavka />}
 </Zaklad>

@@ -1,9 +1,10 @@
 ---
 import "../styles/global.css";
 import Hledani from "../components/Hledani.astro";
+import Objednavka from "../components/Objednavka.astro";
 import Ikona, { type NazevIkony } from "../components/Ikona.astro";
 import { kolekceCen, vygenerovano } from "../lib/knihy";
-import { KONTAKT, NAZEV_WEBU, OPONA, POPIS_WEBU, absolutni, identitaProvozovatele, odkaz, soubor } from "../lib/web";
+import { KONTAKT, KOSIK, NAZEV_WEBU, OPONA, POPIS_WEBU, absolutni, identitaProvozovatele, odkaz, soubor } from "../lib/web";
 
 interface Props {
   titulek?: string;
@@ -114,6 +115,14 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
           <button class="lista-tl" type="button" data-tema-prepinac aria-label="Přepnout světlý / tmavý režim" title="Světlý / tmavý režim">
             <Ikona nazev="mesic" velikost={19} class="ikona-mesic" /><Ikona nazev="slunce" velikost={19} class="ikona-slunce" />
           </button>
+          {
+            KOSIK && (
+              <button class="lista-tl kosik-tl" type="button" data-kosik-otevrit aria-label="Košík" title="Košík">
+                <Ikona nazev="kosik" velikost={20} />
+                <span class="kosik-pocet" data-kosik-pocet hidden></span>
+              </button>
+            )
+          }
           <button class="lista-tl menu-tl" type="button" popovertarget="menu" aria-label="Menu">
             <Ikona nazev="menu" velikost={19} />
           </button>
@@ -167,6 +176,7 @@ const NAVIGACE: { sekce: Props["sekce"]; href: string; text: string; ikona: Naze
 
     <a class="nahoru" href="#" aria-label="Nahoru"><Ikona nazev="nahoru" /></a>
     <Hledani />
+    {KOSIK && <Objednavka />}
 
     <script>
       import "../scripts/web.ts";

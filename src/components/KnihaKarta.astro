@@ -1,7 +1,8 @@
 ---
 import Obalka from "./Obalka.astro";
-import type { Kniha } from "../lib/knihy";
-import { formatCena, odkaz } from "../lib/web";
+import Ikona from "./Ikona.astro";
+import { doKosiku, type Kniha } from "../lib/knihy";
+import { KOSIK, formatCena, odkaz } from "../lib/web";
 
 interface Props {
   kniha: Kniha;
@@ -13,14 +14,18 @@ interface Props {
 const { kniha, priorita, prechod = true } = Astro.props;
 ---
 
-<a class="karta objev" href={odkaz(`kniha/${kniha.slug}`)}>
-  <Obalka kniha={kniha} priorita={priorita} prechod={prechod} />
-  <span class="karta-text">
-    <span class="karta-nazev">{kniha.nazev}</span>
-    <span class="karta-autor">{kniha.autor || " "}</span>
-    <span class="karta-spodek">
-      <span class="karta-rok">{kniha.rok}</span>
-      <span class="cena">{formatCena(kniha.cena)}</span>
+<!-- Stejné značky skládá i scripts/filtr.ts (karty dočítané v prohlížeči). Tlačítko „Koupit“ je mimo odkaz. -->
+<article class="karta objev">
+  <a class="karta-odkaz" href={odkaz(`kniha/${kniha.slug}`)}>
+    <Obalka kniha={kniha} priorita={priorita} prechod={prechod} />
+    <span class="karta-text">
+      <span class="karta-nazev">{kniha.nazev}</span>
+      <span class="karta-autor">{kniha.autor || " "}</span>
+      <span class="karta-rok">{kniha.rok || " "}</span>
     </span>
-  </span>
-</a>
+  </a>
+  <div class="karta-spodek">
+    <span class="cena">{formatCena(kniha.cena)}</span>
+    {KOSIK && <button class="karta-koupit" type="button" data-do-kosiku data-kniha={doKosiku(kniha)} aria-label={`Koupit: ${kniha.nazev}`}><Ikona nazev="kosik" velikost={16} /><span>Koupit</span></button>}
+  </div>
+</article>

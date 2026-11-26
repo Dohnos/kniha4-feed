@@ -563,12 +563,18 @@ button, input, select { font: inherit; color: inherit; }
 .karta {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+}
+.karta-odkaz {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
   min-width: 0;
   text-decoration: none;
 }
 .karta .obalka { transition: transform 0.35s var(--pruzne), box-shadow 0.35s; }
-.karta:hover .obalka { transform: translateY(-6px) rotate(-1.2deg); box-shadow: var(--stin-velky); }
+.karta-odkaz:hover .obalka { transform: translateY(-6px) rotate(-1.2deg); box-shadow: var(--stin-velky); }
 .karta-text { flex: 1; display: flex; flex-direction: column; gap: 3px; padding-inline: 2px; }
 .karta-nazev {
   font-weight: 640;
@@ -580,8 +586,28 @@ button, input, select { font: inherit; color: inherit; }
   overflow: hidden;
 }
 .karta-autor { font-size: 0.86rem; color: var(--slaby); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.karta-spodek { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 10px; }
-.karta-rok { font-size: 0.83rem; color: var(--slaby); }
+.karta-rok { font-size: 0.8rem; color: var(--slaby); font-variant-numeric: tabular-nums; }
+.karta-spodek { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 2px 0; }
+.karta-spodek .cena { padding: 0; background: none; color: var(--text); font-size: 1rem; font-weight: 700; }
+.karta-koupit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 8px 12px;
+  border: 1px solid var(--akcent);
+  border-radius: var(--r-pill);
+  background: var(--akcent);
+  color: var(--na-akcentu);
+  font: 650 0.86rem var(--pismo);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.2s var(--pruzne), box-shadow 0.2s, background 0.2s, color 0.2s;
+}
+.karta-koupit:hover { transform: translateY(-2px); box-shadow: var(--stin); }
+.karta-koupit:active { transform: scale(0.95); }
+/* Kniha už v košíku: obrysové tlačítko „V košíku“ (klik otevře košík). */
+.karta-koupit.v-kosiku, .tl.v-kosiku { background: transparent; color: var(--text); border-color: var(--text); }
+@media (max-width: 380px) { .karta-koupit { padding: 8px 10px; } .karta-koupit .ikona { display: none; } }
 
 /* Postupné objevení při scrollování – čistě v CSS, prohlížeče bez podpory obsah ukážou hned. */
 @media (prefers-reduced-motion: no-preference) {
@@ -1007,7 +1033,47 @@ button, input, select { font: inherit; color: inherit; }
 .udaj-siroky { grid-column: span 2; }
 .udaj-siroky dd { overflow-wrap: normal; font-variant-numeric: tabular-nums; }
 
-/* ---------- objednávka („Mám zájem“) ---------- */
+/* ---------- košík v liště ---------- */
+.kosik-tl { position: relative; }
+.kosik-pocet {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--r-pill);
+  background: #2f9e5a;
+  color: #fff;
+  font: 750 0.72rem/20px var(--pismo);
+  text-align: center;
+  animation: kosik-pocet 0.35s var(--pruzne);
+}
+@keyframes kosik-pocet { from { transform: scale(0.4); } }
+
+.kosik-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 10px 10px 10px 18px;
+  border-radius: var(--r-pill);
+  background: var(--akcent);
+  color: var(--na-akcentu);
+  box-shadow: var(--stin-velky);
+  transform: translateX(-50%);
+  animation: kosik-toast 0.3s var(--pruzne);
+}
+.kosik-toast > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; font-size: 0.93rem; }
+.kosik-toast .tl { flex-shrink: 0; background: var(--na-akcentu); color: var(--akcent); border-color: var(--na-akcentu); }
+@keyframes kosik-toast { from { opacity: 0; transform: translate(-50%, 16px); } }
+
+/* ---------- košík a objednávka ---------- */
 .objednavka {
   width: min(600px, calc(100vw - 24px));
   max-height: calc(100dvh - 24px);
@@ -1026,11 +1092,37 @@ button, input, select { font: inherit; color: inherit; }
 .obj-formular, .obj-hotovo { display: grid; gap: 16px; padding: 22px; }
 .obj-hlava { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .obj-hlava h2 { margin: 0; font-family: var(--pismo-nadpis); font-size: 1.5rem; font-weight: 600; }
-.obj-kniha { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 12px; border-radius: var(--r-md); background: var(--plocha-2); }
-.obj-kniha img { width: 52px; height: 76px; object-fit: cover; border-radius: 6px; }
-.obj-kniha strong, .obj-kniha span { display: block; }
-.obj-kniha span { color: var(--slaby); font-size: 0.9rem; }
-.obj-kniha b { font-size: 1.1rem; white-space: nowrap; }
+.obj-polozky { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.obj-kniha { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 12px; padding: 10px 10px 10px 12px; border-radius: var(--r-md); background: var(--plocha-2); }
+.obj-kniha img, .obj-kniha .mini-obalka { width: 42px; height: 62px; object-fit: cover; border-radius: 6px; }
+.obj-kniha > div { min-width: 0; }
+.obj-kniha a { display: block; font-weight: 650; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.obj-kniha a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.obj-kniha span { display: block; color: var(--slaby); font-size: 0.88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.obj-kniha b { font-size: 1.02rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.obj-odebrat {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--linka);
+  border-radius: 50%;
+  background: var(--plocha);
+  color: var(--slaby);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.obj-odebrat:hover { border-color: var(--text); color: var(--text); }
+.obj-info { margin: 0; padding: 10px 14px; border-radius: var(--r-sm); background: var(--plocha-2); font-size: 0.9rem; }
+.obj-prazdny { display: grid; justify-items: center; gap: 10px; padding: 26px 0 10px; color: var(--slaby); text-align: center; }
+.obj-prazdny p { margin: 0; font-size: 1.05rem; }
+.obj-pokladna { display: grid; gap: 16px; }
+.obj-dalsi { justify-self: start; }
+.obj-cekejte { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border-radius: var(--r-md); background: #fff1c2; color: #5c4300; }
+.obj-cekejte strong { display: block; font-size: 1.12rem; }
+.obj-cekejte p { margin: 4px 0 0; }
+.obj-cekejte .ikona { flex-shrink: 0; margin-top: 2px; }
 .objednavka fieldset { display: grid; gap: 10px; margin: 0; padding: 0; border: 0; min-width: 0; }
 .objednavka legend { padding: 0 0 6px; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slaby); }
 .obj-radek { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }

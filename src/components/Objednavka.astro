@@ -1,11 +1,12 @@
 ---
 /**
- * Okno „Mám zájem“ – objednávka knihy: kontakt, výdejní místo (mapa Zaslat), platba předem (QR) nebo
- * na dobírku. Odesílá se přes EmailJS – jeden e-mail obchodu, druhý zákazníkovi (s QR platbou).
- * Otevírá ho tlačítko s atributem data-objednat (údaje o knize v data-kniha).
+ * Nákupní košík a objednávka (na každé stránce, když jsou objednávky zapnuté – viz KOSIK v lib/web.ts).
+ * Knihy se přidávají tlačítky s atributem data-do-kosiku (údaje v data-kniha), okno otevírá data-kosik-otevrit.
+ * Objednávka: kontakt, výdejní místo (mapa Zaslat), platba předem (QR) nebo na dobírku; odesílá se přes
+ * EmailJS – jeden e-mail obchodu, druhý zákazníkovi. Logika je v scripts/objednavka.ts.
  */
 import Ikona from "./Ikona.astro";
-import { OBJEDNAVKY, absolutni, formatCena, identitaProvozovatele, odkaz } from "../lib/web";
+import { OBJEDNAVKY, absolutni, formatCena, identitaProvozovatele, odkaz, soubor } from "../lib/web";
 
 const NAZVY: Record<string, string> = { zasilkovna: "Zásilkovna", balikovna: "Balíkovna" };
 const dopravci = Object.entries(OBJEDNAVKY?.doprava ?? {}).map(([d, c]) => `${NAZVY[d] ?? d} ${formatCena(c)}`).join(" · ");
@@ -13,6 +14,8 @@ const nastaveni = OBJEDNAVKY && {
   podminky: absolutni(odkaz("obchodni-podminky"), Astro.site),
   ochrana: absolutni(odkaz("ochrana-osobnich-udaju"), Astro.site),
   web: absolutni(odkaz(), Astro.site),
+  knihy: absolutni(odkaz("kniha"), Astro.site),
+  rejstrik: soubor("hledani.json"),
   prodavajici: identitaProvozovatele(),
   ...OBJEDNAVKY.emailjs,
   iban: OBJEDNAVKY.iban,
@@ -26,59 +29,63 @@ const nastaveni = OBJEDNAVKY && {
 <dialog class="objednavka" id="objednavka" aria-labelledby="obj-nadpis" data-nastaveni={JSON.stringify(nastaveni)}>
   <form class="obj-formular" id="obj-formular" novalidate>
     <header class="obj-hlava">
-      <h2 id="obj-nadpis">Objednat knihu</h2>
+      <h2 id="obj-nadpis">Košík</h2>
       <button class="tl tl-kulate tl-obrys" type="button" data-obj-zavrit aria-label="Zavřít"><Ikona nazev="zavrit" velikost={18} /></button>
     </header>
 
-    <div class="obj-kniha">
-      <img id="obj-obalka" alt="" hidden />
-      <div>
-        <strong id="obj-kniha-nazev"></strong>
-        <span id="obj-kniha-autor"></span>
-      </div>
-      <b id="obj-kniha-cena"></b>
+    <ul class="obj-polozky" id="obj-polozky"></ul>
+    <p class="obj-info" id="obj-zmeny" role="status" hidden></p>
+
+    <div class="obj-prazdny" id="obj-prazdny" hidden>
+      <Ikona nazev="kosik" velikost={40} />
+      <p>Košík je zatím prázdný.</p>
+      <a class="tl" href={odkaz("katalog")}>Prohlédnout katalog <Ikona nazev="vpravo" velikost={18} class="ikona-posun" /></a>
     </div>
 
-    <fieldset>
-      <legend>Kontakt</legend>
-      <label class="obj-pole"><span>Jméno a příjmení *</span><input name="jmeno" autocomplete="name" required /></label>
-      <div class="obj-radek">
-        <label class="obj-pole"><span>E-mail *</span><input name="email" type="email" autocomplete="email" inputmode="email" required /></label>
-        <label class="obj-pole"><span>Telefon *</span><input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required /></label>
-      </div>
-      <!-- Past na roboty: člověk pole nevidí ani nevyplní. -->
-      <input class="obj-past" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
-    </fieldset>
+    <div class="obj-pokladna" id="obj-pokladna">
+      <button class="tl tl-obrys tl-male obj-dalsi" type="button" data-obj-zavrit><Ikona nazev="vlevo" velikost={16} /> Pokračovat v nákupu</button>
 
-    <fieldset>
-      <legend>Doprava</legend>
-      <div class="obj-misto" id="obj-misto" hidden></div>
-      <label class="obj-pole" id="obj-dopravce-pole" hidden><span>Dopravce na tomto místě</span><select id="obj-dopravce"></select></label>
-      <button class="tl tl-obrys obj-mapa-tl" type="button" id="obj-mapa"><Ikona nazev="mapa" velikost={18} /><span>Vybrat výdejní místo na mapě</span></button>
-      <small class="obj-napoveda">{dopravci} – výdejní místo vyberete na mapě.</small>
-    </fieldset>
+      <fieldset>
+        <legend>Kontakt</legend>
+        <label class="obj-pole"><span>Jméno a příjmení *</span><input name="jmeno" autocomplete="name" required /></label>
+        <div class="obj-radek">
+          <label class="obj-pole"><span>E-mail *</span><input name="email" type="email" autocomplete="email" inputmode="email" required /></label>
+          <label class="obj-pole"><span>Telefon *</span><input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required /></label>
+        </div>
+        <!-- Past na roboty: člověk pole nevidí ani nevyplní. -->
+        <input class="obj-past" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      </fieldset>
 
-    <fieldset>
-      <legend>Platba</legend>
-      <label class="obj-volba"><input type="radio" name="platba" value="predem" checked /><span><strong>Předem převodem</strong><small>Po odeslání dostanete QR kód pro platbu.</small></span></label>
-      <label class="obj-volba"><input type="radio" name="platba" value="dobirka" /><span><strong>Na dobírku</strong><small id="obj-dobirka-popis">Zaplatíte při převzetí.</small></span></label>
-    </fieldset>
+      <fieldset>
+        <legend>Doprava</legend>
+        <div class="obj-misto" id="obj-misto" hidden></div>
+        <label class="obj-pole" id="obj-dopravce-pole" hidden><span>Dopravce na tomto místě</span><select id="obj-dopravce"></select></label>
+        <button class="tl tl-obrys obj-mapa-tl" type="button" id="obj-mapa"><Ikona nazev="mapa" velikost={18} /><span>Vybrat výdejní místo na mapě</span></button>
+        <small class="obj-napoveda">{dopravci} – za celou objednávku, výdejní místo vyberete na mapě.</small>
+      </fieldset>
 
-    <label class="obj-pole"><span>Poznámka</span><textarea name="poznamka" rows="2" maxlength="600"></textarea></label>
+      <fieldset>
+        <legend>Platba</legend>
+        <label class="obj-volba"><input type="radio" name="platba" value="predem" checked /><span><strong>Předem převodem</strong><small>Platební údaje a QR kód dostanete hned; zaplaťte až po našem potvrzení.</small></span></label>
+        <label class="obj-volba"><input type="radio" name="platba" value="dobirka" /><span><strong>Na dobírku</strong><small id="obj-dobirka-popis">Zaplatíte při převzetí.</small></span></label>
+      </fieldset>
 
-    <dl class="obj-souhrn" id="obj-souhrn"></dl>
+      <label class="obj-pole"><span>Poznámka</span><textarea name="poznamka" rows="2" maxlength="600"></textarea></label>
 
-    <label class="obj-souhlas">
-      <input type="checkbox" name="souhlas" required />
-      <span>Souhlasím s <a href={odkaz("obchodni-podminky")} target="_blank">obchodními podmínkami</a> a beru na vědomí <a href={odkaz("ochrana-osobnich-udaju")} target="_blank">zpracování osobních údajů</a> za účelem vyřízení objednávky.</span>
-    </label>
+      <dl class="obj-souhrn" id="obj-souhrn"></dl>
 
-    <p class="obj-chyba" id="obj-chyba" role="alert" hidden></p>
-    <button class="tl obj-odeslat" type="submit" id="obj-odeslat"><Ikona nazev="ok" velikost={18} /><span>Objednat s povinností platby</span></button>
-    <small class="obj-napoveda">
-      Jako spotřebitel můžete do 14 dnů od převzetí od smlouvy odstoupit (<a href={odkaz("obchodni-podminky") + "#odstoupeni"} target="_blank">jak na to</a>).
-      Prodávající: {identitaProvozovatele()}.
-    </small>
+      <label class="obj-souhlas">
+        <input type="checkbox" name="souhlas" required />
+        <span>Souhlasím s <a href={odkaz("obchodni-podminky")} target="_blank">obchodními podmínkami</a> a beru na vědomí <a href={odkaz("ochrana-osobnich-udaju")} target="_blank">zpracování osobních údajů</a> za účelem vyřízení objednávky.</span>
+      </label>
+
+      <p class="obj-chyba" id="obj-chyba" role="alert" hidden></p>
+      <button class="tl obj-odeslat" type="submit" id="obj-odeslat"><Ikona nazev="ok" velikost={18} /><span>Objednat s povinností platby</span></button>
+      <small class="obj-napoveda">
+        Jako spotřebitel můžete do 14 dnů od převzetí od smlouvy odstoupit (<a href={odkaz("obchodni-podminky") + "#odstoupeni"} target="_blank">jak na to</a>).
+        Prodávající: {identitaProvozovatele()}.
+      </small>
+    </div>
   </form>
 
   <div class="obj-hotovo" id="obj-hotovo" hidden>
@@ -87,6 +94,13 @@ const nastaveni = OBJEDNAVKY && {
       <button class="tl tl-kulate tl-obrys" type="button" data-obj-zavrit aria-label="Zavřít"><Ikona nazev="zavrit" velikost={18} /></button>
     </header>
     <p id="obj-hotovo-text"></p>
+    <div class="obj-cekejte">
+      <Ikona nazev="hodiny" velikost={26} />
+      <div>
+        <strong>Počkejte prosím na potvrzení objednávky</strong>
+        <p>Ověříme, že jsou knihy skladem, a objednávku vám potvrdíme e-mailem. <span id="obj-cekejte-platba">Platbu prosím pošlete až po potvrzení.</span></p>
+      </div>
+    </div>
     <div class="obj-platba" id="obj-platba" hidden>
       <div class="obj-qr" id="obj-qr" role="img" aria-label="QR kód pro platbu"></div>
       <dl id="obj-platba-udaje"></dl>
@@ -95,6 +109,12 @@ const nastaveni = OBJEDNAVKY && {
     <button class="tl" type="button" data-obj-zavrit>Zavřít</button>
   </div>
 </dialog>
+
+<div class="kosik-toast" id="kosik-toast" role="status" aria-live="polite" hidden>
+  <Ikona nazev="ok" velikost={18} />
+  <span id="kosik-toast-text">Přidáno do košíku</span>
+  <button class="tl tl-male" type="button" data-kosik-otevrit>Zobrazit košík</button>
+</div>
 
 <script>
   import "../scripts/objednavka.ts";
